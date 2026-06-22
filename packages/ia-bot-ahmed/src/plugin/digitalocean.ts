@@ -1,4 +1,4 @@
-import type { Hooks, PluginInput } from "@ia-bot-ahmed/plugin"
+﻿import type { Hooks, PluginInput } from "@ia-bot-ahmed/plugin"
 import type { Model } from "@ia-bot-ahmed/sdk/v2"
 import { InstallationVersion } from "@ia-bot-ahmed/core/installation/version"
 import { createServer } from "http"
@@ -62,7 +62,7 @@ const HTML_CALLBACK = `<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>ia-bot-ahmed - DigitalOcean Authorization</title>
+    <title>IaBotAhmed - DigitalOcean Authorization</title>
     <style>
       body { font-family: system-ui, -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #0b1220; color: #e8eef9; }
       .container { text-align: center; padding: 2rem; max-width: 32rem; }
@@ -105,7 +105,7 @@ const HTML_CALLBACK = `<!doctype html>
             return
           }
           titleEl.textContent = "Authorization Successful"
-          msgEl.textContent = "You can close this window and return to ia-bot-ahmed."
+          msgEl.textContent = "You can close this window and return to IaBotAhmed."
           setTimeout(function () { window.close() }, 2000)
         } catch (e) {
           titleEl.textContent = "Authorization Failed"
@@ -341,7 +341,7 @@ export async function DigitalOceanAuthPlugin(input: PluginInput): Promise<Hooks>
             return {
               url,
               instructions:
-                "Sign in to DigitalOcean in your browser. ia-bot-ahmed will use your DigitalOcean API token directly for inference and load your Inference Routers. Re-run /connect to refresh routers later.",
+                "Sign in to DigitalOcean in your browser. IaBotAhmed will use your DigitalOcean API token directly for inference and load your Inference Routers. Re-run /connect to refresh routers later.",
               method: "auto" as const,
               async callback() {
                 try {

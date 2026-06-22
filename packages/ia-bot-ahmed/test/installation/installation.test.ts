@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Effect, Layer, Stream } from "effect"
 import { HttpClient, HttpClientRequest, HttpClientResponse } from "effect/unstable/http"
 import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process"
@@ -86,7 +86,7 @@ describe("installation", () => {
       Effect.gen(function* () {
         const result = yield* Installation.use.latest("npm")
         expect(result).toBe("1.5.0")
-        expect(npmCalls).toContain(`https://registry.npmjs.org/ia-bot-ahmed-ai/${InstallationChannel}`)
+        expect(npmCalls).toContain(`https://registry.npmjs.org/IaBotAhmed-ai/${InstallationChannel}`)
       }),
     )
 
@@ -100,7 +100,7 @@ describe("installation", () => {
       Effect.gen(function* () {
         const result = yield* Installation.use.latest("bun")
         expect(result).toBe("1.6.0")
-        expect(bunCalls).toContain(`https://registry.npmjs.org/ia-bot-ahmed-ai/${InstallationChannel}`)
+        expect(bunCalls).toContain(`https://registry.npmjs.org/IaBotAhmed-ai/${InstallationChannel}`)
       }),
     )
 
@@ -114,7 +114,7 @@ describe("installation", () => {
       Effect.gen(function* () {
         const result = yield* Installation.use.latest("pnpm")
         expect(result).toBe("1.7.0")
-        expect(pnpmCalls).toContain(`https://registry.npmjs.org/ia-bot-ahmed-ai/${InstallationChannel}`)
+        expect(pnpmCalls).toContain(`https://registry.npmjs.org/IaBotAhmed-ai/${InstallationChannel}`)
       }),
     )
 
@@ -139,7 +139,7 @@ describe("installation", () => {
         () => jsonResponse({ versions: { stable: "2.0.0" } }),
         (cmd, args) => {
           // getBrewFormula: return core formula (no tap)
-          if (cmd === "brew" && args.includes("--formula") && args.includes("anomalyco/tap/ia-bot-ahmed")) return ""
+          if (cmd === "brew" && args.includes("--formula") && args.includes("anomalyco/tap/IaBotAhmed")) return ""
           if (cmd === "brew" && args.includes("--formula") && args.includes("ia-bot-ahmed")) return "ia-bot-ahmed"
           return ""
         },
@@ -158,7 +158,7 @@ describe("installation", () => {
       testLayer(
         () => jsonResponse({}), // HTTP not used for tap formula
         (cmd, args) => {
-          if (cmd === "brew" && args.includes("anomalyco/tap/ia-bot-ahmed") && args.includes("--formula")) return "ia-bot-ahmed"
+          if (cmd === "brew" && args.includes("anomalyco/tap/IaBotAhmed") && args.includes("--formula")) return "ia-bot-ahmed"
           if (cmd === "brew" && args.includes("--json=v2")) return brewInfoJson
           return ""
         },

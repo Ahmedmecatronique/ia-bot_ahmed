@@ -1,11 +1,11 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import stripAnsi from "strip-ansi"
 
 import { defaultConsoleUrl, formatAccountLabel, formatOrgLine } from "../../src/cli/cmd/account"
 
 describe("console account display", () => {
-  test("uses console.ia-bot-ahmed.app as the default login URL", () => {
-    expect(defaultConsoleUrl).toBe("https://console.ia-bot-ahmed.app")
+  test("uses console.IaBotAhmed.app as the default login URL", () => {
+    expect(defaultConsoleUrl).toBe("https://console.IaBotAhmed.app")
   })
 
   test("includes the account url in account labels", () => {
@@ -25,6 +25,6 @@ describe("console account display", () => {
       stripAnsi(
         formatOrgLine({ email: "one@example.com", url: "https://one.example.com" }, { id: "org-1", name: "One" }, true),
       ),
-    ).toBe("  ● One  one@example.com  https://one.example.com  org-1")
+    ).toBe("  â— One  one@example.com  https://one.example.com  org-1")
   })
 })

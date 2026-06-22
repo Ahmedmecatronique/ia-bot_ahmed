@@ -1,4 +1,4 @@
-import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
+﻿import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
 import type {
   Hooks,
   PluginInput,
@@ -7,7 +7,7 @@ import type {
   WorkspaceAdapter as PluginWorkspaceAdapter,
 } from "@ia-bot-ahmed/plugin"
 import { Config } from "@/config/config"
-import { createia-bot-ahmedClient } from "@ia-bot-ahmed/sdk"
+import { createIaBotAhmedClient } from "@ia-bot-ahmed/sdk"
 import { ServerAuth } from "@/server/auth"
 import { CodexAuthPlugin } from "./openai/codex"
 import { Session } from "@/session/session"
@@ -139,7 +139,7 @@ export const layer = Layer.effect(
         const { Server } = yield* Effect.promise(() => import("../server/server"))
 
         const serverUrl = Server.url
-        const client = createia-bot-ahmedClient({
+        const client = createIaBotAhmedClient({
           baseUrl: serverUrl?.toString() ?? "http://localhost:4096",
           directory: ctx.directory,
           headers: ServerAuth.headers(),

@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import type {
   CloseSessionResponse,
   ListSessionsResponse,
@@ -13,9 +13,9 @@ import { createAcpClient, initialize, newSession, verifierConfig } from "./helpe
 describe("ia-bot-ahmed acp lifecycle subprocess", () => {
   cliIt.live(
     "stdin EOF exits cleanly",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const acp = yield* ia-bot-ahmed.acp()
+        const acp = yield* IaBotAhmed.acp()
         acp.close()
 
         const code = yield* Effect.promise(() => acp.exited).pipe(Effect.timeout(Duration.seconds(5)))
@@ -26,10 +26,10 @@ describe("ia-bot-ahmed acp lifecycle subprocess", () => {
 
   cliIt.live(
     "close capability and close request",
-    ({ home, llm, ia-bot-ahmed }) =>
+    ({ home, llm, IaBotAhmed }) =>
       Effect.gen(function* () {
         const acp = yield* createAcpClient(
-          { ia-bot-ahmed },
+          { IaBotAhmed },
           { IA_BOT_AHMED_CONFIG_CONTENT: JSON.stringify(verifierConfig(llm.url)) },
         )
         const initialized = yield* initialize(acp)
@@ -43,10 +43,10 @@ describe("ia-bot-ahmed acp lifecycle subprocess", () => {
 
   cliIt.live(
     "loadSession capability and load request return session config options",
-    ({ home, llm, ia-bot-ahmed }) =>
+    ({ home, llm, IaBotAhmed }) =>
       Effect.gen(function* () {
         const acp = yield* createAcpClient(
-          { ia-bot-ahmed },
+          { IaBotAhmed },
           { IA_BOT_AHMED_CONFIG_CONTENT: JSON.stringify(verifierConfig(llm.url)) },
         )
         const initialized = yield* initialize(acp)
@@ -67,10 +67,10 @@ describe("ia-bot-ahmed acp lifecycle subprocess", () => {
 
   cliIt.live(
     "list request includes a live ACP-created session",
-    ({ home, llm, ia-bot-ahmed }) =>
+    ({ home, llm, IaBotAhmed }) =>
       Effect.gen(function* () {
         const acp = yield* createAcpClient(
-          { ia-bot-ahmed },
+          { IaBotAhmed },
           { IA_BOT_AHMED_CONFIG_CONTENT: JSON.stringify(verifierConfig(llm.url)) },
         )
         yield* initialize(acp)
@@ -84,9 +84,9 @@ describe("ia-bot-ahmed acp lifecycle subprocess", () => {
 
   cliIt.live(
     "resume capability advertisement",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const initialized = yield* initialize(yield* createAcpClient({ ia-bot-ahmed }))
+        const initialized = yield* initialize(yield* createAcpClient({ IaBotAhmed }))
 
         expect(initialized.agentCapabilities?.sessionCapabilities?.resume).toEqual({})
       }),
@@ -95,10 +95,10 @@ describe("ia-bot-ahmed acp lifecycle subprocess", () => {
 
   cliIt.live(
     "resume request returns session config options",
-    ({ home, llm, ia-bot-ahmed }) =>
+    ({ home, llm, IaBotAhmed }) =>
       Effect.gen(function* () {
         const acp = yield* createAcpClient(
-          { ia-bot-ahmed },
+          { IaBotAhmed },
           { IA_BOT_AHMED_CONFIG_CONTENT: JSON.stringify(verifierConfig(llm.url)) },
         )
         yield* initialize(acp)

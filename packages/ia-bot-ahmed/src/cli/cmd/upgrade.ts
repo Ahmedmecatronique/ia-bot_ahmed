@@ -1,4 +1,4 @@
-import type { Argv } from "yargs"
+﻿import type { Argv } from "yargs"
 import { UI } from "../ui"
 import * as prompts from "@clack/prompts"
 import { Installation } from "../../installation"
@@ -6,7 +6,7 @@ import { InstallationVersion } from "@ia-bot-ahmed/core/installation/version"
 
 export const UpgradeCommand = {
   command: "upgrade [target]",
-  describe: "upgrade ia-bot-ahmed to the latest or a specific version",
+  describe: "upgrade IaBotAhmed to the latest or a specific version",
   builder: (yargs: Argv) => {
     return yargs
       .positional("target", {
@@ -51,7 +51,7 @@ export const UpgradeCommand = {
       return
     }
 
-    prompts.log.info(`From ${InstallationVersion} → ${target}`)
+    prompts.log.info(`From ${InstallationVersion} â†’ ${target}`)
     const spinner = prompts.spinner()
     spinner.start("Upgrading...")
     const err = await Installation.upgrade(method, target).catch((err) => err)

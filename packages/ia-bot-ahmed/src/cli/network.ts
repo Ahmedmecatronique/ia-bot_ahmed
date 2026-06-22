@@ -1,4 +1,4 @@
-import type { Argv, InferredOptionTypes } from "yargs"
+﻿import type { Argv, InferredOptionTypes } from "yargs"
 import { ConfigV1 } from "@ia-bot-ahmed/core/v1/config/config"
 import type { Config } from "@/config/config"
 import { Effect } from "effect"
@@ -21,7 +21,7 @@ const options = {
   },
   "mdns-domain": {
     type: "string" as const,
-    describe: "custom domain name for mDNS service (default: ia-bot-ahmed.local)",
+    describe: "custom domain name for mDNS service (default: IaBotAhmed.local)",
     default: "ia-bot-ahmed.local",
   },
   cors: {

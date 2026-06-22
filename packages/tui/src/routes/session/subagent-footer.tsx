@@ -1,4 +1,4 @@
-import { createMemo, createSignal, Show } from "solid-js"
+﻿import { createMemo, createSignal, Show } from "solid-js"
 import { useRouteData } from "../../context/route"
 import { useSync } from "../../context/sync"
 import { useTheme } from "../../context/theme"
@@ -6,7 +6,7 @@ import { SplitBorder } from "../../ui/border"
 import type { AssistantMessage } from "@ia-bot-ahmed/sdk/v2"
 import { Locale } from "../../util/locale"
 import { useTerminalDimensions } from "@opentui/solid"
-import { useCommandShortcut, useia-bot-ahmedKeymap } from "../../keymap"
+import { useCommandShortcut, useIaBotAhmedKeymap } from "../../keymap"
 
 export function SubagentFooter() {
   const route = useRouteData("session")
@@ -55,7 +55,7 @@ export function SubagentFooter() {
   })
 
   const { theme } = useTheme()
-  const keymap = useia-bot-ahmedKeymap()
+  const keymap = useIaBotAhmedKeymap()
   const parentShortcut = useCommandShortcut("session.parent")
   const previousShortcut = useCommandShortcut("session.child.previous")
   const nextShortcut = useCommandShortcut("session.child.next")
@@ -88,7 +88,7 @@ export function SubagentFooter() {
             <Show when={usage()}>
               {(item) => (
                 <text fg={theme.textMuted} wrapMode="none">
-                  {[item().context, item().cost].filter(Boolean).join(" · ")}
+                  {[item().context, item().cost].filter(Boolean).join(" Â· ")}
                 </text>
               )}
             </Show>

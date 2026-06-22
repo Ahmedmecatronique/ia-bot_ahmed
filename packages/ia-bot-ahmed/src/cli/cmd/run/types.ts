@@ -1,4 +1,4 @@
-// Shared type vocabulary for the direct interactive mode (`run --interactive`).
+﻿// Shared type vocabulary for the direct interactive mode (`run --interactive`).
 //
 // Direct mode uses a split-footer terminal layout: immutable scrollback for the
 // session transcript, and a mutable footer for prompt input, status, and
@@ -7,11 +7,11 @@
 //
 // Data flow through the system:
 //
-//   SDK events → session-data reducer → StreamCommit[] + FooterOutput
-//     → stream.ts bridges to footer API
-//       → footer.ts queues commits and patches the footer view
-//         → OpenTUI split-footer renderer writes to terminal
-import type { ia-bot-ahmedClient, PermissionRequest, QuestionRequest, ToolPart } from "@ia-bot-ahmed/sdk/v2"
+//   SDK events â†’ session-data reducer â†’ StreamCommit[] + FooterOutput
+//     â†’ stream.ts bridges to footer API
+//       â†’ footer.ts queues commits and patches the footer view
+//         â†’ OpenTUI split-footer renderer writes to terminal
+import type { IaBotAhmedClient, PermissionRequest, QuestionRequest, ToolPart } from "@ia-bot-ahmed/sdk/v2"
 import type { TuiConfig } from "@ia-bot-ahmed/tui/config"
 
 export type RunFilePart = {
@@ -21,14 +21,14 @@ export type RunFilePart = {
   mime: string
 }
 
-type PromptModel = Parameters<ia-bot-ahmedClient["session"]["prompt"]>[0]["model"]
-type PromptInput = Parameters<ia-bot-ahmedClient["session"]["prompt"]>[0]
+type PromptModel = Parameters<IaBotAhmedClient["session"]["prompt"]>[0]["model"]
+type PromptInput = Parameters<IaBotAhmedClient["session"]["prompt"]>[0]
 
 export type RunPromptPart = NonNullable<PromptInput["parts"]>[number]
 
-export type RunCommand = NonNullable<Awaited<ReturnType<ia-bot-ahmedClient["command"]["list"]>>["data"]>[number]
+export type RunCommand = NonNullable<Awaited<ReturnType<IaBotAhmedClient["command"]["list"]>>["data"]>[number]
 
-export type RunProvider = NonNullable<Awaited<ReturnType<ia-bot-ahmedClient["provider"]["list"]>>["data"]>["all"][number]
+export type RunProvider = NonNullable<Awaited<ReturnType<IaBotAhmedClient["provider"]["list"]>>["data"]>["all"][number]
 
 export type RunPrompt = {
   messageID?: string
@@ -48,14 +48,14 @@ export type FooterQueuedPrompt = {
   prompt: RunPrompt
 }
 
-export type RunAgent = NonNullable<Awaited<ReturnType<ia-bot-ahmedClient["app"]["agents"]>>["data"]>[number]
+export type RunAgent = NonNullable<Awaited<ReturnType<IaBotAhmedClient["app"]["agents"]>>["data"]>[number]
 
-type RunResourceMap = NonNullable<Awaited<ReturnType<ia-bot-ahmedClient["experimental"]["resource"]["list"]>>["data"]>
+type RunResourceMap = NonNullable<Awaited<ReturnType<IaBotAhmedClient["experimental"]["resource"]["list"]>>["data"]>
 
 export type RunResource = RunResourceMap[string]
 
 export type RunInput = {
-  sdk: ia-bot-ahmedClient
+  sdk: IaBotAhmedClient
   directory: string
   sessionID: string
   sessionTitle?: string
@@ -280,11 +280,11 @@ export type FooterEvent =
       state: FooterSubagentState
     }
 
-export type PermissionReply = Parameters<ia-bot-ahmedClient["permission"]["reply"]>[0]
+export type PermissionReply = Parameters<IaBotAhmedClient["permission"]["reply"]>[0]
 
-export type QuestionReply = Parameters<ia-bot-ahmedClient["question"]["reply"]>[0]
+export type QuestionReply = Parameters<IaBotAhmedClient["question"]["reply"]>[0]
 
-export type QuestionReject = Parameters<ia-bot-ahmedClient["question"]["reject"]>[0]
+export type QuestionReject = Parameters<IaBotAhmedClient["question"]["reject"]>[0]
 
 export type RunTuiConfig = Pick<TuiConfig.Resolved, "keybinds" | "leader_timeout" | "diff_style">
 

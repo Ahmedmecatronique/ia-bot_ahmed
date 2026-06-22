@@ -1,4 +1,4 @@
-import launch from "cross-spawn"
+﻿import launch from "cross-spawn"
 import { type Config } from "./gen/types.gen.js"
 import { stop, bindAbort } from "../process.js"
 
@@ -19,7 +19,7 @@ export type TuiOptions = {
   config?: Config
 }
 
-export async function createia-bot-ahmedServer(options?: ServerOptions) {
+export async function createIaBotAhmedServer(options?: ServerOptions) {
   options = Object.assign(
     {
       hostname: "127.0.0.1",
@@ -99,7 +99,7 @@ export async function createia-bot-ahmedServer(options?: ServerOptions) {
   }
 }
 
-export function createia-bot-ahmedTui(options?: TuiOptions) {
+export function createIaBotAhmedTui(options?: TuiOptions) {
   const args = []
 
   if (options?.project) {

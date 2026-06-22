@@ -1,8 +1,8 @@
-#!/usr/bin/env bun
+﻿#!/usr/bin/env bun
 import * as path from "path"
 import * as ts from "typescript"
 
-const BASE_DIR = "/home/thdxr/dev/projects/anomalyco/ia-bot-ahmed/packages/ia-bot-ahmed"
+const BASE_DIR = "/home/thdxr/dev/projects/anomalyco/ia-bot-ahmed/packages/IaBotAhmed"
 
 // Get entry file from command line arg or use default
 const ENTRY_FILE = process.argv[2] || "src/plugin/tui/runtime.ts"

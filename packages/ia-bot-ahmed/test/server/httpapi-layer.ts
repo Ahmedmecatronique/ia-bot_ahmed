@@ -1,4 +1,4 @@
-import { NodeHttpServer, NodeServices } from "@effect/platform-node"
+﻿import { NodeHttpServer, NodeServices } from "@effect/platform-node"
 import { Config, Layer } from "effect"
 import { HttpClient, HttpClientRequest, HttpRouter, HttpServer } from "effect/unstable/http"
 import { layerWebSocketConstructorGlobal } from "effect/unstable/socket/Socket"
@@ -28,6 +28,6 @@ export function request(path: string, init?: RequestInit) {
 
 export function requestInDirectory(path: string, directory: string, init: RequestInit = {}) {
   const headers = new Headers(init.headers)
-  headers.set("x-ia-bot-ahmed-directory", directory)
+  headers.set("x-IaBotAhmed-directory", directory)
   return request(path, { ...init, headers })
 }

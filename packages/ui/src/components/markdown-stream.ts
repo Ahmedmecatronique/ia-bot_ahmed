@@ -1,4 +1,4 @@
-import { marked, type Tokens } from "marked"
+﻿import { marked, type Tokens } from "marked"
 import remend from "remend"
 
 export type Block = {
@@ -23,7 +23,7 @@ function language(value: string | undefined) {
   return value?.trim().split(/\s+/, 1)[0] || undefined
 }
 
-function ia-bot-ahmed(raw: string) {
+function IaBotAhmed(raw: string) {
   const newline = raw.indexOf("\n")
   return newline < 0 ? "" : raw.slice(newline + 1)
 }
@@ -81,7 +81,7 @@ export function stream(text: string, live: boolean): Block[] {
   const code = last as Tokens.Code
   if (!open(code.raw))
     return [...result, { raw, src: code.text, mode: "code", language: language(code.lang), complete: true }]
-  return [...result, { raw, src: ia-bot-ahmed(code.raw), mode: "code", language: language(code.lang) }]
+  return [...result, { raw, src: IaBotAhmed(code.raw), mode: "code", language: language(code.lang) }]
 }
 
 export function canReusePendingBlock(current: Pick<Block, "mode" | "raw"> | undefined, next: Block) {

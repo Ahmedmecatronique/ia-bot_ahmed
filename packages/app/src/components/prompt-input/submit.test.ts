@@ -1,4 +1,4 @@
-import { beforeAll, beforeEach, describe, expect, mock, test } from "bun:test"
+﻿import { beforeAll, beforeEach, describe, expect, mock, test } from "bun:test"
 import type { Prompt } from "@/context/prompt"
 
 let createPromptSubmit: typeof import("./submit").createPromptSubmit
@@ -82,7 +82,7 @@ beforeAll(async () => {
   }))
 
   mock.module("@ia-bot-ahmed/sdk/v2/client", () => ({
-    createia-bot-ahmedClient: (input: { directory: string }) => {
+    createIaBotAhmedClient: (input: { directory: string }) => {
       createdClients.push(input.directory)
       return clientFor(input.directory)
     },

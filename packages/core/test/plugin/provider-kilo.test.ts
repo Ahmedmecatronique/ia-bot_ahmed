@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Effect } from "effect"
 import { Catalog } from "@ia-bot-ahmed/core/catalog"
 import { PluginV2 } from "@ia-bot-ahmed/core/plugin"
@@ -39,7 +39,7 @@ describe("KiloPlugin", () => {
       yield* addPlugin()
       expect((yield* catalog.provider.get(ProviderV2.ID.make("kilo")))?.request.headers).toEqual({
         Existing: "value",
-        "HTTP-Referer": "https://ia-bot-ahmed.app/",
+        "HTTP-Referer": "https://IaBotAhmed.app/",
         "X-Title": "ia-bot-ahmed",
       })
       expect((yield* catalog.provider.get(ProviderV2.ID.openrouter))?.request.headers).toEqual({})
@@ -61,7 +61,7 @@ describe("KiloPlugin", () => {
       yield* addPlugin()
 
       expect((yield* catalog.provider.get(ProviderV2.ID.make("kilo")))?.request.headers).toEqual({
-        "HTTP-Referer": "https://ia-bot-ahmed.app/",
+        "HTTP-Referer": "https://IaBotAhmed.app/",
         "X-Title": "ia-bot-ahmed",
       })
       expect((yield* catalog.provider.get(ProviderV2.ID.make("kilo")))?.request.headers).not.toHaveProperty(
@@ -90,7 +90,7 @@ describe("KiloPlugin", () => {
       yield* addPlugin()
 
       expect((yield* catalog.provider.get(ProviderV2.ID.make("kilo")))?.request.headers).toEqual({
-        "HTTP-Referer": "https://ia-bot-ahmed.app/",
+        "HTTP-Referer": "https://IaBotAhmed.app/",
         "X-Title": "ia-bot-ahmed",
       })
       expect((yield* catalog.provider.get(ProviderV2.ID.make("custom-kilo")))?.request.headers).toEqual({})

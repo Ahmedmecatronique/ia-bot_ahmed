@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test } from "bun:test"
+﻿import { afterEach, describe, expect, test } from "bun:test"
 import { NodeFileSystem } from "@effect/platform-node"
 import { Effect, Layer, Logger } from "effect"
 import fs from "fs/promises"
@@ -8,14 +8,14 @@ import { fileLogger } from "../../src/observability/logging"
 import { resource } from "../../src/observability/otlp"
 
 const otelResourceAttributes = process.env.OTEL_RESOURCE_ATTRIBUTES
-const ia-bot-ahmedClient = process.env.IA_BOT_AHMED_CLIENT
+const IaBotAhmedClient = process.env.IA_BOT_AHMED_CLIENT
 
 afterEach(() => {
   if (otelResourceAttributes === undefined) delete process.env.OTEL_RESOURCE_ATTRIBUTES
   else process.env.OTEL_RESOURCE_ATTRIBUTES = otelResourceAttributes
 
-  if (ia-bot-ahmedClient === undefined) delete process.env.IA_BOT_AHMED_CLIENT
-  else process.env.IA_BOT_AHMED_CLIENT = ia-bot-ahmedClient
+  if (IaBotAhmedClient === undefined) delete process.env.IA_BOT_AHMED_CLIENT
+  else process.env.IA_BOT_AHMED_CLIENT = IaBotAhmedClient
 })
 
 describe("resource", () => {

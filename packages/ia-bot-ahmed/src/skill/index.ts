@@ -1,4 +1,4 @@
-import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
+﻿import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
 import path from "path"
 import { pathToFileURL } from "url"
 import { Effect, Layer, Context, Schema } from "effect"
@@ -24,15 +24,15 @@ const EXTERNAL_SKILL_PATTERN = "skills/**/SKILL.md"
 const IA_BOT_AHMED_SKILL_PATTERN = "{skill,skills}/**/SKILL.md"
 const SKILL_PATTERN = "**/SKILL.md"
 
-// Built-in skill that ships with ia-bot-ahmed. The model's intuition for what an
-// ia-bot-ahmed.json should look like is often wrong, and ia-bot-ahmed hard-fails on
+// Built-in skill that ships with IaBotAhmed. The model's intuition for what an
+// IaBotAhmed.json should look like is often wrong, and IaBotAhmed hard-fails on
 // invalid config, so users hit cryptic startup errors. Loading this skill
-// when the model is asked to touch ia-bot-ahmed's own config files gives it the
+// when the model is asked to touch IaBotAhmed's own config files gives it the
 // actual schemas instead of guesses.
-const CUSTOMIZE_IA_BOT_AHMED_SKILL_NAME = "customize-ia-bot-ahmed"
+const CUSTOMIZE_IA_BOT_AHMED_SKILL_NAME = "customize-IaBotAhmed"
 const CUSTOMIZE_IA_BOT_AHMED_SKILL_DESCRIPTION =
-  "Use ONLY when the user is editing or creating ia-bot-ahmed's own configuration: ia-bot-ahmed.json, ia-bot-ahmed.jsonc, files under .ia-bot-ahmed/, or files under ~/.config/ia-bot-ahmed/. Also use when creating or fixing ia-bot-ahmed agents, subagents, skills, plugins, MCP servers, or permission rules. Do not use for the user's own application code, or for any project that is not configuring ia-bot-ahmed itself."
-const CUSTOMIZE_IA_BOT_AHMED_SKILL_BODY = SkillPlugin.Customizeia-bot-ahmedContent
+  "Use ONLY when the user is editing or creating IaBotAhmed's own configuration: IaBotAhmed.json, IaBotAhmed.jsonc, files under .ia-bot-ahmed/, or files under ~/.config/ia-bot-ahmed/. Also use when creating or fixing IaBotAhmed agents, subagents, skills, plugins, MCP servers, or permission rules. Do not use for the user's own application code, or for any project that is not configuring IaBotAhmed itself."
+const CUSTOMIZE_IA_BOT_AHMED_SKILL_BODY = SkillPlugin.CustomizeIaBotAhmedContent
 
 export const Info = Schema.Struct({
   name: Schema.String,

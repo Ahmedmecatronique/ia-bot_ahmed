@@ -1,4 +1,4 @@
-import { AuthOptions, type ProviderAuthOption } from "../route/auth-options"
+﻿import { AuthOptions, type ProviderAuthOption } from "../route/auth-options"
 import type { RouteDefaultsInput } from "../route/client"
 import { ProviderID, type ModelID } from "../schema"
 import * as OpenAIChat from "../protocols/openai-chat"
@@ -7,7 +7,7 @@ import { withOpenAIOptions, type OpenAIProviderOptionsInput } from "./openai-opt
 
 export const id = ProviderID.make("github-copilot")
 
-// GitHub Copilot has no canonical public URL — callers (ia-bot-ahmed, etc.) must
+// GitHub Copilot has no canonical public URL â€” callers (IaBotAhmed, etc.) must
 // supply `baseURL` explicitly.
 export type ModelOptions = Omit<RouteDefaultsInput, "providerOptions"> &
   ProviderAuthOption<"optional"> & {

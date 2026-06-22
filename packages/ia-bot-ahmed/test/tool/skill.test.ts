@@ -1,4 +1,4 @@
-import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
+﻿import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
 import { CrossSpawnSpawner } from "@ia-bot-ahmed/core/cross-spawn-spawner"
 import { Ripgrep } from "@ia-bot-ahmed/core/ripgrep"
 import { Cause, Effect, Exit, Layer } from "effect"
@@ -35,7 +35,7 @@ describe("tool.skill", () => {
   it.instance("execute returns skill content block with files", () =>
     Effect.gen(function* () {
       const dir = (yield* TestInstance).directory
-      const skill = path.join(dir, ".ia-bot-ahmed", "skill", "tool-skill")
+      const skill = path.join(dir, ".IaBotAhmed", "skill", "tool-skill")
       yield* Effect.promise(() =>
         Bun.write(
           path.join(skill, "SKILL.md"),

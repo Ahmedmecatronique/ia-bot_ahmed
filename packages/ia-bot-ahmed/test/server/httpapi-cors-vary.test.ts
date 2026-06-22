@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test } from "bun:test"
+﻿import { afterEach, describe, expect, test } from "bun:test"
 import { Server } from "../../src/server/server"
 import { resetDatabase } from "../fixture/db"
 import { disposeAllInstances } from "../fixture/fixture"
@@ -15,7 +15,7 @@ function app() {
 const PREFLIGHT_HEADERS = {
   origin: "http://localhost:3000",
   "access-control-request-method": "POST",
-  "access-control-request-headers": "content-type, x-ia-bot-ahmed-directory",
+  "access-control-request-headers": "content-type, x-IaBotAhmed-directory",
 }
 
 // effect-smol's HttpMiddleware.cors overwrites `Vary: Origin` with

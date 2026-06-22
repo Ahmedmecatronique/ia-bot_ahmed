@@ -1,6 +1,6 @@
-import { base64Encode } from "@ia-bot-ahmed/core/util/encode"
+﻿import { base64Encode } from "@ia-bot-ahmed/core/util/encode"
 import type { Page } from "@playwright/test"
-import { mockia-bot-ahmedServer } from "../../utils/mock-server"
+import { mockIaBotAhmedServer } from "../../utils/mock-server"
 import { expectAppVisible, expectSessionTitle } from "../../utils/waits"
 import { expect } from "../benchmark"
 
@@ -96,7 +96,7 @@ const assistantMessage = {
 export async function setupTimelineBenchmark(page: Page, options: { historyTurns: number; eventBatch: number }) {
   const events: EventPayload[] = []
   let eventBatch = options.eventBatch
-  await mockia-bot-ahmedServer(page, {
+  await mockIaBotAhmedServer(page, {
     directory,
     project: project(),
     provider: provider(),

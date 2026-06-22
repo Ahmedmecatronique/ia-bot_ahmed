@@ -1,4 +1,4 @@
-import { Location } from "@ia-bot-ahmed/core/location"
+﻿import { Location } from "@ia-bot-ahmed/core/location"
 import { LocationServiceMap } from "@ia-bot-ahmed/core/location-layer"
 import { FileSystem } from "@ia-bot-ahmed/core/filesystem"
 import { AbsolutePath } from "@ia-bot-ahmed/core/schema"
@@ -73,10 +73,10 @@ export const LocationGroup = HttpApiGroup.make("server.location")
 
 function ref(request: HttpServerRequest.HttpServerRequest): Location.Ref {
   const query = new URL(request.url, "http://localhost").searchParams
-  const workspaceID = query.get("location[workspace]") || request.headers["x-ia-bot-ahmed-workspace"]
+  const workspaceID = query.get("location[workspace]") || request.headers["x-IaBotAhmed-workspace"]
   const directory =
     query.get("location[directory]") ||
-    (request.headers["x-ia-bot-ahmed-directory"] ? decode(request.headers["x-ia-bot-ahmed-directory"]) : process.cwd())
+    (request.headers["x-IaBotAhmed-directory"] ? decode(request.headers["x-IaBotAhmed-directory"]) : process.cwd())
   return Location.Ref.make({
     directory: AbsolutePath.make(directory),
     workspaceID: workspaceID ? WorkspaceV2.ID.make(workspaceID) : undefined,

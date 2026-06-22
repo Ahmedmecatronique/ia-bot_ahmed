@@ -1,4 +1,4 @@
-import { afterEach, expect, test } from "bun:test"
+﻿import { afterEach, expect, test } from "bun:test"
 import { mkdir, unlink } from "fs/promises"
 import path from "path"
 import { Effect, Layer } from "effect"
@@ -322,7 +322,7 @@ it.instance("getModel throws ModelNotFoundError for invalid provider", () =>
   }),
 )
 
-// Pure synchronous unit tests — no Effect runtime needed.
+// Pure synchronous unit tests â€” no Effect runtime needed.
 
 test("parseModel correctly parses provider/model string", () => {
   const result = Provider.parseModel("anthropic/claude-sonnet-4")
@@ -873,7 +873,7 @@ it.instance(
     expect(providers[ProviderV2.ID.google]).toBeUndefined()
   }),
   {
-    // enabled_providers takes precedence — only these are considered
+    // enabled_providers takes precedence â€” only these are considered
     // Then disabled_providers filters from the enabled set
     config: { enabled_providers: ["anthropic", "openai"], disabled_providers: ["openai"] },
   },
@@ -1034,7 +1034,7 @@ it.instance("ModelNotFoundError suggests catalog models for unloaded providers",
   Effect.gen(function* () {
     yield* remove("IA_BOT_AHMED_API_KEY")
     const error = yield* Provider.use
-      .getModel(ProviderV2.ID.ia-bot-ahmed, ModelV2.ID.make("claude-haiku-fake-model"))
+      .getModel(ProviderV2.ID.IaBotAhmed, ModelV2.ID.make("claude-haiku-fake-model"))
       .pipe(Effect.flip)
     if (!Provider.ModelNotFoundError.isInstance(error)) throw error
     expect(error.suggestions ?? []).toContain("claude-haiku-4-5")
@@ -1121,7 +1121,7 @@ it.instance(
   Effect.gen(function* () {
     const providers = yield* list
     expect(providers[ProviderV2.ID.make("nvidia")].options.headers).toEqual({
-      "HTTP-Referer": "https://ia-bot-ahmed.app/",
+      "HTTP-Referer": "https://IaBotAhmed.app/",
       "X-Title": "ia-bot-ahmed",
       "X-BILLING-INVOKE-ORIGIN": "ia-bot-ahmed",
     })
@@ -1134,7 +1134,7 @@ it.instance(
   Effect.gen(function* () {
     const providers = yield* list
     expect(providers[ProviderV2.ID.make("nvidia")].options.headers).toEqual({
-      "HTTP-Referer": "https://ia-bot-ahmed.app/",
+      "HTTP-Referer": "https://IaBotAhmed.app/",
       "X-Title": "ia-bot-ahmed",
       "X-BILLING-INVOKE-ORIGIN": "ia-bot-ahmed",
     })
@@ -1652,7 +1652,7 @@ const provideMultiInstance = <A, E, R>(eff: Effect.Effect<A, E, R>) =>
 it.effect("plugin config providers persist after instance dispose", () =>
   Effect.gen(function* () {
     const dir = yield* tmpdirScoped()
-    const configDir = path.join(dir, ".ia-bot-ahmed")
+    const configDir = path.join(dir, ".IaBotAhmed")
     const root = path.join(configDir, "plugin")
     yield* Effect.promise(() => mkdir(root, { recursive: true }))
     yield* Effect.promise(() => markPluginDependenciesReady(configDir))
@@ -1709,7 +1709,7 @@ it.instance(
   "plugin config enabled and disabled providers are honored",
   Effect.gen(function* () {
     const instance = yield* TestInstance
-    const configDir = path.join(instance.directory, ".ia-bot-ahmed")
+    const configDir = path.join(instance.directory, ".IaBotAhmed")
     const root = path.join(configDir, "plugin")
     yield* Effect.promise(() => mkdir(root, { recursive: true }))
     yield* Effect.promise(() => markPluginDependenciesReady(configDir))
@@ -1743,7 +1743,7 @@ it.effect("ia-bot-ahmed loader keeps paid models when config apiKey is present",
   Effect.gen(function* () {
     const noneDir = yield* tmpdirScoped()
     const keyedDir = yield* tmpdirScoped({
-      config: { provider: { ia-bot-ahmed: { options: { apiKey: "test-key" } } } },
+      config: { provider: { IaBotAhmed: { options: { apiKey: "test-key" } } } },
     })
 
     const listIn = (directory: string) =>
@@ -1777,7 +1777,7 @@ it.effect("ia-bot-ahmed loader keeps paid models when auth exists", () =>
     const original = yield* Effect.promise(() => Filesystem.readText(authPath).catch(() => undefined))
 
     yield* Effect.acquireRelease(
-      Effect.promise(() => Filesystem.write(authPath, JSON.stringify({ ia-bot-ahmed: { type: "api", key: "test-key" } }))),
+      Effect.promise(() => Filesystem.write(authPath, JSON.stringify({ IaBotAhmed: { type: "api", key: "test-key" } }))),
       () =>
         Effect.promise(async () => {
           if (original !== undefined) await Filesystem.write(authPath, original)

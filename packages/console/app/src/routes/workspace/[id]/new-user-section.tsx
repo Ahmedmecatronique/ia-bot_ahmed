@@ -1,4 +1,4 @@
-import { query, useParams, createAsync } from "@solidjs/router"
+﻿import { query, useParams, createAsync } from "@solidjs/router"
 import { createMemo, createSignal, Show } from "solid-js"
 import { IconCopy, IconCheck } from "~/component/icon"
 import { Key } from "@ia-bot-ahmed/console-core/key.js"
@@ -92,7 +92,7 @@ export function NewUserSection() {
           <ol>
             <li>{i18n.t("workspace.newUser.step.enableBilling")}</li>
             <li>
-              {i18n.t("workspace.newUser.step.login.before")} <code>ia-bot-ahmed auth login</code>{" "}
+              {i18n.t("workspace.newUser.step.login.before")} <code>IaBotAhmed auth login</code>{" "}
               {i18n.t("workspace.newUser.step.login.after")}
             </li>
             <li>{i18n.t("workspace.newUser.step.pasteKey")}</li>

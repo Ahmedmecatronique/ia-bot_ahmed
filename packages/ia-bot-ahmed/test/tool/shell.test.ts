@@ -1,4 +1,4 @@
-import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
+﻿import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
 import { describe, expect } from "bun:test"
 import { Cause, Effect, Exit, Layer } from "effect"
 import type * as Scope from "effect/Scope"
@@ -877,7 +877,7 @@ describe("tool.shell permissions", () => {
               expect(
                 yield* fail(
                   {
-                    command: "cat /tmp/ia-bot-ahmed-does-not-exist",
+                    command: "cat /tmp/IaBotAhmed-does-not-exist",
                     description: "Read Git Bash tmp file",
                   },
                   capture(requests, err),

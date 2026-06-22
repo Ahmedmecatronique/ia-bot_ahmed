@@ -1,4 +1,4 @@
-import { describe, expect, it } from "bun:test"
+﻿import { describe, expect, it } from "bun:test"
 import type {
   AgentSideConnection,
   ForkSessionResponse,
@@ -10,7 +10,7 @@ import type {
   SessionConfigSelectOption,
   SetSessionConfigOptionResponse,
 } from "@agentclientprotocol/sdk"
-import type { ia-bot-ahmedClient } from "@ia-bot-ahmed/sdk/v2"
+import type { IaBotAhmedClient } from "@ia-bot-ahmed/sdk/v2"
 import { ProviderV2 } from "@ia-bot-ahmed/core/provider"
 import { ModelV2 } from "@ia-bot-ahmed/core/model"
 import { Effect } from "effect"
@@ -240,7 +240,7 @@ describe("ACP service sessions", () => {
           return Promise.resolve({ data: {} })
         },
       },
-    } as unknown as ia-bot-ahmedClient
+    } as unknown as IaBotAhmedClient
     const connection = {
       sessionUpdate: (update: SessionNotification) => {
         updates.push(update)
@@ -519,7 +519,7 @@ describe("ACP service sessions", () => {
         command: {
           list: () => Promise.resolve({ data: [] }),
         },
-      } as unknown as ia-bot-ahmedClient,
+      } as unknown as IaBotAhmedClient,
     })
     const error = await Effect.runPromise(
       service
@@ -557,7 +557,7 @@ describe("ACP service sessions", () => {
       mcp: {
         add: () => Promise.resolve({ data: {} }),
       },
-    } as unknown as ia-bot-ahmedClient
+    } as unknown as IaBotAhmedClient
     const service = ACPService.make({ sdk })
 
     const first = await Effect.runPromise(
@@ -600,7 +600,7 @@ describe("ACP service sessions", () => {
           return Promise.resolve({ data: {} })
         },
       },
-    } as unknown as ia-bot-ahmedClient
+    } as unknown as IaBotAhmedClient
     const service = ACPService.make({ sdk })
 
     await Effect.runPromise(
@@ -641,7 +641,7 @@ describe("ACP service sessions", () => {
       mcp: {
         add: () => Promise.resolve({ data: {} }),
       },
-    } as unknown as ia-bot-ahmedClient
+    } as unknown as IaBotAhmedClient
     const service = ACPService.make({ sdk })
 
     const result = await Effect.runPromise(service.newSession({ cwd: "/workspace", mcpServers: [] }))
@@ -680,7 +680,7 @@ describe("ACP service sessions", () => {
       mcp: {
         add: () => Promise.resolve({ data: {} }),
       },
-    } as unknown as ia-bot-ahmedClient
+    } as unknown as IaBotAhmedClient
     const service = ACPService.make({ sdk })
 
     const result = await Effect.runPromise(service.newSession({ cwd: "/workspace", mcpServers: [] }))
@@ -797,7 +797,7 @@ describe("ACP service sessions", () => {
           return Promise.resolve({ data: {} })
         },
       },
-    } as unknown as ia-bot-ahmedClient
+    } as unknown as IaBotAhmedClient
     const service = ACPService.make({ sdk })
     const session = await Effect.runPromise(service.newSession({ cwd: "/workspace", mcpServers: [] }))
 
@@ -852,7 +852,7 @@ describe("ACP service sessions", () => {
       mcp: {
         add: () => Promise.resolve({ data: {} }),
       },
-    } as unknown as ia-bot-ahmedClient
+    } as unknown as IaBotAhmedClient
     const service = ACPService.make({ sdk })
     const session = await Effect.runPromise(service.newSession({ cwd: "/workspace", mcpServers: [] }))
     const updated = await Effect.runPromise(
@@ -922,7 +922,7 @@ describe("ACP service sessions", () => {
       mcp: {
         add: () => Promise.resolve({ data: {} }),
       },
-    } as unknown as ia-bot-ahmedClient
+    } as unknown as IaBotAhmedClient
     const service = ACPService.make({ sdk })
 
     const first = await Effect.runPromise(service.newSession({ cwd: "/workspace", mcpServers: [] }))
@@ -1125,7 +1125,7 @@ describe("ACP service sessions", () => {
         mcp: {
           add: () => Promise.resolve({ data: {} }),
         },
-      } as unknown as ia-bot-ahmedClient,
+      } as unknown as IaBotAhmedClient,
       usage: UsageService.Service.of({
         buildUsage: UsageService.buildUsage,
         latestAssistantMessage: UsageService.latestAssistantMessage,

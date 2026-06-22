@@ -1,4 +1,4 @@
-import { createServer } from "node:http"
+﻿import { createServer } from "node:http"
 import { Deferred, Effect } from "effect"
 import { Integration } from "../../integration"
 import { Credential } from "../../credential"
@@ -252,6 +252,6 @@ function claim(token: string) {
 }
 
 const successPage =
-  "<!doctype html><title>ia-bot-ahmed</title><h1>Authorization successful</h1><p>You can close this window.</p>"
+  "<!doctype html><title>IaBotAhmed</title><h1>Authorization successful</h1><p>You can close this window.</p>"
 const errorPage = (message: string) =>
-  `<!doctype html><title>ia-bot-ahmed</title><h1>Authorization failed</h1><p>${message.replace(/[&<>"']/g, "")}</p>`
+  `<!doctype html><title>IaBotAhmed</title><h1>Authorization failed</h1><p>${message.replace(/[&<>"']/g, "")}</p>`

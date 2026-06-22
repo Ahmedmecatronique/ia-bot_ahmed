@@ -1,4 +1,4 @@
-import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
+﻿import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
 import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
 import { Slug } from "@ia-bot-ahmed/core/util/slug"
 import { SessionV1 } from "@ia-bot-ahmed/core/v1/session"
@@ -376,7 +376,7 @@ export const Event = {
 
 export function plan(input: { slug: string; time: { created: number } }, instance: InstanceContext) {
   const base = instance.project.vcs
-    ? path.join(instance.worktree, ".ia-bot-ahmed", "plans")
+    ? path.join(instance.worktree, ".IaBotAhmed", "plans")
     : path.join(Global.Path.data, "plans")
   return path.join(base, [input.time.created, input.slug].join("-") + ".md")
 }

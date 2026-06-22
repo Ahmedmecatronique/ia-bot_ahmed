@@ -1,6 +1,6 @@
-// Entry and exit splash banners for direct interactive mode scrollback.
+﻿// Entry and exit splash banners for direct interactive mode scrollback.
 //
-// Renders the full ia-bot-ahmed entry logo and a compact [O] exit badge, plus
+// Renders the full IaBotAhmed entry logo and a compact [O] exit badge, plus
 // session metadata and the resume command. These are scrollback snapshots, so
 // they become immutable terminal history once committed.
 //
@@ -54,12 +54,12 @@ function cells(line: string): Cell[] {
     }
 
     if (char === "^") {
-      list.push({ char: "▀", mark: "mix" })
+      list.push({ char: "â–€", mark: "mix" })
       continue
     }
 
     if (char === "~") {
-      list.push({ char: "▀", mark: "top" })
+      list.push({ char: "â–€", mark: "top" })
       continue
     }
 

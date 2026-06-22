@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { toGeoAggregate, toModelAggregate, toProviderAggregate } from "./inference"
 import { modelAuthor, normalizeInferenceModel, statModel, statProvider } from "./model-normalization"
 
@@ -28,7 +28,7 @@ describe("inference stat normalization", () => {
     expect(modelAuthor("alpha-gpt-next")).toBeUndefined()
   })
 
-  test("uses provider.model to resolve ia-bot-ahmed route providers", () => {
+  test("uses provider.model to resolve IaBotAhmed route providers", () => {
     expect(statModel("big-pickle", "claude-sonnet-4-5")).toBe("claude-sonnet-4-5")
     expect(statModel("big-pickle", "gpt-5-free")).toBe("gpt-5")
     expect(statModel("big-pickle", "")).toBe("unknown")
@@ -60,14 +60,14 @@ describe("inference stat normalization", () => {
     ])
   })
 
-  test("provider aggregates never keep ia-bot-ahmed as the provider", () => {
+  test("provider aggregates never keep IaBotAhmed as the provider", () => {
     expect(toProviderAggregate({ ...aggregate("big-pickle", "ia-bot-ahmed"), provider_model: "gpt-5" })).toMatchObject([
       { provider: "openai" },
     ])
     expect(toProviderAggregate(aggregate("big-pickle", "ia-bot-ahmed"))).toMatchObject([{ provider: "unknown" }])
   })
 
-  test("geo aggregates never keep ia-bot-ahmed or big-pickle dimensions", () => {
+  test("geo aggregates never keep IaBotAhmed or big-pickle dimensions", () => {
     expect(toGeoAggregate({ ...aggregate("big-pickle", "ia-bot-ahmed"), country: "US" })).toMatchObject([
       { provider: "unknown", model: "unknown", country: "US" },
     ])

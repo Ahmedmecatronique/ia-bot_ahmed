@@ -1,4 +1,4 @@
-import { MetaProvider, Meta, Title } from "@solidjs/meta"
+﻿import { MetaProvider, Meta, Title } from "@solidjs/meta"
 import { Router } from "@solidjs/router"
 import { FileRoutes } from "@solidjs/start/router"
 import { Suspense } from "solid-js"
@@ -7,10 +7,10 @@ import "./app.css"
 function AppMeta() {
   return (
     <>
-      <Title>AI Model Usage Rankings | ia-bot-ahmed Data</Title>
+      <Title>AI Model Usage Rankings | IaBotAhmed Data</Title>
       <Meta
         name="description"
-        content="Explore ia-bot-ahmed Go usage across AI models, including token volume, rankings, market share, token pricing, session cost, cache ratio, and geo breakdowns."
+        content="Explore IaBotAhmed Go usage across AI models, including token volume, rankings, market share, token pricing, session cost, cache ratio, and geo breakdowns."
       />
     </>
   )

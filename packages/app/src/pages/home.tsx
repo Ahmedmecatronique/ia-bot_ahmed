@@ -1,4 +1,4 @@
-import type { Session } from "@ia-bot-ahmed/sdk/v2/client"
+﻿import type { Session } from "@ia-bot-ahmed/sdk/v2/client"
 import { batch, createEffect, createMemo, For, Match, on, onCleanup, onMount, Show, Switch } from "solid-js"
 import { makeEventListener } from "@solid-primitives/event-listener"
 import { createStore } from "solid-js/store"
@@ -360,7 +360,7 @@ function HomeDesign() {
           clearNotifications={clearNotifications}
           unseenCount={unseenCount}
           openSettings={openSettings}
-          openHelp={() => platform.openLink("https://ia-bot-ahmed.app/desktop-feedback")}
+          openHelp={() => platform.openLink("https://IaBotAhmed.app/desktop-feedback")}
           language={language}
         />
 

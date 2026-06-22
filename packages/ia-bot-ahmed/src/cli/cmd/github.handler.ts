@@ -1,4 +1,4 @@
-import path from "path"
+﻿import path from "path"
 import { exec } from "child_process"
 import { Filesystem } from "@/util/filesystem"
 import * as prompts from "@clack/prompts"
@@ -140,7 +140,7 @@ type IssueQueryResponse = {
 
 const AGENT_USERNAME = "ia-bot-ahmed-agent[bot]"
 const AGENT_REACTION = "eyes"
-const WORKFLOW_FILE = ".github/workflows/ia-bot-ahmed.yml"
+const WORKFLOW_FILE = ".github/workflows/IaBotAhmed.yml"
 
 // Event categories for routing
 // USER_EVENTS: triggered by user actions, have actor/issueId, support reactions/comments
@@ -200,7 +200,7 @@ export const githubInstall = Effect.fn("Cli.github.install")(function* () {
             "",
             "    3. Go to a GitHub issue and comment `/oc summarize` to see the agent in action",
             "",
-            "   Learn more about the GitHub agent - https://ia-bot-ahmed.app/docs/github/#usage-examples",
+            "   Learn more about the GitHub agent - https://IaBotAhmed.app/docs/github/#usage-examples",
           ].join("\n"),
         )
       }
@@ -226,7 +226,7 @@ export const githubInstall = Effect.fn("Cli.github.install")(function* () {
 
       async function promptProvider() {
         const priority: Record<string, number> = {
-          ia-bot-ahmed: 0,
+          IaBotAhmed: 0,
           anthropic: 1,
           openai: 2,
           google: 3,
@@ -284,7 +284,7 @@ export const githubInstall = Effect.fn("Cli.github.install")(function* () {
         if (installation) return s.stop("GitHub app already installed")
 
         // Open browser
-        const url = "https://github.com/apps/ia-bot-ahmed-agent"
+        const url = "https://github.com/apps/IaBotAhmed-agent"
         const command =
           process.platform === "darwin"
             ? `open "${url}"`
@@ -320,7 +320,7 @@ export const githubInstall = Effect.fn("Cli.github.install")(function* () {
         s.stop("Installed GitHub app")
 
         async function getInstallation() {
-          return await fetch(`https://api.ia-bot-ahmed.app/get_github_app_installation?owner=${app.owner}&repo=${app.repo}`)
+          return await fetch(`https://api.IaBotAhmed.app/get_github_app_installation?owner=${app.owner}&repo=${app.repo}`)
             .then((res) => res.json())
             .then((data) => data.installation)
         }
@@ -334,7 +334,7 @@ export const githubInstall = Effect.fn("Cli.github.install")(function* () {
 
         await Filesystem.write(
           path.join(app.root, WORKFLOW_FILE),
-          `name: ia-bot-ahmed
+          `name: IaBotAhmed
 
 on:
   issue_comment:
@@ -343,12 +343,12 @@ on:
     types: [created]
 
 jobs:
-  ia-bot-ahmed:
+  IaBotAhmed:
     if: |
       contains(github.event.comment.body, ' /oc') ||
       startsWith(github.event.comment.body, '/oc') ||
-      contains(github.event.comment.body, ' /ia-bot-ahmed') ||
-      startsWith(github.event.comment.body, '/ia-bot-ahmed')
+      contains(github.event.comment.body, ' /IaBotAhmed') ||
+      startsWith(github.event.comment.body, '/IaBotAhmed')
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -361,7 +361,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Run ia-bot-ahmed
+      - name: Run IaBotAhmed
         uses: anomalyco/ia-bot-ahmed/github@latest${envStr}
         with:
           model: ${provider}/${model}`,
@@ -426,7 +426,7 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
         ? (payload as IssueCommentEvent | IssuesEvent).issue.number
         : (payload as PullRequestEvent | PullRequestReviewCommentEvent).pull_request.number
     const runUrl = `/${owner}/${repo}/actions/runs/${runId}`
-    const shareBaseUrl = isMock ? "https://dev.ia-bot-ahmed.app" : "https://ia-bot-ahmed.app"
+    const shareBaseUrl = isMock ? "https://dev.IaBotAhmed.app" : "https://IaBotAhmed.app"
 
     let appToken: string
     let octoRest: Octokit
@@ -494,7 +494,7 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
         await addReaction(commentType)
       }
 
-      // Setup ia-bot-ahmed session
+      // Setup IaBotAhmed session
       const repoData = await fetchRepo()
       session = await runLocalEffect(
         sessionSvc.create({
@@ -605,7 +605,7 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
         const { dirty, uncommittedChanges, switched } = await branchIsDirty(head, branch)
         if (switched) {
           // Agent switched branches (likely created its own branch/PR).
-          // Don't push the stale infrastructure branch — just comment.
+          // Don't push the stale infrastructure branch â€” just comment.
           await createComment(`${response}${footer({ image: true })}`)
           await removeReaction(commentType)
         } else if (dirty) {
@@ -687,7 +687,7 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
 
     function normalizeOidcBaseUrl(): string {
       const value = process.env["OIDC_BASE_URL"]
-      if (!value) return "https://api.ia-bot-ahmed.app"
+      if (!value) return "https://api.IaBotAhmed.app"
       return value.replace(/\/+$/, "")
     }
 
@@ -736,7 +736,7 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
       }
 
       const reviewContext = getReviewCommentContext()
-      const mentions = (process.env["MENTIONS"] || "/ia-bot-ahmed,/oc")
+      const mentions = (process.env["MENTIONS"] || "/IaBotAhmed,/oc")
         .split(",")
         .map((m) => m.trim().toLowerCase())
         .filter(Boolean)
@@ -887,7 +887,7 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
     }
 
     async function chat(message: string, files: PromptFiles = []) {
-      console.log("Sending message to ia-bot-ahmed...")
+      console.log("Sending message to IaBotAhmed...")
 
       return runLocalEffect(
         Effect.gen(function* () {
@@ -1275,7 +1275,7 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
     async function createPR(base: string, branch: string, title: string, body: string): Promise<number | null> {
       console.log("Creating pull request...")
 
-      // Check if an open PR already exists for this head→base combination
+      // Check if an open PR already exists for this headâ†’base combination
       // This handles the case where the agent created a PR via gh pr create during its run
       try {
         const existing = await withRetry(() =>
@@ -1350,9 +1350,9 @@ export const githubRun = Effect.fn("Cli.github.run")(function* (args: { event?: 
         const titleAlt = encodeURIComponent(session.title.substring(0, 50))
         const title64 = Buffer.from(session.title.substring(0, 700), "utf8").toString("base64")
 
-        return `<a href="${shareBaseUrl}/s/${shareId}"><img width="200" alt="${titleAlt}" src="https://social-cards.sst.dev/ia-bot-ahmed-share/${title64}.png?model=${providerID}/${modelID}&version=${session.version}&id=${shareId}" /></a>\n`
+        return `<a href="${shareBaseUrl}/s/${shareId}"><img width="200" alt="${titleAlt}" src="https://social-cards.sst.dev/IaBotAhmed-share/${title64}.png?model=${providerID}/${modelID}&version=${session.version}&id=${shareId}" /></a>\n`
       })()
-      const shareUrl = shareId ? `[ia-bot-ahmed session](${shareBaseUrl}/s/${shareId})&nbsp;&nbsp;|&nbsp;&nbsp;` : ""
+      const shareUrl = shareId ? `[IaBotAhmed session](${shareBaseUrl}/s/${shareId})&nbsp;&nbsp;|&nbsp;&nbsp;` : ""
       return `\n\n${image}${shareUrl}[github run](${runUrl})`
     }
 
@@ -1413,7 +1413,7 @@ query($owner: String!, $repo: String!, $number: Int!) {
       return [
         "<github_action_context>",
         "You are running as a GitHub Action. Important:",
-        "- Git push and PR creation are handled AUTOMATICALLY by the ia-bot-ahmed infrastructure after your response",
+        "- Git push and PR creation are handled AUTOMATICALLY by the IaBotAhmed infrastructure after your response",
         "- Do NOT include warnings or disclaimers about GitHub tokens, workflow permissions, or PR creation capabilities",
         "- Do NOT suggest manual steps for creating PRs or pushing code - this happens automatically",
         "- Focus only on the code changes and your analysis/response",
@@ -1551,7 +1551,7 @@ query($owner: String!, $repo: String!, $number: Int!) {
       return [
         "<github_action_context>",
         "You are running as a GitHub Action. Important:",
-        "- Git push and PR creation are handled AUTOMATICALLY by the ia-bot-ahmed infrastructure after your response",
+        "- Git push and PR creation are handled AUTOMATICALLY by the IaBotAhmed infrastructure after your response",
         "- Do NOT include warnings or disclaimers about GitHub tokens, workflow permissions, or PR creation capabilities",
         "- Do NOT suggest manual steps for creating PRs or pushing code - this happens automatically",
         "- Focus only on the code changes and your analysis/response",

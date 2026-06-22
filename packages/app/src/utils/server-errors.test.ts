@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import type { ConfigInvalidError, ProviderModelNotFoundError } from "./server-errors"
 import { formatServerError, parseReadableConfigInvalidError } from "./server-errors"
 
@@ -47,7 +47,7 @@ describe("parseReadableConfigInvalidError", () => {
     const result = parseReadableConfigInvalidError(error, language.t)
 
     expect(result).toBe(
-      ["Arquivo de config em ia-bot-ahmed.config.ts invalido: settings.host: Required", "mode: Invalid"].join("\n"),
+      ["Arquivo de config em IaBotAhmed.config.ts invalido: settings.host: Required", "mode: Invalid"].join("\n"),
     )
   })
 

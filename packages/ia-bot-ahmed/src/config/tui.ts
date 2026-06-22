@@ -1,4 +1,4 @@
-export * as TuiConfig from "./tui"
+﻿export * as TuiConfig from "./tui"
 
 import path from "path"
 import { mergeDeep, unique } from "remeda"
@@ -102,7 +102,7 @@ const loadState = Effect.fn("TuiConfig.loadState")(function* (ctx: { directory: 
       const data = ConfigParse.jsonc(expanded, configFilepath)
       if (!isRecord(data)) return {} as Info
       // Flatten a nested "tui" key so users who wrote `{ "tui": { ... } }` inside tui.json
-      // (mirroring the old ia-bot-ahmed.json shape) still get their settings applied.
+      // (mirroring the old IaBotAhmed.json shape) still get their settings applied.
       const normalized = dropUnknownKeybinds(normalize(data))
       const parsed = ConfigParse.schema(Info, normalized, configFilepath)
       const validated = parsed.attention?.sounds
@@ -117,7 +117,7 @@ const loadState = Effect.fn("TuiConfig.loadState")(function* (ctx: { directory: 
       return yield* resolvePlugins(validated, configFilepath)
     }).pipe(
       // catchCause (not tapErrorCause + orElseSucceed) because JSONC parsing and validation
-      // can sync-throw — those become defects, which orElseSucceed wouldn't catch.
+      // can sync-throw â€” those become defects, which orElseSucceed wouldn't catch.
       Effect.catchCause((cause) =>
         Effect.logWarning("skipping invalid tui config", {
           path: configFilepath,
@@ -128,8 +128,8 @@ const loadState = Effect.fn("TuiConfig.loadState")(function* (ctx: { directory: 
 
   const loadFile = (filepath: string): Effect.Effect<Info> =>
     Effect.gen(function* () {
-      // Silent-swallow non-NotFound read errors (perms, EISDIR, IO) → log + skip.
-      // Matches how parse/schema/plugin failures in load() are handled — every
+      // Silent-swallow non-NotFound read errors (perms, EISDIR, IO) â†’ log + skip.
+      // Matches how parse/schema/plugin failures in load() are handled â€” every
       // broken-config path degrades gracefully rather than crashing TUI startup.
       const text = yield* afs.readFileStringSafe(filepath).pipe(
         Effect.catchCause((cause) =>
@@ -166,7 +166,7 @@ const loadState = Effect.fn("TuiConfig.loadState")(function* (ctx: { directory: 
       acc.plugin_origins = plugins
     })
 
-  // Every config dir we may read from: global config dir, any `.ia-bot-ahmed`
+  // Every config dir we may read from: global config dir, any `.IaBotAhmed`
   // folders between cwd and home, and IA_BOT_AHMED_CONFIG_DIR.
   const directories = yield* ConfigPaths.directories(ctx.directory)
   yield* Effect.promise(() => migrateTuiConfig({ directories, cwd: ctx.directory }))
@@ -195,13 +195,13 @@ const loadState = Effect.fn("TuiConfig.loadState")(function* (ctx: { directory: 
     yield* mergeFile(acc, file)
   }
 
-  // 4. `.ia-bot-ahmed` directories (and IA_BOT_AHMED_CONFIG_DIR) discovered while
+  // 4. `.IaBotAhmed` directories (and IA_BOT_AHMED_CONFIG_DIR) discovered while
   // walking up the tree. Also returned below so callers can install plugin
   // dependencies from each location.
-  const dirs = unique(directories).filter((dir) => dir.endsWith(".ia-bot-ahmed") || dir === Flag.IA_BOT_AHMED_CONFIG_DIR)
+  const dirs = unique(directories).filter((dir) => dir.endsWith(".IaBotAhmed") || dir === Flag.IA_BOT_AHMED_CONFIG_DIR)
 
   for (const dir of dirs) {
-    if (!dir.endsWith(".ia-bot-ahmed") && dir !== Flag.IA_BOT_AHMED_CONFIG_DIR) continue
+    if (!dir.endsWith(".IaBotAhmed") && dir !== Flag.IA_BOT_AHMED_CONFIG_DIR) continue
     for (const file of ConfigPaths.fileInDirectory(dir, "tui")) {
       yield* mergeFile(acc, file)
     }

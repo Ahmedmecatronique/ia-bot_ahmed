@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import type { WslServersState } from "@ia-bot-ahmed/app/wsl/types"
 import { availableStartupServer, readyWslConnections } from "./connections"
 
@@ -7,7 +7,7 @@ const state = (kind: "starting" | "ready" | "failed" | "stopped"): WslServersSta
   installed: [],
   online: [],
   distroProbes: {},
-  ia-bot-ahmedChecks: {},
+  IaBotAhmedChecks: {},
   pendingRestart: false,
   job: null,
   servers: [

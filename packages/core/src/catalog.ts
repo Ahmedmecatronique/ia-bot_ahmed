@@ -1,4 +1,4 @@
-export * as Catalog from "./catalog"
+﻿export * as Catalog from "./catalog"
 
 import { Array, Context, Effect, Layer, Option, Order, pipe, Schema } from "effect"
 import { ModelV2 } from "./model"
@@ -236,7 +236,7 @@ export const layer = Layer.effect(
           if (!record) return
           const provider = record.provider
 
-          if (providerID === ProviderV2.ID.ia-bot-ahmed) {
+          if (providerID === ProviderV2.ID.IaBotAhmed) {
             const gpt5Nano = record.models.get(ModelV2.ID.make("gpt-5-nano"))
             if (gpt5Nano?.enabled && gpt5Nano.status === "active") return projectModel(gpt5Nano, provider)
           }

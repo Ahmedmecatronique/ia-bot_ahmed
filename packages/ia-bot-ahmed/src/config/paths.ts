@@ -1,4 +1,4 @@
-export * as ConfigPaths from "./paths"
+﻿export * as ConfigPaths from "./paths"
 
 import path from "path"
 import { Flag } from "@ia-bot-ahmed/core/flag/flag"
@@ -26,13 +26,13 @@ export const directories = Effect.fn("ConfigPaths.directories")(function* (direc
     Global.Path.config,
     ...(!Flag.IA_BOT_AHMED_DISABLE_PROJECT_CONFIG
       ? yield* afs.up({
-          targets: [".ia-bot-ahmed"],
+          targets: [".IaBotAhmed"],
           start: directory,
           stop: worktree,
         })
       : []),
     ...(yield* afs.up({
-      targets: [".ia-bot-ahmed"],
+      targets: [".IaBotAhmed"],
       start: Global.Path.home,
       stop: Global.Path.home,
     })),

@@ -1,9 +1,9 @@
-#!/usr/bin/env bun
+﻿#!/usr/bin/env bun
 
 import { $ } from "bun"
 
 await $`bun ./packages/sdk/js/script/build.ts`
 
-await $`bun dev generate > ../sdk/openapi.json`.cwd("packages/ia-bot-ahmed")
+await $`bun dev generate > ../sdk/openapi.json`.cwd("packages/IaBotAhmed")
 
 await $`./script/format.ts`

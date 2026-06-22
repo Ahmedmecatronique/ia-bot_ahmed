@@ -1,4 +1,4 @@
-import { action, useParams, useAction, useSubmission, json, query, createAsync } from "@solidjs/router"
+﻿import { action, useParams, useAction, useSubmission, json, query, createAsync } from "@solidjs/router"
 import { createStore } from "solid-js/store"
 import { createMemo, For, Show } from "solid-js"
 import { Modal } from "~/component/modal"
@@ -208,7 +208,7 @@ export function LiteSection(props: { lite: LiteSubscription | undefined }) {
             </div>
             <div data-slot="beta-notice">
               {i18n.t("workspace.lite.subscription.selectProvider")}{" "}
-              <a href={language.route("/docs/providers/#ia-bot-ahmed-go")} target="_blank" rel="noopener noreferrer">
+              <a href={language.route("/docs/providers/#IaBotAhmed-go")} target="_blank" rel="noopener noreferrer">
                 {i18n.t("common.learnMore")}
               </a>
               .

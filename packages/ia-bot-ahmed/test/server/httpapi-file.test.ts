@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test } from "bun:test"
+﻿import { afterEach, describe, expect, test } from "bun:test"
 import { Context } from "effect"
 import path from "path"
 import { HttpApiApp } from "../../src/server/routes/instance/httpapi/server"
@@ -16,7 +16,7 @@ function request(route: string, directory: string, query?: Record<string, string
   return HttpApiApp.webHandler().handler(
     new Request(url, {
       headers: {
-        "x-ia-bot-ahmed-directory": directory,
+        "x-IaBotAhmed-directory": directory,
       },
     }),
     context,

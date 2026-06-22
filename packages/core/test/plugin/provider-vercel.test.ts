@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Effect } from "effect"
 import { Catalog } from "@ia-bot-ahmed/core/catalog"
 import { ModelV2 } from "@ia-bot-ahmed/core/model"
@@ -30,7 +30,7 @@ describe("VercelPlugin", () => {
       yield* addPlugin()
       expect((yield* catalog.provider.get(ProviderV2.ID.make("vercel")))?.request.headers).toEqual({
         Existing: "1",
-        "http-referer": "https://ia-bot-ahmed.app/",
+        "http-referer": "https://IaBotAhmed.app/",
         "x-title": "ia-bot-ahmed",
       })
     }),

@@ -1,4 +1,4 @@
-import { TextField } from "@ia-bot-ahmed/ui/text-field"
+﻿import { TextField } from "@ia-bot-ahmed/ui/text-field"
 import * as Sentry from "@sentry/solid"
 import { Logo } from "@ia-bot-ahmed/ui/logo"
 import { Button } from "@ia-bot-ahmed/ui/button"
@@ -15,7 +15,7 @@ export type InitError = {
 }
 
 type Translator = ReturnType<typeof useLanguage>["t"]
-const CHAIN_SEPARATOR = "\n" + "─".repeat(40) + "\n"
+const CHAIN_SEPARATOR = "\n" + "â”€".repeat(40) + "\n"
 
 function isIssue(value: unknown): value is { message: string; path: string[] } {
   if (!value || typeof value !== "object") return false
@@ -126,7 +126,7 @@ function formatInitError(error: InitError, t: Translator): string {
     }
     case "ConfigInvalidError": {
       const issues = Array.isArray(data.issues)
-        ? data.issues.filter(isIssue).map((issue) => "↳ " + issue.message + " " + issue.path.join("."))
+        ? data.issues.filter(isIssue).map((issue) => "â†³ " + issue.message + " " + issue.path.join("."))
         : []
       const message = typeof data.message === "string" ? data.message : ""
       const path = typeof data.path === "string" ? data.path : json(data.path)
@@ -351,7 +351,7 @@ export const ErrorPage: Component<ErrorPageProps> = (props) => {
             <button
               type="button"
               class="flex items-center text-text-interactive-base gap-1"
-              onClick={() => platform.openLink("https://ia-bot-ahmed.app/desktop-feedback")}
+              onClick={() => platform.openLink("https://IaBotAhmed.app/desktop-feedback")}
             >
               <div>{language.t("error.page.report.discord")}</div>
               <Icon name="discord" class="text-text-interactive-base" />

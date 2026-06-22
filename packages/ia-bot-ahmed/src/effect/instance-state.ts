@@ -1,10 +1,10 @@
-import { Effect, ScopedCache, Scope } from "effect"
+﻿import { Effect, ScopedCache, Scope } from "effect"
 import type { InstanceContext } from "@/project/instance-context"
 import { InstanceRef, WorkspaceRef } from "./instance-ref"
 import { registerDisposer } from "./instance-registry"
 import { WorkspaceContext } from "@/control-plane/workspace-context"
 
-const TypeId = "~ia-bot-ahmed/InstanceState"
+const TypeId = "~IaBotAhmed/InstanceState"
 
 export interface InstanceState<A, E = never, R = never> {
   readonly [TypeId]: typeof TypeId

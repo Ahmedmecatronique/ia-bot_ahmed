@@ -1,4 +1,4 @@
-// This method is called when your extension is deactivated
+﻿// This method is called when your extension is deactivated
 export function deactivate() {}
 
 import * as vscode from "vscode"
@@ -11,7 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
   })
 
   const openTerminalDisposable = vscode.commands.registerCommand("ia-bot-ahmed.openTerminal", async () => {
-    // An ia-bot-ahmed terminal already exists => focus it
+    // An IaBotAhmed terminal already exists => focus it
     const existingTerminal = vscode.window.terminals.find((t) => t.name === TERMINAL_NAME)
     if (existingTerminal) {
       existingTerminal.show()

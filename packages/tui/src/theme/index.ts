@@ -1,4 +1,4 @@
-import { SyntaxStyle, RGBA, type TerminalColors } from "@opentui/core"
+﻿import { SyntaxStyle, RGBA, type TerminalColors } from "@opentui/core"
 import aura from "./assets/aura.json" with { type: "json" }
 import ayu from "./assets/ayu.json" with { type: "json" }
 import carbonfox from "./assets/carbonfox.json" with { type: "json" }
@@ -21,7 +21,7 @@ import monokai from "./assets/monokai.json" with { type: "json" }
 import nightowl from "./assets/nightowl.json" with { type: "json" }
 import nord from "./assets/nord.json" with { type: "json" }
 import onedark from "./assets/one-dark.json" with { type: "json" }
-import ia-bot-ahmed from "./assets/ia-bot-ahmed.json" with { type: "json" }
+import IaBotAhmed from "./assets/IaBotAhmed.json" with { type: "json" }
 import orng from "./assets/orng.json" with { type: "json" }
 import osakaJade from "./assets/osaka-jade.json" with { type: "json" }
 import palenight from "./assets/palenight.json" with { type: "json" }
@@ -149,7 +149,7 @@ export const DEFAULT_THEMES: Record<string, ThemeJson> = {
   nord,
   ["one-dark"]: onedark,
   ["osaka-jade"]: osakaJade,
-  ia-bot-ahmed,
+  IaBotAhmed,
   orng,
   ["lucent-orng"]: lucentOrng,
   palenight,

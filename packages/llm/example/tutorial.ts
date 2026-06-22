@@ -1,4 +1,4 @@
-import { Config, Effect, Formatter, Layer, Schema, Stream } from "effect"
+﻿import { Config, Effect, Formatter, Layer, Schema, Stream } from "effect"
 import { LLM, LLMClient, Message, ProviderID, Tool, ToolRuntime } from "@ia-bot-ahmed/llm"
 import { Route, Auth, Endpoint, Framing, Protocol, RequestExecutor, WebSocketExecutor } from "@ia-bot-ahmed/llm/route"
 import { OpenAI } from "@ia-bot-ahmed/llm/providers"
@@ -57,7 +57,7 @@ const rawOverlayExample = LLM.request({
   prompt: "Show the final HTTP overlay shape.",
   http: {
     body: { metadata: { example: "tutorial" } },
-    headers: { "x-ia-bot-ahmed-tutorial": "1" },
+    headers: { "x-IaBotAhmed-tutorial": "1" },
     query: { debug: "1" },
   },
 })

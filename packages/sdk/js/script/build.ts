@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+﻿#!/usr/bin/env bun
 import { fileURLToPath } from "url"
 
 const dir = fileURLToPath(new URL("..", import.meta.url))
@@ -9,9 +9,9 @@ import path from "path"
 
 import { createClient } from "@hey-api/openapi-ts"
 
-const ia-bot-ahmed = path.resolve(dir, "../../ia-bot-ahmed")
+const IaBotAhmed = path.resolve(dir, "../../ia-bot-ahmed")
 
-await $`bun dev generate > ${dir}/openapi.json`.cwd(ia-bot-ahmed)
+await $`bun dev generate > ${dir}/openapi.json`.cwd(IaBotAhmed)
 
 await createClient({
   input: "./openapi.json",

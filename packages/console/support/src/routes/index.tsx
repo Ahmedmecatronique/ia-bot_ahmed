@@ -1,9 +1,9 @@
-import { Title } from "@solidjs/meta"
+﻿import { Title } from "@solidjs/meta"
 
 export default function SupportPage() {
   return (
     <main data-page="support">
-      <Title>ia-bot-ahmed support — lookup user</Title>
+      <Title>IaBotAhmed support â€” lookup user</Title>
       <h1>Lookup user</h1>
 
       <form data-component="lookup" action="/lookup" method="get" target="_blank">

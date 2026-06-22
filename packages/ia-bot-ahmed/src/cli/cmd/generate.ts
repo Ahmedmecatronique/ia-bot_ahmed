@@ -1,4 +1,4 @@
-import type { CommandModule } from "yargs"
+﻿import type { CommandModule } from "yargs"
 
 type Args = {}
 
@@ -18,9 +18,9 @@ export const GenerateCommand = {
           {
             lang: "js",
             source: [
-              `import { createia-bot-ahmedClient } from "@ia-bot-ahmed/sdk`,
+              `import { createIaBotAhmedClient } from "@ia-bot-ahmed/sdk`,
               ``,
-              `const client = createia-bot-ahmedClient()`,
+              `const client = createIaBotAhmedClient()`,
               `await client.${operation.operationId}({`,
               `  ...`,
               `})`,

@@ -1,4 +1,4 @@
-import { cmd } from "@/cli/cmd/cmd"
+﻿import { cmd } from "@/cli/cmd/cmd"
 import { Rpc } from "@/util/rpc"
 import { type rpc } from "../tui/worker"
 import path from "path"
@@ -70,12 +70,12 @@ export function resolveThreadDirectory(project?: string, envPWD = process.env.PW
 
 export const TuiThreadCommand = cmd({
   command: "$0 [project]",
-  describe: "start ia-bot-ahmed tui",
+  describe: "start IaBotAhmed tui",
   builder: (yargs) =>
     withNetworkOptions(yargs)
       .positional("project", {
         type: "string",
-        describe: "path to start ia-bot-ahmed in",
+        describe: "path to start IaBotAhmed in",
       })
       .option("model", {
         type: "string",
@@ -161,7 +161,7 @@ export const TuiThreadCommand = cmd({
             events: undefined,
           }
         : {
-            url: "http://ia-bot-ahmed.internal",
+            url: "http://IaBotAhmed.internal",
             fetch: createWorkerFetch(client),
             events: createEventSource(client),
           }

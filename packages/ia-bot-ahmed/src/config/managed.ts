@@ -1,13 +1,13 @@
-export * as ConfigManaged from "./managed"
+﻿export * as ConfigManaged from "./managed"
 
 import { existsSync } from "fs"
 import os from "os"
 import path from "path"
 import { Process } from "@/util/process"
 
-const MANAGED_PLIST_DOMAIN = "ai.ia-bot-ahmed.managed"
+const MANAGED_PLIST_DOMAIN = "ai.IaBotAhmed.managed"
 
-// Keys injected by macOS/MDM into the managed plist that are not ia-bot-ahmed config
+// Keys injected by macOS/MDM into the managed plist that are not IaBotAhmed config
 const PLIST_META = new Set([
   "PayloadDisplayName",
   "PayloadIdentifier",
@@ -20,11 +20,11 @@ const PLIST_META = new Set([
 function systemManagedConfigDir(): string {
   switch (process.platform) {
     case "darwin":
-      return "/Library/Application Support/ia-bot-ahmed"
+      return "/Library/Application Support/IaBotAhmed"
     case "win32":
       return path.join(process.env.ProgramData || "C:\\ProgramData", "ia-bot-ahmed")
     default:
-      return "/etc/ia-bot-ahmed"
+      return "/etc/IaBotAhmed"
   }
 }
 

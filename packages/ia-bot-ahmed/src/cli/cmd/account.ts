@@ -1,4 +1,4 @@
-import { cmd } from "./cmd"
+﻿import { cmd } from "./cmd"
 import { Duration, Effect, Match, Option } from "effect"
 import { UI } from "../ui"
 import { Account } from "@/account/account"
@@ -15,7 +15,7 @@ const dim = (value: string) => UI.Style.TEXT_DIM + value + UI.Style.TEXT_NORMAL
 
 const activeSuffix = (isActive: boolean) => (isActive ? dim(" (active)") : "")
 
-export const defaultConsoleUrl = "https://console.ia-bot-ahmed.app"
+export const defaultConsoleUrl = "https://console.IaBotAhmed.app"
 
 export const formatAccountLabel = (account: { email: string; url: string }, isActive: boolean) =>
   `${account.email} ${dim(account.url)}${activeSuffix(isActive)}`
@@ -28,7 +28,7 @@ export const formatOrgLine = (
   org: { id: string; name: string },
   isActive: boolean,
 ) => {
-  const dot = isActive ? UI.Style.TEXT_SUCCESS + "●" + UI.Style.TEXT_NORMAL : " "
+  const dot = isActive ? UI.Style.TEXT_SUCCESS + "â—" + UI.Style.TEXT_NORMAL : " "
   const name = isActive ? UI.Style.TEXT_HIGHLIGHT_BOLD + org.name + UI.Style.TEXT_NORMAL : org.name
   return `  ${dot} ${name}  ${dim(account.email)}  ${dim(account.url)}  ${dim(org.id)}`
 }

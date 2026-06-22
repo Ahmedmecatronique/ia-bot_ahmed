@@ -1,4 +1,4 @@
-import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
+﻿import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
 import { NodeHttpServer, NodeServices } from "@effect/platform-node"
 import { Flag } from "@ia-bot-ahmed/core/flag/flag"
 import { describe, expect } from "bun:test"
@@ -53,7 +53,7 @@ const httpApiServerLayer = servedRoutes.pipe(
 const it = testEffect(Layer.mergeAll(testStateLayer, httpApiServerLayer))
 const handlerContext = Context.empty() as Context.Context<unknown>
 
-const directoryHeader = (dir: string) => HttpClientRequest.setHeader("x-ia-bot-ahmed-directory", dir)
+const directoryHeader = (dir: string) => HttpClientRequest.setHeader("x-IaBotAhmed-directory", dir)
 
 describe("instance HttpApi", () => {
   it.live("serves the OpenAPI document", () =>
@@ -128,7 +128,7 @@ describe("instance HttpApi", () => {
           HttpApiApp.webHandler().handler(
             new Request(`http://localhost${path}`, {
               ...init,
-              headers: { "x-ia-bot-ahmed-directory": dir, "content-type": "application/json", ...init?.headers },
+              headers: { "x-IaBotAhmed-directory": dir, "content-type": "application/json", ...init?.headers },
             }),
             handlerContext,
           ),
@@ -162,7 +162,7 @@ describe("instance HttpApi", () => {
           HttpApiApp.webHandler().handler(
             new Request(`http://localhost${path}`, {
               ...init,
-              headers: { "x-ia-bot-ahmed-directory": dir, "content-type": "application/json", ...init?.headers },
+              headers: { "x-IaBotAhmed-directory": dir, "content-type": "application/json", ...init?.headers },
             }),
             handlerContext,
           ),
@@ -214,7 +214,7 @@ describe("instance HttpApi", () => {
         HttpApiApp.webHandler().handler(
           new Request(`http://localhost/project/${projectID}`, {
             method: "PATCH",
-            headers: { "x-ia-bot-ahmed-directory": dir, "content-type": "application/json" },
+            headers: { "x-IaBotAhmed-directory": dir, "content-type": "application/json" },
             body: JSON.stringify({ name: "Missing" }),
           }),
           handlerContext,

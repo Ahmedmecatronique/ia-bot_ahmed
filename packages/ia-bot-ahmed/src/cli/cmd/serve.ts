@@ -1,4 +1,4 @@
-import { Effect } from "effect"
+﻿import { Effect } from "effect"
 import { effectCmd } from "../effect-cmd"
 import { withNetworkOptions, resolveNetworkOptions } from "../network"
 import { Flag } from "@ia-bot-ahmed/core/flag/flag"
@@ -6,8 +6,8 @@ import { Flag } from "@ia-bot-ahmed/core/flag/flag"
 export const ServeCommand = effectCmd({
   command: "serve",
   builder: (yargs) => withNetworkOptions(yargs),
-  describe: "starts a headless ia-bot-ahmed server",
-  // Server loads instances per-request via x-ia-bot-ahmed-directory header — no
+  describe: "starts a headless IaBotAhmed server",
+  // Server loads instances per-request via x-IaBotAhmed-directory header â€” no
   // need for an ambient project InstanceContext at startup.
   instance: false,
   handler: Effect.fn("Cli.serve")(function* (args) {

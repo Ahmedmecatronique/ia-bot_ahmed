@@ -1,4 +1,4 @@
-import { createConnection } from "net"
+﻿import { createConnection } from "net"
 import { createServer } from "http"
 import { escapeHtml } from "@/util/html"
 import { OAUTH_CALLBACK_PORT, OAUTH_CALLBACK_PATH, parseRedirectUri } from "./oauth-provider"
@@ -10,7 +10,7 @@ let currentPath = OAUTH_CALLBACK_PATH
 const HTML_SUCCESS = `<!DOCTYPE html>
 <html>
 <head>
-  <title>ia-bot-ahmed - Authorization Successful</title>
+  <title>IaBotAhmed - Authorization Successful</title>
   <style>
     body { font-family: system-ui, -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #1a1a2e; color: #eee; }
     .container { text-align: center; padding: 2rem; }
@@ -21,7 +21,7 @@ const HTML_SUCCESS = `<!DOCTYPE html>
 <body>
   <div class="container">
     <h1>Authorization Successful</h1>
-    <p>You can close this window and return to ia-bot-ahmed.</p>
+    <p>You can close this window and return to IaBotAhmed.</p>
   </div>
   <script>setTimeout(() => window.close(), 2000);</script>
 </body>
@@ -30,7 +30,7 @@ const HTML_SUCCESS = `<!DOCTYPE html>
 const HTML_ERROR = (error: string) => `<!DOCTYPE html>
 <html>
 <head>
-  <title>ia-bot-ahmed - Authorization Failed</title>
+  <title>IaBotAhmed - Authorization Failed</title>
   <style>
     body { font-family: system-ui, -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #1a1a2e; color: #eee; }
     .container { text-align: center; padding: 2rem; }
@@ -56,7 +56,7 @@ interface PendingAuth {
 
 let server: ReturnType<typeof createServer> | undefined
 const pendingAuths = new Map<string, PendingAuth>()
-// Reverse index: mcpName → oauthState, so cancelPending(mcpName) can
+// Reverse index: mcpName â†’ oauthState, so cancelPending(mcpName) can
 // find the right entry in pendingAuths (which is keyed by oauthState).
 const mcpNameToState = new Map<string, string>()
 

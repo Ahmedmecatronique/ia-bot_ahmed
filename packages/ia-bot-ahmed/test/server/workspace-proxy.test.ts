@@ -1,4 +1,4 @@
-import { NodeHttpServer, NodeServices } from "@effect/platform-node"
+﻿import { NodeHttpServer, NodeServices } from "@effect/platform-node"
 import Http from "node:http"
 import { describe, expect } from "bun:test"
 import { Context, Effect, Layer, Queue } from "effect"
@@ -128,7 +128,7 @@ describe("HttpApi workspace proxy", () => {
     }),
   )
 
-  it.live("strips ia-bot-ahmed-internal headers and merges extra headers", () =>
+  it.live("strips IaBotAhmed-internal headers and merges extra headers", () =>
     Effect.gen(function* () {
       let forwarded: Record<string, string> = {}
       const url = yield* listenServer((req) =>
@@ -141,8 +141,8 @@ describe("HttpApi workspace proxy", () => {
       const request = HttpServerRequest.fromWeb(
         new Request("http://localhost/test", {
           headers: {
-            "x-ia-bot-ahmed-directory": "/secret/path",
-            "x-ia-bot-ahmed-workspace": "ws_123",
+            "x-IaBotAhmed-directory": "/secret/path",
+            "x-IaBotAhmed-workspace": "ws_123",
             "x-custom": "preserved",
           },
         }),
@@ -150,8 +150,8 @@ describe("HttpApi workspace proxy", () => {
       const httpClient = yield* HttpClient.HttpClient
       yield* HttpApiProxy.http(httpClient, `${url}/test`, { "x-injected": "extra" }, request)
 
-      expect(forwarded["x-ia-bot-ahmed-directory"]).toBeUndefined()
-      expect(forwarded["x-ia-bot-ahmed-workspace"]).toBeUndefined()
+      expect(forwarded["x-IaBotAhmed-directory"]).toBeUndefined()
+      expect(forwarded["x-IaBotAhmed-workspace"]).toBeUndefined()
       expect(forwarded["x-custom"]).toBe("preserved")
       expect(forwarded["x-injected"]).toBe("extra")
     }),

@@ -1,4 +1,4 @@
-export * as ConfigLSPV1 from "./lsp"
+﻿export * as ConfigLSPV1 from "./lsp"
 
 import { Schema } from "effect"
 
@@ -17,7 +17,7 @@ export const Entry = Schema.Union([
   }),
 ]).pipe((schema) => schema)
 
-// Keep this list aligned with the builtin servers in ia-bot-ahmed's LSP runtime.
+// Keep this list aligned with the builtin servers in IaBotAhmed's LSP runtime.
 // Custom servers must declare extensions because the runtime cannot infer them.
 export const builtinServerIds = [
   "deno",

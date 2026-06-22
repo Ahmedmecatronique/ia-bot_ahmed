@@ -1,4 +1,4 @@
-import { ConfigV1 } from "@ia-bot-ahmed/core/v1/config/config"
+﻿import { ConfigV1 } from "@ia-bot-ahmed/core/v1/config/config"
 import { SessionV1 } from "@ia-bot-ahmed/core/v1/session"
 import { FSUtil } from "@ia-bot-ahmed/core/fs-util"
 import { ModelsDev } from "@ia-bot-ahmed/core/models-dev"
@@ -29,7 +29,7 @@ import { ModelV2 } from "@ia-bot-ahmed/core/model"
 
 const FIXTURES_DIR = path.join(import.meta.dir, "../fixtures/recordings")
 
-const zenURL = (connection: string) => `https://console.ia-bot-ahmed.app/proxy/connections/${connection}/v1`
+const zenURL = (connection: string) => `https://console.IaBotAhmed.app/proxy/connections/${connection}/v1`
 
 const replayOpenAIOAuth = {
   type: "oauth",
@@ -162,7 +162,7 @@ const RECORDED_SCENARIOS = [
   {
     id: "ia-bot-ahmed-proxy",
     name: "ia-bot-ahmed proxy",
-    providerID: ProviderV2.ID.ia-bot-ahmed,
+    providerID: ProviderV2.ID.IaBotAhmed,
     modelID: "gpt-5.2-codex",
     cassette: "session/native-zen-tool-loop",
     protocol: "openai-responses",
@@ -170,7 +170,7 @@ const RECORDED_SCENARIOS = [
     canRecord: () => Boolean(process.env.IA_BOT_AHMED_RECORD_CONSOLE_TOKEN && process.env.IA_BOT_AHMED_RECORD_ZEN_ORG_ID),
     config: (model) =>
       providerConfig({
-        providerID: ProviderV2.ID.ia-bot-ahmed,
+        providerID: ProviderV2.ID.IaBotAhmed,
         name: "ia-bot-ahmed Zen",
         env: ["IA_BOT_AHMED_CONSOLE_TOKEN"],
         npm: "@ai-sdk/openai-compatible",
@@ -271,7 +271,7 @@ function recordedNativeLLMLayer(scenario: RecordedScenario) {
     Layer.provide(ModelsDev.defaultLayer),
     Layer.provide(RuntimeFlags.defaultLayer),
   )
-  // Only the HTTP client is recorded; RequestExecutor and the ia-bot-ahmed LLM stack remain real.
+  // Only the HTTP client is recorded; RequestExecutor and the IaBotAhmed LLM stack remain real.
   const metadata = {
     provider: scenario.providerID,
     protocol: scenario.protocol,
@@ -311,7 +311,7 @@ const writeConfig = (directory: string, scenario: RecordedScenario, model: Model
   Effect.promise(() =>
     Bun.write(
       path.join(directory, "ia-bot-ahmed.json"),
-      JSON.stringify({ $schema: "https://ia-bot-ahmed.app/config.json", ...scenario.config(model) }),
+      JSON.stringify({ $schema: "https://IaBotAhmed.app/config.json", ...scenario.config(model) }),
     ),
   )
 

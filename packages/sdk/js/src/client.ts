@@ -1,10 +1,10 @@
-export * from "./gen/types.gen.js"
+﻿export * from "./gen/types.gen.js"
 
 import { createClient } from "./gen/client/client.gen.js"
 import { type Config } from "./gen/client/types.gen.js"
-import { ia-bot-ahmedClient } from "./gen/sdk.gen.js"
+import { IaBotAhmedClient } from "./gen/sdk.gen.js"
 import { wrapClientError } from "./error-interceptor.js"
-export { type Config as ia-bot-ahmedClientConfig, ia-bot-ahmedClient }
+export { type Config as IaBotAhmedClientConfig, IaBotAhmedClient }
 
 function pick(value: string | null, fallback?: string) {
   if (!value) return
@@ -17,7 +17,7 @@ function pick(value: string | null, fallback?: string) {
 function rewrite(request: Request, directory?: string) {
   if (request.method !== "GET" && request.method !== "HEAD") return request
 
-  const value = pick(request.headers.get("x-ia-bot-ahmed-directory"), directory)
+  const value = pick(request.headers.get("x-IaBotAhmed-directory"), directory)
   if (!value) return request
 
   const url = new URL(request.url)
@@ -26,11 +26,11 @@ function rewrite(request: Request, directory?: string) {
   }
 
   const next = new Request(url, request)
-  next.headers.delete("x-ia-bot-ahmed-directory")
+  next.headers.delete("x-IaBotAhmed-directory")
   return next
 }
 
-export function createia-bot-ahmedClient(config?: Config & { directory?: string }) {
+export function createIaBotAhmedClient(config?: Config & { directory?: string }) {
   if (!config?.fetch) {
     const customFetch: any = (req: any) => {
       // @ts-ignore
@@ -46,12 +46,12 @@ export function createia-bot-ahmedClient(config?: Config & { directory?: string 
   if (config?.directory) {
     config.headers = {
       ...config.headers,
-      "x-ia-bot-ahmed-directory": encodeURIComponent(config.directory),
+      "x-IaBotAhmed-directory": encodeURIComponent(config.directory),
     }
   }
 
   const client = createClient(config)
   client.interceptors.request.use((request) => rewrite(request, config?.directory))
   client.interceptors.error.use(wrapClientError)
-  return new ia-bot-ahmedClient({ client })
+  return new IaBotAhmedClient({ client })
 }

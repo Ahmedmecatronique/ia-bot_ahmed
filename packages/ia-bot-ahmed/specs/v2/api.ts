@@ -1,13 +1,13 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 
-import { ia-bot-ahmed } from "@ia-bot-ahmed/core"
+import { IaBotAhmed } from "@ia-bot-ahmed/core"
 import { ReadTool } from "@ia-bot-ahmed/core/tools"
 
-const ia-bot-ahmed = ia-bot-ahmed.make({})
+const IaBotAhmed = IaBotAhmed.make({})
 
-ia-bot-ahmed.tool.add(ReadTool)
+IaBotAhmed.tool.add(ReadTool)
 
-ia-bot-ahmed.tool.add({
+IaBotAhmed.tool.add({
   name: "bash",
   schema: {
     type: "object",
@@ -22,13 +22,13 @@ ia-bot-ahmed.tool.add({
   execute(input, ctx) {},
 })
 
-ia-bot-ahmed.auth.add({
+IaBotAhmed.auth.add({
   provider: "openai",
   type: "api",
   value: process.env.OPENAI_API_KEY,
 })
 
-ia-bot-ahmed.agent.add({
+IaBotAhmed.agent.add({
   name: "build",
   permissions: [],
   model: {
@@ -38,20 +38,20 @@ ia-bot-ahmed.agent.add({
   },
 })
 
-const sessionID = await ia-bot-ahmed.session.create({
+const sessionID = await IaBotAhmed.session.create({
   agent: "build",
 })
 
-ia-bot-ahmed.subscribe((event) => {
+IaBotAhmed.subscribe((event) => {
   console.log(event)
 })
 
-await ia-bot-ahmed.session.prompt({
+await IaBotAhmed.session.prompt({
   sessionID,
   text: "hey what is up",
 })
 
-await ia-bot-ahmed.session.prompt({
+await IaBotAhmed.session.prompt({
   sessionID,
   text: "what is up with this",
   files: [
@@ -62,6 +62,6 @@ await ia-bot-ahmed.session.prompt({
   ],
 })
 
-await ia-bot-ahmed.session.wait()
+await IaBotAhmed.session.wait()
 
-console.log(await ia-bot-ahmed.session.messages(sessionID))
+console.log(await IaBotAhmed.session.messages(sessionID))

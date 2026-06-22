@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test } from "bun:test"
+﻿import { afterEach, describe, expect, test } from "bun:test"
 import path from "path"
 import { Server } from "../../src/server/server"
 import { Global } from "@ia-bot-ahmed/core/global"
@@ -25,7 +25,7 @@ describe("reference HttpApi", () => {
     })
 
     const response = await Server.Default().app.request("/api/reference", {
-      headers: { "x-ia-bot-ahmed-directory": tmp.path },
+      headers: { "x-IaBotAhmed-directory": tmp.path },
     })
 
     expect(response.status).toBe(200)

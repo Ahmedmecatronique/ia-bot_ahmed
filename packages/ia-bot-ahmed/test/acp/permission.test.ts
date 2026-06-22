@@ -1,17 +1,17 @@
-import { describe, expect, it } from "bun:test"
+﻿import { describe, expect, it } from "bun:test"
 import type {
   AgentSideConnection,
   RequestPermissionRequest,
   RequestPermissionResponse,
   SessionUpdate,
 } from "@agentclientprotocol/sdk"
-import type { Event, ia-bot-ahmedClient } from "@ia-bot-ahmed/sdk/v2"
+import type { Event, IaBotAhmedClient } from "@ia-bot-ahmed/sdk/v2"
 import { Effect, ManagedRuntime } from "effect"
 import { ACPEvent } from "@/acp/event"
 import { ACPSession } from "@/acp/session"
 
 type PermissionEvent = Extract<Event, { type: "permission.asked" }>
-type PermissionReplyParams = Parameters<ia-bot-ahmedClient["permission"]["reply"]>[0]
+type PermissionReplyParams = Parameters<IaBotAhmedClient["permission"]["reply"]>[0]
 type SessionUpdateParams = Parameters<AgentSideConnection["sessionUpdate"]>[0]
 
 const pollUntil = async (
@@ -51,7 +51,7 @@ function createHarness(
     session: {
       message: () => Promise.resolve({ data: undefined }),
     },
-  } as unknown as ia-bot-ahmedClient
+  } as unknown as IaBotAhmedClient
   const connection = {
     requestPermission: (params: RequestPermissionRequest) => {
       requests.push(params)

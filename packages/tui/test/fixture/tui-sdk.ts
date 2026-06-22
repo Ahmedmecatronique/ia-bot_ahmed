@@ -1,7 +1,7 @@
-import type { GlobalEvent } from "@ia-bot-ahmed/sdk/v2"
+﻿import type { GlobalEvent } from "@ia-bot-ahmed/sdk/v2"
 import type { EventSource } from "../../src/context/sdk"
 
-export const worktree = "/tmp/ia-bot-ahmed"
+export const worktree = "/tmp/IaBotAhmed"
 export const directory = `${worktree}/packages/tui`
 
 export function json(data: unknown, init?: ResponseInit) {

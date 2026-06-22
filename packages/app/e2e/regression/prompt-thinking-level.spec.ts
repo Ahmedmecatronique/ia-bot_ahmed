@@ -1,6 +1,6 @@
-import { expect, test, type Page } from "@playwright/test"
+﻿import { expect, test, type Page } from "@playwright/test"
 import { base64Encode } from "@ia-bot-ahmed/core/util/encode"
-import { mockia-bot-ahmedServer } from "../utils/mock-server"
+import { mockIaBotAhmedServer } from "../utils/mock-server"
 import { expectAppVisible } from "../utils/waits"
 
 const directory = "C:/ia-bot-ahmed/PromptThinkingLevelRegression"
@@ -8,7 +8,7 @@ const projectID = "proj_prompt_thinking_level_regression"
 const sessionID = "ses_prompt_thinking_level_regression"
 
 test("shows the V2 thinking level control while relevant", async ({ page }) => {
-  await mockia-bot-ahmedServer(page, {
+  await mockIaBotAhmedServer(page, {
     directory,
     project: {
       id: projectID,

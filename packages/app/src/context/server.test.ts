@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { createRoot, createSignal } from "solid-js"
 import { createStore } from "solid-js/store"
 import {
@@ -123,10 +123,10 @@ describe("migrateCanonicalLocalServerState", () => {
       migrateCanonicalLocalServerState(
         {
           list: [],
-          projects: { "https://ia-bot-ahmed.example.com": [{ worktree: "/remote", expanded: true }] },
-          lastProject: { "https://ia-bot-ahmed.example.com": "/remote" },
+          projects: { "https://IaBotAhmed.example.com": [{ worktree: "/remote", expanded: true }] },
+          lastProject: { "https://IaBotAhmed.example.com": "/remote" },
         },
-        ServerConnection.Key.make("https://ia-bot-ahmed.example.com"),
+        ServerConnection.Key.make("https://IaBotAhmed.example.com"),
       ),
     ).toEqual({
       list: [],
@@ -141,14 +141,14 @@ describe("migrateCanonicalLocalServerState", () => {
         {
           projects: {
             local: [{ worktree: "/local", expanded: false }],
-            "https://ia-bot-ahmed.example.com": [
+            "https://IaBotAhmed.example.com": [
               { worktree: "/local", expanded: true },
               { worktree: "/remote", expanded: true },
             ],
           },
-          lastProject: { local: "/local", "https://ia-bot-ahmed.example.com": "/remote" },
+          lastProject: { local: "/local", "https://IaBotAhmed.example.com": "/remote" },
         },
-        ServerConnection.Key.make("https://ia-bot-ahmed.example.com"),
+        ServerConnection.Key.make("https://IaBotAhmed.example.com"),
       ),
     ).toEqual({
       projects: {

@@ -1,4 +1,4 @@
-import type { ModelMessage, ToolResultPart } from "ai"
+﻿import type { ModelMessage, ToolResultPart } from "ai"
 import { mergeDeep, unique } from "remeda"
 import type { JSONSchema7 } from "@ai-sdk/provider"
 import type * as Provider from "./provider"
@@ -298,7 +298,7 @@ function normalizeMessages(
         const filteredContent = msg.content.filter((part: any) => part.type !== "reasoning")
 
         // Include reasoning_content | reasoning_details directly on the message for all assistant messages.
-        // Always set the field even when empty — some providers (e.g. DeepSeek) may return empty
+        // Always set the field even when empty â€” some providers (e.g. DeepSeek) may return empty
         // reasoning_content which still needs to be sent back in subsequent requests.
         return {
           ...msg,
@@ -1249,7 +1249,7 @@ export function smallOptions(model: Provider.Model) {
 }
 
 // Maps model ID prefix to provider slug used in providerOptions.
-// Example: "amazon/nova-2-lite" → "bedrock"
+// Example: "amazon/nova-2-lite" â†’ "bedrock"
 const SLUG_OVERRIDES: Record<string, string> = {
   amazon: "bedrock",
 }
@@ -1419,7 +1419,7 @@ export function schema(model: Provider.Model, schema: JSONSchema7): JSONSchema7 
 
   if (model.api.npm === "@ai-sdk/openai" || model.api.npm === "@ai-sdk/azure") {
     schema = sanitizeOpenAISchema(schema) as JSONSchema7
-    // Codex also applies lossy compaction above 4 KB; defer that until ia-bot-ahmed needs the same schema budget.
+    // Codex also applies lossy compaction above 4 KB; defer that until IaBotAhmed needs the same schema budget.
   }
 
   if (model.providerID === "moonshotai" || model.api.id.toLowerCase().includes("kimi")) {

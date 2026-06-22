@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises"
+﻿import { mkdir, writeFile } from "node:fs/promises"
 import os from "node:os"
 import path from "node:path"
 import { afterEach, expect, spyOn, test } from "bun:test"
@@ -10,11 +10,11 @@ import { TestTuiContexts } from "../../fixture/tui-environment"
 import { discoverEditorConnection } from "@ia-bot-ahmed/tui/editor"
 
 const originalClaudePort = process.env.CLAUDE_CODE_SSE_PORT
-const originalia-bot-ahmedPort = process.env.IA_BOT_AHMED_EDITOR_SSE_PORT
+const originalIaBotAhmedPort = process.env.IA_BOT_AHMED_EDITOR_SSE_PORT
 
 afterEach(() => {
   process.env.CLAUDE_CODE_SSE_PORT = originalClaudePort
-  process.env.IA_BOT_AHMED_EDITOR_SSE_PORT = originalia-bot-ahmedPort
+  process.env.IA_BOT_AHMED_EDITOR_SSE_PORT = originalIaBotAhmedPort
 })
 
 function nextTick() {

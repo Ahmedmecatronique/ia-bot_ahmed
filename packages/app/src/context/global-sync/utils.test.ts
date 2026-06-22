@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import type { Agent } from "@ia-bot-ahmed/sdk/v2/client"
 import { directoryKey, normalizeAgentList } from "./utils"
 
@@ -36,8 +36,8 @@ describe("normalizeAgentList", () => {
 
 describe("directoryKey", () => {
   test("normalizes slashes", () => {
-    expect(String(directoryKey("C:\\Repos\\sst\\ia-bot-ahmed"))).toBe("C:/Repos/sst/ia-bot-ahmed")
-    expect(String(directoryKey("C:/Repos/sst/ia-bot-ahmed"))).toBe("C:/Repos/sst/ia-bot-ahmed")
+    expect(String(directoryKey("C:\\Repos\\sst\\IaBotAhmed"))).toBe("C:/Repos/sst/IaBotAhmed")
+    expect(String(directoryKey("C:/Repos/sst/IaBotAhmed"))).toBe("C:/Repos/sst/IaBotAhmed")
   })
 
   test("preserves backslashes in posix paths", () => {
@@ -45,7 +45,7 @@ describe("directoryKey", () => {
   })
 
   test("trims trailing slashes without breaking roots", () => {
-    expect(String(directoryKey("C:/Repos/sst/ia-bot-ahmed/"))).toBe("C:/Repos/sst/ia-bot-ahmed")
+    expect(String(directoryKey("C:/Repos/sst/ia-bot-ahmed/"))).toBe("C:/Repos/sst/IaBotAhmed")
     expect(String(directoryKey("C:/"))).toBe("C:/")
     expect(String(directoryKey("/"))).toBe("/")
   })

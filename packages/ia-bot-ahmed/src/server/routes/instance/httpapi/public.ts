@@ -1,5 +1,5 @@
-import { OpenApi } from "effect/unstable/httpapi"
-import { ia-bot-ahmedHttpApi } from "./api"
+﻿import { OpenApi } from "effect/unstable/httpapi"
+import { IaBotAhmedHttpApi } from "./api"
 import { QueryBooleanOpenApi } from "./groups/query"
 
 type OpenApiParameter = {
@@ -75,7 +75,7 @@ const QueryParameterSchemas: Record<string, OpenApiSchema> = {
 
 const LegacyComponentDescriptions: Record<string, string> = {
   LogLevel: "Log level",
-  ServerConfig: "Server configuration for ia-bot-ahmed serve and web commands",
+  ServerConfig: "Server configuration for IaBotAhmed serve and web commands",
   LayoutConfig: "@deprecated Always uses stretch layout.",
 }
 
@@ -114,7 +114,7 @@ function matchLegacyOpenApi(input: Record<string, unknown>) {
         const body = operation.requestBody.content?.["application/json"]
         if (body?.schema) body.schema = stripOptionalNull(structuredClone(body.schema))
         if (path === "/experimental/workspace" && method === "post") {
-          // Workspace creation fields `branch` and `extra` are Schema.NullOr —
+          // Workspace creation fields `branch` and `extra` are Schema.NullOr â€”
           // genuinely nullable, not just optional. Re-add the null that the
           // component-level strip above removed.
           const ref = operation.requestBody.content?.["application/json"]?.schema?.$ref?.replace(
@@ -412,7 +412,7 @@ function legacyErrorResponse(description: string, name: "BadRequestError" | "Not
 }
 
 /**
- * Fix component schemas that are self-referencing `$ref`s — an Effect OpenAPI
+ * Fix component schemas that are self-referencing `$ref`s â€” an Effect OpenAPI
  * generation bug where annotated union arms that share AST nodes with other
  * endpoints produce `{"$ref":"#/components/schemas/X"}` as the definition of X.
  *
@@ -428,7 +428,7 @@ function fixSelfReferencingComponents(spec: OpenApiSpec) {
   }
   if (selfRefs.size === 0) return
   // Find a parent union component whose anyOf/oneOf contains a $ref to the
-  // broken component — that parent was generated correctly and holds the inline
+  // broken component â€” that parent was generated correctly and holds the inline
   // schema we need.
   for (const [, schema] of Object.entries(schemas)) {
     for (const member of schema.anyOf ?? schema.oneOf ?? []) {
@@ -442,12 +442,12 @@ function fixSelfReferencingComponents(spec: OpenApiSpec) {
       // Simpler approach: look through all paths for an endpoint that uses this
       // schema as a payload (it would have been expanded by the ref-expansion
       // logic above if we ran after that, but we run before). Instead, just
-      // delete the broken component — if it's referenced via $ref elsewhere,
+      // delete the broken component â€” if it's referenced via $ref elsewhere,
       // the ref expansion in the request body loop will inline it anyway.
     }
   }
   // Simplest fix: generate the raw spec (without transform) to get correct schemas
-  const raw: OpenApiSpec = OpenApi.fromApi(ia-bot-ahmedHttpApi)
+  const raw: OpenApiSpec = OpenApi.fromApi(IaBotAhmedHttpApi)
   const rawSchemas = raw.components?.schemas
   if (!rawSchemas) return
   for (const name of selfRefs) {
@@ -525,7 +525,7 @@ function normalizeParameter(param: OpenApiParameter, route: string) {
   param.schema = stripOptionalNull(param.schema)
 }
 
-export const PublicApi = ia-bot-ahmedHttpApi.annotateMerge(
+export const PublicApi = IaBotAhmedHttpApi.annotateMerge(
   OpenApi.annotations({
     title: "ia-bot-ahmed",
     version: "1.0.0",

@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+﻿#!/usr/bin/env bun
 
 async function sendToPostHog(event: string, properties: Record<string, any>) {
   const key = process.env["POSTHOG_KEY"]
@@ -188,14 +188,14 @@ async function save(githubTotal: number, npmDownloads: number) {
   )
 }
 
-console.log("Fetching GitHub releases for anomalyco/ia-bot-ahmed...\n")
+console.log("Fetching GitHub releases for anomalyco/IaBotAhmed...\n")
 
 const releases = await fetchReleases()
 console.log(`\nFetched ${releases.length} releases total\n`)
 
 const { total: githubTotal } = calculate(releases)
 
-console.log("Fetching npm all-time downloads for ia-bot-ahmed-ai...\n")
+console.log("Fetching npm all-time downloads for IaBotAhmed-ai...\n")
 const npmDownloads = await fetchNpmDownloads("ia-bot-ahmed-ai")
 console.log(`Fetched npm all-time downloads: ${npmDownloads.toLocaleString()}\n`)
 

@@ -1,4 +1,4 @@
-import { useDialog } from "@ia-bot-ahmed/ui/context/dialog"
+﻿import { useDialog } from "@ia-bot-ahmed/ui/context/dialog"
 import { Tag } from "@ia-bot-ahmed/ui/v2/badge-v2"
 import { ButtonV2 } from "@ia-bot-ahmed/ui/v2/button-v2"
 import { Dialog } from "@ia-bot-ahmed/ui/v2/dialog-v2"
@@ -16,7 +16,7 @@ import { ServerConnection } from "@/context/server"
 import { showToast } from "@/utils/toast"
 import { DialogAddWslServer } from "./dialog-add-server"
 import { useWslServers } from "./context"
-import { wslia-bot-ahmedAction, wslRuntimeRetryable } from "./settings-model"
+import { wslIaBotAhmedAction, wslRuntimeRetryable } from "./settings-model"
 
 type Controller = ReturnType<typeof useServerManagementController>
 
@@ -84,9 +84,9 @@ export function WslServerSettings(props: {
       <For each={props.servers()}>
         {(item) => {
           const key = ServerConnection.Key.make(item.config.id)
-          const check = () => wsl.data?.ia-bot-ahmedChecks[item.config.distro]
-          const ia-bot-ahmedAction = () => wslia-bot-ahmedAction(check())
-          const busy = () => wsl.data?.job?.kind === "install-ia-bot-ahmed" && wsl.data.job.distro === item.config.distro
+          const check = () => wsl.data?.IaBotAhmedChecks[item.config.distro]
+          const IaBotAhmedAction = () => wslIaBotAhmedAction(check())
+          const busy = () => wsl.data?.job?.kind === "install-IaBotAhmed" && wsl.data.job.distro === item.config.distro
           return (
             <div class="settings-v2-servers-row">
               <div class="settings-v2-servers-lead">
@@ -107,12 +107,12 @@ export function WslServerSettings(props: {
                 <Show when={props.controller.canDefault() && props.controller.defaultKey() === key}>
                   <Tag>{language.t("dialog.server.status.default")}</Tag>
                 </Show>
-                <Show when={ia-bot-ahmedAction()}>
+                <Show when={IaBotAhmedAction()}>
                   {(label) => (
                     <ButtonV2
                       size="small"
                       disabled={busy() || request.isPending}
-                      onClick={() => api && request.mutate(() => api.installia-bot-ahmed(item.config.distro))}
+                      onClick={() => api && request.mutate(() => api.installIaBotAhmed(item.config.distro))}
                     >
                       {busy() ? language.t("wsl.server.updating") : label()}
                     </ButtonV2>

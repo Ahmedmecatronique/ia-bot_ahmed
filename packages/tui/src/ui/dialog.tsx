@@ -1,11 +1,11 @@
-import { useRenderer, useTerminalDimensions } from "@opentui/solid"
+﻿import { useRenderer, useTerminalDimensions } from "@opentui/solid"
 import { batch, createContext, createEffect, onCleanup, Show, useContext, type JSX, type ParentProps } from "solid-js"
 import { useTheme } from "../context/theme"
 import { MouseButton, Renderable, RGBA } from "@opentui/core"
 import { createStore } from "solid-js/store"
 import { useToast } from "./toast"
 import { Flag } from "@ia-bot-ahmed/core/flag/flag"
-import { useBindings, useia-bot-ahmedModeStack } from "../keymap"
+import { useBindings, useIaBotAhmedModeStack } from "../keymap"
 import { useClipboard } from "../context/clipboard"
 
 export function Dialog(
@@ -73,7 +73,7 @@ function init() {
   })
 
   const renderer = useRenderer()
-  const modeStack = useia-bot-ahmedModeStack()
+  const modeStack = useIaBotAhmedModeStack()
 
   createEffect(() => {
     if (store.stack.length === 0) return

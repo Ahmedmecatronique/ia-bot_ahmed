@@ -1,4 +1,4 @@
-import type { WslDistroProbe, Wslia-bot-ahmedCheck, WslServerItem } from "../../preload/types"
+﻿import type { WslDistroProbe, WslIaBotAhmedCheck, WslServerItem } from "../../preload/types"
 
 export function wslServerIdToRestart(servers: WslServerItem[], distro: string) {
   return servers.find((item) => item.config.distro === distro)?.config.id
@@ -6,14 +6,14 @@ export function wslServerIdToRestart(servers: WslServerItem[], distro: string) {
 
 export function clearWslDistroState(
   distroProbes: Record<string, WslDistroProbe>,
-  ia-bot-ahmedChecks: Record<string, Wslia-bot-ahmedCheck>,
+  IaBotAhmedChecks: Record<string, WslIaBotAhmedCheck>,
   distro: string,
 ) {
   const nextDistroProbes = { ...distroProbes }
-  const nextia-bot-ahmedChecks = { ...ia-bot-ahmedChecks }
+  const nextIaBotAhmedChecks = { ...IaBotAhmedChecks }
   delete nextDistroProbes[distro]
-  delete nextia-bot-ahmedChecks[distro]
-  return { distroProbes: nextDistroProbes, ia-bot-ahmedChecks: nextia-bot-ahmedChecks }
+  delete nextIaBotAhmedChecks[distro]
+  return { distroProbes: nextDistroProbes, IaBotAhmedChecks: nextIaBotAhmedChecks }
 }
 
 export function wslTerminalArgs(distro?: string | null) {

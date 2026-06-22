@@ -1,4 +1,4 @@
-export const deepLinkEvent = "ia-bot-ahmed:deep-link"
+﻿export const deepLinkEvent = "ia-bot-ahmed:deep-link"
 
 const parseUrl = (input: string) => {
   if (!input.startsWith("ia-bot-ahmed://")) return
@@ -36,13 +36,13 @@ export const collectOpenProjectDeepLinks = (urls: string[]) =>
 export const collectNewSessionDeepLinks = (urls: string[]) =>
   urls.map(parseNewSessionDeepLink).filter((link): link is { directory: string; prompt?: string } => !!link)
 
-type ia-bot-ahmedWindow = Window & {
+type IaBotAhmedWindow = Window & {
   __IA_BOT_AHMED__?: {
     deepLinks?: string[]
   }
 }
 
-export const drainPendingDeepLinks = (target: ia-bot-ahmedWindow) => {
+export const drainPendingDeepLinks = (target: IaBotAhmedWindow) => {
   const pending = target.__IA_BOT_AHMED__?.deepLinks ?? []
   if (pending.length === 0) return []
   if (target.__IA_BOT_AHMED__) target.__IA_BOT_AHMED__.deepLinks = []

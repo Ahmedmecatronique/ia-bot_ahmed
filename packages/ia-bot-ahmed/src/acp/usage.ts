@@ -1,5 +1,5 @@
-import type { AgentSideConnection, Usage } from "@agentclientprotocol/sdk"
-import type { AssistantMessage as ia-bot-ahmedAssistantMessage, Message } from "@ia-bot-ahmed/sdk/v2"
+﻿import type { AgentSideConnection, Usage } from "@agentclientprotocol/sdk"
+import type { AssistantMessage as IaBotAhmedAssistantMessage, Message } from "@ia-bot-ahmed/sdk/v2"
 import { InstanceRef } from "@/effect/instance-ref"
 import { InstanceStore } from "@/project/instance-store"
 import { ProviderV2 } from "@ia-bot-ahmed/core/provider"
@@ -7,11 +7,11 @@ import { ModelV2 } from "@ia-bot-ahmed/core/model"
 import { Provider } from "@/provider/provider"
 import { Context, Effect, Layer, SynchronizedRef } from "effect"
 
-export type AssistantTokenCost = Pick<ia-bot-ahmedAssistantMessage, "cost" | "tokens">
+export type AssistantTokenCost = Pick<IaBotAhmedAssistantMessage, "cost" | "tokens">
 
 export type AssistantMessage = AssistantTokenCost &
-  Pick<ia-bot-ahmedAssistantMessage, "role"> &
-  Partial<Pick<ia-bot-ahmedAssistantMessage, "providerID" | "modelID">>
+  Pick<IaBotAhmedAssistantMessage, "role"> &
+  Partial<Pick<IaBotAhmedAssistantMessage, "providerID" | "modelID">>
 
 export type SessionMessage = {
   readonly info: { readonly role: Message["role"] } | AssistantMessage

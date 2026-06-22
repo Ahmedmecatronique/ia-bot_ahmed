@@ -1,6 +1,6 @@
-import type { Page } from "@playwright/test"
+﻿import type { Page } from "@playwright/test"
 import { base64Encode } from "@ia-bot-ahmed/core/util/encode"
-import { mockia-bot-ahmedServer } from "../../utils/mock-server"
+import { mockIaBotAhmedServer } from "../../utils/mock-server"
 import { fixture } from "./session-timeline-stress.fixture"
 
 export async function installTimelineSettings(page: Page) {
@@ -20,7 +20,7 @@ export async function installTimelineSettings(page: Page) {
 }
 
 export function mockStressTimeline(page: Page) {
-  return mockia-bot-ahmedServer(page, {
+  return mockIaBotAhmedServer(page, {
     sessions: fixture.sessions,
     provider: fixture.provider,
     directory: fixture.directory,

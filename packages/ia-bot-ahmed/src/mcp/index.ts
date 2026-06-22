@@ -1,4 +1,4 @@
-import path from "node:path"
+﻿import path from "node:path"
 import { pathToFileURL } from "node:url"
 import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
 import { type Tool } from "ai"
@@ -301,7 +301,7 @@ export const layer = Layer.effect(
                 return events
                   .publish(TuiEvent.ToastShow, {
                     title: "MCP Authentication Required",
-                    message: `Server "${key}" requires authentication. Run: ia-bot-ahmed mcp auth ${key}`,
+                    message: `Server "${key}" requires authentication. Run: IaBotAhmed mcp auth ${key}`,
                     variant: "warning",
                     duration: 8000,
                   })

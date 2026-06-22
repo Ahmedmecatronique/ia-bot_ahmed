@@ -1,4 +1,4 @@
-import { expect } from "bun:test"
+﻿import { expect } from "bun:test"
 import type { InitializeResponse, NewSessionResponse, SessionConfigOption } from "@agentclientprotocol/sdk"
 import { Effect } from "effect"
 import type { CliFixture } from "../../lib/cli-process"
@@ -13,7 +13,7 @@ import {
 
 export function createAcpClient(input: Pick<CliFixture, "ia-bot-ahmed">, env?: Record<string, string>) {
   return Effect.gen(function* () {
-    return createJsonRpcAcpClient(yield* input.ia-bot-ahmed.acp(env ? { env } : undefined))
+    return createJsonRpcAcpClient(yield* input.IaBotAhmed.acp(env ? { env } : undefined))
   })
 }
 

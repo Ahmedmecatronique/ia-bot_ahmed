@@ -1,5 +1,5 @@
-import { expect, test, type Page } from "@playwright/test"
-import { mockia-bot-ahmedServer } from "../utils/mock-server"
+﻿import { expect, test, type Page } from "@playwright/test"
+import { mockIaBotAhmedServer } from "../utils/mock-server"
 import { expectAppVisible, expectSessionTitle } from "../utils/waits"
 
 const directory = "C:/ia-bot-ahmed/ContextResizeRegression"
@@ -209,7 +209,7 @@ function contextTool(partID: string, messageID: string, tool: string, input: Rec
 }
 
 async function mockServer(page: Page) {
-  await mockia-bot-ahmedServer(page, {
+  await mockIaBotAhmedServer(page, {
     directory,
     project: project(),
     provider: provider(),

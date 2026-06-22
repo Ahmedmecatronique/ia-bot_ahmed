@@ -1,4 +1,4 @@
-import type { FileSelection } from "@/context/file"
+﻿import type { FileSelection } from "@/context/file"
 
 export type PromptComment = {
   path: string
@@ -25,7 +25,7 @@ function selection(selection: unknown) {
 
 export function createCommentMetadata(input: PromptComment) {
   return {
-    ia-bot-ahmedComment: {
+    IaBotAhmedComment: {
       path: input.path,
       selection: input.selection,
       comment: input.comment,
@@ -37,7 +37,7 @@ export function createCommentMetadata(input: PromptComment) {
 
 export function readCommentMetadata(value: unknown) {
   if (!value || typeof value !== "object") return
-  const meta = (value as { ia-bot-ahmedComment?: unknown }).ia-bot-ahmedComment
+  const meta = (value as { IaBotAhmedComment?: unknown }).IaBotAhmedComment
   if (!meta || typeof meta !== "object") return
   const path = (meta as { path?: unknown }).path
   const comment = (meta as { comment?: unknown }).comment

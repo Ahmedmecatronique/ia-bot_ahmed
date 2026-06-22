@@ -1,4 +1,4 @@
-import { MetaProvider, Title, Meta } from "@solidjs/meta"
+﻿import { MetaProvider, Title, Meta } from "@solidjs/meta"
 import { Router } from "@solidjs/router"
 import { FileRoutes } from "@solidjs/start/router"
 import { Suspense } from "solid-js"
@@ -14,7 +14,7 @@ function AppMeta() {
   const i18n = useI18n()
   return (
     <>
-      <Title>ia-bot-ahmed</Title>
+      <Title>IaBotAhmed</Title>
       <Meta name="description" content={i18n.t("app.meta.description")} />
       <Favicon />
       <Font />

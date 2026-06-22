@@ -1,4 +1,4 @@
-import type { DesktopMenuAction } from "@ia-bot-ahmed/app/desktop-menu"
+﻿import type { DesktopMenuAction } from "@ia-bot-ahmed/app/desktop-menu"
 import type { WslServersPlatform } from "@ia-bot-ahmed/app/wsl/types"
 import type { UpdaterState } from "@ia-bot-ahmed/app/updater"
 export type {
@@ -6,7 +6,7 @@ export type {
   WslInstalledDistro,
   WslJob,
   WslOnlineDistro,
-  Wslia-bot-ahmedCheck,
+  WslIaBotAhmedCheck,
   WslRuntimeCheck,
   WslServerConfig,
   WslServerItem,

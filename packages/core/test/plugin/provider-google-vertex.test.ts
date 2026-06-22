@@ -1,4 +1,4 @@
-import { describe, expect, mock } from "bun:test"
+﻿import { describe, expect, mock } from "bun:test"
 import { Effect } from "effect"
 import { Catalog } from "@ia-bot-ahmed/core/catalog"
 import { ModelV2 } from "@ia-bot-ahmed/core/model"
@@ -89,17 +89,17 @@ describe("GoogleVertexPlugin", () => {
     Effect.gen(function* () {
       const catalog = yield* Catalog.Service
       yield* catalog.transform((catalog) =>
-        catalog.provider.update(ProviderV2.ID.ia-bot-ahmed, (provider) => {
+        catalog.provider.update(ProviderV2.ID.IaBotAhmed, (provider) => {
           provider.api = {
             type: "aisdk",
             package: "@ai-sdk/openai-compatible",
-            url: "https://ia-bot-ahmed.app/zen/v1",
+            url: "https://IaBotAhmed.app/zen/v1",
           }
         }),
       )
       yield* addPlugin()
 
-      const provider = required(yield* catalog.provider.get(ProviderV2.ID.ia-bot-ahmed))
+      const provider = required(yield* catalog.provider.get(ProviderV2.ID.IaBotAhmed))
       expect(provider.request.body).toEqual({})
     }),
   )

@@ -1,4 +1,4 @@
-import { TextAttributes } from "@opentui/core"
+﻿import { TextAttributes } from "@opentui/core"
 import { fileURLToPath } from "bun"
 import { useTheme } from "../context/theme"
 import { useDialog } from "../ui/dialog"
@@ -70,7 +70,7 @@ export function DialogStatus() {
                     )[item.status],
                   }}
                 >
-                  •
+                  â€¢
                 </text>
                 <text fg={theme.text} wrapMode="word">
                   <b>{key}</b>{" "}
@@ -80,7 +80,7 @@ export function DialogStatus() {
                       <Match when={item.status === "failed" && item}>{(val) => val().error}</Match>
                       <Match when={item.status === "disabled"}>Disabled in configuration</Match>
                       <Match when={(item.status as string) === "needs_auth"}>
-                        Needs authentication (run: ia-bot-ahmed mcp auth {key})
+                        Needs authentication (run: IaBotAhmed mcp auth {key})
                       </Match>
                       <Match when={(item.status as string) === "needs_client_registration" && item}>
                         {(val) => (val() as { error: string }).error}
@@ -108,7 +108,7 @@ export function DialogStatus() {
                     }[item.status],
                   }}
                 >
-                  •
+                  â€¢
                 </text>
                 <text fg={theme.text} wrapMode="word">
                   <b>{item.id}</b> <span style={{ fg: theme.textMuted }}>{item.root}</span>
@@ -130,7 +130,7 @@ export function DialogStatus() {
                     fg: theme.success,
                   }}
                 >
-                  •
+                  â€¢
                 </text>
                 <text wrapMode="word" fg={theme.text}>
                   <b>{item.name}</b>
@@ -152,7 +152,7 @@ export function DialogStatus() {
                     fg: theme.success,
                   }}
                 >
-                  •
+                  â€¢
                 </text>
                 <text wrapMode="word" fg={theme.text}>
                   <b>{item.name}</b>

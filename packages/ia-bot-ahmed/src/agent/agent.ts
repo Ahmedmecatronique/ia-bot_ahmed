@@ -1,4 +1,4 @@
-import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
+﻿import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
 import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
 import { Config } from "@/config/config"
 import { serviceUse } from "@ia-bot-ahmed/core/effect/service-use"
@@ -168,7 +168,7 @@ export const layer = Layer.effect(
                 },
                 edit: {
                   "*": "deny",
-                  [path.join(".ia-bot-ahmed", "plans", "*.md")]: "allow",
+                  [path.join(".IaBotAhmed", "plans", "*.md")]: "allow",
                   [path.relative(ctx.worktree, path.join(Global.Path.data, path.join("plans", "*.md")))]: "allow",
                 },
               }),

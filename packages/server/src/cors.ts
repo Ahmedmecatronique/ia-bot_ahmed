@@ -1,6 +1,6 @@
-import { Context } from "effect"
+﻿import { Context } from "effect"
 
-const ia-bot-ahmedOrigin = /^https:\/\/([a-z0-9-]+\.)*ia-bot-ahmed.app$/
+const IaBotAhmedOrigin = /^https:\/\/([a-z0-9-]+\.)*IaBotAhmed.app$/
 
 export type CorsOptions = { readonly cors?: ReadonlyArray<string> }
 
@@ -15,7 +15,7 @@ export function isAllowedCorsOrigin(input: string | undefined, opts?: CorsOption
   if (input.startsWith("oc://renderer")) return true
   if (input === "tauri://localhost" || input === "http://tauri.localhost" || input === "https://tauri.localhost")
     return true
-  if (ia-bot-ahmedOrigin.test(input)) return true
+  if (IaBotAhmedOrigin.test(input)) return true
   return opts?.cors?.includes(input) ?? false
 }
 

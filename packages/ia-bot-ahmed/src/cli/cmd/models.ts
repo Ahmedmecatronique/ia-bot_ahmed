@@ -1,4 +1,4 @@
-import { EOL } from "os"
+﻿import { EOL } from "os"
 import { Effect } from "effect"
 import { ModelsDev } from "@ia-bot-ahmed/core/models-dev"
 import { effectCmd, fail } from "../effect-cmd"
@@ -54,10 +54,10 @@ export const ModelsCommand = effectCmd({
     }
 
     const ids = Object.keys(providers).sort((a, b) => {
-      const aIsia-bot-ahmed = a.startsWith("ia-bot-ahmed")
-      const bIsia-bot-ahmed = b.startsWith("ia-bot-ahmed")
-      if (aIsia-bot-ahmed && !bIsia-bot-ahmed) return -1
-      if (!aIsia-bot-ahmed && bIsia-bot-ahmed) return 1
+      const aIsIaBotAhmed = a.startsWith("ia-bot-ahmed")
+      const bIsIaBotAhmed = b.startsWith("ia-bot-ahmed")
+      if (aIsIaBotAhmed && !bIsIaBotAhmed) return -1
+      if (!aIsIaBotAhmed && bIsIaBotAhmed) return 1
       return a.localeCompare(b)
     })
 

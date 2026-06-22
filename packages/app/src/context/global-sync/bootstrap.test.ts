@@ -1,7 +1,7 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { createStore } from "solid-js/store"
 import { QueryClient } from "@tanstack/solid-query"
-import type { Config, ia-bot-ahmedClient, Project } from "@ia-bot-ahmed/sdk/v2/client"
+import type { Config, IaBotAhmedClient, Project } from "@ia-bot-ahmed/sdk/v2/client"
 import type { NormalizedProviderListResponse } from "@ia-bot-ahmed/ui/context"
 import { bootstrapDirectory, loadPathQuery, loadProvidersQuery } from "./bootstrap"
 import type { State, VcsCache } from "./types"
@@ -74,7 +74,7 @@ describe("bootstrapDirectory", () => {
           },
         },
         provider: { list: async () => ({ data: { all: [], connected: [], default: {} } }) },
-      } as unknown as ia-bot-ahmedClient,
+      } as unknown as IaBotAhmedClient,
       store,
       setStore,
       vcsCache: { setStore() {} } as unknown as VcsCache,
@@ -94,7 +94,7 @@ describe("bootstrapDirectory", () => {
 
 describe("query keys", () => {
   test("partitions identical directories by server scope", () => {
-    const client = {} as ia-bot-ahmedClient
+    const client = {} as IaBotAhmedClient
     const remote = "https://debian.example" as typeof ServerScope.local
 
     expect([...loadPathQuery(ServerScope.local, "/repo", client).queryKey]).toEqual(["local", "/repo", "path"])

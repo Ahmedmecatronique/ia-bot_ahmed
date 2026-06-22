@@ -1,6 +1,6 @@
-import type {
+﻿import type {
   Event,
-  createia-bot-ahmedClient,
+  createIaBotAhmedClient,
   Project,
   Model,
   Provider,
@@ -54,7 +54,7 @@ export type WorkspaceAdapter = {
 }
 
 export type PluginInput = {
-  client: ReturnType<typeof createia-bot-ahmedClient>
+  client: ReturnType<typeof createIaBotAhmedClient>
   project: Project
   directory: string
   worktree: string

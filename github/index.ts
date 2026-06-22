@@ -1,4 +1,4 @@
-import { $ } from "bun"
+﻿import { $ } from "bun"
 import path from "node:path"
 import { Octokit } from "@octokit/rest"
 import { graphql } from "@octokit/graphql"
@@ -6,7 +6,7 @@ import * as core from "@actions/core"
 import * as github from "@actions/github"
 import type { Context as GitHubContext } from "@actions/github/lib/context"
 import type { IssueCommentEvent, PullRequestReviewCommentEvent } from "@octokit/webhooks-types"
-import { createia-bot-ahmedClient } from "@ia-bot-ahmed/sdk"
+import { createIaBotAhmedClient } from "@ia-bot-ahmed/sdk"
 import { spawn } from "node:child_process"
 import { setTimeout as sleep } from "node:timers/promises"
 
@@ -113,7 +113,7 @@ type IssueQueryResponse = {
   }
 }
 
-const { client, server } = createia-bot-ahmed()
+const { client, server } = createIaBotAhmed()
 let accessToken: string
 let octoRest: Octokit
 let octoGraph: typeof graphql
@@ -127,7 +127,7 @@ type PromptFiles = Awaited<ReturnType<typeof getUserPrompt>>["promptFiles"]
 try {
   assertContextEvent("issue_comment", "pull_request_review_comment")
   assertPayloadKeyword()
-  await assertia-bot-ahmedConnected()
+  await assertIaBotAhmedConnected()
 
   accessToken = await getAccessToken()
   octoRest = new Octokit({ auth: accessToken })
@@ -142,7 +142,7 @@ try {
   const comment = await createComment()
   commentId = comment.data.id
 
-  // Setup ia-bot-ahmed session
+  // Setup IaBotAhmed session
   const repoData = await fetchRepo()
   session = await client.session.create<true>().then((r) => r.data)
   await subscribeSessionEvents()
@@ -228,12 +228,12 @@ try {
 }
 process.exit(exitCode)
 
-function createia-bot-ahmed() {
+function createIaBotAhmed() {
   const host = "127.0.0.1"
   const port = 4096
   const url = `http://${host}:${port}`
   const proc = spawn(`ia-bot-ahmed`, [`serve`, `--hostname=${host}`, `--port=${port}`])
-  const client = createia-bot-ahmedClient({ baseUrl: url })
+  const client = createIaBotAhmedClient({ baseUrl: url })
 
   return {
     server: { url, close: () => proc.kill() },
@@ -244,8 +244,8 @@ function createia-bot-ahmed() {
 function assertPayloadKeyword() {
   const payload = useContext().payload as IssueCommentEvent | PullRequestReviewCommentEvent
   const body = payload.comment.body.trim()
-  if (!body.match(/(?:^|\s)(?:\/ia-bot-ahmed|\/oc)(?=$|\s)/)) {
-    throw new Error("Comments must mention `/ia-bot-ahmed` or `/oc`")
+  if (!body.match(/(?:^|\s)(?:\/IaBotAhmed|\/oc)(?=$|\s)/)) {
+    throw new Error("Comments must mention `/IaBotAhmed` or `/oc`")
   }
 }
 
@@ -267,7 +267,7 @@ function getReviewCommentContext() {
   }
 }
 
-async function assertia-bot-ahmedConnected() {
+async function assertIaBotAhmedConnected() {
   let retry = 0
   let connected = false
   do {
@@ -286,7 +286,7 @@ async function assertia-bot-ahmedConnected() {
   } while (retry++ < 30)
 
   if (!connected) {
-    throw new Error("Failed to connect to ia-bot-ahmed server")
+    throw new Error("Failed to connect to IaBotAhmed server")
   }
 }
 
@@ -363,7 +363,7 @@ function useIssueId() {
 }
 
 function useShareUrl() {
-  return isMock() ? "https://dev.ia-bot-ahmed.app" : "https://ia-bot-ahmed.app"
+  return isMock() ? "https://dev.IaBotAhmed.app" : "https://IaBotAhmed.app"
 }
 
 async function getAccessToken() {
@@ -374,7 +374,7 @@ async function getAccessToken() {
 
   let response
   if (isMock()) {
-    response = await fetch("https://api.ia-bot-ahmed.app/exchange_github_app_token_with_pat", {
+    response = await fetch("https://api.IaBotAhmed.app/exchange_github_app_token_with_pat", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${useEnvMock().mockToken}`,
@@ -383,7 +383,7 @@ async function getAccessToken() {
     })
   } else {
     const oidcToken = await core.getIDToken("ia-bot-ahmed-github-action")
-    response = await fetch("https://api.ia-bot-ahmed.app/exchange_github_app_token", {
+    response = await fetch("https://api.IaBotAhmed.app/exchange_github_app_token", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${oidcToken}`,
@@ -418,19 +418,19 @@ async function getUserPrompt() {
 
   let prompt = (() => {
     const body = payload.comment.body.trim()
-    if (body === "/ia-bot-ahmed" || body === "/oc") {
+    if (body === "/IaBotAhmed" || body === "/oc") {
       if (reviewContext) {
         return `Review this code change and suggest improvements for the commented lines:\n\nFile: ${reviewContext.file}\nLines: ${reviewContext.line}\n\n${reviewContext.diffHunk}`
       }
       return "Summarize this thread"
     }
-    if (body.includes("/ia-bot-ahmed") || body.includes("/oc")) {
+    if (body.includes("/IaBotAhmed") || body.includes("/oc")) {
       if (reviewContext) {
         return `${body}\n\nContext: You are reviewing a comment on file "${reviewContext.file}" at line ${reviewContext.line}.\n\nDiff context:\n${reviewContext.diffHunk}`
       }
       return body
     }
-    throw new Error("Comments must mention `/ia-bot-ahmed` or `/oc`")
+    throw new Error("Comments must mention `/IaBotAhmed` or `/oc`")
   })()
 
   // Handle images
@@ -607,7 +607,7 @@ async function resolveAgent(): Promise<string | undefined> {
 }
 
 async function chat(text: string, files: PromptFiles = []) {
-  console.log("Sending message to ia-bot-ahmed...")
+  console.log("Sending message to IaBotAhmed...")
   const { providerID, modelID } = useEnvModel()
   const agent = await resolveAgent()
 
@@ -831,9 +831,9 @@ function footer(opts?: { image?: boolean }) {
     const titleAlt = encodeURIComponent(session.title.substring(0, 50))
     const title64 = Buffer.from(session.title.substring(0, 700), "utf8").toString("base64")
 
-    return `<a href="${useShareUrl()}/s/${shareId}"><img width="200" alt="${titleAlt}" src="https://social-cards.sst.dev/ia-bot-ahmed-share/${title64}.png?model=${providerID}/${modelID}&version=${session.version}&id=${shareId}" /></a>\n`
+    return `<a href="${useShareUrl()}/s/${shareId}"><img width="200" alt="${titleAlt}" src="https://social-cards.sst.dev/IaBotAhmed-share/${title64}.png?model=${providerID}/${modelID}&version=${session.version}&id=${shareId}" /></a>\n`
   })()
-  const shareUrl = shareId ? `[ia-bot-ahmed session](${useShareUrl()}/s/${shareId})&nbsp;&nbsp;|&nbsp;&nbsp;` : ""
+  const shareUrl = shareId ? `[IaBotAhmed session](${useShareUrl()}/s/${shareId})&nbsp;&nbsp;|&nbsp;&nbsp;` : ""
   return `\n\n${image}${shareUrl}[github run](${useEnvRunUrl()})`
 }
 

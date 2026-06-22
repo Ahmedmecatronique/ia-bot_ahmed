@@ -1,4 +1,4 @@
-import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
+﻿import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
 import { llmClient } from "@ia-bot-ahmed/core/effect/layer-node-platform"
 import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
 import { Provider } from "@/provider/provider"
@@ -113,7 +113,7 @@ const live: Layer.Layer<
       })
 
       // Wire up toolExecutor for DWS workflow models so that tool calls
-      // from the workflow service are executed via ia-bot-ahmed's tool system
+      // from the workflow service are executed via IaBotAhmed's tool system
       // and results sent back over the WebSocket.
       const bridge = yield* EffectBridge.make()
       if (language instanceof GitLabWorkflowLanguageModel) {

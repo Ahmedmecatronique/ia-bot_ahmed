@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test } from "bun:test"
+﻿import { afterEach, describe, expect, test } from "bun:test"
 import { createSignal, For, Show } from "solid-js"
 import type { BoxRenderable, ScrollBoxRenderable } from "@opentui/core"
 import { testRender, type JSX } from "@opentui/solid"
@@ -28,25 +28,25 @@ type ToolFixture = { icon: string; label: string; error?: string }
 
 const tools: readonly ToolFixture[] = [
   {
-    icon: "✱",
+    icon: "âœ±",
     label:
       'Grep "ia-bot-ahmed.*DB|database|sqlite|drizzle|dev.*db|data.*dir|xdg|APPDATA" in packages/ia-bot-ahmed/src (151 matches)',
   },
   {
-    icon: "✱",
-    label: 'Glob "**/*db*" in packages/ia-bot-ahmed (6 matches)',
+    icon: "âœ±",
+    label: 'Glob "**/*db*" in packages/IaBotAhmed (6 matches)',
   },
   {
-    icon: "→",
+    icon: "â†’",
     label: "Read packages/ia-bot-ahmed/src/storage/db.ts [offset=1, limit=130]",
   },
   {
-    icon: "→",
+    icon: "â†’",
     label: "Read packages/ia-bot-ahmed/src/index.ts [offset=1, limit=100]",
     error: "No LSP server available for this file type.",
   },
   {
-    icon: "✱",
+    icon: "âœ±",
     label:
       'Grep "export const IA_BOT_AHMED_DB|IA_BOT_AHMED_DB|IA_BOT_AHMED_DEV|Global\\.Path\\.data|data =" in packages/ia-bot-ahmed/src (115 matches)',
   },
@@ -109,16 +109,16 @@ function Fixture(props: { errorExpanded?: boolean; before?: "shell" | "user" }) 
 function TaskRowsFixture() {
   return (
     <box flexDirection="column" width={72}>
-      <InlineToolRow icon="✱" complete={true} pending="">
+      <InlineToolRow icon="âœ±" complete={true} pending="">
         Grep "Task" (2 matches)
       </InlineToolRow>
-      <InlineToolRow icon="⠙" complete={true} pending="" separate={true}>
-        Explore Task — Inspect active task spacing
+      <InlineToolRow icon="â ™" complete={true} pending="" separate={true}>
+        Explore Task â€” Inspect active task spacing
       </InlineToolRow>
-      <InlineToolRow icon="✓" complete={true} pending="" separate={true}>
-        {"General Task — Confirm completed task spacing\n↳ 1 toolcall · 501ms"}
+      <InlineToolRow icon="âœ“" complete={true} pending="" separate={true}>
+        {"General Task â€” Confirm completed task spacing\nâ†³ 1 toolcall Â· 501ms"}
       </InlineToolRow>
-      <InlineToolRow icon="→" complete={true} pending="">
+      <InlineToolRow icon="â†’" complete={true} pending="">
         Read src/cli/cmd/tui/routes/session/index.tsx
       </InlineToolRow>
     </box>
@@ -128,14 +128,14 @@ function TaskRowsFixture() {
 function LoadedReadBeforeTaskFixture() {
   return (
     <box flexDirection="column" width={72}>
-      <InlineToolRow icon="→" complete={true} pending="">
+      <InlineToolRow icon="â†’" complete={true} pending="">
         Read src/cli/cmd/tui/routes/session/index.tsx
       </InlineToolRow>
       <box paddingLeft={3}>
-        <text paddingLeft={3}>↳ Loaded src/cli/cmd/tui/routes/session/tools.tsx</text>
+        <text paddingLeft={3}>â†³ Loaded src/cli/cmd/tui/routes/session/tools.tsx</text>
       </box>
-      <InlineToolRow icon="✓" complete={true} pending="" separate={true}>
-        {"Explore Task — Inspect active task spacing\n↳ 1 toolcall · 501ms"}
+      <InlineToolRow icon="âœ“" complete={true} pending="" separate={true}>
+        {"Explore Task â€” Inspect active task spacing\nâ†³ 1 toolcall Â· 501ms"}
       </InlineToolRow>
     </box>
   )
@@ -145,10 +145,10 @@ function AssistantSummaryBeforeInlineFixture() {
   return (
     <box flexDirection="column" width={72}>
       <box ref={(el: BoxRenderable) => alwaysSeparate.add(el)} paddingLeft={3}>
-        <text>▣ Build · Little Frank · 53.1s</text>
+        <text>â–£ Build Â· Little Frank Â· 53.1s</text>
       </box>
-      <InlineToolRow icon="✓" complete={true} pending="">
-        {"Build Task — Review changes\n↳ 48 toolcalls · 1m 40s"}
+      <InlineToolRow icon="âœ“" complete={true} pending="">
+        {"Build Task â€” Review changes\nâ†³ 48 toolcalls Â· 1m 40s"}
       </InlineToolRow>
     </box>
   )
@@ -166,8 +166,8 @@ function AssistantErrorBeforeInlineFixture() {
       >
         <text>Managed inference requires an active Member plan</text>
       </box>
-      <InlineToolRow icon="✓" complete={true} pending="">
-        {"Build Task — Review changes\n↳ 48 toolcalls · 1m 40s"}
+      <InlineToolRow icon="âœ“" complete={true} pending="">
+        {"Build Task â€” Review changes\nâ†³ 48 toolcalls Â· 1m 40s"}
       </InlineToolRow>
     </box>
   )
@@ -187,7 +187,7 @@ function StickyScrollFixture(props: { separated: boolean; scroll: (scroll: Scrol
           <text>Assistant text</text>
         </box>
       </Show>
-      <InlineToolRow icon="→" complete={true} pending="">
+      <InlineToolRow icon="â†’" complete={true} pending="">
         Read src/cli/cmd/tui/routes/session/index.tsx
       </InlineToolRow>
     </scrollbox>
@@ -204,7 +204,7 @@ function FailedPendingToolFixture() {
 
 function FailedCompleteToolFixture() {
   return (
-    <InlineToolRow icon="→" complete={true} pending="Reading file..." failed={true} failure="Read failed">
+    <InlineToolRow icon="â†’" complete={true} pending="Reading file..." failed={true} failure="Read failed">
       Read src/index.ts
     </InlineToolRow>
   )
@@ -276,20 +276,20 @@ describe("TUI inline tool wrapping", () => {
 
   test("formats completed subagent toolcall details", () => {
     expect(formatCompletedSubagentDetail(0, "501ms")).toBe("501ms")
-    expect(formatCompletedSubagentDetail(1, "501ms")).toBe("1 toolcall · 501ms")
-    expect(formatCompletedSubagentDetail(2, "501ms")).toBe("2 toolcalls · 501ms")
+    expect(formatCompletedSubagentDetail(1, "501ms")).toBe("1 toolcall Â· 501ms")
+    expect(formatCompletedSubagentDetail(2, "501ms")).toBe("2 toolcalls Â· 501ms")
     expect(formatSubagentToolcalls(0)).toBe("0 toolcalls")
   })
 
   test("keeps background state attached to the subagent identity", () => {
-    expect(formatSubagentTitle("Explore", "Inspect renderer", false)).toBe("Explore Task — Inspect renderer")
+    expect(formatSubagentTitle("Explore", "Inspect renderer", false)).toBe("Explore Task â€” Inspect renderer")
     expect(formatSubagentTitle("Explore", "Inspect renderer", true)).toBe(
-      "Explore Task (background) — Inspect renderer",
+      "Explore Task (background) â€” Inspect renderer",
     )
   })
 
   test("keeps retry status ahead of wrapping messages", () => {
-    expect(formatSubagentRetry(2, "Rate limited by provider")).toBe("Retrying (attempt 2) · Rate limited by provider")
+    expect(formatSubagentRetry(2, "Rate limited by provider")).toBe("Retrying (attempt 2) Â· Rate limited by provider")
   })
 
   test("snapshots consecutive grep, glob, and read rows at a narrow width", async () => {

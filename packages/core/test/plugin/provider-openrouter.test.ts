@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Effect } from "effect"
 import { Catalog } from "@ia-bot-ahmed/core/catalog"
 import { ModelV2 } from "@ia-bot-ahmed/core/model"
@@ -37,7 +37,7 @@ describe("OpenRouterPlugin", () => {
 
       expect((yield* catalog.provider.get(ProviderV2.ID.openrouter))?.request.headers).toEqual({
         Existing: "value",
-        "HTTP-Referer": "https://ia-bot-ahmed.app/",
+        "HTTP-Referer": "https://IaBotAhmed.app/",
         "X-Title": "ia-bot-ahmed",
       })
       expect((yield* catalog.provider.get(ProviderV2.ID.make("nvidia")))?.request.headers).toEqual({})

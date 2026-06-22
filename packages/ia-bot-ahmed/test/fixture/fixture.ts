@@ -1,4 +1,4 @@
-import { $ } from "bun"
+﻿import { $ } from "bun"
 import { ConfigV1 } from "@ia-bot-ahmed/core/v1/config/config"
 import * as fs from "fs/promises"
 import os from "os"
@@ -84,7 +84,7 @@ export async function tmpdir<T>(options?: TmpDirOptions<T>) {
     await $`git init`.cwd(dirpath).quiet()
     await $`git config core.fsmonitor false`.cwd(dirpath).quiet()
     await $`git config commit.gpgsign false`.cwd(dirpath).quiet()
-    await $`git config user.email "test@ia-bot-ahmed.test"`.cwd(dirpath).quiet()
+    await $`git config user.email "test@IaBotAhmed.test"`.cwd(dirpath).quiet()
     await $`git config user.name "Test"`.cwd(dirpath).quiet()
     await $`git commit --allow-empty -m "root commit ${dirpath}"`.cwd(dirpath).quiet()
   }
@@ -92,7 +92,7 @@ export async function tmpdir<T>(options?: TmpDirOptions<T>) {
     await Bun.write(
       path.join(dirpath, "ia-bot-ahmed.json"),
       JSON.stringify({
-        $schema: "https://ia-bot-ahmed.app/config.json",
+        $schema: "https://IaBotAhmed.app/config.json",
         ...options.config,
       }),
     )
@@ -140,7 +140,7 @@ export function tmpdirScoped<E = never, R = never>(options?: {
       yield* git("init")
       yield* git("config", "core.fsmonitor", "false")
       yield* git("config", "commit.gpgsign", "false")
-      yield* git("config", "user.email", "test@ia-bot-ahmed.test")
+      yield* git("config", "user.email", "test@IaBotAhmed.test")
       yield* git("config", "user.name", "Test")
       yield* git("commit", "--allow-empty", "-m", `root commit ${dir}`)
     }
@@ -150,7 +150,7 @@ export function tmpdirScoped<E = never, R = never>(options?: {
       yield* Effect.promise(() =>
         fs.writeFile(
           path.join(dir, "ia-bot-ahmed.json"),
-          JSON.stringify({ $schema: "https://ia-bot-ahmed.app/config.json", ...resolved }),
+          JSON.stringify({ $schema: "https://IaBotAhmed.app/config.json", ...resolved }),
         ),
       )
     }

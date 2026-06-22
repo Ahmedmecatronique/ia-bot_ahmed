@@ -73,7 +73,7 @@ const cli = yargs(args)
     Heap.start()
 
     process.env.AGENT = "1"
-    process.env.ia-bot-ahmed = "1"
+    process.env.IA_BOT_AHMED = "1"
     process.env.IA_BOT_AHMED_PID = String(process.pid)
   })
   .usage("")

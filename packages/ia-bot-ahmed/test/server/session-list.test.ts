@@ -1,4 +1,4 @@
-import { afterEach, describe, expect } from "bun:test"
+﻿import { afterEach, describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
 import { Database } from "@ia-bot-ahmed/core/database/database"
 import { SessionProjector } from "@ia-bot-ahmed/core/session/projector"
@@ -133,7 +133,7 @@ describe("session.list", () => {
 
         const created = yield* withSession({ title: "separator" }).pipe(provideInstance(dir))
 
-        // A forward-slash query (e.g. from the SDK/HTTP layer) must still find it —
+        // A forward-slash query (e.g. from the SDK/HTTP layer) must still find it â€”
         // this is the regression: backslash-stored vs forward-slash-queried.
         const forwardIDs = (yield* SessionNs.Service.use((session) =>
           session.list({ directory: dir.replaceAll("\\", "/") }),
@@ -185,7 +185,7 @@ describe("session.list", () => {
 
         if (process.platform === "win32") {
           const windowsPathIDs = (yield* SessionNs.Service.use((session) =>
-            session.list({ path: "packages\\ia-bot-ahmed\\src" }),
+            session.list({ path: "packages\\IaBotAhmed\\src" }),
           )).map((session) => session.id)
           expect(windowsPathIDs).toContain(current.id)
           expect(windowsPathIDs).toContain(deeper.id)

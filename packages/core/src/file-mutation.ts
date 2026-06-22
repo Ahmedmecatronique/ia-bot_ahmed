@@ -1,4 +1,4 @@
-export * as FileMutation from "./file-mutation"
+﻿export * as FileMutation from "./file-mutation"
 
 import { Context, Effect, Layer, Schema } from "effect"
 import { dirname } from "path"
@@ -67,7 +67,7 @@ export class Service extends Context.Service<Service, Interface>()("@ia-bot-ahme
 
 /**
  * Serialize file changes by canonical target. Conditional writes compare and
- * write under the same process-local lock so cooperating ia-bot-ahmed mutations do
+ * write under the same process-local lock so cooperating IaBotAhmed mutations do
  * not overwrite changes made from the same stale content.
  */
 export const layer = Layer.effect(

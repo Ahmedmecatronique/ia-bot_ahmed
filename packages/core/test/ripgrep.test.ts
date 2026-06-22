@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
 import { Effect } from "effect"
@@ -35,8 +35,8 @@ describe("Ripgrep", () => {
       Effect.promise(() => tmpdir()),
       (tmp) =>
         Effect.gen(function* () {
-          yield* Effect.promise(() => fs.mkdir(path.join(tmp.path, ".ia-bot-ahmed")))
-          yield* Effect.promise(() => fs.writeFile(path.join(tmp.path, ".ia-bot-ahmed", "config"), "needle\n"))
+          yield* Effect.promise(() => fs.mkdir(path.join(tmp.path, ".IaBotAhmed")))
+          yield* Effect.promise(() => fs.writeFile(path.join(tmp.path, ".IaBotAhmed", "config"), "needle\n"))
           yield* Effect.promise(() => fs.mkdir(path.join(tmp.path, ".git")))
           yield* Effect.promise(() => fs.writeFile(path.join(tmp.path, ".git", "config"), "needle\n"))
           const ripgrep = yield* Ripgrep.Service

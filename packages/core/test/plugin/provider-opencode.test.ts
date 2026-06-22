@@ -1,11 +1,11 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Effect } from "effect"
 import { Catalog } from "@ia-bot-ahmed/core/catalog"
 import { Integration } from "@ia-bot-ahmed/core/integration"
 import { ModelV2 } from "@ia-bot-ahmed/core/model"
 import { PluginV2 } from "@ia-bot-ahmed/core/plugin"
 import { PluginHost } from "@ia-bot-ahmed/core/plugin/host"
-import { ia-bot-ahmedPlugin } from "@ia-bot-ahmed/core/plugin/provider/ia-bot-ahmed"
+import { IaBotAhmedPlugin } from "@ia-bot-ahmed/core/plugin/provider/IaBotAhmed"
 import { ProviderV2 } from "@ia-bot-ahmed/core/provider"
 import { testEffect } from "../lib/effect"
 import { PluginTestLayer } from "./fixture"
@@ -15,7 +15,7 @@ const it = testEffect(PluginTestLayer)
 const addPlugin = Effect.fn(function* () {
   const plugin = yield* PluginV2.Service
   const host = yield* PluginHost.make()
-  yield* plugin.add({ id: ia-bot-ahmedPlugin.id, effect: ia-bot-ahmedPlugin.effect(host) })
+  yield* plugin.add({ id: IaBotAhmedPlugin.id, effect: IaBotAhmedPlugin.effect(host) })
 })
 
 function required<T>(value: T | undefined): T {
@@ -53,7 +53,7 @@ describe("ia-bot-ahmedPlugin", () => {
         const catalog = yield* Catalog.Service
         yield* catalog.transform((catalog) => {
           const provider = new ProviderV2.Info({
-            ...ProviderV2.Info.empty(ProviderV2.ID.ia-bot-ahmed),
+            ...ProviderV2.Info.empty(ProviderV2.ID.IaBotAhmed),
             api: { type: "aisdk", package: "test-provider" },
           })
           const model = new ModelV2.Info({
@@ -67,8 +67,8 @@ describe("ia-bot-ahmedPlugin", () => {
           })
         })
         yield* addPlugin()
-        expect(required(yield* catalog.provider.get(ProviderV2.ID.ia-bot-ahmed)).request.body.apiKey).toBe("public")
-        expect(required(yield* catalog.model.get(ProviderV2.ID.ia-bot-ahmed, ModelV2.ID.make("paid"))).enabled).toBe(false)
+        expect(required(yield* catalog.provider.get(ProviderV2.ID.IaBotAhmed)).request.body.apiKey).toBe("public")
+        expect(required(yield* catalog.model.get(ProviderV2.ID.IaBotAhmed, ModelV2.ID.make("paid"))).enabled).toBe(false)
       }),
     ),
   )
@@ -79,7 +79,7 @@ describe("ia-bot-ahmedPlugin", () => {
         const catalog = yield* Catalog.Service
         yield* catalog.transform((catalog) => {
           const provider = new ProviderV2.Info({
-            ...ProviderV2.Info.empty(ProviderV2.ID.ia-bot-ahmed),
+            ...ProviderV2.Info.empty(ProviderV2.ID.IaBotAhmed),
             api: { type: "aisdk", package: "test-provider" },
           })
           const model = new ModelV2.Info({
@@ -93,8 +93,8 @@ describe("ia-bot-ahmedPlugin", () => {
           })
         })
         yield* addPlugin()
-        expect(required(yield* catalog.provider.get(ProviderV2.ID.ia-bot-ahmed)).request.body.apiKey).toBe("public")
-        expect(required(yield* catalog.model.get(ProviderV2.ID.ia-bot-ahmed, ModelV2.ID.make("free"))).enabled).toBe(true)
+        expect(required(yield* catalog.provider.get(ProviderV2.ID.IaBotAhmed)).request.body.apiKey).toBe("public")
+        expect(required(yield* catalog.model.get(ProviderV2.ID.IaBotAhmed, ModelV2.ID.make("free"))).enabled).toBe(true)
       }),
     ),
   )
@@ -105,7 +105,7 @@ describe("ia-bot-ahmedPlugin", () => {
         const catalog = yield* Catalog.Service
         yield* catalog.transform((catalog) => {
           const provider = new ProviderV2.Info({
-            ...ProviderV2.Info.empty(ProviderV2.ID.ia-bot-ahmed),
+            ...ProviderV2.Info.empty(ProviderV2.ID.IaBotAhmed),
             api: { type: "aisdk", package: "test-provider" },
           })
           const model = new ModelV2.Info({
@@ -119,8 +119,8 @@ describe("ia-bot-ahmedPlugin", () => {
           })
         })
         yield* addPlugin()
-        expect(required(yield* catalog.provider.get(ProviderV2.ID.ia-bot-ahmed)).request.body.apiKey).toBe("public")
-        expect(required(yield* catalog.model.get(ProviderV2.ID.ia-bot-ahmed, ModelV2.ID.make("output-only"))).enabled).toBe(
+        expect(required(yield* catalog.provider.get(ProviderV2.ID.IaBotAhmed)).request.body.apiKey).toBe("public")
+        expect(required(yield* catalog.model.get(ProviderV2.ID.IaBotAhmed, ModelV2.ID.make("output-only"))).enabled).toBe(
           true,
         )
       }),
@@ -133,7 +133,7 @@ describe("ia-bot-ahmedPlugin", () => {
         const catalog = yield* Catalog.Service
         yield* catalog.transform((catalog) => {
           const provider = new ProviderV2.Info({
-            ...ProviderV2.Info.empty(ProviderV2.ID.ia-bot-ahmed),
+            ...ProviderV2.Info.empty(ProviderV2.ID.IaBotAhmed),
             api: { type: "aisdk", package: "test-provider" },
           })
           const model = new ModelV2.Info({
@@ -147,8 +147,8 @@ describe("ia-bot-ahmedPlugin", () => {
           })
         })
         yield* addPlugin()
-        expect(required(yield* catalog.provider.get(ProviderV2.ID.ia-bot-ahmed)).request.body.apiKey).toBeUndefined()
-        expect(required(yield* catalog.model.get(ProviderV2.ID.ia-bot-ahmed, ModelV2.ID.make("paid"))).enabled).toBe(true)
+        expect(required(yield* catalog.provider.get(ProviderV2.ID.IaBotAhmed)).request.body.apiKey).toBeUndefined()
+        expect(required(yield* catalog.model.get(ProviderV2.ID.IaBotAhmed, ModelV2.ID.make("paid"))).enabled).toBe(true)
       }),
     ),
   )
@@ -166,7 +166,7 @@ describe("ia-bot-ahmedPlugin", () => {
         })
         yield* catalog.transform((catalog) => {
           const provider = new ProviderV2.Info({
-            ...ProviderV2.Info.empty(ProviderV2.ID.ia-bot-ahmed),
+            ...ProviderV2.Info.empty(ProviderV2.ID.IaBotAhmed),
             api: { type: "aisdk", package: "test-provider" },
           })
           const model = new ModelV2.Info({
@@ -180,8 +180,8 @@ describe("ia-bot-ahmedPlugin", () => {
           })
         })
         yield* addPlugin()
-        expect(required(yield* catalog.provider.get(ProviderV2.ID.ia-bot-ahmed)).request.body.apiKey).toBeUndefined()
-        expect(required(yield* catalog.model.get(ProviderV2.ID.ia-bot-ahmed, ModelV2.ID.make("paid"))).enabled).toBe(true)
+        expect(required(yield* catalog.provider.get(ProviderV2.ID.IaBotAhmed)).request.body.apiKey).toBeUndefined()
+        expect(required(yield* catalog.model.get(ProviderV2.ID.IaBotAhmed, ModelV2.ID.make("paid"))).enabled).toBe(true)
       }),
     ),
   )
@@ -192,7 +192,7 @@ describe("ia-bot-ahmedPlugin", () => {
         const catalog = yield* Catalog.Service
         yield* catalog.transform((catalog) => {
           const provider = new ProviderV2.Info({
-            ...ProviderV2.Info.empty(ProviderV2.ID.ia-bot-ahmed),
+            ...ProviderV2.Info.empty(ProviderV2.ID.IaBotAhmed),
             api: { type: "aisdk", package: "test-provider" },
             request: {
               headers: {},
@@ -212,13 +212,13 @@ describe("ia-bot-ahmedPlugin", () => {
           })
         })
         yield* addPlugin()
-        expect(required(yield* catalog.provider.get(ProviderV2.ID.ia-bot-ahmed)).request.body.apiKey).toBe("configured")
-        expect(required(yield* catalog.model.get(ProviderV2.ID.ia-bot-ahmed, ModelV2.ID.make("paid"))).enabled).toBe(true)
+        expect(required(yield* catalog.provider.get(ProviderV2.ID.IaBotAhmed)).request.body.apiKey).toBe("configured")
+        expect(required(yield* catalog.model.get(ProviderV2.ID.IaBotAhmed, ModelV2.ID.make("paid"))).enabled).toBe(true)
       }),
     ),
   )
 
-  it.effect("ignores non-ia-bot-ahmed providers and models", () =>
+  it.effect("ignores non-IaBotAhmed providers and models", () =>
     withEnv({ IA_BOT_AHMED_API_KEY: undefined }, () =>
       Effect.gen(function* () {
         const catalog = yield* Catalog.Service
@@ -244,10 +244,10 @@ describe("ia-bot-ahmedPlugin", () => {
     ),
   )
 
-  it.effect("prefers gpt-5-nano as the ia-bot-ahmed small model", () =>
+  it.effect("prefers gpt-5-nano as the IaBotAhmed small model", () =>
     Effect.gen(function* () {
       const catalog = yield* Catalog.Service
-      const providerID = ProviderV2.ID.ia-bot-ahmed
+      const providerID = ProviderV2.ID.IaBotAhmed
 
       yield* catalog.transform((catalog) => {
         catalog.provider.update(providerID, () => {})

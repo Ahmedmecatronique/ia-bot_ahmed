@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { authFromToken, authTokenFromCredentials } from "./server"
 
 describe("authFromToken", () => {
@@ -6,7 +6,7 @@ describe("authFromToken", () => {
     expect(authFromToken(btoa("kit:secret"))).toEqual({ username: "kit", password: "secret" })
   })
 
-  test("defaults blank username to ia-bot-ahmed", () => {
+  test("defaults blank username to IaBotAhmed", () => {
     expect(authFromToken(btoa(":secret"))).toEqual({ username: "ia-bot-ahmed", password: "secret" })
   })
 

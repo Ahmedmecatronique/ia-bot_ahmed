@@ -1,4 +1,4 @@
-import { Pty } from "@ia-bot-ahmed/core/pty"
+﻿import { Pty } from "@ia-bot-ahmed/core/pty"
 import { PtyID } from "@ia-bot-ahmed/core/pty/schema"
 import { PtyTicket } from "@ia-bot-ahmed/core/pty/ticket"
 import { Location } from "@ia-bot-ahmed/core/location"
@@ -8,7 +8,7 @@ import { ForbiddenError, PtyNotFoundError } from "../errors"
 import { LocationQuery, locationQueryOpenApi, LocationMiddleware } from "./location"
 
 export const PTY_CONNECT_TICKET_QUERY = "ticket"
-export const PTY_CONNECT_TOKEN_HEADER = "x-ia-bot-ahmed-ticket"
+export const PTY_CONNECT_TOKEN_HEADER = "x-IaBotAhmed-ticket"
 export const PTY_CONNECT_TOKEN_HEADER_VALUE = "1"
 
 const PTY_CONNECT_PATH = /^\/api\/pty\/[^/]+\/connect$/

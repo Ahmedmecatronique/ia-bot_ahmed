@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+﻿#!/usr/bin/env bun
 
 import { $ } from "bun"
 import fs from "fs"
@@ -180,8 +180,8 @@ for (const item of targets) {
       autoloadTsconfig: true,
       autoloadPackageJson: true,
       target: name.replace(pkg.name, "bun") as any,
-      outfile: `dist/${name}/bin/ia-bot-ahmed`,
-      execArgv: [`--user-agent=ia-bot-ahmed/${Script.version}`, "--use-system-ca", "--"],
+      outfile: `dist/${name}/bin/IaBotAhmed`,
+      execArgv: [`--user-agent=IaBotAhmed/${Script.version}`, "--use-system-ca", "--"],
       windows: {},
     },
     files: embeddedFileMap ? { "ia-bot-ahmed-web-ui.gen.ts": embeddedFileMap } : {},
@@ -200,7 +200,7 @@ for (const item of targets) {
 
   // Smoke test: only run if binary is for current platform
   if (item.os === process.platform && item.arch === process.arch && !item.abi) {
-    const binaryPath = `dist/${name}/bin/ia-bot-ahmed`
+    const binaryPath = `dist/${name}/bin/IaBotAhmed`
     console.log(`Running smoke test: ${binaryPath} --version`)
     try {
       const versionOutput = await $`${binaryPath} --version`.text()

@@ -1,4 +1,4 @@
-import type { Auth } from "@/auth"
+﻿import type { Auth } from "@/auth"
 import type { Provider } from "@/provider/provider"
 import { ProviderTransform } from "@/provider/transform"
 import { errorMessage } from "@/util/error"
@@ -53,7 +53,7 @@ function statusWithFetch(
 ): RuntimeStatus {
   const providerID = input.model.providerID
   if (providerID !== "openai" && providerID !== "anthropic" && !providerID.startsWith("ia-bot-ahmed"))
-    return { type: "unsupported", reason: "provider is not openai, ia-bot-ahmed, or anthropic" }
+    return { type: "unsupported", reason: "provider is not openai, IaBotAhmed, or anthropic" }
   const npm = input.model.api.npm
   if (npm !== "@ai-sdk/openai" && npm !== "@ai-sdk/openai-compatible" && npm !== "@ai-sdk/anthropic")
     return { type: "unsupported", reason: "provider package is not OpenAI, OpenAI-compatible, or Anthropic" }
@@ -84,7 +84,7 @@ export function stream(input: StreamInput): StreamResult {
   // keys via OpenAIOptions.* (store, reasoningEffort, reasoningSummary,
   // include, textVerbosity, promptCacheKey). Both sides intentionally use
   // OpenAI's official wire field names, so this is identity, not translation
-  // — if a field ever needs to differ between the two surfaces, the
+  // â€” if a field ever needs to differ between the two surfaces, the
   // translation belongs here, not split across both packages.
   const tools = nativeTools(input.tools, input)
   const request = LLMNative.request({
@@ -170,7 +170,7 @@ export function nativeTools(tools: Record<string, Tool>, input: Pick<StreamInput
   return Object.fromEntries(
     Object.entries(tools).map(([name, item]) => [
       name,
-      // Tool execution remains ia-bot-ahmed-owned. The native runtime only adapts
+      // Tool execution remains IaBotAhmed-owned. The native runtime only adapts
       // the @ia-bot-ahmed/llm tool call back into the AI SDK Tool.execute shape.
       NativeTool.make({
         description: item.description ?? "",

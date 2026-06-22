@@ -1,4 +1,4 @@
-import { createEffect, onCleanup } from "solid-js"
+﻿import { createEffect, onCleanup } from "solid-js"
 import { createStore } from "solid-js/store"
 import { createSimpleContext } from "@ia-bot-ahmed/ui/context"
 import { useDialog } from "@ia-bot-ahmed/ui/context/dialog"
@@ -7,7 +7,7 @@ import { useSettings } from "@/context/settings"
 import { persisted } from "@/utils/persist"
 import { DialogReleaseNotes, type Highlight } from "@/components/dialog-release-notes"
 
-const CHANGELOG_URL = "https://ia-bot-ahmed.app/changelog.json"
+const CHANGELOG_URL = "https://IaBotAhmed.app/changelog.json"
 
 type Store = {
   version?: string

@@ -1,4 +1,4 @@
-import type { TuiPluginApi } from "@ia-bot-ahmed/plugin/tui"
+﻿import type { TuiPluginApi } from "@ia-bot-ahmed/plugin/tui"
 import { createMemo, For, type Accessor } from "solid-js"
 import { DEFAULT_THEMES, useTheme } from "../../context/theme"
 import { useCommandShortcut } from "../../keymap"
@@ -150,7 +150,7 @@ export function Tips(props: { api: TuiPluginApi; connected?: boolean }) {
   return (
     <box flexDirection="row" maxWidth="100%">
       <text flexShrink={0} style={{ fg: theme.warning }}>
-        ● Tip{" "}
+        â— Tip{" "}
       </text>
       <text flexShrink={1} wrapMode="word">
         <For each={parts()}>
@@ -167,7 +167,7 @@ const TIPS: Tip[] = [
   (shortcuts) => press(shortcuts.agentCycle(), "to cycle between Build and Plan agents"),
   "Use {highlight}/undo{/highlight} to revert the last message and file changes",
   "Use {highlight}/redo{/highlight} to restore previously undone messages and file changes",
-  "Run {highlight}/share{/highlight} to create a public link to your conversation at ia-bot-ahmed.app",
+  "Run {highlight}/share{/highlight} to create a public link to your conversation at IaBotAhmed.app",
   "Drag and drop images or PDFs into the terminal to add them as context",
   (shortcuts) => press(shortcuts.inputPaste(), "to paste images from your clipboard into the prompt"),
   (shortcuts) => `Use ${commandText("/editor", shortcuts.editorOpen())} to compose messages in your external editor`,
@@ -210,7 +210,7 @@ const TIPS: Tip[] = [
     if (!items.length) return undefined
     return `Use ${items.map(shortcutText).join(" / ")} to move between parent and child sessions`
   },
-  "Create {highlight}ia-bot-ahmed.json{/highlight} for server settings and {highlight}tui.json{/highlight} for TUI settings",
+  "Create {highlight}IaBotAhmed.json{/highlight} for server settings and {highlight}tui.json{/highlight} for TUI settings",
   "Place TUI settings in {highlight}~/.config/ia-bot-ahmed/tui.json{/highlight} for global config",
   "Add {highlight}$schema{/highlight} to your config for autocomplete in your editor",
   "Configure {highlight}model{/highlight} in config to set your default model",
@@ -233,19 +233,19 @@ const TIPS: Tip[] = [
   "Tool definitions can invoke scripts written in Python, Go, etc",
   "Add {highlight}.ts{/highlight} files to {highlight}.ia-bot-ahmed/plugins/{/highlight} for event hooks",
   "Use plugins to send OS notifications when sessions complete",
-  "Create a plugin to prevent ia-bot-ahmed from reading sensitive files",
-  "Use {highlight}ia-bot-ahmed run{/highlight} for non-interactive scripting",
-  "Use {highlight}ia-bot-ahmed --continue{/highlight} to resume the last session",
-  "Use {highlight}ia-bot-ahmed run -f file.ts{/highlight} to attach files via CLI",
+  "Create a plugin to prevent IaBotAhmed from reading sensitive files",
+  "Use {highlight}IaBotAhmed run{/highlight} for non-interactive scripting",
+  "Use {highlight}IaBotAhmed --continue{/highlight} to resume the last session",
+  "Use {highlight}IaBotAhmed run -f file.ts{/highlight} to attach files via CLI",
   "Use {highlight}--format json{/highlight} for machine-readable output in scripts",
-  "Run {highlight}ia-bot-ahmed serve{/highlight} for headless API access to ia-bot-ahmed",
-  "Use {highlight}ia-bot-ahmed run --attach{/highlight} to connect to a running server",
-  "Run {highlight}ia-bot-ahmed upgrade{/highlight} to update to the latest version",
-  "Run {highlight}ia-bot-ahmed auth list{/highlight} to see all configured providers",
-  "Run {highlight}ia-bot-ahmed agent create{/highlight} for guided agent creation",
-  "Use {highlight}/ia-bot-ahmed{/highlight} in GitHub issues/PRs to trigger AI actions",
-  "Run {highlight}ia-bot-ahmed github install{/highlight} to set up the GitHub workflow",
-  "Comment {highlight}/ia-bot-ahmed fix this{/highlight} on issues to auto-create PRs",
+  "Run {highlight}IaBotAhmed serve{/highlight} for headless API access to IaBotAhmed",
+  "Use {highlight}IaBotAhmed run --attach{/highlight} to connect to a running server",
+  "Run {highlight}IaBotAhmed upgrade{/highlight} to update to the latest version",
+  "Run {highlight}IaBotAhmed auth list{/highlight} to see all configured providers",
+  "Run {highlight}IaBotAhmed agent create{/highlight} for guided agent creation",
+  "Use {highlight}/IaBotAhmed{/highlight} in GitHub issues/PRs to trigger AI actions",
+  "Run {highlight}IaBotAhmed github install{/highlight} to set up the GitHub workflow",
+  "Comment {highlight}/IaBotAhmed fix this{/highlight} on issues to auto-create PRs",
   "Comment {highlight}/oc{/highlight} on PR code lines for targeted code reviews",
   'Use {highlight}"theme": "system"{/highlight} to match your terminal\'s colors',
   "Create JSON theme files in {highlight}.ia-bot-ahmed/themes/{/highlight} directory",
@@ -264,7 +264,7 @@ const TIPS: Tip[] = [
   "Run {highlight}/unshare{/highlight} to remove a session from public access",
   "Permission {highlight}doom_loop{/highlight} prevents infinite tool call loops",
   "Permission {highlight}external_directory{/highlight} protects files outside project",
-  "Run {highlight}ia-bot-ahmed debug config{/highlight} to troubleshoot configuration",
+  "Run {highlight}IaBotAhmed debug config{/highlight} to troubleshoot configuration",
   "Use {highlight}--print-logs{/highlight} flag to see detailed logs in stderr",
   (shortcuts) => `Use ${commandText("/timeline", shortcuts.sessionTimeline())} to jump to specific messages`,
   (shortcuts) => press(shortcuts.messagesToggleConceal(), "to toggle code block visibility in messages"),
@@ -274,8 +274,8 @@ const TIPS: Tip[] = [
     shortcuts.commandList()
       ? `Toggle username display in chat via the command palette (${shortcutText(shortcuts.commandList())})`
       : "Toggle username display in chat via the command palette",
-  "Run {highlight}docker run -it --rm ghcr.io/anomalyco/ia-bot-ahmed{/highlight} for containerized use",
-  "Use {highlight}/connect{/highlight} with ia-bot-ahmed Zen for curated, tested models",
+  "Run {highlight}docker run -it --rm ghcr.io/anomalyco/IaBotAhmed{/highlight} for containerized use",
+  "Use {highlight}/connect{/highlight} with IaBotAhmed Zen for curated, tested models",
   "Commit your project's {highlight}AGENTS.md{/highlight} file to Git for team sharing",
   "Use {highlight}/review{/highlight} to review uncommitted changes, branches, or PRs",
   (shortcuts) => `Use ${commandText("/help", shortcuts.helpShow())} to show the help dialog`,

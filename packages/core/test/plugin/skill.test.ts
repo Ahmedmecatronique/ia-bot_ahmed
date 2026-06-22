@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
 import { AgentV2 } from "@ia-bot-ahmed/core/agent"
 import { FSUtil } from "@ia-bot-ahmed/core/fs-util"
@@ -17,14 +17,14 @@ const it = testEffect(
 )
 
 describe("SkillPlugin.Plugin", () => {
-  it.effect("registers the built-in customize-ia-bot-ahmed skill", () =>
+  it.effect("registers the built-in customize-IaBotAhmed skill", () =>
     Effect.gen(function* () {
       const skill = yield* SkillV2.Service
       yield* SkillPlugin.Plugin.effect(host({ skill }))
 
       expect(yield* skill.list()).toContainEqual(
         expect.objectContaining({
-          name: "customize-ia-bot-ahmed",
+          name: "customize-IaBotAhmed",
           description: expect.stringContaining("ia-bot-ahmed's own configuration"),
         }),
       )

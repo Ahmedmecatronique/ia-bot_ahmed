@@ -1,4 +1,4 @@
-import type { Hooks, PluginInput } from "@ia-bot-ahmed/plugin"
+﻿import type { Hooks, PluginInput } from "@ia-bot-ahmed/plugin"
 import { InstallationVersion } from "@ia-bot-ahmed/core/installation/version"
 import { OAUTH_DUMMY_KEY } from "../../auth"
 import os from "os"
@@ -140,7 +140,7 @@ async function refreshAccessToken(refreshToken: string, issuer = ISSUER): Promis
 const HTML_SUCCESS = `<!doctype html>
 <html>
   <head>
-    <title>ia-bot-ahmed - Codex Authorization Successful</title>
+    <title>IaBotAhmed - Codex Authorization Successful</title>
     <style>
       body {
         font-family:
@@ -171,7 +171,7 @@ const HTML_SUCCESS = `<!doctype html>
   <body>
     <div class="container">
       <h1>Authorization Successful</h1>
-      <p>You can close this window and return to ia-bot-ahmed.</p>
+      <p>You can close this window and return to IaBotAhmed.</p>
     </div>
     <script>
       setTimeout(() => window.close(), 2000)
@@ -182,7 +182,7 @@ const HTML_SUCCESS = `<!doctype html>
 export const renderOAuthError = (error: string) => `<!doctype html>
 <html>
   <head>
-    <title>ia-bot-ahmed - Codex Authorization Failed</title>
+    <title>IaBotAhmed - Codex Authorization Failed</title>
     <style>
       body {
         font-family:

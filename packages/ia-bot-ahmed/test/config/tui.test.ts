@@ -1,4 +1,4 @@
-import { expect } from "bun:test"
+﻿import { expect } from "bun:test"
 import path from "path"
 import { pathToFileURL } from "url"
 import { Effect, Layer } from "effect"
@@ -82,7 +82,7 @@ it.instance("keeps server and tui plugin merge semantics aligned", () =>
     Effect.gen(function* () {
       const fs = yield* FSUtil.Service
       const test = yield* TestInstance
-      const local = path.join(test.directory, ".ia-bot-ahmed")
+      const local = path.join(test.directory, ".IaBotAhmed")
       yield* fs.makeDirectory(local, { recursive: true })
 
       yield* fs.writeJson(path.join(Global.Path.config, "ia-bot-ahmed.json"), {
@@ -124,7 +124,7 @@ it.instance("loads tui config with the same precedence order as server config pa
       yield* fs.writeJson(path.join(Global.Path.config, "tui.json"), { theme: "global" })
       yield* fs.writeJson(path.join(test.directory, "tui.json"), { theme: "project" })
       yield* fs.writeWithDirs(
-        path.join(test.directory, ".ia-bot-ahmed", "tui.json"),
+        path.join(test.directory, ".IaBotAhmed", "tui.json"),
         JSON.stringify({ theme: "local", diff_style: "stacked" }, null, 2),
       )
 
@@ -183,7 +183,7 @@ it.instance("resolves attention config defaults and overrides", () =>
   ),
 )
 
-it.instance("migrates tui-specific keys from ia-bot-ahmed.json when tui.json does not exist", () =>
+it.instance("migrates tui-specific keys from IaBotAhmed.json when tui.json does not exist", () =>
   withCleanState(
     Effect.gen(function* () {
       const fs = yield* FSUtil.Service
@@ -257,7 +257,7 @@ it.instance("drops unknown legacy tui keys during migration", () =>
   ),
 )
 
-it.instance("skips migration when ia-bot-ahmed.jsonc is syntactically invalid", () =>
+it.instance("skips migration when IaBotAhmed.jsonc is syntactically invalid", () =>
   withCleanState(
     Effect.gen(function* () {
       const fs = yield* FSUtil.Service
@@ -354,7 +354,7 @@ it.instance("migration backup preserves JSONC comments", () =>
   ),
 )
 
-it.instance("migrates legacy tui keys across multiple ia-bot-ahmed.json levels", () =>
+it.instance("migrates legacy tui keys across multiple IaBotAhmed.json levels", () =>
   withCleanState(
     Effect.gen(function* () {
       const fs = yield* FSUtil.Service
@@ -721,7 +721,7 @@ it.instance("loads .ia-bot-ahmed/tui.json", () =>
       const fs = yield* FSUtil.Service
       const test = yield* TestInstance
       yield* fs.writeWithDirs(
-        path.join(test.directory, ".ia-bot-ahmed", "tui.json"),
+        path.join(test.directory, ".IaBotAhmed", "tui.json"),
         JSON.stringify({ diff_style: "stacked" }, null, 2),
       )
 
@@ -852,7 +852,7 @@ it.instance("silently skips malformed tui.json - load failures degrade to {}", (
       const fs = yield* FSUtil.Service
       const test = yield* TestInstance
       yield* fs.writeFileString(path.join(test.directory, "tui.json"), '{ "theme": "broken",')
-      yield* fs.writeWithDirs(path.join(test.directory, ".ia-bot-ahmed", "tui.json"), JSON.stringify({ theme: "fallback" }))
+      yield* fs.writeWithDirs(path.join(test.directory, ".IaBotAhmed", "tui.json"), JSON.stringify({ theme: "fallback" }))
 
       const config = yield* getTuiConfig(test.directory)
       expect(config.theme).toBe("fallback")
@@ -866,7 +866,7 @@ it.instance("silently skips non-ENOENT read failures (e.g. tui.json is a directo
       const fs = yield* FSUtil.Service
       const test = yield* TestInstance
       yield* fs.makeDirectory(path.join(test.directory, "tui.json"), { recursive: true })
-      yield* fs.writeWithDirs(path.join(test.directory, ".ia-bot-ahmed", "tui.json"), JSON.stringify({ theme: "fallback" }))
+      yield* fs.writeWithDirs(path.join(test.directory, ".IaBotAhmed", "tui.json"), JSON.stringify({ theme: "fallback" }))
 
       const config = yield* getTuiConfig(test.directory)
       expect(config.theme).toBe("fallback")

@@ -1,4 +1,4 @@
-import "./index.css"
+﻿import "./index.css"
 import { Title } from "@solidjs/meta"
 import { onCleanup, onMount } from "solid-js"
 import logoLight from "../asset/logo-ornate-light.svg"
@@ -67,7 +67,7 @@ export default function Home() {
               <span>
                 <span>curl -fsSL </span>
                 <span data-slot="protocol">https://</span>
-                <span data-slot="highlight">ia-bot-ahmed.app/install</span>
+                <span data-slot="highlight">IaBotAhmed.app/install</span>
                 <span> | bash</span>
               </span>
               <CopyStatus />
@@ -113,7 +113,7 @@ export default function Home() {
             <h3 data-component="title">npm</h3>
             <button data-copy data-slot="button">
               <span>
-                npm install -g <strong>ia-bot-ahmed-ai</strong>
+                npm install -g <strong>IaBotAhmed-ai</strong>
               </span>
               <CopyStatus />
             </button>
@@ -122,7 +122,7 @@ export default function Home() {
             <h3 data-component="title">bun</h3>
             <button data-copy data-slot="button">
               <span>
-                bun install -g <strong>ia-bot-ahmed-ai</strong>
+                bun install -g <strong>IaBotAhmed-ai</strong>
               </span>
               <CopyStatus />
             </button>
@@ -131,7 +131,7 @@ export default function Home() {
             <h3 data-component="title">homebrew</h3>
             <button data-copy data-slot="button">
               <span>
-                brew install <strong>ia-bot-ahmed</strong>
+                brew install <strong>IaBotAhmed</strong>
               </span>
               <CopyStatus />
             </button>
@@ -140,7 +140,7 @@ export default function Home() {
             <h3 data-component="title">paru</h3>
             <button data-copy data-slot="button">
               <span>
-                paru -S <strong>ia-bot-ahmed-bin</strong>
+                paru -S <strong>IaBotAhmed-bin</strong>
               </span>
               <CopyStatus />
             </button>
@@ -158,20 +158,20 @@ export default function Home() {
 
         <footer data-component="footer">
           <div data-slot="cell">
-            <a href="https://x.com/ia-bot-ahmed">{i18n.t("footer.x")}</a>
+            <a href="https://x.com/IaBotAhmed">{i18n.t("footer.x")}</a>
           </div>
           <div data-slot="cell">
-            <a href="https://github.com/anomalyco/ia-bot-ahmed">{i18n.t("footer.github")}</a>
+            <a href="https://github.com/anomalyco/IaBotAhmed">{i18n.t("footer.github")}</a>
           </div>
           <div data-slot="cell">
-            <a href="https://ia-bot-ahmed.app/discord">{i18n.t("footer.discord")}</a>
+            <a href="https://IaBotAhmed.app/discord">{i18n.t("footer.discord")}</a>
           </div>
         </footer>
       </div>
 
       <div data-component="legal">
         <span>
-          ©2025 <a href="https://anoma.ly">Anomaly</a>
+          Â©2025 <a href="https://anoma.ly">Anomaly</a>
         </span>
       </div>
     </main>

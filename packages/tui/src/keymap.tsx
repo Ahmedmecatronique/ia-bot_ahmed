@@ -1,4 +1,4 @@
-import { InputRenderable, TextareaRenderable, type CliRenderer, type KeyEvent, type Renderable } from "@opentui/core"
+﻿import { InputRenderable, TextareaRenderable, type CliRenderer, type KeyEvent, type Renderable } from "@opentui/core"
 import {
   registerBackspacePopsPendingSequence,
   registerBaseLayoutFallback,
@@ -23,13 +23,13 @@ export const COMMAND_PALETTE_COMMAND = "command.palette.show"
 
 const IA_BOT_AHMED_MODE_KEY = "ia-bot-ahmed.mode"
 
-export const ia-bot-ahmedKeymapProvider = KeymapProvider
-export const useia-bot-ahmedKeymap = useKeymap
+export const IaBotAhmedKeymapProvider = KeymapProvider
+export const useIaBotAhmedKeymap = useKeymap
 
 export { useBindings, useKeymapSelector }
 
 export type OpenTuiKeymap = ReturnType<typeof useKeymap>
-type ia-bot-ahmedModeStack = ReturnType<typeof createia-bot-ahmedModeStack>
+type IaBotAhmedModeStack = ReturnType<typeof createIaBotAhmedModeStack>
 type CommandSlashEntry = {
   display: string
   description?: string
@@ -44,13 +44,13 @@ type BindingLookup = {
 type FormatConfig = { keybinds: BindingLookup }
 type ResolvedKeymapConfig = FormatConfig & { leader_timeout: number }
 
-const modeStacks = new WeakMap<OpenTuiKeymap, ia-bot-ahmedModeStack>()
+const modeStacks = new WeakMap<OpenTuiKeymap, IaBotAhmedModeStack>()
 
 function isVisiblePaletteCommand(command: Command) {
   return command.hidden !== true && command.name !== COMMAND_PALETTE_COMMAND
 }
 
-export function createia-bot-ahmedModeStack(keymap: OpenTuiKeymap) {
+export function createIaBotAhmedModeStack(keymap: OpenTuiKeymap) {
   keymap.setData(IA_BOT_AHMED_MODE_KEY, IA_BOT_AHMED_BASE_MODE)
 
   const offFields = keymap.registerLayerFields({
@@ -99,11 +99,11 @@ export function createia-bot-ahmedModeStack(keymap: OpenTuiKeymap) {
   return stackApi
 }
 
-export function useia-bot-ahmedModeStack() {
-  return getia-bot-ahmedModeStack(useia-bot-ahmedKeymap())
+export function useIaBotAhmedModeStack() {
+  return getIaBotAhmedModeStack(useIaBotAhmedKeymap())
 }
 
-export function getia-bot-ahmedModeStack(keymap: OpenTuiKeymap) {
+export function getIaBotAhmedModeStack(keymap: OpenTuiKeymap) {
   const value = modeStacks.get(keymap)
   if (!value) throw new Error("ia-bot-ahmed mode stack is not registered for this keymap")
   return value
@@ -211,8 +211,8 @@ export function formatKeyBindings(bindings: Parameters<typeof formatCommandBindi
   return formatCommandBindingsExtra(bindings, formatOptions(config))
 }
 
-export function registeria-bot-ahmedKeymap(keymap: OpenTuiKeymap, renderer: CliRenderer, config: ResolvedKeymapConfig) {
-  const modeStack = createia-bot-ahmedModeStack(keymap)
+export function registerIaBotAhmedKeymap(keymap: OpenTuiKeymap, renderer: CliRenderer, config: ResolvedKeymapConfig) {
+  const modeStack = createIaBotAhmedModeStack(keymap)
   const offCommaBindings = registerCommaBindings(keymap)
   const offAliasExpander = registerKeyAliases(keymap)
   const offBaseLayout = registerBaseLayoutFallback(keymap)
@@ -258,7 +258,7 @@ export function useCommandShortcut(command: string): Accessor<string> {
 }
 
 export function useCommandSlashes(): Accessor<readonly CommandSlashEntry[]> {
-  const keymap = useia-bot-ahmedKeymap()
+  const keymap = useIaBotAhmedKeymap()
   const entries = useKeymapSelector((keymap: OpenTuiKeymap) =>
     keymap.getCommandEntries({
       visibility: "reachable",

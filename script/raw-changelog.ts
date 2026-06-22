@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+﻿#!/usr/bin/env bun
 
 import { $ } from "bun"
 import { parseArgs } from "util"
@@ -22,7 +22,7 @@ type Diff = {
   message: string
 }
 
-const repo = process.env.GH_REPO ?? "anomalyco/ia-bot-ahmed"
+const repo = process.env.GH_REPO ?? "anomalyco/IaBotAhmed"
 const bot = ["actions-user", "github-actions[bot]", "ia-bot-ahmed", "ia-bot-ahmed-agent[bot]"]
 const team = [
   ...(await Bun.file(new URL("../.github/TEAM_MEMBERS", import.meta.url))
@@ -120,7 +120,7 @@ async function commits(from: string, to: string) {
   }
 
   const log =
-    await $`git log ${base}..${head} --format=%H -- packages/ia-bot-ahmed packages/sdk packages/plugin packages/desktop packages/app sdks/vscode packages/extensions github`.text()
+    await $`git log ${base}..${head} --format=%H -- packages/IaBotAhmed packages/sdk packages/plugin packages/desktop packages/app sdks/vscode packages/extensions github`.text()
 
   const list: Commit[] = []
   for (const hash of log.split("\n").filter(Boolean)) {

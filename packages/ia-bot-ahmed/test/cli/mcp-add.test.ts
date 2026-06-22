@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Effect } from "effect"
 import path from "path"
 import { cliIt } from "../lib/cli-process"
@@ -6,9 +6,9 @@ import { cliIt } from "../lib/cli-process"
 describe("ia-bot-ahmed mcp add (non-interactive subprocess)", () => {
   cliIt.concurrent(
     "adds a remote server with HTTP headers",
-    ({ home, ia-bot-ahmed }) =>
+    ({ home, IaBotAhmed }) =>
       Effect.gen(function* () {
-        const result = yield* ia-bot-ahmed.spawn([
+        const result = yield* IaBotAhmed.spawn([
           "mcp",
           "add",
           "github",
@@ -19,7 +19,7 @@ describe("ia-bot-ahmed mcp add (non-interactive subprocess)", () => {
           "--header",
           "X-Option=one=two",
         ])
-        ia-bot-ahmed.expectExit(result, 0)
+        IaBotAhmed.expectExit(result, 0)
 
         const config = yield* Effect.promise(() =>
           Bun.file(path.join(home, ".config", "ia-bot-ahmed", "ia-bot-ahmed.json")).json(),
@@ -38,9 +38,9 @@ describe("ia-bot-ahmed mcp add (non-interactive subprocess)", () => {
 
   cliIt.concurrent(
     "adds a local server while preserving argv and environment values",
-    ({ home, ia-bot-ahmed }) =>
+    ({ home, IaBotAhmed }) =>
       Effect.gen(function* () {
-        const result = yield* ia-bot-ahmed.spawn([
+        const result = yield* IaBotAhmed.spawn([
           "mcp",
           "add",
           "local",
@@ -55,7 +55,7 @@ describe("ia-bot-ahmed mcp add (non-interactive subprocess)", () => {
           "--label",
           "two words",
         ])
-        ia-bot-ahmed.expectExit(result, 0)
+        IaBotAhmed.expectExit(result, 0)
 
         const config = yield* Effect.promise(() =>
           Bun.file(path.join(home, ".config", "ia-bot-ahmed", "ia-bot-ahmed.json")).json(),

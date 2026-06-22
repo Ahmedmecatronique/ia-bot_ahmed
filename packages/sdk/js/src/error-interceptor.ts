@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Wrap whatever the generated client decoded from a non-2xx error body
  * into a real `Error` so downstream formatters (TUI, plugins) get a
  * useful `.message` instead of `[object Object]` or blank. The original
@@ -19,8 +19,8 @@ export function wrapClientError(
   if (!opts?.throwOnError) return error
   if (error instanceof Error) return error
 
-  // NamedError-shaped responses (the common case for ia-bot-ahmed 4xx) come
-  // through as POJOs — extract a useful message first, then wrap.
+  // NamedError-shaped responses (the common case for IaBotAhmed 4xx) come
+  // through as POJOs â€” extract a useful message first, then wrap.
   if (typeof error === "object" && error !== null && Object.keys(error).length > 0) {
     const obj = error as { data?: { message?: unknown }; message?: unknown; name?: unknown }
     const message =
@@ -47,5 +47,5 @@ function describe(request: Request | undefined, response: Response | undefined) 
   const url = request?.url ?? "?"
   const status = response?.status
   const statusText = response?.statusText
-  return `${method} ${url}${status ? " → " + status : ""}${statusText ? " " + statusText : ""}`
+  return `${method} ${url}${status ? " â†’ " + status : ""}${statusText ? " " + statusText : ""}`
 }

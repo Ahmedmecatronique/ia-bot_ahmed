@@ -1,4 +1,4 @@
-import path from "path"
+﻿import path from "path"
 import fs from "fs/promises"
 import { describe, expect } from "bun:test"
 import { Effect, Layer, Schema } from "effect"
@@ -699,7 +699,7 @@ describe("Config", () => {
     ),
   )
 
-  it.live("loads global, ancestor, and .ia-bot-ahmed configuration up to the project boundary", () =>
+  it.live("loads global, ancestor, and .IaBotAhmed configuration up to the project boundary", () =>
     Effect.acquireRelease(
       Effect.promise(() => tmpdir()),
       (tmp) => Effect.promise(() => tmp[Symbol.asyncDispose]()),
@@ -713,17 +713,17 @@ describe("Config", () => {
           yield* Effect.promise(async () => {
             await fs.mkdir(global, { recursive: true })
             await fs.mkdir(directory, { recursive: true })
-            await fs.mkdir(path.join(root, ".ia-bot-ahmed"), { recursive: true })
-            await fs.mkdir(path.join(directory, ".ia-bot-ahmed"), { recursive: true })
+            await fs.mkdir(path.join(root, ".IaBotAhmed"), { recursive: true })
+            await fs.mkdir(path.join(directory, ".IaBotAhmed"), { recursive: true })
             await Promise.all([
               fs.writeFile(path.join(tmp.path, "ia-bot-ahmed.json"), JSON.stringify({ $schema: "outside" })),
               fs.writeFile(path.join(global, "ia-bot-ahmed.json"), JSON.stringify({ $schema: "global" })),
               fs.writeFile(path.join(root, "ia-bot-ahmed.json"), JSON.stringify({ $schema: "root" })),
               fs.writeFile(path.join(parent, "ia-bot-ahmed.jsonc"), JSON.stringify({ $schema: "parent" })),
               fs.writeFile(path.join(directory, "config.json"), JSON.stringify({ $schema: "directory" })),
-              fs.writeFile(path.join(root, ".ia-bot-ahmed", "ia-bot-ahmed.json"), JSON.stringify({ $schema: "root-dot" })),
+              fs.writeFile(path.join(root, ".IaBotAhmed", "ia-bot-ahmed.json"), JSON.stringify({ $schema: "root-dot" })),
               fs.writeFile(
-                path.join(directory, ".ia-bot-ahmed", "ia-bot-ahmed.jsonc"),
+                path.join(directory, ".IaBotAhmed", "ia-bot-ahmed.jsonc"),
                 JSON.stringify({ $schema: "directory-dot" }),
               ),
             ])
@@ -736,8 +736,8 @@ describe("Config", () => {
 
             expect(entries.filter((entry) => entry.type === "directory").map((entry) => entry.path)).toEqual([
               AbsolutePath.make(global),
-              AbsolutePath.make(path.join(root, ".ia-bot-ahmed")),
-              AbsolutePath.make(path.join(directory, ".ia-bot-ahmed")),
+              AbsolutePath.make(path.join(root, ".IaBotAhmed")),
+              AbsolutePath.make(path.join(directory, ".IaBotAhmed")),
             ])
             expect(documents.map((document) => document.info.$schema)).toEqual([
               "global",
@@ -754,9 +754,9 @@ describe("Config", () => {
               "parent",
               "directory",
               "root-dot",
-              AbsolutePath.make(path.join(root, ".ia-bot-ahmed")),
+              AbsolutePath.make(path.join(root, ".IaBotAhmed")),
               "directory-dot",
-              AbsolutePath.make(path.join(directory, ".ia-bot-ahmed")),
+              AbsolutePath.make(path.join(directory, ".IaBotAhmed")),
             ])
           }).pipe(
             Effect.provide(

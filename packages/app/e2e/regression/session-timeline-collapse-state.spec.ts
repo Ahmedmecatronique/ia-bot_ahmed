@@ -1,5 +1,5 @@
-import { expect, test, type Locator, type Page } from "@playwright/test"
-import { mockia-bot-ahmedServer } from "../utils/mock-server"
+﻿import { expect, test, type Locator, type Page } from "@playwright/test"
+import { mockIaBotAhmedServer } from "../utils/mock-server"
 import { expectAppVisible, expectSessionTitle } from "../utils/waits"
 
 const directory = "C:/ia-bot-ahmed/TimelineStateRegression"
@@ -387,7 +387,7 @@ function readExpanded(element: Element) {
 }
 
 async function mockServer(page: Page, events: EventPayload[], messages = [userMessage, assistantMessage]) {
-  await mockia-bot-ahmedServer(page, {
+  await mockIaBotAhmedServer(page, {
     directory,
     project: project(),
     provider: provider(),

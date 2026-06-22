@@ -1,8 +1,8 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { Worktree } from "./worktree"
 import { ServerScope } from "./server-scope"
 
-const dir = (name: string) => `/tmp/ia-bot-ahmed-worktree-${name}-${crypto.randomUUID()}`
+const dir = (name: string) => `/tmp/IaBotAhmed-worktree-${name}-${crypto.randomUUID()}`
 
 describe("Worktree", () => {
   const scope = ServerScope.local

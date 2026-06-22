@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { EventV2Bridge } from "@/event-v2-bridge"
 import { Project } from "@/project/project"
 import { $ } from "bun"
@@ -127,8 +127,8 @@ describe("Project.fromDirectory", () => {
       expect(result.project.vcs).toBe("git")
       expect(result.project.worktree).toBe(tmp)
 
-      const ia-bot-ahmedFile = path.join(tmp, ".git", "ia-bot-ahmed")
-      expect(yield* Effect.promise(() => Bun.file(ia-bot-ahmedFile).exists())).toBe(false)
+      const IaBotAhmedFile = path.join(tmp, ".git", "ia-bot-ahmed")
+      expect(yield* Effect.promise(() => Bun.file(IaBotAhmedFile).exists())).toBe(false)
     }),
   )
 

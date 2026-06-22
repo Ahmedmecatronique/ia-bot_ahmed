@@ -1,4 +1,4 @@
-const kinds = ["bash", "pwsh", "powershell", "cmd"] as const
+﻿const kinds = ["bash", "pwsh", "powershell", "cmd"] as const
 export type Kind = (typeof kinds)[number]
 
 const shellKinds = new Set<string>(kinds)
@@ -12,7 +12,7 @@ export function toKind(value: string): Kind {
 }
 
 // Keep the exposed tool ID and permission key as "bash" for compatibility with
-// existing plugins, users, and saved permissions. Rename with ia-bot-ahmed 2.0.
+// existing plugins, users, and saved permissions. Rename with IaBotAhmed 2.0.
 export const ToolID = "bash"
 export type ToolID = typeof ToolID
 

@@ -1,4 +1,4 @@
-import { EventV2 } from "@ia-bot-ahmed/core/event"
+﻿import { EventV2 } from "@ia-bot-ahmed/core/event"
 import { Schema } from "effect"
 import { NamedError } from "@ia-bot-ahmed/core/util/error"
 import { Process } from "@/util/process"
@@ -44,7 +44,7 @@ export async function install(ide: (typeof SUPPORTED_IDES)[number]["name"]) {
   const cmd = SUPPORTED_IDES.find((i) => i.name === ide)?.cmd
   if (!cmd) throw new Error(`Unknown IDE: ${ide}`)
 
-  const p = await Process.run([cmd, "--install-extension", "sst-dev.ia-bot-ahmed"], {
+  const p = await Process.run([cmd, "--install-extension", "sst-dev.IaBotAhmed"], {
     nothrow: true,
   })
   const stdout = p.stdout.toString()

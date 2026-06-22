@@ -1,4 +1,4 @@
-import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
+﻿import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
 import { Permission } from "@/permission"
 import { SessionV1 } from "@ia-bot-ahmed/core/v1/session"
 
@@ -115,7 +115,7 @@ export const SessionApi = HttpApi.make("session")
           OpenApi.annotations({
             identifier: "session.list",
             summary: "List sessions",
-            description: "Get a list of all ia-bot-ahmed sessions, sorted by most recently updated.",
+            description: "Get a list of all IaBotAhmed sessions, sorted by most recently updated.",
           }),
         ),
         HttpApiEndpoint.get("status", SessionPaths.status, {
@@ -138,7 +138,7 @@ export const SessionApi = HttpApi.make("session")
           OpenApi.annotations({
             identifier: "session.get",
             summary: "Get session",
-            description: "Retrieve detailed information about a specific ia-bot-ahmed session.",
+            description: "Retrieve detailed information about a specific IaBotAhmed session.",
           }),
         ),
         HttpApiEndpoint.get("children", SessionPaths.children, {
@@ -209,7 +209,7 @@ export const SessionApi = HttpApi.make("session")
           OpenApi.annotations({
             identifier: "session.create",
             summary: "Create session",
-            description: "Create a new ia-bot-ahmed session for interacting with AI assistants and managing conversations.",
+            description: "Create a new IaBotAhmed session for interacting with AI assistants and managing conversations.",
           }),
         ),
         HttpApiEndpoint.delete("remove", SessionPaths.remove, {

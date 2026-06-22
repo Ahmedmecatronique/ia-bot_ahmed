@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { Effect } from "effect"
 import { ProviderTransform } from "@/provider/transform"
 import { LLMRequestPrep } from "@/session/llm/request"
@@ -1651,8 +1651,8 @@ describe("ProviderTransform.message - surrogate sanitization", () => {
 
   test("replaces lone surrogates in model-visible text", () => {
     const lone = "\uD83D"
-    const valid = "🚀"
-    const sanitized = "�"
+    const valid = "ðŸš€"
+    const sanitized = "ï¿½"
     const text = (label: string) => `${label} ${lone} and ${valid}`
     const expected = (label: string) => `${label} ${sanitized} and ${valid}`
     const msgs = [
@@ -2319,12 +2319,12 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
   })
 
   test("preserves metadata using providerID key when store is false", () => {
-    const ia-bot-ahmedModel = {
+    const IaBotAhmedModel = {
       ...openaiModel,
       providerID: "ia-bot-ahmed",
       api: {
         id: "ia-bot-ahmed-test",
-        url: "https://api.ia-bot-ahmed.app",
+        url: "https://api.IaBotAhmed.app",
         npm: "@ai-sdk/openai-compatible",
       },
     }
@@ -2336,7 +2336,7 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
             type: "text",
             text: "Hello",
             providerOptions: {
-              ia-bot-ahmed: {
+              IaBotAhmed: {
                 itemId: "msg_123",
                 otherOption: "value",
               },
@@ -2346,19 +2346,19 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
       },
     ] as any[]
 
-    const result = ProviderTransform.message(msgs, ia-bot-ahmedModel, { store: false }) as any[]
+    const result = ProviderTransform.message(msgs, IaBotAhmedModel, { store: false }) as any[]
 
-    expect(result[0].content[0].providerOptions?.ia-bot-ahmed?.itemId).toBe("msg_123")
-    expect(result[0].content[0].providerOptions?.ia-bot-ahmed?.otherOption).toBe("value")
+    expect(result[0].content[0].providerOptions?.IaBotAhmed?.itemId).toBe("msg_123")
+    expect(result[0].content[0].providerOptions?.IaBotAhmed?.otherOption).toBe("value")
   })
 
   test("preserves itemId across all providerOptions keys", () => {
-    const ia-bot-ahmedModel = {
+    const IaBotAhmedModel = {
       ...openaiModel,
       providerID: "ia-bot-ahmed",
       api: {
         id: "ia-bot-ahmed-test",
-        url: "https://api.ia-bot-ahmed.app",
+        url: "https://api.IaBotAhmed.app",
         npm: "@ai-sdk/openai-compatible",
       },
     }
@@ -2367,7 +2367,7 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
         role: "assistant",
         providerOptions: {
           openai: { itemId: "msg_root" },
-          ia-bot-ahmed: { itemId: "msg_ia-bot-ahmed" },
+          IaBotAhmed: { itemId: "msg_IaBotAhmed" },
           extra: { itemId: "msg_extra" },
         },
         content: [
@@ -2376,7 +2376,7 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
             text: "Hello",
             providerOptions: {
               openai: { itemId: "msg_openai_part" },
-              ia-bot-ahmed: { itemId: "msg_IA_BOT_AHMED_part" },
+              IaBotAhmed: { itemId: "msg_IA_BOT_AHMED_part" },
               extra: { itemId: "msg_extra_part" },
             },
           },
@@ -2384,13 +2384,13 @@ describe("ProviderTransform.message - strip openai metadata when store=false", (
       },
     ] as any[]
 
-    const result = ProviderTransform.message(msgs, ia-bot-ahmedModel, { store: false }) as any[]
+    const result = ProviderTransform.message(msgs, IaBotAhmedModel, { store: false }) as any[]
 
     expect(result[0].providerOptions?.openai?.itemId).toBe("msg_root")
-    expect(result[0].providerOptions?.ia-bot-ahmed?.itemId).toBe("msg_ia-bot-ahmed")
+    expect(result[0].providerOptions?.IaBotAhmed?.itemId).toBe("msg_IaBotAhmed")
     expect(result[0].providerOptions?.extra?.itemId).toBe("msg_extra")
     expect(result[0].content[0].providerOptions?.openai?.itemId).toBe("msg_openai_part")
-    expect(result[0].content[0].providerOptions?.ia-bot-ahmed?.itemId).toBe("msg_IA_BOT_AHMED_part")
+    expect(result[0].content[0].providerOptions?.IaBotAhmed?.itemId).toBe("msg_IA_BOT_AHMED_part")
     expect(result[0].content[0].providerOptions?.extra?.itemId).toBe("msg_extra_part")
   })
 

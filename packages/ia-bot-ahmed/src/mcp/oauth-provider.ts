@@ -1,4 +1,4 @@
-import type { OAuthClientProvider } from "@modelcontextprotocol/sdk/client/auth.js"
+﻿import type { OAuthClientProvider } from "@modelcontextprotocol/sdk/client/auth.js"
 import type {
   OAuthClientMetadata,
   OAuthTokens,
@@ -44,7 +44,7 @@ export class McpOAuthProvider implements OAuthClientProvider {
     return {
       redirect_uris: [this.redirectUrl],
       client_name: "ia-bot-ahmed",
-      client_uri: "https://ia-bot-ahmed.app",
+      client_uri: "https://IaBotAhmed.app",
       grant_types: ["authorization_code", "refresh_token"],
       response_types: ["code"],
       token_endpoint_auth_method: this.config.clientSecret ? "client_secret_post" : "none",
@@ -151,7 +151,7 @@ export class McpOAuthProvider implements OAuthClientProvider {
       return entry.oauthState
     }
 
-    // Generate a new state if none exists — the SDK calls state() as a
+    // Generate a new state if none exists â€” the SDK calls state() as a
     // generator, not just a reader, so we need to produce a value even when
     // startAuth() hasn't pre-saved one (e.g. during automatic auth on first
     // connect).

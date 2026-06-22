@@ -1,4 +1,4 @@
-/** @jsxImportSource @opentui/solid */
+﻿/** @jsxImportSource @opentui/solid */
 import { expect, test } from "bun:test"
 import { createDefaultOpenTuiKeymap } from "@opentui/keymap/opentui"
 import { DiffRenderable, type Renderable, ScrollBoxRenderable } from "@opentui/core"
@@ -9,7 +9,7 @@ import { KVProvider } from "../../../src/context/kv"
 import { ThemeProvider } from "../../../src/context/theme"
 import { TuiConfigProvider } from "../../../src/config"
 import { TuiKeybind } from "../../../src/config/keybind"
-import { ia-bot-ahmedKeymapProvider } from "../../../src/keymap"
+import { IaBotAhmedKeymapProvider } from "../../../src/keymap"
 import diffViewerPlugin from "../../../src/feature-plugins/system/diff-viewer"
 import { createTuiPluginApi } from "../../fixture/tui-plugin"
 import { createTuiResolvedConfig } from "../../fixture/tui-runtime"
@@ -153,7 +153,7 @@ async function renderDiffViewer(vcsDiff: unknown[], height = 20) {
 
     return (
       <TestTuiContexts>
-        <ia-bot-ahmedKeymapProvider keymap={keymap}>
+        <IaBotAhmedKeymapProvider keymap={keymap}>
           <TuiConfigProvider config={config}>
             <KVProvider>
               <ThemeProvider mode="dark">
@@ -161,7 +161,7 @@ async function renderDiffViewer(vcsDiff: unknown[], height = 20) {
               </ThemeProvider>
             </KVProvider>
           </TuiConfigProvider>
-        </ia-bot-ahmedKeymapProvider>
+        </IaBotAhmedKeymapProvider>
       </TestTuiContexts>
     )
   }

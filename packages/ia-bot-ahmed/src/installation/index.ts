@@ -1,4 +1,4 @@
-import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
+﻿import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
 import { httpClient } from "@ia-bot-ahmed/core/effect/layer-node-platform"
 import { Effect, Layer, Schema, Context, Stream } from "effect"
 import { serviceUse } from "@ia-bot-ahmed/core/effect/service-use"
@@ -135,8 +135,8 @@ export const layer: Layer.Layer<Service, never, HttpClient.HttpClient | AppProce
     )
 
     const getBrewFormula = Effect.fnUntraced(function* () {
-      const tapFormula = yield* text(["brew", "list", "--formula", "anomalyco/tap/ia-bot-ahmed"])
-      if (tapFormula.includes("ia-bot-ahmed")) return "anomalyco/tap/ia-bot-ahmed"
+      const tapFormula = yield* text(["brew", "list", "--formula", "anomalyco/tap/IaBotAhmed"])
+      if (tapFormula.includes("ia-bot-ahmed")) return "anomalyco/tap/IaBotAhmed"
       const coreFormula = yield* text(["brew", "list", "--formula", "ia-bot-ahmed"])
       if (coreFormula.includes("ia-bot-ahmed")) return "ia-bot-ahmed"
       return "ia-bot-ahmed"
@@ -156,7 +156,7 @@ export const layer: Layer.Layer<Service, never, HttpClient.HttpClient | AppProce
 
     const upgradeCurl = Effect.fnUntraced(
       function* (target: string) {
-        const response = yield* httpOk.execute(HttpClientRequest.get("https://ia-bot-ahmed.app/install"))
+        const response = yield* httpOk.execute(HttpClientRequest.get("https://IaBotAhmed.app/install"))
         const body = yield* response.text
         const bodyBytes = new TextEncoder().encode(body)
         const shell = yield* upgradeScriptShell()
@@ -184,7 +184,7 @@ export const layer: Layer.Layer<Service, never, HttpClient.HttpClient | AppProce
         }
       }),
       method: Effect.fn("Installation.method")(function* () {
-        if (process.execPath.includes(path.join(".ia-bot-ahmed", "bin"))) return "curl" as Method
+        if (process.execPath.includes(path.join(".IaBotAhmed", "bin"))) return "curl" as Method
         if (process.execPath.includes(path.join(".local", "bin"))) return "curl" as Method
         const exec = process.execPath.toLowerCase()
 
@@ -228,7 +228,7 @@ export const layer: Layer.Layer<Service, never, HttpClient.HttpClient | AppProce
             return info.formulae[0].versions.stable
           }
           const response = yield* httpOk.execute(
-            HttpClientRequest.get("https://formulae.brew.sh/api/formula/ia-bot-ahmed.json").pipe(
+            HttpClientRequest.get("https://formulae.brew.sh/api/formula/IaBotAhmed.json").pipe(
               HttpClientRequest.acceptJson,
             ),
           )
@@ -239,7 +239,7 @@ export const layer: Layer.Layer<Service, never, HttpClient.HttpClient | AppProce
         if (detectedMethod === "npm" || detectedMethod === "bun" || detectedMethod === "pnpm") {
           const response = yield* httpOk.execute(
             HttpClientRequest.get(
-              `${yield* NpmConfig.registry(process.cwd())}/ia-bot-ahmed-ai/${InstallationChannel}`,
+              `${yield* NpmConfig.registry(process.cwd())}/IaBotAhmed-ai/${InstallationChannel}`,
             ).pipe(HttpClientRequest.acceptJson),
           )
           const data = yield* HttpClientResponse.schemaBodyJson(NpmPackage)(response)
@@ -249,7 +249,7 @@ export const layer: Layer.Layer<Service, never, HttpClient.HttpClient | AppProce
         if (detectedMethod === "choco") {
           const response = yield* httpOk.execute(
             HttpClientRequest.get(
-              "https://community.chocolatey.org/api/v2/Packages?$filter=Id%20eq%20%27ia-bot-ahmed%27%20and%20IsLatestVersion&$select=Version",
+              "https://community.chocolatey.org/api/v2/Packages?$filter=Id%20eq%20%27IaBotAhmed%27%20and%20IsLatestVersion&$select=Version",
             ).pipe(HttpClientRequest.setHeaders({ Accept: "application/json;odata=verbose" })),
           )
           const data = yield* HttpClientResponse.schemaBodyJson(ChocoPackage)(response)
@@ -259,7 +259,7 @@ export const layer: Layer.Layer<Service, never, HttpClient.HttpClient | AppProce
         if (detectedMethod === "scoop") {
           const response = yield* httpOk.execute(
             HttpClientRequest.get(
-              "https://raw.githubusercontent.com/ScoopInstaller/Main/master/bucket/ia-bot-ahmed.json",
+              "https://raw.githubusercontent.com/ScoopInstaller/Main/master/bucket/IaBotAhmed.json",
             ).pipe(HttpClientRequest.setHeaders({ Accept: "application/json" })),
           )
           const data = yield* HttpClientResponse.schemaBodyJson(ScoopManifest)(response)

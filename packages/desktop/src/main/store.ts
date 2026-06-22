@@ -1,4 +1,4 @@
-import Store from "electron-store"
+﻿import Store from "electron-store"
 import electron from "electron"
 
 import { SETTINGS_STORE } from "./store-keys"
@@ -8,7 +8,7 @@ const cache = new Map<string, Store>()
 // We cannot instantiate the electron-store at module load time because
 // module import hoisting causes this to run before app.setPath("userData", ...)
 // in index.ts has executed, which would result in files being written to the default directory
-// (e.g. bad: %APPDATA%\@ia-bot-ahmed-ai\desktop\ia-bot-ahmed.settings vs good: %APPDATA%\ai.ia-bot-ahmed.desktop.dev\ia-bot-ahmed.settings).
+// (e.g. bad: %APPDATA%\@IaBotAhmed-ai\desktop\IaBotAhmed.settings vs good: %APPDATA%\ai.IaBotAhmed.desktop.dev\IaBotAhmed.settings).
 export function getStore(name = SETTINGS_STORE) {
   const cached = cache.get(name)
   if (cached) return cached

@@ -1,8 +1,8 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import { Avatar } from "./avatar-v2"
 
 const docs = `### Overview
-Avatar matching ia-bot-ahmed DS variants from Figma.
+Avatar matching IaBotAhmed DS variants from Figma.
 
 Use in user lists and headers.
 

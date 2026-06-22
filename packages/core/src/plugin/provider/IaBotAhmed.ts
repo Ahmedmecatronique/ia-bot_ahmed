@@ -1,14 +1,14 @@
-import { Effect } from "effect"
+﻿import { Effect } from "effect"
 import { define } from "@ia-bot-ahmed/plugin/v2/effect"
 import { ProviderV2 } from "../../provider"
 
-export const ia-bot-ahmedPlugin = define({
+export const IaBotAhmedPlugin = define({
   id: "ia-bot-ahmed",
   effect: Effect.fn(function* (ctx) {
     let hasKey = false
     yield* ctx.catalog.transform(
       Effect.fn(function* (evt) {
-        const item = evt.provider.get(ProviderV2.ID.ia-bot-ahmed)
+        const item = evt.provider.get(ProviderV2.ID.IaBotAhmed)
         if (!item) return
         const integration = yield* ctx.integration.get(item.provider.id)
         hasKey = Boolean(

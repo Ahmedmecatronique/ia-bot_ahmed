@@ -1,4 +1,4 @@
-import { AlibabaPlugin } from "./provider/alibaba"
+﻿import { AlibabaPlugin } from "./provider/alibaba"
 import { AmazonBedrockPlugin } from "./provider/amazon-bedrock"
 import { AnthropicPlugin } from "./provider/anthropic"
 import { AzureCognitiveServicesPlugin, AzurePlugin } from "./provider/azure"
@@ -21,7 +21,7 @@ import { NvidiaPlugin } from "./provider/nvidia"
 import { OpenAIPlugin } from "./provider/openai"
 import { SnowflakeCortexPlugin } from "./provider/snowflake-cortex"
 import { OpenAICompatiblePlugin } from "./provider/openai-compatible"
-import { ia-bot-ahmedPlugin } from "./provider/ia-bot-ahmed"
+import { IaBotAhmedPlugin } from "./provider/IaBotAhmed"
 import { OpenRouterPlugin } from "./provider/openrouter"
 import { PerplexityPlugin } from "./provider/perplexity"
 import { SapAICorePlugin } from "./provider/sap-ai-core"
@@ -53,7 +53,7 @@ export const ProviderPlugins = [
   LLMGatewayPlugin,
   MistralPlugin,
   NvidiaPlugin,
-  ia-bot-ahmedPlugin,
+  IaBotAhmedPlugin,
   SnowflakeCortexPlugin,
   OpenAICompatiblePlugin,
   OpenAIPlugin,

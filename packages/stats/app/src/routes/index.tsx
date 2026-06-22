@@ -1,4 +1,4 @@
-import "./index.css"
+﻿import "./index.css"
 import { Link, Meta, Title } from "@solidjs/meta"
 import { ProviderIcon } from "@ia-bot-ahmed/ui/provider-icon"
 import { geoEquirectangular, geoPath } from "d3-geo"
@@ -49,10 +49,10 @@ const rangeLabels: Record<UsageRange, string> = {
   "1M": "1 Month",
   "2M": "2 Months",
 }
-const statsHomeTitle = "AI Model Usage Rankings | ia-bot-ahmed Data"
+const statsHomeTitle = "AI Model Usage Rankings | IaBotAhmed Data"
 const statsHomeDescription =
-  "Explore ia-bot-ahmed Go usage across AI models, including token volume, rankings, market share, token pricing, session cost, cache ratio, and geo breakdowns."
-const statsHomeFallbackUrl = "https://ia-bot-ahmed.app/data/"
+  "Explore IaBotAhmed Go usage across AI models, including token volume, rankings, market share, token pricing, session cost, cache ratio, and geo breakdowns."
+const statsHomeFallbackUrl = "https://IaBotAhmed.app/data/"
 const statsUnfurlPath = "banner.jpg"
 const statsUnfurlAlt = "ia-bot-ahmed Data wordmark on a dark patterned background"
 const usageColors = [
@@ -189,8 +189,8 @@ export default function StatsHome() {
 
 function getStatsHomeUrl(base: string, requestUrl: string) {
   const url = new URL(base, requestUrl)
-  if (url.hostname === "stats.ia-bot-ahmed.app") return "https://ia-bot-ahmed.app/data/"
-  if (url.hostname === "stats.dev.ia-bot-ahmed.app") return "https://dev.ia-bot-ahmed.app/data/"
+  if (url.hostname === "stats.IaBotAhmed.app") return "https://IaBotAhmed.app/data/"
+  if (url.hostname === "stats.dev.IaBotAhmed.app") return "https://dev.IaBotAhmed.app/data/"
   return url.toString()
 }
 
@@ -337,7 +337,7 @@ function SectionBridge(props: { label: string; href: string }) {
       <span>LEAN MORE</span>
       <i />
       <strong>{props.label}</strong>
-      <b>▸</b>
+      <b>â–¸</b>
     </a>
   )
 }
@@ -403,7 +403,7 @@ function TopModelsSection(props: { data: StatsHomeData["usage"]; leaderboard: St
   return (
     <section id="top-models" data-section="top-models">
       <h2 data-slot="top-models-title">
-        <strong>Top models.</strong> <span>Usage of models across ia-bot-ahmed Go.</span>
+        <strong>Top models.</strong> <span>Usage of models across IaBotAhmed Go.</span>
       </h2>
       <Show
         when={data().some((item) => usageTotal(item) > 0)}
@@ -788,7 +788,7 @@ function UniqueUsersSection(props: { data: StatsHomeData["users"] }) {
   return (
     <section id="unique-users" data-section="unique-users">
       <SectionBridge label="TOP MODELS" href="#top-models" />
-      <SectionTitle title="Unique Users" description="Daily unique ia-bot-ahmed Go users by model." />
+      <SectionTitle title="Unique Users" description="Daily unique IaBotAhmed Go users by model." />
       <Show
         when={data().some((item) => usageTotal(item) > 0)}
         fallback={
@@ -1523,14 +1523,14 @@ function formatMarketRange(data: MarketDay[]) {
   const start = marketDateParts(first).start
   const end = marketDateParts(last).end
   if (start === end) return formatMarketDateLabel(start)
-  return `${start} ${new Date().getFullYear()} → ${end} ${new Date().getFullYear()}`
+  return `${start} ${new Date().getFullYear()} â†’ ${end} ${new Date().getFullYear()}`
 }
 
 function formatMarketDateLabel(label: string) {
   const parts = marketDateParts(label)
   const year = new Date().getFullYear()
   if (parts.start === parts.end) return `${parts.start} ${year}`
-  return `${parts.start} ${year} → ${parts.end} ${year}`
+  return `${parts.start} ${year} â†’ ${parts.end} ${year}`
 }
 
 function marketDateParts(label: string) {

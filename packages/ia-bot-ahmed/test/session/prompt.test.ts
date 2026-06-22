@@ -1,4 +1,4 @@
-import { NodeFileSystem } from "@effect/platform-node"
+﻿import { NodeFileSystem } from "@effect/platform-node"
 import { ConfigV1 } from "@ia-bot-ahmed/core/v1/config/config"
 import { SessionV1 } from "@ia-bot-ahmed/core/v1/session"
 import { Database } from "@ia-bot-ahmed/core/database/database"
@@ -303,7 +303,7 @@ const ensureDir = Effect.fn("test.ensureDir")(function* (dir: string) {
 const writeConfig = Effect.fn("test.writeConfig")(function* (dir: string, config: Partial<ConfigV1.Info>) {
   yield* writeText(
     path.join(dir, "ia-bot-ahmed.json"),
-    JSON.stringify({ $schema: "https://ia-bot-ahmed.app/config.json", ...config }),
+    JSON.stringify({ $schema: "https://IaBotAhmed.app/config.json", ...config }),
   )
 })
 

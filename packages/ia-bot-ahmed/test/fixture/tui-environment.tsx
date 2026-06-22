@@ -1,4 +1,4 @@
-/** @jsxImportSource @opentui/solid */
+﻿/** @jsxImportSource @opentui/solid */
 import {
   TuiPathsProvider,
   TuiStartupProvider,
@@ -17,10 +17,10 @@ export function TestTuiContexts(
   return (
     <TuiPathsProvider
       value={{
-        cwd: props.cwd ?? props.directory ?? "/tmp/ia-bot-ahmed/packages/ia-bot-ahmed",
+        cwd: props.cwd ?? props.directory ?? "/tmp/ia-bot-ahmed/packages/IaBotAhmed",
         home: "/tmp/ia-bot-ahmed/home",
         state: "/tmp/ia-bot-ahmed/state",
-        worktree: "/tmp/ia-bot-ahmed",
+        worktree: "/tmp/IaBotAhmed",
         ...props.paths,
       }}
     >

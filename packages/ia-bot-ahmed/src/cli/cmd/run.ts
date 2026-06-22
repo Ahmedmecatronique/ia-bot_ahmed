@@ -1,4 +1,4 @@
-import type { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
+﻿import type { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
 // CLI entry point for `ia-bot-ahmed run`.
 //
 // Handles three modes:
@@ -7,7 +7,7 @@ import type { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
 //   2. Interactive local (`--interactive`): boots the split-footer direct mode
 //      with an in-process server (no external HTTP).
 //   3. Interactive attach (`--interactive --attach`): connects to a running
-//      ia-bot-ahmed server and runs interactive mode against it.
+//      IaBotAhmed server and runs interactive mode against it.
 //
 // Also supports `--command` for slash-command execution, `--format json` for
 // raw event streaming, `--continue` / `--session` for session resumption,
@@ -20,11 +20,11 @@ import { UI } from "../ui"
 import { effectCmd } from "../effect-cmd"
 import { EOL } from "os"
 import { Filesystem } from "@/util/filesystem"
-import { createia-bot-ahmedClient, type ia-bot-ahmedClient, type ToolPart } from "@ia-bot-ahmed/sdk/v2"
+import { createIaBotAhmedClient, type IaBotAhmedClient, type ToolPart } from "@ia-bot-ahmed/sdk/v2"
 import { FormatError, FormatUnknownError } from "../error"
 import { INTERACTIVE_INPUT_ERROR, resolveInteractiveStdin } from "./run/runtime.stdin"
 
-type ModelInput = Parameters<ia-bot-ahmedClient["session"]["prompt"]>[0]["model"]
+type ModelInput = Parameters<IaBotAhmedClient["session"]["prompt"]>[0]["model"]
 
 function pick(value: string | undefined): ModelInput | undefined {
   if (!value) return undefined
@@ -106,14 +106,14 @@ async function toolError(part: ToolPart) {
     const { toolInlineInfo } = await import("./run/tool")
     const next = toolInlineInfo(part)
     inline({
-      icon: "✗",
+      icon: "âœ—",
       title: `${next.title} failed`,
       ...(next.description && { description: next.description }),
     })
     return
   } catch {
     inline({
-      icon: "✗",
+      icon: "âœ—",
       title: `${part.tool} failed`,
     })
   }
@@ -121,12 +121,12 @@ async function toolError(part: ToolPart) {
 
 export const RunCommand = effectCmd({
   command: "run [message..]",
-  describe: "run ia-bot-ahmed with a message",
+  describe: "run IaBotAhmed with a message",
   // --attach connects to a remote server (no local instance needed); the
   // default path runs an in-process server and needs the project instance.
   instance: (args) => !args.attach,
   // For --dir without --attach, load instance for the resolved target dir.
-  // The handler also chdirs (preserving the legacy order: chdir → file resolution).
+  // The handler also chdirs (preserving the legacy order: chdir â†’ file resolution).
   directory: (args) => (args.dir && !args.attach ? path.resolve(process.cwd(), args.dir) : process.cwd()),
   builder: (yargs: Argv) =>
     yargs
@@ -185,7 +185,7 @@ export const RunCommand = effectCmd({
       })
       .option("attach", {
         type: "string",
-        describe: "attach to a running ia-bot-ahmed server (e.g., http://localhost:4096)",
+        describe: "attach to a running IaBotAhmed server (e.g., http://localhost:4096)",
       })
       .option("password", {
         alias: ["p"],
@@ -319,7 +319,7 @@ export const RunCommand = effectCmd({
         ? ServerAuth.headers({ password: args.password, username: args.username })
         : undefined
       const attachSDK = (dir?: string) => {
-        return createia-bot-ahmedClient({
+        return createIaBotAhmedClient({
           baseUrl: args.attach!,
           directory: dir,
           headers: attachHeaders,
@@ -388,7 +388,7 @@ export const RunCommand = effectCmd({
         return message.slice(0, 50) + (message.length > 50 ? "..." : "")
       }
 
-      async function session(sdk: ia-bot-ahmedClient): Promise<SessionInfo | undefined> {
+      async function session(sdk: IaBotAhmedClient): Promise<SessionInfo | undefined> {
         if (args.session) {
           const current = await sdk.session
             .get({
@@ -467,7 +467,7 @@ export const RunCommand = effectCmd({
         }
       }
 
-      async function share(sdk: ia-bot-ahmedClient, sessionID: string) {
+      async function share(sdk: IaBotAhmedClient, sessionID: string) {
         const cfg = await sdk.config.get()
         if (!cfg.data) return
         if (cfg.data.share !== "auto" && !flags.autoShare && !args.share) return
@@ -483,7 +483,7 @@ export const RunCommand = effectCmd({
       }
 
       async function createFreshSession(
-        sdk: ia-bot-ahmedClient,
+        sdk: IaBotAhmedClient,
         input: { agent: string | undefined; model: ModelInput | undefined; variant: string | undefined },
       ): Promise<SessionInfo> {
         const result = await sdk.session.create({
@@ -510,7 +510,7 @@ export const RunCommand = effectCmd({
         }
       }
 
-      async function current(sdk: ia-bot-ahmedClient): Promise<string> {
+      async function current(sdk: IaBotAhmedClient): Promise<string> {
         if (!args.attach) {
           return directory ?? root
         }
@@ -553,7 +553,7 @@ export const RunCommand = effectCmd({
         return name
       }
 
-      async function attachAgent(sdk: ia-bot-ahmedClient) {
+      async function attachAgent(sdk: IaBotAhmedClient) {
         if (!args.agent) return undefined
         const name = args.agent
 
@@ -593,7 +593,7 @@ export const RunCommand = effectCmd({
         return name
       }
 
-      async function pickAgent(sdk: ia-bot-ahmedClient) {
+      async function pickAgent(sdk: IaBotAhmedClient) {
         if (!args.agent) return undefined
         if (args.attach) {
           return attachAgent(sdk)
@@ -602,7 +602,7 @@ export const RunCommand = effectCmd({
         return localAgent()
       }
 
-      async function execute(sdk: ia-bot-ahmedClient) {
+      async function execute(sdk: IaBotAhmedClient) {
         const sess = await session(sdk)
         if (!sess?.id) {
           UI.error("Session not found")
@@ -629,7 +629,7 @@ export const RunCommand = effectCmd({
         // to stdout/UI. `client` is passed explicitly because attach mode may
         // rebind the SDK to the session's directory after the subscription is
         // created, and replies issued from inside the loop must use that client.
-        async function loop(client: ia-bot-ahmedClient, events: Awaited<ReturnType<typeof sdk.event.subscribe>>) {
+        async function loop(client: IaBotAhmedClient, events: Awaited<ReturnType<typeof sdk.event.subscribe>>) {
           const toggles = new Map<string, boolean>()
           let error: string | undefined
 
@@ -642,7 +642,7 @@ export const RunCommand = effectCmd({
               toggles.get("start") !== true
             ) {
               UI.empty()
-              UI.println(`> ${event.properties.info.agent} · ${event.properties.info.modelID}`)
+              UI.println(`> ${event.properties.info.agent} Â· ${event.properties.info.modelID}`)
               UI.empty()
               toggles.set("start", true)
             }
@@ -883,8 +883,8 @@ export const RunCommand = effectCmd({
         if (auth) headers.set("Authorization", auth)
         return Server.Default().app.fetch(new Request(request, { headers }))
       }) as typeof globalThis.fetch
-      const sdk = createia-bot-ahmedClient({
-        baseUrl: "http://ia-bot-ahmed.internal",
+      const sdk = createIaBotAhmedClient({
+        baseUrl: "http://IaBotAhmed.internal",
         fetch: fetchFn,
         directory,
       })

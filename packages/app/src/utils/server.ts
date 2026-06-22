@@ -1,4 +1,4 @@
-import { createia-bot-ahmedClient } from "@ia-bot-ahmed/sdk/v2/client"
+﻿import { createIaBotAhmedClient } from "@ia-bot-ahmed/sdk/v2/client"
 import type { ServerConnection } from "@/context/server"
 import { decode64 } from "@/utils/base64"
 
@@ -20,7 +20,7 @@ export function authFromToken(token: string | null) {
 export function createSdkForServer({
   server,
   ...config
-}: Omit<NonNullable<Parameters<typeof createia-bot-ahmedClient>[0]>, "baseUrl"> & {
+}: Omit<NonNullable<Parameters<typeof createIaBotAhmedClient>[0]>, "baseUrl"> & {
   server: ServerConnection.HttpBase
 }) {
   const auth = (() => {
@@ -30,7 +30,7 @@ export function createSdkForServer({
     }
   })()
 
-  return createia-bot-ahmedClient({
+  return createIaBotAhmedClient({
     ...config,
     headers: {
       ...(config.headers instanceof Headers ? Object.fromEntries(config.headers.entries()) : config.headers),

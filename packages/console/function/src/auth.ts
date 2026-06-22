@@ -1,4 +1,4 @@
-import type { KVNamespace } from "@cloudflare/workers-types"
+﻿import type { KVNamespace } from "@cloudflare/workers-types"
 import { z } from "zod"
 import { issuer } from "@openauthjs/openauth"
 import type { Theme } from "@openauthjs/openauth/ui/theme"
@@ -36,7 +36,7 @@ export const subjects = createSubjects({
 
 const MY_THEME: Theme = {
   ...THEME_OPENAUTH,
-  logo: "https://ia-bot-ahmed.app/favicon-v3.svg",
+  logo: "https://IaBotAhmed.app/favicon-v3.svg",
 }
 
 export default {

@@ -1,4 +1,4 @@
-import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
+﻿import { PermissionV1 } from "@ia-bot-ahmed/core/v1/permission"
 import type { Auth } from "@/auth"
 import { SessionV1 } from "@ia-bot-ahmed/core/v1/session"
 import type { RuntimeFlags } from "@/effect/runtime-flags"
@@ -164,7 +164,7 @@ export const prepare = Effect.fn("LLMRequestPrep.prepare")(function* (input: Pre
     })
   }
 
-  const ia-bot-ahmedProjectID = input.model.providerID.startsWith("ia-bot-ahmed")
+  const IaBotAhmedProjectID = input.model.providerID.startsWith("ia-bot-ahmed")
     ? (yield* InstanceState.context).project.id
     : undefined
 
@@ -177,10 +177,10 @@ export const prepare = Effect.fn("LLMRequestPrep.prepare")(function* (input: Pre
     headers: {
       ...(input.model.providerID.startsWith("ia-bot-ahmed")
         ? {
-            ...(ia-bot-ahmedProjectID ? { "x-ia-bot-ahmed-project": ia-bot-ahmedProjectID } : {}),
-            "x-ia-bot-ahmed-session": input.sessionID,
-            "x-ia-bot-ahmed-request": input.user.id,
-            "x-ia-bot-ahmed-client": input.flags.client,
+            ...(IaBotAhmedProjectID ? { "x-IaBotAhmed-project": IaBotAhmedProjectID } : {}),
+            "x-IaBotAhmed-session": input.sessionID,
+            "x-IaBotAhmed-request": input.user.id,
+            "x-IaBotAhmed-client": input.flags.client,
             "User-Agent": USER_AGENT,
           }
         : {

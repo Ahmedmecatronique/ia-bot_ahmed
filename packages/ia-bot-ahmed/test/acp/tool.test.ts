@@ -1,4 +1,4 @@
-import { resolve } from "path"
+﻿import { resolve } from "path"
 import { describe, expect, test } from "bun:test"
 import {
   completedToolContent,
@@ -11,7 +11,7 @@ import {
 } from "../../src/acp/tool"
 
 describe("acp tool conversion", () => {
-  test("maps ia-bot-ahmed tool ids to ACP tool kinds", () => {
+  test("maps IaBotAhmed tool ids to ACP tool kinds", () => {
     expect(toToolKind("bash")).toBe("execute")
     expect(toToolKind("shell")).toBe("execute")
     expect(toToolKind("webfetch")).toBe("fetch")

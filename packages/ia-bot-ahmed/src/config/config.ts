@@ -1,4 +1,4 @@
-import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
+﻿import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
 import { httpClient } from "@ia-bot-ahmed/core/effect/layer-node-platform"
 import { serviceUse } from "@ia-bot-ahmed/core/effect/service-use"
 import path from "path"
@@ -229,8 +229,8 @@ export const layer = Layer.effect(
 
       yield* Effect.promise(() => resolveLoadedPlugins(data, options.path))
       if (!data.$schema) {
-        data.$schema = "https://ia-bot-ahmed.app/config.json"
-        const updated = text.replace(/^\s*\{/, '{\n  "$schema": "https://ia-bot-ahmed.app/config.json",')
+        data.$schema = "https://IaBotAhmed.app/config.json"
+        const updated = text.replace(/^\s*\{/, '{\n  "$schema": "https://IaBotAhmed.app/config.json",')
         yield* fs.writeFileString(options.path, updated).pipe(Effect.catch(() => Effect.void))
       }
       return data
@@ -251,7 +251,7 @@ export const layer = Layer.effect(
         const file = globalConfigFile()
         if (!existsSync(file)) {
           yield* fs
-            .writeWithDirs(file, JSON.stringify({ $schema: "https://ia-bot-ahmed.app/config.json" }, null, 2))
+            .writeWithDirs(file, JSON.stringify({ $schema: "https://IaBotAhmed.app/config.json" }, null, 2))
             .pipe(Effect.catch(() => Effect.void))
         }
       }
@@ -266,7 +266,7 @@ export const layer = Layer.effect(
             .then(async (mod) => {
               const { provider, model, ...rest } = mod.default
               if (provider && model) result.model = `${provider}/${model}`
-              result["$schema"] = "https://ia-bot-ahmed.app/config.json"
+              result["$schema"] = "https://IaBotAhmed.app/config.json"
               result = mergeConfig(result, rest)
               await fsNode.writeFile(path.join(Global.Path.config, "config.json"), JSON.stringify(result, null, 2))
               await fsNode.unlink(legacy)
@@ -356,7 +356,7 @@ export const layer = Layer.effect(
           if (value.type === "wellknown") {
             const url = key.replace(/\/+$/, "")
             authEnv[value.key] = value.token
-            const wellknownURL = `${url}/.well-known/ia-bot-ahmed`
+            const wellknownURL = `${url}/.well-known/IaBotAhmed`
             yield* Effect.logDebug("fetching remote config", { url: wellknownURL })
             const wellknown = yield* fetchRemoteJson(wellknownURL, undefined, ConfigV1.WellKnown, url)
             const remote = yield* Effect.promise(() =>
@@ -379,7 +379,7 @@ export const layer = Layer.effect(
                 })
               : {}
             const remoteConfig = mergeConfig(isRecord(wellknown.config) ? wellknown.config : {}, fetchedConfig)
-            if (!remoteConfig.$schema) remoteConfig.$schema = "https://ia-bot-ahmed.app/config.json"
+            if (!remoteConfig.$schema) remoteConfig.$schema = "https://IaBotAhmed.app/config.json"
             const source = wellknownURL
             const next = yield* loadConfig(
               JSON.stringify(remoteConfig),
@@ -421,7 +421,7 @@ export const layer = Layer.effect(
         const deps: Fiber.Fiber<void>[] = []
 
         for (const dir of directories) {
-          if (dir.endsWith(".ia-bot-ahmed") || dir === Flag.IA_BOT_AHMED_CONFIG_DIR) {
+          if (dir.endsWith(".IaBotAhmed") || dir === Flag.IA_BOT_AHMED_CONFIG_DIR) {
             for (const file of ["ia-bot-ahmed.json", "ia-bot-ahmed.jsonc"]) {
               const source = path.join(dir, file)
               yield* Effect.logDebug(`loading config from ${source}`)

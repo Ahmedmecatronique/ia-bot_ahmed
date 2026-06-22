@@ -1,4 +1,4 @@
-import { AccountID, OrgID } from "@/account/schema"
+﻿import { AccountID, OrgID } from "@/account/schema"
 import { MCP } from "@/mcp"
 
 import { Session } from "@/session/session"
@@ -112,7 +112,7 @@ export const ExperimentalApi = HttpApi.make("experimental")
           OpenApi.annotations({
             identifier: "experimental.capabilities.get",
             summary: "Get experimental capabilities",
-            description: "Get experimental features enabled on the ia-bot-ahmed server.",
+            description: "Get experimental features enabled on the IaBotAhmed server.",
           }),
         ),
         HttpApiEndpoint.get("console", ExperimentalPaths.console, {
@@ -146,7 +146,7 @@ export const ExperimentalApi = HttpApi.make("experimental")
           OpenApi.annotations({
             identifier: "experimental.console.switchOrg",
             summary: "Switch active Console org",
-            description: "Persist a new active Console account/org selection for the current local ia-bot-ahmed state.",
+            description: "Persist a new active Console account/org selection for the current local IaBotAhmed state.",
           }),
         ),
         HttpApiEndpoint.get("tool", ExperimentalPaths.tool, {
@@ -229,7 +229,7 @@ export const ExperimentalApi = HttpApi.make("experimental")
             identifier: "experimental.session.list",
             summary: "List sessions",
             description:
-              "Get a list of all ia-bot-ahmed sessions across projects, sorted by most recently updated. Archived sessions are excluded by default.",
+              "Get a list of all IaBotAhmed sessions across projects, sorted by most recently updated. Archived sessions are excluded by default.",
           }),
         ),
         HttpApiEndpoint.post("sessionBackground", ExperimentalPaths.sessionBackground, {

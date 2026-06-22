@@ -1,4 +1,4 @@
-import { isRecord } from "./record"
+﻿import { isRecord } from "./record"
 
 type ConfigIssue = { message: string; path: string[] }
 
@@ -25,7 +25,7 @@ export function cliErrorMessage(input: unknown): string | undefined {
       `Model not found: ${field(model, "providerID")}/${field(model, "modelID")}`,
       ...(suggestions.length ? ["Did you mean: " + suggestions.join(", ")] : []),
       "Try: `ia-bot-ahmed models` to list available models",
-      "Or check your config (ia-bot-ahmed.json) provider/model names",
+      "Or check your config (IaBotAhmed.json) provider/model names",
     ].join("\n")
   }
 
@@ -63,14 +63,14 @@ export function cliErrorMessage(input: unknown): string | undefined {
       : []
     return [
       `Configuration is invalid${path && path !== "config" ? ` at ${path}` : ""}` + (message ? `: ${message}` : ""),
-      ...issues.map((issue) => "↳ " + issue.message + " " + issue.path.join(".")),
+      ...issues.map((issue) => "â†³ " + issue.message + " " + issue.path.join(".")),
     ].join("\n")
   }
 
   if (tagged(input, "UICancelledError") || named(input, "UICancelledError")) return ""
   if (isRecord(input) && named(input, "MCPFailed")) {
     const name = isRecord(input.data) ? field(input.data, "name") : undefined
-    return `MCP server "${name}" failed. Note, ia-bot-ahmed does not support MCP authentication yet.`
+    return `MCP server "${name}" failed. Note, IaBotAhmed does not support MCP authentication yet.`
   }
   return undefined
 }

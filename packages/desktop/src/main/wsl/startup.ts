@@ -1,8 +1,8 @@
-export function wslServerIdsToStartOnInitialize(servers: { id: string }[]) {
+﻿export function wslServerIdsToStartOnInitialize(servers: { id: string }[]) {
   return servers.map((server) => server.id)
 }
 
-export function expectia-bot-ahmedVersion(installed: string | null, expected: string, distro = "Debian") {
+export function expectIaBotAhmedVersion(installed: string | null, expected: string, distro = "Debian") {
   if (installed === expected) return
   throw new Error(
     `ia-bot-ahmed update finished but ${distro} still reports ${installed ?? "no version"}; expected ${expected}`,

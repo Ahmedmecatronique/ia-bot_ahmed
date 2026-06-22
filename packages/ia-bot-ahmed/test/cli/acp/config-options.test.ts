@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import type { SetSessionConfigOptionResponse } from "@agentclientprotocol/sdk"
 import { Effect } from "effect"
 import { cliIt } from "../../lib/cli-process"
@@ -15,10 +15,10 @@ import {
 describe("ia-bot-ahmed acp config option subprocess", () => {
   cliIt.live(
     'model option is listed with category "model"',
-    ({ home, llm, ia-bot-ahmed }) =>
+    ({ home, llm, IaBotAhmed }) =>
       Effect.gen(function* () {
         const acp = yield* createAcpClient(
-          { ia-bot-ahmed },
+          { IaBotAhmed },
           { IA_BOT_AHMED_CONFIG_CONTENT: JSON.stringify(verifierConfig(llm.url)) },
         )
         yield* initialize(acp)
@@ -33,10 +33,10 @@ describe("ia-bot-ahmed acp config option subprocess", () => {
 
   cliIt.live(
     "model switch updates currentValue",
-    ({ home, llm, ia-bot-ahmed }) =>
+    ({ home, llm, IaBotAhmed }) =>
       Effect.gen(function* () {
         const acp = yield* createAcpClient(
-          { ia-bot-ahmed },
+          { IaBotAhmed },
           { IA_BOT_AHMED_CONFIG_CONTENT: JSON.stringify(verifierConfig(llm.url)) },
         )
         yield* initialize(acp)
@@ -60,10 +60,10 @@ describe("ia-bot-ahmed acp config option subprocess", () => {
 
   cliIt.live(
     'effort option is listed with category "thought_level" when selected model supports variants',
-    ({ home, llm, ia-bot-ahmed }) =>
+    ({ home, llm, IaBotAhmed }) =>
       Effect.gen(function* () {
         const acp = yield* createAcpClient(
-          { ia-bot-ahmed },
+          { IaBotAhmed },
           { IA_BOT_AHMED_CONFIG_CONTENT: JSON.stringify(verifierConfig(llm.url)) },
         )
         yield* initialize(acp)
@@ -78,10 +78,10 @@ describe("ia-bot-ahmed acp config option subprocess", () => {
 
   cliIt.live(
     "effort switch updates currentValue",
-    ({ home, llm, ia-bot-ahmed }) =>
+    ({ home, llm, IaBotAhmed }) =>
       Effect.gen(function* () {
         const acp = yield* createAcpClient(
-          { ia-bot-ahmed },
+          { IaBotAhmed },
           { IA_BOT_AHMED_CONFIG_CONTENT: JSON.stringify(verifierConfig(llm.url)) },
         )
         yield* initialize(acp)

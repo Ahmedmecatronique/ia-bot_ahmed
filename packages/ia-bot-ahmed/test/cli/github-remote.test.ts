@@ -1,28 +1,28 @@
-import { test, expect } from "bun:test"
+﻿import { test, expect } from "bun:test"
 import { parseGitHubRemote } from "../../src/cli/cmd/github"
 
 test("parses https URL with .git suffix", () => {
-  expect(parseGitHubRemote("https://github.com/sst/ia-bot-ahmed.git")).toEqual({ owner: "sst", repo: "ia-bot-ahmed" })
+  expect(parseGitHubRemote("https://github.com/sst/IaBotAhmed.git")).toEqual({ owner: "sst", repo: "ia-bot-ahmed" })
 })
 
 test("parses https URL without .git suffix", () => {
-  expect(parseGitHubRemote("https://github.com/sst/ia-bot-ahmed")).toEqual({ owner: "sst", repo: "ia-bot-ahmed" })
+  expect(parseGitHubRemote("https://github.com/sst/IaBotAhmed")).toEqual({ owner: "sst", repo: "ia-bot-ahmed" })
 })
 
 test("parses git@ URL with .git suffix", () => {
-  expect(parseGitHubRemote("git@github.com:sst/ia-bot-ahmed.git")).toEqual({ owner: "sst", repo: "ia-bot-ahmed" })
+  expect(parseGitHubRemote("git@github.com:sst/IaBotAhmed.git")).toEqual({ owner: "sst", repo: "ia-bot-ahmed" })
 })
 
 test("parses git@ URL without .git suffix", () => {
-  expect(parseGitHubRemote("git@github.com:sst/ia-bot-ahmed")).toEqual({ owner: "sst", repo: "ia-bot-ahmed" })
+  expect(parseGitHubRemote("git@github.com:sst/IaBotAhmed")).toEqual({ owner: "sst", repo: "ia-bot-ahmed" })
 })
 
 test("parses ssh:// URL with .git suffix", () => {
-  expect(parseGitHubRemote("ssh://git@github.com/sst/ia-bot-ahmed.git")).toEqual({ owner: "sst", repo: "ia-bot-ahmed" })
+  expect(parseGitHubRemote("ssh://git@github.com/sst/IaBotAhmed.git")).toEqual({ owner: "sst", repo: "ia-bot-ahmed" })
 })
 
 test("parses ssh:// URL without .git suffix", () => {
-  expect(parseGitHubRemote("ssh://git@github.com/sst/ia-bot-ahmed")).toEqual({ owner: "sst", repo: "ia-bot-ahmed" })
+  expect(parseGitHubRemote("ssh://git@github.com/sst/IaBotAhmed")).toEqual({ owner: "sst", repo: "ia-bot-ahmed" })
 })
 
 test("parses git protocol URLs from package metadata", () => {

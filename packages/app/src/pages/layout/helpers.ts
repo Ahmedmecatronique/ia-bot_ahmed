@@ -1,4 +1,4 @@
-import { getFilename } from "@ia-bot-ahmed/core/util/path"
+﻿import { getFilename } from "@ia-bot-ahmed/core/util/path"
 import { type Session } from "@ia-bot-ahmed/sdk/v2/client"
 import { pathKey } from "@/utils/path-key"
 import type { ServerConnection } from "@/context/server"
@@ -96,7 +96,7 @@ export function homeSessionServerStatus(active: boolean, status: () => { working
 const IA_BOT_AHMED_PROJECT_ID = "4b0ea68d7af9a6031a7ffda7ad66e0cb83315750"
 
 export function getProjectAvatarSource(id?: string, icon?: { color?: string; url?: string; override?: string }) {
-  if (id === IA_BOT_AHMED_PROJECT_ID) return "https://ia-bot-ahmed.app/favicon.svg"
+  if (id === IA_BOT_AHMED_PROJECT_ID) return "https://IaBotAhmed.app/favicon.svg"
   if (icon?.override) return icon.override
   if (icon?.color) return undefined
   return icon?.url

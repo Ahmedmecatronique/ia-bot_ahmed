@@ -1,8 +1,8 @@
-import "./index.css"
+﻿import "./index.css"
 import { Title, Meta } from "@solidjs/meta"
 //import { HttpHeader } from "@solidjs/start"
-import video from "../asset/lander/ia-bot-ahmed-min.mp4"
-import videoPoster from "../asset/lander/ia-bot-ahmed-poster.png"
+import video from "../asset/lander/IaBotAhmed-min.mp4"
+import videoPoster from "../asset/lander/IaBotAhmed-poster.png"
 import { IconCopy, IconCheck } from "../component/icon"
 import { A, createAsync } from "@solidjs/router"
 import { EmailSignup } from "~/component/email-signup"
@@ -74,7 +74,7 @@ export default function Home() {
               {/*<a data-slot="releases"*/}
               {/*   href={release()?.url ?? `${config.github.repoUrl}/releases`}*/}
               {/*   target="_blank">*/}
-              {/*  What’s new in {release()?.name ?? "the latest release"}*/}
+              {/*  Whatâ€™s new in {release()?.name ?? "the latest release"}*/}
               {/*</a>*/}
               <h1>{i18n.t("home.hero.title")}</h1>
               <p>
@@ -115,7 +115,7 @@ export default function Home() {
                       <span data-slot="command-script">
                         <span>curl -fsSL </span>
                         <span data-slot="protocol">https://</span>
-                        <span data-slot="highlight">ia-bot-ahmed.app/install</span>
+                        <span data-slot="highlight">IaBotAhmed.app/install</span>
                         <span> | bash</span>
                       </span>
                       <CopyStatus />
@@ -125,7 +125,7 @@ export default function Home() {
                     <button data-copy data-slot="command" onClick={handleCopyClick}>
                       <span>
                         <span data-slot="protocol">npm i -g </span>
-                        <span data-slot="highlight">ia-bot-ahmed-ai</span>
+                        <span data-slot="highlight">IaBotAhmed-ai</span>
                       </span>
                       <CopyStatus />
                     </button>
@@ -134,7 +134,7 @@ export default function Home() {
                     <button data-copy data-slot="command" onClick={handleCopyClick}>
                       <span>
                         <span data-slot="protocol">bun add -g </span>
-                        <span data-slot="highlight">ia-bot-ahmed-ai</span>
+                        <span data-slot="highlight">IaBotAhmed-ai</span>
                       </span>
                       <CopyStatus />
                     </button>
@@ -143,7 +143,7 @@ export default function Home() {
                     <button data-copy data-slot="command" onClick={handleCopyClick}>
                       <span>
                         <span data-slot="protocol">brew install </span>
-                        <span data-slot="highlight">anomalyco/tap/ia-bot-ahmed</span>
+                        <span data-slot="highlight">anomalyco/tap/IaBotAhmed</span>
                       </span>
                       <CopyStatus />
                     </button>
@@ -152,7 +152,7 @@ export default function Home() {
                     <button data-copy data-slot="command" onClick={handleCopyClick}>
                       <span>
                         <span data-slot="protocol">paru -S </span>
-                        <span data-slot="highlight">ia-bot-ahmed</span>
+                        <span data-slot="highlight">IaBotAhmed</span>
                       </span>
                       <CopyStatus />
                     </button>

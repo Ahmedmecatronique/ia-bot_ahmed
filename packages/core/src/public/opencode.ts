@@ -1,5 +1,4 @@
-export * as ia-bot-ahmed from "./ia-bot-ahmed"
-
+﻿
 import { Context, Effect, Layer } from "effect"
 import { Catalog } from "../catalog"
 import { Database } from "../database/database"
@@ -20,8 +19,8 @@ export interface Interface {
   readonly tools: Tool.Interface
 }
 
-/** Intentional public native API for Effect applications embedding ia-bot-ahmed. */
-export class Service extends Context.Service<Service, Interface>()("@ia-bot-ahmed/public/ia-bot-ahmed") {}
+/** Intentional public native API for Effect applications embedding IaBotAhmed. */
+export class Service extends Context.Service<Service, Interface>()("@ia-bot-ahmed/public/IaBotAhmed") {}
 
 class SessionModelValidation extends Context.Service<
   SessionModelValidation,
@@ -126,4 +125,4 @@ export const layer = Layer.effect(
   }),
 ).pipe(Layer.provide(Layer.merge(ApplicationToolsLayer, SessionsLayer)))
 
-// TODO: Add ia-bot-ahmed.create(...) as the Promise facade over the same native API semantics.
+// TODO: Add IaBotAhmed.create(...) as the Promise facade over the same native API semantics.

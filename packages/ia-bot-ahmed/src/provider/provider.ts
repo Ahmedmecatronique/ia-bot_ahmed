@@ -1,4 +1,4 @@
-import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
+﻿import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
 import os from "os"
 import { ConfigV1 } from "@ia-bot-ahmed/core/v1/config/config"
 import fuzzysort from "fuzzysort"
@@ -176,7 +176,7 @@ function custom(dep: CustomDep): Record<string, CustomLoader> {
           },
         },
       }),
-    ia-bot-ahmed: Effect.fnUntraced(function* (input: Info) {
+    IaBotAhmed: Effect.fnUntraced(function* (input: Info) {
       const env = yield* dep.env()
       const hasKey = iife(() => {
         if (input.env.some((item) => env[item])) return true
@@ -362,7 +362,7 @@ function custom(dep: CustomDep): Record<string, CustomLoader> {
           }
 
           // Region resolution precedence (highest to lowest):
-          // 1. options.region from ia-bot-ahmed.json provider config
+          // 1. options.region from IaBotAhmed.json provider config
           // 2. defaultRegion from AWS_REGION environment variable
           // 3. Default "us-east-1" (baked into defaultRegion)
           const region = options?.region ?? defaultRegion
@@ -445,7 +445,7 @@ function custom(dep: CustomDep): Record<string, CustomLoader> {
         autoload: false,
         options: {
           headers: {
-            "HTTP-Referer": "https://ia-bot-ahmed.app/",
+            "HTTP-Referer": "https://IaBotAhmed.app/",
             "X-Title": "ia-bot-ahmed",
             "X-Source": "ia-bot-ahmed",
           },
@@ -456,7 +456,7 @@ function custom(dep: CustomDep): Record<string, CustomLoader> {
         autoload: false,
         options: {
           headers: {
-            "HTTP-Referer": "https://ia-bot-ahmed.app/",
+            "HTTP-Referer": "https://IaBotAhmed.app/",
             "X-Title": "ia-bot-ahmed",
           },
         },
@@ -466,7 +466,7 @@ function custom(dep: CustomDep): Record<string, CustomLoader> {
         autoload: provider.source === "config",
         options: {
           headers: {
-            "HTTP-Referer": "https://ia-bot-ahmed.app/",
+            "HTTP-Referer": "https://IaBotAhmed.app/",
             "X-Title": "ia-bot-ahmed",
             "X-BILLING-INVOKE-ORIGIN": "ia-bot-ahmed",
           },
@@ -477,7 +477,7 @@ function custom(dep: CustomDep): Record<string, CustomLoader> {
         autoload: false,
         options: {
           headers: {
-            "http-referer": "https://ia-bot-ahmed.app/",
+            "http-referer": "https://IaBotAhmed.app/",
             "x-title": "ia-bot-ahmed",
           },
         },
@@ -583,7 +583,7 @@ function custom(dep: CustomDep): Record<string, CustomLoader> {
         autoload: false,
         options: {
           headers: {
-            "HTTP-Referer": "https://ia-bot-ahmed.app/",
+            "HTTP-Referer": "https://IaBotAhmed.app/",
             "X-Title": "ia-bot-ahmed",
           },
         },
@@ -841,7 +841,7 @@ function custom(dep: CustomDep): Record<string, CustomLoader> {
         autoload: false,
         options: {
           headers: {
-            "HTTP-Referer": "https://ia-bot-ahmed.app/",
+            "HTTP-Referer": "https://IaBotAhmed.app/",
             "X-Title": "ia-bot-ahmed",
           },
         },
@@ -869,7 +869,7 @@ function custom(dep: CustomDep): Record<string, CustomLoader> {
           autoload: false,
           async getModel() {
             throw new Error(
-              `Snowflake Cortex: missing credentials (${missing}). Provide a bearer token (OAuth, JWT, or PAT) via env var, ia-bot-ahmed auth, or provider options.`,
+              `Snowflake Cortex: missing credentials (${missing}). Provide a bearer token (OAuth, JWT, or PAT) via env var, IaBotAhmed auth, or provider options.`,
             )
           },
         }

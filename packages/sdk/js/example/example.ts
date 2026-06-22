@@ -1,8 +1,8 @@
-import { createia-bot-ahmedClient, createia-bot-ahmedServer } from "@ia-bot-ahmed/sdk"
+﻿import { createIaBotAhmedClient, createIaBotAhmedServer } from "@ia-bot-ahmed/sdk"
 import { pathToFileURL } from "bun"
 
-const server = await createia-bot-ahmedServer()
-const client = createia-bot-ahmedClient({ baseUrl: server.url })
+const server = await createIaBotAhmedServer()
+const client = createIaBotAhmedClient({ baseUrl: server.url })
 
 const input = await Array.fromAsync(new Bun.Glob("packages/core/*.ts").scan())
 

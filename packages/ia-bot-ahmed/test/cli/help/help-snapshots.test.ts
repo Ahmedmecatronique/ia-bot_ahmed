@@ -1,14 +1,14 @@
-// Help-text snapshots for every CLI command + key subcommand. Catches
-// accidental flag removals, renames, and reordering in a single sweep —
+﻿// Help-text snapshots for every CLI command + key subcommand. Catches
+// accidental flag removals, renames, and reordering in a single sweep â€”
 // any change to the user-visible CLI surface shows up here as a diff.
 //
 // This is the broad coverage layer that makes the future Effect CLI
-// migration (yargs → effect-smol/cli) safe to attempt: if a refactor
+// migration (yargs â†’ effect-smol/cli) safe to attempt: if a refactor
 // preserves the surface, the snapshots stay green; if it doesn't, the
 // diff tells you exactly which command(s) changed.
 //
 // Snapshots are taken at COLUMNS=120 so wrapping is stable across
-// terminal sizes. The default ia-bot-ahmed tui command is excluded —
+// terminal sizes. The default IaBotAhmed tui command is excluded â€”
 // `ia-bot-ahmed --help` includes an ASCII banner that pulls in the install
 // version (changes per release), so we'd snapshot a moving target.
 import { describe, expect } from "bun:test"
@@ -41,8 +41,8 @@ function normalize(text: string): string {
 
 // Top-level commands. Order matches what `ia-bot-ahmed --help` prints today;
 // keep it in that order so the snapshot file reads as a table of contents.
-// `completion` is intentionally excluded — it's a yargs built-in that emits
-// top-level help on `--help` and exits 1; not a real ia-bot-ahmed command.
+// `completion` is intentionally excluded â€” it's a yargs built-in that emits
+// top-level help on `--help` and exits 1; not a real IaBotAhmed command.
 const TOP_LEVEL = [
   "acp",
   "mcp",
@@ -66,7 +66,7 @@ const TOP_LEVEL = [
   "db",
 ] as const
 
-// Subcommands worth pinning. Not exhaustive — the goal is one snapshot per
+// Subcommands worth pinning. Not exhaustive â€” the goal is one snapshot per
 // distinct argv shape, not every leaf. Add new entries when a subcommand
 // gains user-visible flags that we want to lock in.
 const SUBCOMMANDS = [
@@ -93,13 +93,13 @@ const SNAPSHOT_ENV = { COLUMNS: "120" }
 
 describe("ia-bot-ahmed CLI help-text snapshots", () => {
   // Single test, parallel spawns. Each command's help fires under
-  // `concurrency: 8` — wall-clock stays under ~10s even for ~35 commands,
+  // `concurrency: 8` â€” wall-clock stays under ~10s even for ~35 commands,
   // versus ~1 minute if we serialized.
   cliIt.live(
     "every documented command emits stable help text",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const topLevel = yield* ia-bot-ahmed.spawn(["--help"], { env: SNAPSHOT_ENV })
+        const topLevel = yield* IaBotAhmed.spawn(["--help"], { env: SNAPSHOT_ENV })
         expect(topLevel.exitCode).toBe(0)
         expect(topLevel.stderr.endsWith(EOL)).toBe(true)
 
@@ -108,12 +108,12 @@ describe("ia-bot-ahmed CLI help-text snapshots", () => {
         // Spawn in parallel, then assert in argv order so snapshot output is
         // deterministic and per-command failures don't abort the rest of
         // the sweep. `Effect.partition` is the canonical "run all, separate
-        // failures from successes" primitive — no mutable accumulator needed.
+        // failures from successes" primitive â€” no mutable accumulator needed.
         const [failures, results] = yield* Effect.partition(
           argvs,
           (argv) =>
             Effect.gen(function* () {
-              const result = yield* ia-bot-ahmed.spawn([...argv, "--help"], { env: SNAPSHOT_ENV })
+              const result = yield* IaBotAhmed.spawn([...argv, "--help"], { env: SNAPSHOT_ENV })
               if (result.exitCode !== 0) {
                 return yield* Effect.fail(`ia-bot-ahmed ${argv.join(" ")}: exit ${result.exitCode}`)
               }

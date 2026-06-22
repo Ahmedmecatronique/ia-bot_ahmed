@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { LLMEvent, ToolFailure } from "@ia-bot-ahmed/llm"
 import { LLMClient, RequestExecutor, WebSocketExecutor, type LLMClientShape } from "@ia-bot-ahmed/llm/route"
 import { jsonSchema, tool, type ModelMessage, type Tool } from "ai"
@@ -418,7 +418,7 @@ describe("session.llm-native.request", () => {
         provider: { ...providerInfo, id: ProviderV2.ID.make("google") },
         auth: undefined,
       }),
-    ).toEqual({ type: "unsupported", reason: "provider is not openai, ia-bot-ahmed, or anthropic" })
+    ).toEqual({ type: "unsupported", reason: "provider is not openai, IaBotAhmed, or anthropic" })
     expect(
       LLMNativeRuntime.status({
         model: baseModel,
@@ -471,7 +471,7 @@ describe("session.llm-native.request", () => {
     ).toMatchObject({ type: "supported", apiKey: "test-anthropic-key" })
   })
 
-  test("prefers console provider api key over stored ia-bot-ahmed auth", () => {
+  test("prefers console provider api key over stored IaBotAhmed auth", () => {
     expect(
       LLMNativeRuntime.status({
         model: { ...baseModel, providerID: ProviderV2.ID.make("ia-bot-ahmed") },

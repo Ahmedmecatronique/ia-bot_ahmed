@@ -1,7 +1,7 @@
-/** Intentional supported native API. Other core subpaths remain internal implementation surfaces. */
+﻿/** Intentional supported native API. Other core subpaths remain internal implementation surfaces. */
 export { Agent } from "./agent"
 export { Model } from "./model"
-export { ia-bot-ahmed } from "./ia-bot-ahmed"
+export { IaBotAhmed } from "./opencode"
 export { Session } from "./session"
 export { Tool } from "./tool"
 export { Location } from "./location"

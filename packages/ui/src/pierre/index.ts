@@ -1,4 +1,4 @@
-import { DiffLineAnnotation, FileContents, FileDiffOptions, type SelectedLineRange } from "@pierre/diffs"
+﻿import { DiffLineAnnotation, FileContents, FileDiffOptions, type SelectedLineRange } from "@pierre/diffs"
 import { ComponentProps } from "solid-js"
 import { lineCommentStyles } from "../components/line-comment-styles"
 
@@ -53,11 +53,11 @@ const unsafeCSS = `
   background-color: var(--diffs-bg-selection-text);
 }
 
-::highlight(ia-bot-ahmed-find) {
+::highlight(IaBotAhmed-find) {
   background-color: rgb(from var(--surface-warning-base) r g b / 0.35);
 }
 
-::highlight(ia-bot-ahmed-find-current) {
+::highlight(IaBotAhmed-find-current) {
   background-color: rgb(from var(--surface-warning-strong) r g b / 0.55);
 }
 

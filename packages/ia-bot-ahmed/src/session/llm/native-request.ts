@@ -1,4 +1,4 @@
-import type { JsonSchema, LLMRequest, ProviderMetadata } from "@ia-bot-ahmed/llm"
+﻿import type { JsonSchema, LLMRequest, ProviderMetadata } from "@ia-bot-ahmed/llm"
 import { LLM, Message, SystemPart, ToolCallPart, ToolDefinition, ToolResultPart } from "@ia-bot-ahmed/llm"
 import {
   AmazonBedrock,
@@ -181,7 +181,7 @@ export const model = (input: Provider.Model | RequestInput, headers?: Record<str
 export const request = (input: RequestInput) => {
   const converted = messages(input.messages)
   // This is the only native adapter boundary that should construct canonical
-  // @ia-bot-ahmed/llm request objects from ia-bot-ahmed's session/AI SDK-shaped data.
+  // @ia-bot-ahmed/llm request objects from IaBotAhmed's session/AI SDK-shaped data.
   return LLM.request({
     model: model(input, input.headers),
     system: [...(input.system ?? []).map(SystemPart.make), ...converted.system],

@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process"
+﻿import { spawn } from "node:child_process"
 import { existsSync } from "node:fs"
 import { join } from "node:path"
 import * as pty from "@lydell/node-pty"
@@ -24,7 +24,7 @@ export type RunWslOptions = {
    * LXSS service or a specific distro wedges (e.g. Ubuntu-24.04 with a
    * pending first-run prompt), `wsl.exe` never returns and any command
    * that doesn't specify a timeout hangs the entire startup flow. Default
-   * is 20s — enough for slow cold-starts, short enough to fail fast on
+   * is 20s â€” enough for slow cold-starts, short enough to fail fast on
    * a wedge. Callers can override for longer-running jobs.
    */
   timeoutMs?: number
@@ -259,11 +259,11 @@ export async function installWslDistro(name: string, opts?: RunWslOptions) {
   )
 }
 
-export async function installWslia-bot-ahmed(version: string, distro: string, opts?: RunWslOptions) {
+export async function installWslIaBotAhmed(version: string, distro: string, opts?: RunWslOptions) {
   return runInteractiveCommand(
     resolveSystem32Command("wsl.exe"),
     wslArgs(
-      ["bash", "-lc", `curl -fsSL https://ia-bot-ahmed.app/install | bash -s -- --version ${shellEscape(version)}`],
+      ["bash", "-lc", `curl -fsSL https://IaBotAhmed.app/install | bash -s -- --version ${shellEscape(version)}`],
       distro,
     ),
     withTimeout(opts, DEFAULT_WSL_INSTALL_TIMEOUT_MS),
@@ -302,11 +302,11 @@ export async function probeWslDistro(name: string, opts?: RunWslOptions): Promis
   }
 }
 
-export async function resolveWslia-bot-ahmed(distro: string, opts?: RunWslOptions) {
+export async function resolveWslIaBotAhmed(distro: string, opts?: RunWslOptions) {
   return firstLine(
     (
       await runWslSh(
-        'if [ -x "$HOME/.ia-bot-ahmed/bin/ia-bot-ahmed" ]; then printf "%s\\n" "$HOME/.ia-bot-ahmed/bin/ia-bot-ahmed"; fi',
+        'if [ -x "$HOME/.ia-bot-ahmed/bin/IaBotAhmed" ]; then printf "%s\\n" "$HOME/.ia-bot-ahmed/bin/IaBotAhmed"; fi',
         distro,
         opts,
       )

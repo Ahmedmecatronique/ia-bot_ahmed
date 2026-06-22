@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import type { AuthenticateResponse, InitializeResponse } from "@agentclientprotocol/sdk"
 import { Effect } from "effect"
 import { cliIt } from "../../lib/cli-process"
@@ -7,9 +7,9 @@ import { createAcpClient, expectErrorCode, initialize } from "./helpers"
 describe("ia-bot-ahmed acp initialize/auth subprocess", () => {
   cliIt.live(
     "initialize responds with capabilities",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const initialized = yield* initialize(yield* createAcpClient({ ia-bot-ahmed }))
+        const initialized = yield* initialize(yield* createAcpClient({ IaBotAhmed }))
 
         expect(initialized.protocolVersion).toBe(1)
         expect(initialized.agentCapabilities?.promptCapabilities?.embeddedContext).toBe(true)
@@ -28,9 +28,9 @@ describe("ia-bot-ahmed acp initialize/auth subprocess", () => {
 
   cliIt.live(
     "auth negotiation is explicit and safe",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const acp = yield* createAcpClient({ ia-bot-ahmed })
+        const acp = yield* createAcpClient({ IaBotAhmed })
         const initialized = yield* initialize(acp)
 
         expect(initialized.authMethods?.[0]?.id).toBe("ia-bot-ahmed-login")
@@ -48,9 +48,9 @@ describe("ia-bot-ahmed acp initialize/auth subprocess", () => {
 
   cliIt.live(
     "initialize without terminal-auth metadata keeps auth command implicit",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const acp = yield* createAcpClient({ ia-bot-ahmed })
+        const acp = yield* createAcpClient({ IaBotAhmed })
         const initialized = yield* acp.request<InitializeResponse>("initialize", { protocolVersion: 1 })
 
         expect(initialized.result?.authMethods?.[0]?.id).toBe("ia-bot-ahmed-login")

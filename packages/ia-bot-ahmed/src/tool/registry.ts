@@ -1,4 +1,4 @@
-import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
+﻿import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
 import { httpClient } from "@ia-bot-ahmed/core/effect/layer-node-platform"
 import { Ripgrep } from "@ia-bot-ahmed/core/ripgrep"
 import { PlanExitTool } from "./plan"
@@ -54,7 +54,7 @@ import { ProviderV2 } from "@ia-bot-ahmed/core/provider"
 import { ModelV2 } from "@ia-bot-ahmed/core/model"
 
 export function webSearchEnabled(providerID: ProviderV2.ID, flags = { exa: false, parallel: false }) {
-  return providerID === ProviderV2.ID.ia-bot-ahmed || flags.exa || flags.parallel
+  return providerID === ProviderV2.ID.IaBotAhmed || flags.exa || flags.parallel
 }
 
 type TaskDef = Tool.InferDef<typeof TaskTool>
@@ -114,7 +114,7 @@ export const layer = Layer.effect(
         function fromPlugin(id: string, def: ToolDefinition): Tool.Def {
           // Plugin tools still expose Zod args publicly; keep that compatibility
           // boxed at the registry boundary and give the LLM the original JSON Schema.
-          // Normalize missing args to `{}` once — pre-1.14.49 the code was
+          // Normalize missing args to `{}` once â€” pre-1.14.49 the code was
           // `z.object(def.args)` and Zod silently tolerated undefined (#27451, #27630).
           const args = def.args ?? {}
           const entries = Object.entries(args)

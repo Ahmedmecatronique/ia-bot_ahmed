@@ -1,6 +1,6 @@
-// Subprocess integration tests for `ia-bot-ahmed serve`. Spawns the real CLI in
-// headless mode and exercises it over HTTP — this is the only test tier that
-// catches bugs spanning argv → server boot → routing → instance loading.
+﻿// Subprocess integration tests for `ia-bot-ahmed serve`. Spawns the real CLI in
+// headless mode and exercises it over HTTP â€” this is the only test tier that
+// catches bugs spanning argv â†’ server boot â†’ routing â†’ instance loading.
 //
 // `serve` is long-lived: the harness returns a handle (url/port/kill/exited)
 // and kills the process when the test scope closes. The OS-assigned port is
@@ -12,12 +12,12 @@ import { cliIt } from "../../lib/cli-process"
 
 describe("ia-bot-ahmed serve (subprocess)", () => {
   // Smoke test: server starts, binds a port, and /global/health responds.
-  // If this fails, all other serve tests likely will too — debug here first.
+  // If this fails, all other serve tests likely will too â€” debug here first.
   cliIt.live(
     "starts, binds a port, and serves /global/health",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const server = yield* ia-bot-ahmed.serve()
+        const server = yield* IaBotAhmed.serve()
         expect(server.port).toBeGreaterThan(0)
         expect(server.url).toMatch(/^http:\/\//)
 
@@ -25,7 +25,7 @@ describe("ia-bot-ahmed serve (subprocess)", () => {
         const res = yield* client.get(`${server.url}/global/health`)
         expect(res.status).toBe(200)
         // GlobalHealth schema is { success: true, ... } | { success: false, error }.
-        // We don't lock in further shape here — any 200 with parseable JSON is
+        // We don't lock in further shape here â€” any 200 with parseable JSON is
         // enough proof the routing + auth-bypass + instance loading is alive.
         const body = yield* res.json
         expect(body).toBeDefined()
@@ -38,13 +38,13 @@ describe("ia-bot-ahmed serve (subprocess)", () => {
   // to wire the finalizer) would leak processes on every test run.
   cliIt.live(
     "kills the subprocess on scope close",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
         // Inner scope so we can observe `.exited` resolving after it closes.
         const exitedPromise = yield* Effect.scoped(
           Effect.gen(function* () {
-            const server = yield* ia-bot-ahmed.serve()
-            // Capture the Promise, not the resolved value — scope closes after
+            const server = yield* IaBotAhmed.serve()
+            // Capture the Promise, not the resolved value â€” scope closes after
             // this gen returns, at which point the finalizer kills the child.
             return server.exited
           }),
@@ -53,7 +53,7 @@ describe("ia-bot-ahmed serve (subprocess)", () => {
         const code = yield* Effect.promise(() => exitedPromise)
         // Bun reports the exit code; SIGTERM-killed processes return non-null
         // (typically 143 on POSIX). We just require resolution within a sane
-        // window — anything else means the kill didn't take.
+        // window â€” anything else means the kill didn't take.
         expect(typeof code === "number" || code === null).toBe(true)
       }),
     60_000,

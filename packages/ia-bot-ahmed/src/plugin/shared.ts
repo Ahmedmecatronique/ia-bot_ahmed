@@ -1,4 +1,4 @@
-import path from "path"
+﻿import path from "path"
 import { fileURLToPath, pathToFileURL } from "url"
 import npa from "npm-package-arg"
 import semver from "semver"
@@ -191,16 +191,16 @@ export async function resolvePathPluginTarget(spec: string) {
   throw new Error(`Plugin directory ${file} is missing package.json or index file`)
 }
 
-export async function checkPluginCompatibility(target: string, ia-bot-ahmedVersion: string, pkg?: PluginPackage) {
-  if (!semver.valid(ia-bot-ahmedVersion) || semver.major(ia-bot-ahmedVersion) === 0) return
+export async function checkPluginCompatibility(target: string, IaBotAhmedVersion: string, pkg?: PluginPackage) {
+  if (!semver.valid(IaBotAhmedVersion) || semver.major(IaBotAhmedVersion) === 0) return
   const hit = pkg ?? (await readPluginPackage(target).catch(() => undefined))
   if (!hit) return
   const engines = hit.json.engines
   if (!isRecord(engines)) return
-  const range = engines.ia-bot-ahmed
+  const range = engines.IaBotAhmed
   if (typeof range !== "string") return
-  if (!semver.satisfies(ia-bot-ahmedVersion, range)) {
-    throw new Error(`Plugin requires ia-bot-ahmed ${range} but running ${ia-bot-ahmedVersion}`)
+  if (!semver.satisfies(IaBotAhmedVersion, range)) {
+    throw new Error(`Plugin requires IaBotAhmed ${range} but running ${IaBotAhmedVersion}`)
   }
 }
 

@@ -1,4 +1,4 @@
-const hop = new Set([
+﻿const hop = new Set([
   "connection",
   "keep-alive",
   "proxy-authenticate",
@@ -14,8 +14,8 @@ const hop = new Set([
 function sanitize(out: Headers) {
   for (const key of hop) out.delete(key)
   out.delete("accept-encoding")
-  out.delete("x-ia-bot-ahmed-directory")
-  out.delete("x-ia-bot-ahmed-workspace")
+  out.delete("x-IaBotAhmed-directory")
+  out.delete("x-IaBotAhmed-workspace")
 }
 
 export function headers(input: Request | HeadersInit | Record<string, string>, extra?: HeadersInit) {

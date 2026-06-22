@@ -1,4 +1,4 @@
-import ia-bot-ahmedWordmarkDark from "../asset/logo-ornate-dark.svg"
+﻿import IaBotAhmedWordmarkDark from "../asset/logo-ornate-dark.svg"
 import { query } from "@solidjs/router"
 import { createEffect, createMemo, createSignal, For, onCleanup, onMount, Show } from "solid-js"
 
@@ -14,11 +14,11 @@ export const headerLinks = [
   { href: "#geo-breakdown", label: "Geo Breakdown" },
 ] as const
 export const githubLink = {
-  href: "https://github.com/anomalyco/ia-bot-ahmed",
-  apiHref: "https://api.github.com/repos/anomalyco/ia-bot-ahmed",
+  href: "https://github.com/anomalyco/IaBotAhmed",
+  apiHref: "https://api.github.com/repos/anomalyco/IaBotAhmed",
   label: "GitHub",
   fallbackStars: "150K",
-  ariaLabel: "Star ia-bot-ahmed on GitHub",
+  ariaLabel: "Star IaBotAhmed on GitHub",
 }
 export const themePreferences = ["dark", "light", "system"] as const
 export const themeStorageKey = "ia-bot-ahmed:stats-theme"
@@ -127,8 +127,8 @@ export function Header(props: { githubStars: string; links?: readonly HeaderLink
             <strong>{githubLink.label}</strong>
             <span>[{props.githubStars}]</span>
           </a>
-          <a data-slot="header-button" data-variant="contrast" href="https://ia-bot-ahmed.app/">
-            <strong>Try ia-bot-ahmed</strong>
+          <a data-slot="header-button" data-variant="contrast" href="https://IaBotAhmed.app/">
+            <strong>Try IaBotAhmed</strong>
           </a>
           <button
             data-slot="menu-button"
@@ -192,7 +192,7 @@ function DataWordmark() {
   )
 }
 
-function ia-bot-ahmedMark() {
+function IaBotAhmedMark() {
   return (
     <svg data-slot="ia-bot-ahmed-mark" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
       <path d="M40 40H0V0H40V40Z" fill="var(--stats-logo-bg)" />
@@ -218,13 +218,13 @@ export function Footer(props: {
     { href: "#geo-breakdown", label: "Geo Breakdown" },
   ]
   const legal = [
-    { href: "https://ia-bot-ahmed.app/legal/terms-of-service", label: "Terms of service" },
-    { href: "https://ia-bot-ahmed.app/legal/privacy-policy", label: "Privacy policy" },
+    { href: "https://IaBotAhmed.app/legal/terms-of-service", label: "Terms of service" },
+    { href: "https://IaBotAhmed.app/legal/privacy-policy", label: "Privacy policy" },
   ]
   const connect = [
-    { href: "mailto:hello@ia-bot-ahmed.app", label: "Contact us" },
-    { href: "https://ia-bot-ahmed.app/discord", label: "Community" },
-    { href: "https://x.com/ia-bot-ahmed", label: "X" },
+    { href: "mailto:hello@IaBotAhmed.app", label: "Contact us" },
+    { href: "https://IaBotAhmed.app/discord", label: "Community" },
+    { href: "https://x.com/IaBotAhmed", label: "X" },
     githubLink,
     { href: "https://www.youtube.com/@anomaly-co", label: "YouTube" },
   ]
@@ -233,8 +233,8 @@ export function Footer(props: {
     <footer data-component="footer">
       <SectionBridge label="GEO BREAKDOWN" href="#geo-breakdown" />
       <div data-slot="footer-grid">
-        <a data-slot="footer-mark" href="https://ia-bot-ahmed.app" aria-label="ia-bot-ahmed home">
-          <ia-bot-ahmedMark />
+        <a data-slot="footer-mark" href="https://IaBotAhmed.app" aria-label="ia-bot-ahmed home">
+          <IaBotAhmedMark />
         </a>
         <FooterColumn title="Model Data" links={modelStats} />
         <FooterColumn title="Legal" links={legal} />
@@ -250,7 +250,7 @@ export function Footer(props: {
       <div data-slot="footer-pattern" aria-hidden="true" />
       <div data-slot="footer-bottom">
         <div>
-          <span>© 2026 Anomaly Innovations Inc.</span>
+          <span>Â© 2026 Anomaly Innovations Inc.</span>
           <span data-slot="status">All systems Operational</span>
         </div>
         <div data-slot="theme-toggle" role="group" aria-label="Theme">
@@ -283,7 +283,7 @@ function SectionBridge(props: { label: string; href: string }) {
       <span>LEAN MORE</span>
       <i />
       <strong>{props.label}</strong>
-      <b>▸</b>
+      <b>â–¸</b>
     </a>
   )
 }
@@ -385,7 +385,7 @@ function SubscribeModal(props: { onClose: () => void }) {
       <div data-slot="modal-scrim" aria-hidden="true" onClick={props.onClose} />
       <div data-slot="modal-panel">
         <div data-slot="modal-brand">
-          <img data-slot="modal-logo" src={ia-bot-ahmedWordmarkDark} alt="ia-bot-ahmed" />
+          <img data-slot="modal-logo" src={IaBotAhmedWordmarkDark} alt="ia-bot-ahmed" />
           <button data-slot="modal-close" type="button" aria-label="Close newsletter signup" onClick={props.onClose}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M4.44 4.44L11.56 11.56M11.56 4.44L4.44 11.56" stroke="currentColor" />
@@ -394,7 +394,7 @@ function SubscribeModal(props: { onClose: () => void }) {
         </div>
         <div data-slot="modal-body">
           <div data-slot="modal-intro">
-            <h2 id="subscribe-title">ia-bot-ahmed Newsletter</h2>
+            <h2 id="subscribe-title">IaBotAhmed Newsletter</h2>
             <p>
               Be the first to know
               <br />

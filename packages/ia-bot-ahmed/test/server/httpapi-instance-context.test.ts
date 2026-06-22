@@ -1,4 +1,4 @@
-import { NodeHttpServer, NodeServices } from "@effect/platform-node"
+﻿import { NodeHttpServer, NodeServices } from "@effect/platform-node"
 import { describe, expect } from "bun:test"
 import { Effect, Fiber, Layer, Schema } from "effect"
 import { HttpClient, HttpClientRequest, HttpRouter } from "effect/unstable/http"
@@ -198,7 +198,7 @@ describe("HttpApi instance context middleware", () => {
       yield* serveProbe()
 
       const response = yield* HttpClientRequest.get(`/session?workspace=${workspace.id}`).pipe(
-        HttpClientRequest.setHeader("x-ia-bot-ahmed-directory", dir),
+        HttpClientRequest.setHeader("x-IaBotAhmed-directory", dir),
         HttpClient.execute,
       )
 
@@ -223,7 +223,7 @@ describe("HttpApi instance context middleware", () => {
       yield* serveProbe()
 
       const response = yield* HttpClientRequest.get(`/probe?workspace=${workspace.id}`).pipe(
-        HttpClientRequest.setHeader("x-ia-bot-ahmed-directory", dir),
+        HttpClientRequest.setHeader("x-IaBotAhmed-directory", dir),
         HttpClient.execute,
       )
 
@@ -251,7 +251,7 @@ describe("HttpApi instance context middleware", () => {
       yield* serveProbe()
 
       const response = yield* HttpClientRequest.get(`/probe?workspace=${workspace.id}`).pipe(
-        HttpClientRequest.setHeader("x-ia-bot-ahmed-directory", dir),
+        HttpClientRequest.setHeader("x-IaBotAhmed-directory", dir),
         HttpClient.execute,
       )
 
@@ -279,7 +279,7 @@ describe("HttpApi instance context middleware", () => {
       // workspace id.
       const unknownWorkspaceID = WorkspaceV2.ID.ascending()
       const response = yield* HttpClientRequest.get(`/probe?workspace=${unknownWorkspaceID}`).pipe(
-        HttpClientRequest.setHeader("x-ia-bot-ahmed-directory", dir),
+        HttpClientRequest.setHeader("x-IaBotAhmed-directory", dir),
         HttpClient.execute,
       )
 
@@ -311,7 +311,7 @@ describe("HttpApi instance context middleware", () => {
       yield* serveProbe()
 
       const response = yield* HttpClientRequest.get(`/session?workspace=${workspace.id}`).pipe(
-        HttpClientRequest.setHeader("x-ia-bot-ahmed-directory", dir),
+        HttpClientRequest.setHeader("x-IaBotAhmed-directory", dir),
         HttpClient.execute,
       )
 

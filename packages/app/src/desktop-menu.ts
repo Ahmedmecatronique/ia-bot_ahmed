@@ -1,4 +1,4 @@
-export type DesktopMenuPlatform = "macos" | "windows"
+﻿export type DesktopMenuPlatform = "macos" | "windows"
 
 export type DesktopMenuAction =
   | "app.checkForUpdates"
@@ -200,8 +200,8 @@ export const DESKTOP_MENU: DesktopMenu[] = [
     id: "help",
     label: "Help",
     items: [
-      { type: "item", label: "ia-bot-ahmed Documentation", href: "https://ia-bot-ahmed.app/docs" },
-      { type: "item", label: "Support Forum", href: "https://discord.com/invite/ia-bot-ahmed" },
+      { type: "item", label: "ia-bot-ahmed Documentation", href: "https://IaBotAhmed.app/docs" },
+      { type: "item", label: "Support Forum", href: "https://discord.com/invite/IaBotAhmed" },
       { type: "item", label: "Export Logs...", command: "logs.export" },
       { type: "separator" },
       {

@@ -1,4 +1,4 @@
-import { Component, Show, createMemo, createResource, onMount } from "solid-js"
+﻿import { Component, Show, createMemo, createResource, onMount } from "solid-js"
 import { ButtonV2 } from "@ia-bot-ahmed/ui/v2/button-v2"
 import { SelectV2 } from "@ia-bot-ahmed/ui/v2/select-v2"
 import { Switch } from "@ia-bot-ahmed/ui/v2/switch-v2"
@@ -437,7 +437,7 @@ export const SettingsGeneralV2: Component = () => {
           description={
             <>
               {language.t("settings.general.row.theme.description")}{" "}
-              <Link class="settings-v2-link" href="https://ia-bot-ahmed.app/docs/themes/">
+              <Link class="settings-v2-link" href="https://IaBotAhmed.app/docs/themes/">
                 {language.t("common.learnMore")}
               </Link>
             </>

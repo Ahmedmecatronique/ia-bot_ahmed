@@ -1,4 +1,4 @@
-export * as Tool from "./tool"
+﻿export * as Tool from "./tool"
 
 import { Effect, Scope } from "effect"
 import type { AnyTool, RegistrationError } from "../tool/tool"
@@ -8,7 +8,7 @@ export type { AnyTool, Content, Context, Definition } from "../tool/tool"
 
 export interface Interface {
   /**
-   * Register same-process tools on this ia-bot-ahmed instance for the current Scope.
+   * Register same-process tools on this IaBotAhmed instance for the current Scope.
    * Location tools with the same name take precedence where they are installed.
    * Closing the Scope removes the tools immediately, so calls that have not
    * started settling may fail because the tool is no longer available.

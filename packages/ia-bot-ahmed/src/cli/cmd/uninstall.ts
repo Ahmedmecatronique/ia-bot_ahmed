@@ -1,4 +1,4 @@
-import type { Argv } from "yargs"
+﻿import type { Argv } from "yargs"
 import { UI } from "../ui"
 import * as prompts from "@clack/prompts"
 import { Installation } from "../../installation"
@@ -24,7 +24,7 @@ interface RemovalTargets {
 
 export const UninstallCommand = {
   command: "uninstall",
-  describe: "uninstall ia-bot-ahmed and remove all related files",
+  describe: "uninstall IaBotAhmed and remove all related files",
   builder: (yargs: Argv) =>
     yargs
       .option("keep-config", {
@@ -55,7 +55,7 @@ export const UninstallCommand = {
     UI.empty()
     UI.println(UI.logo("  "))
     UI.empty()
-    prompts.intro("Uninstall ia-bot-ahmed")
+    prompts.intro("Uninstall IaBotAhmed")
 
     const method = await Installation.method()
     prompts.log.info(`Installation method: ${method}`)
@@ -114,30 +114,30 @@ async function showRemovalSummary(targets: RemovalTargets, method: Installation.
     const size = await getDirectorySize(dir.path)
     const sizeStr = formatSize(size)
     const status = dir.keep ? UI.Style.TEXT_DIM + "(keeping)" : ""
-    const prefix = dir.keep ? "○" : "✓"
+    const prefix = dir.keep ? "â—‹" : "âœ“"
 
     prompts.log.info(`  ${prefix} ${dir.label}: ${shortenPath(dir.path)} ${UI.Style.TEXT_DIM}(${sizeStr})${status}`)
   }
 
   if (targets.binary) {
-    prompts.log.info(`  ✓ Binary: ${shortenPath(targets.binary)}`)
+    prompts.log.info(`  âœ“ Binary: ${shortenPath(targets.binary)}`)
   }
 
   if (targets.shellConfig) {
-    prompts.log.info(`  ✓ Shell PATH in ${shortenPath(targets.shellConfig)}`)
+    prompts.log.info(`  âœ“ Shell PATH in ${shortenPath(targets.shellConfig)}`)
   }
 
   if (method !== "curl" && method !== "unknown") {
     const cmds: Record<string, string> = {
-      npm: "npm uninstall -g ia-bot-ahmed-ai",
-      pnpm: "pnpm uninstall -g ia-bot-ahmed-ai",
-      bun: "bun remove -g ia-bot-ahmed-ai",
-      yarn: "yarn global remove ia-bot-ahmed-ai",
-      brew: "brew uninstall ia-bot-ahmed",
-      choco: "choco uninstall ia-bot-ahmed",
-      scoop: "scoop uninstall ia-bot-ahmed",
+      npm: "npm uninstall -g IaBotAhmed-ai",
+      pnpm: "pnpm uninstall -g IaBotAhmed-ai",
+      bun: "bun remove -g IaBotAhmed-ai",
+      yarn: "yarn global remove IaBotAhmed-ai",
+      brew: "brew uninstall IaBotAhmed",
+      choco: "choco uninstall IaBotAhmed",
+      scoop: "scoop uninstall IaBotAhmed",
     }
-    prompts.log.info(`  ✓ Package: ${cmds[method] || method}`)
+    prompts.log.info(`  âœ“ Package: ${cmds[method] || method}`)
   }
 }
 
@@ -215,7 +215,7 @@ async function executeUninstall(method: Installation.Method, targets: RemovalTar
     prompts.log.info(`  rm "${targets.binary}"`)
 
     const binDir = path.dirname(targets.binary)
-    if (binDir.includes(".ia-bot-ahmed")) {
+    if (binDir.includes(".IaBotAhmed")) {
       prompts.log.info(`  rmdir "${binDir}" 2>/dev/null`)
     }
   }
@@ -229,7 +229,7 @@ async function executeUninstall(method: Installation.Method, targets: RemovalTar
   }
 
   UI.empty()
-  prompts.log.success("Thank you for using ia-bot-ahmed!")
+  prompts.log.success("Thank you for using IaBotAhmed!")
 }
 
 async function getShellConfigFile(): Promise<string | null> {
@@ -266,7 +266,7 @@ async function getShellConfigFile(): Promise<string | null> {
     if (!exists) continue
 
     const content = await Filesystem.readText(file).catch(() => "")
-    if (content.includes("# ia-bot-ahmed") || content.includes(".ia-bot-ahmed/bin")) {
+    if (content.includes("# IaBotAhmed") || content.includes(".ia-bot-ahmed/bin")) {
       return file
     }
   }
@@ -284,7 +284,7 @@ async function cleanShellConfig(file: string) {
   for (const line of lines) {
     const trimmed = line.trim()
 
-    if (trimmed === "# ia-bot-ahmed") {
+    if (trimmed === "# IaBotAhmed") {
       skip = true
       continue
     }
@@ -298,7 +298,7 @@ async function cleanShellConfig(file: string) {
 
     if (
       (trimmed.startsWith("export PATH=") && trimmed.includes(".ia-bot-ahmed/bin")) ||
-      (trimmed.startsWith("fish_add_path") && trimmed.includes(".ia-bot-ahmed"))
+      (trimmed.startsWith("fish_add_path") && trimmed.includes(".IaBotAhmed"))
     ) {
       continue
     }

@@ -1,6 +1,6 @@
-import { Global } from "@ia-bot-ahmed/core/global"
+﻿import { Global } from "@ia-bot-ahmed/core/global"
 import { InstallationVersion } from "@ia-bot-ahmed/core/installation/version"
-import { createia-bot-ahmedClient } from "@ia-bot-ahmed/sdk/v2/client"
+import { createIaBotAhmedClient } from "@ia-bot-ahmed/sdk/v2/client"
 import { ServerAuth } from "@ia-bot-ahmed/server/auth"
 import { Context, Effect, FileSystem, Layer, Option, Schedule, Schema, Scope } from "effect"
 import { HttpServer } from "effect/unstable/http"
@@ -9,7 +9,7 @@ import { spawn } from "node:child_process"
 import path from "path"
 
 export interface Interface {
-  readonly client: () => Effect.Effect<ReturnType<typeof createia-bot-ahmedClient>, unknown>
+  readonly client: () => Effect.Effect<ReturnType<typeof createIaBotAhmedClient>, unknown>
   readonly transport: () => Effect.Effect<{ url: string; headers: RequestInit["headers"] }, unknown>
   readonly start: () => Effect.Effect<string, Error>
   readonly status: () => Effect.Effect<string | undefined>
@@ -60,7 +60,7 @@ export const layer = Layer.effect(
     })
 
     const createClient = Effect.fnUntraced(function* (url: string) {
-      return createia-bot-ahmedClient({ baseUrl: url, headers: ServerAuth.headers({ password: yield* password() }) })
+      return createIaBotAhmedClient({ baseUrl: url, headers: ServerAuth.headers({ password: yield* password() }) })
     })
 
     const healthy = Effect.fnUntraced(function* () {
@@ -140,7 +140,7 @@ export const layer = Layer.effect(
 
     const client = Effect.fn("cli.daemon.client")(function* () {
       const connection = yield* transport()
-      return createia-bot-ahmedClient({ baseUrl: connection.url, headers: connection.headers })
+      return createIaBotAhmedClient({ baseUrl: connection.url, headers: connection.headers })
     })
 
     const status = Effect.fn("cli.daemon.status")(function* () {

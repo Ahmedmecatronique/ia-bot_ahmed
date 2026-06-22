@@ -1,4 +1,4 @@
-import { Title } from "@solidjs/meta"
+﻿import { Title } from "@solidjs/meta"
 import { createAsync, query, useSearchParams, type RouteDefinition } from "@solidjs/router"
 import { Show } from "solid-js"
 import { ErrorBoundary } from "solid-js"
@@ -24,7 +24,7 @@ export default function LookupPage() {
 
   return (
     <main data-page="support">
-      <Title>ia-bot-ahmed support — {identifier() || "lookup"}</Title>
+      <Title>IaBotAhmed support â€” {identifier() || "lookup"}</Title>
       <h1>Lookup: {identifier() || "(no identifier)"}</h1>
 
       <Show when={identifier()} fallback={<div data-empty>Provide an `identifier` query parameter.</div>}>

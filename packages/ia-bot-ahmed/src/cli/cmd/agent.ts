@@ -1,4 +1,4 @@
-import { cmd } from "./cmd"
+﻿import { cmd } from "./cmd"
 import * as prompts from "@clack/prompts"
 import { UI } from "../ui"
 import { Global } from "@ia-bot-ahmed/core/global"
@@ -14,7 +14,7 @@ import { effectCmd } from "../effect-cmd"
 type AgentMode = "all" | "primary" | "subagent"
 
 // Permission keys (not raw tool names). Multiple tools can map to a single
-// permission — e.g. write/edit/apply_patch all gate on `edit` — so we configure
+// permission â€” e.g. write/edit/apply_patch all gate on `edit` â€” so we configure
 // agents at the permission level to match how the runtime actually enforces it.
 const AVAILABLE_PERMISSIONS = [
   "bash",
@@ -108,7 +108,7 @@ const AgentCreateCommand = effectCmd({
           if (prompts.isCancel(scopeResult)) throw new UI.CancelledError()
           scope = scopeResult
         }
-        targetPath = path.join(scope === "global" ? Global.Path.config : path.join(ctx.worktree, ".ia-bot-ahmed"), "agents")
+        targetPath = path.join(scope === "global" ? Global.Path.config : path.join(ctx.worktree, ".IaBotAhmed"), "agents")
       }
 
       // Get description
@@ -183,7 +183,7 @@ const AgentCreateCommand = effectCmd({
         mode = modeResult
       }
 
-      // Build permissions config — deny anything not explicitly selected.
+      // Build permissions config â€” deny anything not explicitly selected.
       const permissions: Record<string, "deny"> = {}
       for (const permission of AVAILABLE_PERMISSIONS) {
         if (!selected.includes(permission)) {

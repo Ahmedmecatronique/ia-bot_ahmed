@@ -1,4 +1,4 @@
-import { $ } from "bun"
+﻿import { $ } from "bun"
 import semver from "semver"
 import path from "path"
 
@@ -34,7 +34,7 @@ const IS_PREVIEW = CHANNEL !== "latest"
 const VERSION = await (async () => {
   if (env.IA_BOT_AHMED_VERSION) return env.IA_BOT_AHMED_VERSION
   if (IS_PREVIEW) return `0.0.0-${CHANNEL}-${new Date().toISOString().slice(0, 16).replace(/[-:T]/g, "")}`
-  const version = await fetch("https://registry.npmjs.org/ia-bot-ahmed-ai/latest")
+  const version = await fetch("https://registry.npmjs.org/IaBotAhmed-ai/latest")
     .then((res) => {
       if (!res.ok) throw new Error(res.statusText)
       return res.json()

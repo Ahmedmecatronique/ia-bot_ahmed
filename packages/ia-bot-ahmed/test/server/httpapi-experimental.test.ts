@@ -1,4 +1,4 @@
-import { afterEach, describe, expect } from "bun:test"
+﻿import { afterEach, describe, expect } from "bun:test"
 import { Deferred, Effect, Fiber, Layer } from "effect"
 import { HttpClient, HttpClientResponse } from "effect/unstable/http"
 import { eq } from "drizzle-orm"
@@ -146,7 +146,7 @@ describe("experimental HttpApi", () => {
           [
             request(ExperimentalPaths.console, directory),
             request(ExperimentalPaths.consoleOrgs, directory),
-            request(`${ExperimentalPaths.tool}?provider=ia-bot-ahmed&model=gpt-5`, directory),
+            request(`${ExperimentalPaths.tool}?provider=IaBotAhmed&model=gpt-5`, directory),
             request(ExperimentalPaths.toolIDs, directory),
             request(ExperimentalPaths.worktree, directory),
             request(ExperimentalPaths.resource, directory),

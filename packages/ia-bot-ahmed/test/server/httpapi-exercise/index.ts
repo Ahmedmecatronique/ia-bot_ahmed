@@ -1,4 +1,4 @@
-/**
+﻿/**
  * End-to-end exerciser for the Effect HttpApi routes.
  *
  * The goal is not to be a normal unit test file. This is a route-coverage harness:
@@ -117,8 +117,8 @@ const scenarios: Scenario[] = [
     ),
   http.protected.get("/path", "path.get").json(200, (body, ctx) => {
     object(body)
-    check(body.directory === ctx.directory, "directory should resolve from x-ia-bot-ahmed-directory")
-    check(body.worktree === ctx.directory, "worktree should resolve from x-ia-bot-ahmed-directory")
+    check(body.directory === ctx.directory, "directory should resolve from x-IaBotAhmed-directory")
+    check(body.worktree === ctx.directory, "worktree should resolve from x-IaBotAhmed-directory")
   }),
   http.protected.get("/vcs", "vcs.get").json(),
   http.protected.get("/vcs/status", "vcs.status").json(200, array),
@@ -789,7 +789,7 @@ const scenarios: Scenario[] = [
     .post("/api/pty/{ptyID}/connect-token", "v2.pty.connectToken")
     .at((ctx) => ({
       path: route("/api/pty/{ptyID}/connect-token", { ptyID: "pty_httpapi_missing" }),
-      headers: { ...ctx.headers(), "x-ia-bot-ahmed-ticket": "1" },
+      headers: { ...ctx.headers(), "x-IaBotAhmed-ticket": "1" },
     }))
     .json(404, object, "status"),
   http.protected

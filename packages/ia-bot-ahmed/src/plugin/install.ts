@@ -1,4 +1,4 @@
-import path from "path"
+﻿import path from "path"
 import {
   type ParseError as JsoncParseError,
   applyEdits,
@@ -334,7 +334,7 @@ function patchDir(input: PatchInput) {
   if (input.global) return input.config ?? Global.Path.config
   const git = input.vcs === "git" && input.worktree !== "/"
   const root = git ? input.worktree : input.directory
-  return path.join(root, ".ia-bot-ahmed")
+  return path.join(root, ".IaBotAhmed")
 }
 
 function patchName(kind: Kind): "ia-bot-ahmed" | "tui" {

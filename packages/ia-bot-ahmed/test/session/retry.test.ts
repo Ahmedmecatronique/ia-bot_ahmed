@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { SessionV1 } from "@ia-bot-ahmed/core/v1/session"
 import type { NamedError } from "@ia-bot-ahmed/core/util/error"
 import { APICallError } from "ai"
@@ -273,7 +273,7 @@ describe("session.retry.retryable", () => {
         reason: "free_tier_limit",
         provider: "ia-bot-ahmed",
         title: "Free limit reached",
-        message: "Subscribe to ia-bot-ahmed Go for reliable access to the best open-source models, starting at $5/month.",
+        message: "Subscribe to IaBotAhmed Go for reliable access to the best open-source models, starting at $5/month.",
         label: "subscribe",
         link: SessionRetry.GO_UPSELL_URL,
       },
@@ -305,7 +305,7 @@ describe("session.retry.retryable", () => {
 
     expect(SessionRetry.retryable(error, "ia-bot-ahmed-go")).toEqual({
       message:
-        "5 hour usage limit reached. It will reset in 5 hours 23 minutes. To continue using this model now, enable usage from your available balance - https://ia-bot-ahmed.app/workspace/wrk_01K6XGM22R6FM8JVABE9XDQXGH/go",
+        "5 hour usage limit reached. It will reset in 5 hours 23 minutes. To continue using this model now, enable usage from your available balance - https://IaBotAhmed.app/workspace/wrk_01K6XGM22R6FM8JVABE9XDQXGH/go",
       action: {
         reason: "account_rate_limit",
         provider: "ia-bot-ahmed-go",
@@ -313,7 +313,7 @@ describe("session.retry.retryable", () => {
         message:
           "5 hour usage limit reached. It will reset in 5 hours 23 minutes. To continue using this model now, enable usage from your available balance",
         label: "open settings",
-        link: "https://ia-bot-ahmed.app/workspace/wrk_01K6XGM22R6FM8JVABE9XDQXGH/go",
+        link: "https://IaBotAhmed.app/workspace/wrk_01K6XGM22R6FM8JVABE9XDQXGH/go",
       },
     })
   })

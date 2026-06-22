@@ -1,4 +1,4 @@
-import { ButtonV2 } from "@ia-bot-ahmed/ui/v2/button-v2"
+﻿import { ButtonV2 } from "@ia-bot-ahmed/ui/v2/button-v2"
 import { Tag } from "@ia-bot-ahmed/ui/v2/badge-v2"
 import { useDialog } from "@ia-bot-ahmed/ui/context/dialog"
 import { ProviderIcon } from "@ia-bot-ahmed/ui/provider-icon"
@@ -18,8 +18,8 @@ type ProviderSource = "env" | "api" | "config" | "custom"
 type ProviderItem = ReturnType<ReturnType<typeof useProviders>["connected"]>[number]
 
 const PROVIDER_NOTES = [
-  { match: (id: string) => id === "ia-bot-ahmed", key: "dialog.provider.ia-bot-ahmed.note" },
-  { match: (id: string) => id === "ia-bot-ahmed-go", key: "dialog.provider.ia-bot-ahmedGo.tagline" },
+  { match: (id: string) => id === "ia-bot-ahmed", key: "dialog.provider.IaBotAhmed.note" },
+  { match: (id: string) => id === "ia-bot-ahmed-go", key: "dialog.provider.IaBotAhmedGo.tagline" },
   { match: (id: string) => id === "anthropic", key: "dialog.provider.anthropic.note" },
   { match: (id: string) => id.startsWith("github-copilot"), key: "dialog.provider.copilot.note" },
   { match: (id: string) => id === "openai", key: "dialog.provider.openai.note" },

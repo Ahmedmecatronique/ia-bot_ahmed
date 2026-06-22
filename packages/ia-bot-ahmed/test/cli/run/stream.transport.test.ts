@@ -1,15 +1,15 @@
-import { afterEach, describe, expect, mock, spyOn, test } from "bun:test"
-import { ia-bot-ahmedClient, type GlobalEvent } from "@ia-bot-ahmed/sdk/v2"
+﻿import { afterEach, describe, expect, mock, spyOn, test } from "bun:test"
+import { IaBotAhmedClient, type GlobalEvent } from "@ia-bot-ahmed/sdk/v2"
 import { createSessionTransport } from "@/cli/cmd/run/stream.transport"
 import type { FooterApi, FooterEvent, LocalReplayRow, RunFilePart, StreamCommit } from "@/cli/cmd/run/types"
 
-type EventStream = Awaited<ReturnType<ia-bot-ahmedClient["event"]["subscribe"]>>["stream"]
-type GlobalEventStream = Awaited<ReturnType<ia-bot-ahmedClient["global"]["event"]>>["stream"]
+type EventStream = Awaited<ReturnType<IaBotAhmedClient["event"]["subscribe"]>>["stream"]
+type GlobalEventStream = Awaited<ReturnType<IaBotAhmedClient["global"]["event"]>>["stream"]
 type SdkEvent = EventStream extends AsyncGenerator<infer T, unknown, unknown> ? T : never
-type SessionMessage = NonNullable<Awaited<ReturnType<ia-bot-ahmedClient["session"]["messages"]>>["data"]>[number]
-type SessionChild = NonNullable<Awaited<ReturnType<ia-bot-ahmedClient["session"]["children"]>>["data"]>[number]
+type SessionMessage = NonNullable<Awaited<ReturnType<IaBotAhmedClient["session"]["messages"]>>["data"]>[number]
+type SessionChild = NonNullable<Awaited<ReturnType<IaBotAhmedClient["session"]["children"]>>["data"]>[number]
 type SessionToolPart = Extract<SessionMessage["parts"][number], { type: "tool" }>
-type SessionStatusMap = NonNullable<Awaited<ReturnType<ia-bot-ahmedClient["session"]["status"]>>["data"]>
+type SessionStatusMap = NonNullable<Awaited<ReturnType<IaBotAhmedClient["session"]["status"]>>["data"]>
 type TextPart = Extract<SessionMessage["parts"][number], { type: "text" }>
 type ReasoningPart = Extract<SessionMessage["parts"][number], { type: "reasoning" }>
 
@@ -156,7 +156,7 @@ function ok<T>(data: T) {
   return Promise.resolve({
     data,
     error: undefined,
-    request: new Request("https://ia-bot-ahmed.test"),
+    request: new Request("https://IaBotAhmed.test"),
     response: new Response(),
   })
 }
@@ -417,27 +417,27 @@ function sdk(
   input: {
     stream?: EventStream
     globalStream?: GlobalEventStream
-    subscribe?: ia-bot-ahmedClient["event"]["subscribe"]
-    globalEvent?: ia-bot-ahmedClient["global"]["event"]
-    promptAsync?: ia-bot-ahmedClient["session"]["promptAsync"]
-    status?: ia-bot-ahmedClient["session"]["status"]
-    messages?: ia-bot-ahmedClient["session"]["messages"]
-    children?: ia-bot-ahmedClient["session"]["children"]
-    permissions?: ia-bot-ahmedClient["permission"]["list"]
-    questions?: ia-bot-ahmedClient["question"]["list"]
+    subscribe?: IaBotAhmedClient["event"]["subscribe"]
+    globalEvent?: IaBotAhmedClient["global"]["event"]
+    promptAsync?: IaBotAhmedClient["session"]["promptAsync"]
+    status?: IaBotAhmedClient["session"]["status"]
+    messages?: IaBotAhmedClient["session"]["messages"]
+    children?: IaBotAhmedClient["session"]["children"]
+    permissions?: IaBotAhmedClient["permission"]["list"]
+    questions?: IaBotAhmedClient["question"]["list"]
   } = {},
 ) {
-  const client = new ia-bot-ahmedClient()
+  const client = new IaBotAhmedClient()
 
-  const subscribe: ia-bot-ahmedClient["event"]["subscribe"] = input.subscribe ?? (() => sse(input.stream ?? emptyStream()))
-  const globalEvent: ia-bot-ahmedClient["global"]["event"] =
+  const subscribe: IaBotAhmedClient["event"]["subscribe"] = input.subscribe ?? (() => sse(input.stream ?? emptyStream()))
+  const globalEvent: IaBotAhmedClient["global"]["event"] =
     input.globalEvent ?? (() => globalSse(input.globalStream ?? wrapGlobalStream(input.stream ?? emptyStream())))
-  const promptAsync: ia-bot-ahmedClient["session"]["promptAsync"] = input.promptAsync ?? (() => ok(undefined))
-  const status: ia-bot-ahmedClient["session"]["status"] = input.status ?? (() => ok({}))
-  const messages: ia-bot-ahmedClient["session"]["messages"] = input.messages ?? (() => ok([]))
-  const children: ia-bot-ahmedClient["session"]["children"] = input.children ?? (() => ok([]))
-  const permissions: ia-bot-ahmedClient["permission"]["list"] = input.permissions ?? (() => ok([]))
-  const questions: ia-bot-ahmedClient["question"]["list"] = input.questions ?? (() => ok([]))
+  const promptAsync: IaBotAhmedClient["session"]["promptAsync"] = input.promptAsync ?? (() => ok(undefined))
+  const status: IaBotAhmedClient["session"]["status"] = input.status ?? (() => ok({}))
+  const messages: IaBotAhmedClient["session"]["messages"] = input.messages ?? (() => ok([]))
+  const children: IaBotAhmedClient["session"]["children"] = input.children ?? (() => ok([]))
+  const permissions: IaBotAhmedClient["permission"]["list"] = input.permissions ?? (() => ok([]))
+  const questions: IaBotAhmedClient["question"]["list"] = input.questions ?? (() => ok([]))
 
   spyOn(client.event, "subscribe").mockImplementation(subscribe)
   spyOn(client.global, "event").mockImplementation(globalEvent)

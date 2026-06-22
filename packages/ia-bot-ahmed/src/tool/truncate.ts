@@ -1,4 +1,4 @@
-import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
+﻿import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
 import { NodePath } from "@effect/platform-node"
 import { Cause, Duration, Effect, Layer, Option, Schedule, Context } from "effect"
 import path from "path"
@@ -39,7 +39,7 @@ export interface Interface {
    */
   readonly output: (text: string, options?: Options, agent?: Agent.Info) => Effect.Effect<Result>
   /**
-   * Resolved truncation limits: values from `tool_output` in ia-bot-ahmed config, or MAX_LINES / MAX_BYTES if unset.
+   * Resolved truncation limits: values from `tool_output` in IaBotAhmed config, or MAX_LINES / MAX_BYTES if unset.
    */
   readonly limits: () => Effect.Effect<{ maxLines: number; maxBytes: number }>
 }

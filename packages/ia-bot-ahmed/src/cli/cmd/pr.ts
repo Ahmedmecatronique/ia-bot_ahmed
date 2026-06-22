@@ -1,4 +1,4 @@
-import { Effect } from "effect"
+﻿import { Effect } from "effect"
 import { UI } from "../ui"
 import { effectCmd, fail } from "../effect-cmd"
 import { Git } from "@/git"
@@ -7,7 +7,7 @@ import { Process } from "@/util/process"
 
 export const PrCommand = effectCmd({
   command: "pr <number>",
-  describe: "fetch and checkout a GitHub PR branch, then run ia-bot-ahmed",
+  describe: "fetch and checkout a GitHub PR branch, then run IaBotAhmed",
   builder: (yargs) =>
     yargs.positional("number", {
       type: "number",
@@ -76,7 +76,7 @@ export const PrCommand = effectCmd({
         const sessionMatch = prInfo.body.match(/https:\/\/opncd\.ai\/s\/([a-zA-Z0-9_-]+)/)
         if (sessionMatch) {
           const sessionUrl = sessionMatch[0]
-          UI.println(`Found ia-bot-ahmed session: ${sessionUrl}`)
+          UI.println(`Found IaBotAhmed session: ${sessionUrl}`)
           UI.println(`Importing session...`)
 
           const importResult = yield* Effect.promise(() =>
@@ -95,20 +95,20 @@ export const PrCommand = effectCmd({
 
     UI.println(`Successfully checked out PR #${prNumber} as branch '${localBranchName}'`)
     UI.println()
-    UI.println("Starting ia-bot-ahmed...")
+    UI.println("Starting IaBotAhmed...")
     UI.println()
 
-    const ia-bot-ahmedArgs = sessionId ? ["-s", sessionId] : []
+    const IaBotAhmedArgs = sessionId ? ["-s", sessionId] : []
     const code = yield* Effect.promise(
       () =>
-        Process.spawn(["ia-bot-ahmed", ...ia-bot-ahmedArgs], {
+        Process.spawn(["ia-bot-ahmed", ...IaBotAhmedArgs], {
           stdin: "inherit",
           stdout: "inherit",
           stderr: "inherit",
           cwd: process.cwd(),
         }).exited,
     )
-    // Match legacy throw semantics — propagate as a defect so the top-level
+    // Match legacy throw semantics â€” propagate as a defect so the top-level
     // index.ts catch handles it identically (exit 1, "Unexpected error" banner).
     if (code !== 0) return yield* Effect.die(new Error(`ia-bot-ahmed exited with code ${code}`))
   }),

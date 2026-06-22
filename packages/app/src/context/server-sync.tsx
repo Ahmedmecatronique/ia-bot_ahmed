@@ -1,4 +1,4 @@
-import type { Config, ia-bot-ahmedClient, Path, Project, ProviderAuthResponse, Todo } from "@ia-bot-ahmed/sdk/v2/client"
+﻿import type { Config, IaBotAhmedClient, Path, Project, ProviderAuthResponse, Todo } from "@ia-bot-ahmed/sdk/v2/client"
 import { showToast } from "@/utils/toast"
 import { getFilename } from "@ia-bot-ahmed/core/util/path"
 import { type Accessor, batch, createMemo, getOwner, onCleanup, onMount, untrack } from "solid-js"
@@ -52,13 +52,13 @@ type GlobalStore = {
   reload: undefined | "pending" | "complete"
 }
 
-export const loadMcpQuery = (scope: ServerScope, directory: string, sdk: ia-bot-ahmedClient) =>
+export const loadMcpQuery = (scope: ServerScope, directory: string, sdk: IaBotAhmedClient) =>
   queryOptions({
     queryKey: [scope, directory, "mcp"] as const,
     queryFn: () => sdk.mcp.status().then((r) => r.data ?? {}),
   })
 
-export const loadLspQuery = (scope: ServerScope, directory: string, sdk: ia-bot-ahmedClient) =>
+export const loadLspQuery = (scope: ServerScope, directory: string, sdk: IaBotAhmedClient) =>
   queryOptions({
     queryKey: [scope, directory, "lsp"] as const,
     queryFn: () => sdk.lsp.status().then((r) => r.data ?? []),
@@ -66,8 +66,8 @@ export const loadLspQuery = (scope: ServerScope, directory: string, sdk: ia-bot-
 
 function makeQueryOptionsApi(
   scope: ServerScope,
-  serverSDK: () => ia-bot-ahmedClient,
-  sdkFor: (dir: PathKey) => ia-bot-ahmedClient,
+  serverSDK: () => IaBotAhmedClient,
+  sdkFor: (dir: PathKey) => IaBotAhmedClient,
 ) {
   return {
     globalConfig: () => loadGlobalConfigQuery(scope, serverSDK()),
@@ -89,7 +89,7 @@ export function createServerSyncContextInner(serverSDK: ServerSDK) {
   const owner = getOwner()
   if (!owner) throw new Error("ServerSync must be created within owner")
 
-  const sdkCache = new Map<string, ia-bot-ahmedClient>()
+  const sdkCache = new Map<string, IaBotAhmedClient>()
   const booting = new Map<string, Promise<void>>()
   const sessionLoads = new Map<string, Promise<void>>()
   const sessionMeta = new Map<string, { limit: number }>()

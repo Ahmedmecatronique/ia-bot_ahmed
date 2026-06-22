@@ -1,4 +1,4 @@
-import { NodeHttpServer, NodeServices } from "@effect/platform-node"
+﻿import { NodeHttpServer, NodeServices } from "@effect/platform-node"
 import { NamedError } from "@ia-bot-ahmed/core/util/error"
 import { describe, expect } from "bun:test"
 import { ConfigErrorV1 } from "@ia-bot-ahmed/core/v1/config/error"
@@ -56,7 +56,7 @@ describe("HttpApi error middleware", () => {
   it.live("returns invalid config defects as structured client errors", () =>
     Effect.gen(function* () {
       const configError = new ConfigErrorV1.InvalidError({
-        path: "/tmp/ia-bot-ahmed.json",
+        path: "/tmp/IaBotAhmed.json",
         issues: [{ message: "Expected object", path: ["provider", "anthropic", "options"] }],
       })
 
@@ -74,11 +74,11 @@ describe("HttpApi error middleware", () => {
       expect(body).toMatchObject({
         name: "ConfigInvalidError",
         data: {
-          path: "/tmp/ia-bot-ahmed.json",
+          path: "/tmp/IaBotAhmed.json",
           issues: [{ message: "Expected object", path: ["provider", "anthropic", "options"] }],
         },
       })
-      expect(serialized).toContain("/tmp/ia-bot-ahmed.json")
+      expect(serialized).toContain("/tmp/IaBotAhmed.json")
       expect(serialized).toContain("anthropic")
     }),
   )

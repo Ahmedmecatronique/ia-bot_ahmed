@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto"
+﻿import { createHash } from "node:crypto"
 import { describe, expect } from "bun:test"
 import { Flag } from "@ia-bot-ahmed/core/flag/flag"
 import { ConfigProvider, Effect, Layer } from "effect"
@@ -188,7 +188,7 @@ describe("HttpApi UI fallback", () => {
       const response = yield* uiApp({
         disableEmbeddedWebUi: true,
         client: httpClient(
-          new Response("<html>ia-bot-ahmed</html>", { headers: { "content-type": "text/html" } }),
+          new Response("<html>IaBotAhmed</html>", { headers: { "content-type": "text/html" } }),
           (request) => {
             proxiedUrl = request.url
           },
@@ -197,8 +197,8 @@ describe("HttpApi UI fallback", () => {
 
       expect(response.status).toBe(200)
       expect(response.headers.get("content-type")).toContain("text/html")
-      expect(yield* responseText(response)).toBe("<html>ia-bot-ahmed</html>")
-      expect(proxiedUrl).toBe("https://app.ia-bot-ahmed.app/")
+      expect(yield* responseText(response)).toBe("<html>IaBotAhmed</html>")
+      expect(proxiedUrl).toBe("https://app.IaBotAhmed.app/")
     }),
   )
 
@@ -243,7 +243,7 @@ describe("HttpApi UI fallback", () => {
       )
 
       expect(response.status).toBe(200)
-      expect(proxiedUrl).toBe("https://app.ia-bot-ahmed.app/assets/app.js")
+      expect(proxiedUrl).toBe("https://app.IaBotAhmed.app/assets/app.js")
       expect(response.headers.get("content-encoding")).toBeNull()
       expect(response.headers.get("content-length")).not.toBe("999")
       expect(response.headers.get("content-type")).toContain("text/javascript")
@@ -275,7 +275,7 @@ describe("HttpApi UI fallback", () => {
                 Effect.succeed(
                   HttpClientResponse.fromWeb(
                     request,
-                    new Response("<html>ia-bot-ahmed</html>", {
+                    new Response("<html>IaBotAhmed</html>", {
                       headers: {
                         "transfer-encoding": "chunked",
                         "content-type": "text/html",
@@ -292,7 +292,7 @@ describe("HttpApi UI fallback", () => {
 
       expect(response.status).toBe(200)
       expect(response.headers.get("transfer-encoding")).toBeNull()
-      expect(yield* responseText(response)).toBe("<html>ia-bot-ahmed</html>")
+      expect(yield* responseText(response)).toBe("<html>IaBotAhmed</html>")
     }),
   )
 
@@ -381,11 +381,11 @@ describe("HttpApi UI fallback", () => {
         password: "secret",
         username: "ia-bot-ahmed",
         disableEmbeddedWebUi: true,
-        client: httpClient(new Response("<html>ia-bot-ahmed</html>", { headers: { "content-type": "text/html" } })),
+        client: httpClient(new Response("<html>IaBotAhmed</html>", { headers: { "content-type": "text/html" } })),
       }).request(`/?auth_token=${btoa("ia-bot-ahmed:secret")}`)
 
       expect(response.status).toBe(200)
-      expect(yield* responseText(response)).toBe("<html>ia-bot-ahmed</html>")
+      expect(yield* responseText(response)).toBe("<html>IaBotAhmed</html>")
     }),
   )
 

@@ -1,4 +1,4 @@
-import { Flag } from "@ia-bot-ahmed/core/flag/flag"
+﻿import { Flag } from "@ia-bot-ahmed/core/flag/flag"
 import { ConfigV1 } from "@ia-bot-ahmed/core/v1/config/config"
 import { SessionV1 } from "@ia-bot-ahmed/core/v1/session"
 import { Cause, Duration, Effect, Layer, Scope } from "effect"
@@ -126,7 +126,7 @@ function withContext<A, E>(
         const base: ScenarioContext = {
           directory: context.dir?.path,
           headers: (extra) => ({
-            ...(context.dir?.path ? { "x-ia-bot-ahmed-directory": context.dir.path } : {}),
+            ...(context.dir?.path ? { "x-IaBotAhmed-directory": context.dir.path } : {}),
             ...extra,
           }),
           file: (name, content) =>
@@ -153,7 +153,7 @@ function withContext<A, E>(
                 time: { created: Date.now() },
                 agent: "build",
                 model: {
-                  providerID: ProviderV2.ID.ia-bot-ahmed,
+                  providerID: ProviderV2.ID.IaBotAhmed,
                   modelID: ModelV2.ID.make("test"),
                 },
               }

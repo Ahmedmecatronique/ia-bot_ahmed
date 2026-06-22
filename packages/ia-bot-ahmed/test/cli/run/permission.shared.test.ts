@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import type { PermissionRequest } from "@ia-bot-ahmed/sdk/v2"
 import {
   createPermissionBodyState,
@@ -105,7 +105,7 @@ describe("run permission shared", () => {
       ),
     ).toMatchObject({
       title: "General Task",
-      lines: ["◉ investigate stream"],
+      lines: ["â—‰ investigate stream"],
     })
 
     expect(
@@ -132,11 +132,11 @@ describe("run permission shared", () => {
 
   test("formats always-allow copy for wildcard and explicit patterns", () => {
     expect(permissionAlwaysLines(req({ permission: "bash", always: ["*"] }))).toEqual([
-      "This will allow bash until ia-bot-ahmed is restarted.",
+      "This will allow bash until IaBotAhmed is restarted.",
     ])
 
     expect(permissionAlwaysLines(req({ always: ["src/**/*.ts", "src/**/*.tsx"] }))).toEqual([
-      "This will allow the following patterns until ia-bot-ahmed is restarted.",
+      "This will allow the following patterns until IaBotAhmed is restarted.",
       "- src/**/*.ts",
       "- src/**/*.tsx",
     ])

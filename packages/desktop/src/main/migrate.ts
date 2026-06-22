@@ -1,4 +1,4 @@
-import { app } from "electron"
+﻿import { app } from "electron"
 import log from "electron-log/main.js"
 import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { homedir } from "node:os"
@@ -23,12 +23,12 @@ function tauriDir(id: string) {
 
 // The Tauri app identifier changes between dev/beta/prod builds.
 const TAURI_APP_IDS: Record<string, string> = {
-  dev: "ai.ia-bot-ahmed.desktop.dev",
-  beta: "ai.ia-bot-ahmed.desktop.beta",
-  prod: "ai.ia-bot-ahmed.desktop",
+  dev: "ai.IaBotAhmed.desktop.dev",
+  beta: "ai.IaBotAhmed.desktop.beta",
+  prod: "ai.IaBotAhmed.desktop",
 }
 function tauriAppId() {
-  return app.isPackaged ? TAURI_APP_IDS[CHANNEL] : "ai.ia-bot-ahmed.desktop.dev"
+  return app.isPackaged ? TAURI_APP_IDS[CHANNEL] : "ai.IaBotAhmed.desktop.dev"
 }
 
 // Migrate a single Tauri .dat file into the corresponding electron-store.
@@ -45,7 +45,7 @@ function migrateFile(datPath: string, filename: string) {
     return
   }
 
-  // ia-bot-ahmed.settings.dat → the electron settings store ("ia-bot-ahmed.settings").
+  // IaBotAhmed.settings.dat â†’ the electron settings store ("ia-bot-ahmed.settings").
   // All other .dat files keep their full filename as the store name so they match
   // what the renderer passes via IPC (e.g. "default.dat", "ia-bot-ahmed.global.dat").
   const storeName = filename === "ia-bot-ahmed.settings.dat" ? "ia-bot-ahmed.settings" : filename
@@ -63,7 +63,7 @@ function migrateFile(datPath: string, filename: string) {
     migrated.push(key)
   }
 
-  log.log("tauri migration: migrated", filename, "→", storeName, { migrated, skipped })
+  log.log("tauri migration: migrated", filename, "â†’", storeName, { migrated, skipped })
 }
 
 export function migrate() {

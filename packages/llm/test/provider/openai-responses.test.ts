@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { ConfigProvider, Effect, Layer, Stream } from "effect"
 import { Headers, HttpClientRequest } from "effect/unstable/http"
 import { LLM, LLMError, Message, Model, ToolCallPart, Usage } from "../../src"
@@ -267,7 +267,7 @@ describe("OpenAI Responses route", () => {
       yield* LLMClient.generate(
         LLM.updateRequest(request, {
           model: Azure.configure({
-            baseURL: "https://ia-bot-ahmed-test.openai.azure.com/openai/v1/",
+            baseURL: "https://IaBotAhmed-test.openai.azure.com/openai/v1/",
             apiKey: "azure-key",
             headers: { authorization: "Bearer stale" },
           }).responses("gpt-4.1-mini"),
@@ -277,7 +277,7 @@ describe("OpenAI Responses route", () => {
           dynamicResponse((input) =>
             Effect.gen(function* () {
               const web = yield* HttpClientRequest.toWeb(input.request).pipe(Effect.orDie)
-              expect(web.url).toBe("https://ia-bot-ahmed-test.openai.azure.com/openai/v1/responses?api-version=v1")
+              expect(web.url).toBe("https://IaBotAhmed-test.openai.azure.com/openai/v1/responses?api-version=v1")
               expect(web.headers.get("api-key")).toBe("azure-key")
               expect(web.headers.get("authorization")).toBeNull()
               return input.respond(sseEvents({ type: "response.completed", response: {} }), {

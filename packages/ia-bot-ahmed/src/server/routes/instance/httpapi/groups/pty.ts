@@ -1,4 +1,4 @@
-import { Pty } from "@ia-bot-ahmed/core/pty"
+﻿import { Pty } from "@ia-bot-ahmed/core/pty"
 import { PtyTicket } from "@ia-bot-ahmed/core/pty/ticket"
 import { PtyID } from "@ia-bot-ahmed/core/pty/schema"
 import { PTY_CONNECT_TICKET_QUERY } from "@/server/shared/pty-ticket"
@@ -58,7 +58,7 @@ export const PtyApi = HttpApi.make("pty")
           OpenApi.annotations({
             identifier: "pty.list",
             summary: "List PTY sessions",
-            description: "Get a list of all active pseudo-terminal (PTY) sessions managed by ia-bot-ahmed.",
+            description: "Get a list of all active pseudo-terminal (PTY) sessions managed by IaBotAhmed.",
           }),
         ),
         HttpApiEndpoint.post("create", PtyPaths.create, {

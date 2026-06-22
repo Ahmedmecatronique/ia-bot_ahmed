@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Project } from "@/project/project"
 import { Database } from "@ia-bot-ahmed/core/database/database"
 import { eq } from "drizzle-orm"
@@ -60,11 +60,11 @@ function ensureGlobal() {
 describe("migrateFromGlobal", () => {
   it.live("migrates global sessions on first project creation", () =>
     Effect.gen(function* () {
-      // 1. Start with git init but no commits — creates "global" project row
+      // 1. Start with git init but no commits â€” creates "global" project row
       const tmp = yield* tmpdirScoped()
       yield* Effect.promise(() => $`git init`.cwd(tmp).quiet())
       yield* Effect.promise(() => $`git config user.name "Test"`.cwd(tmp).quiet())
-      yield* Effect.promise(() => $`git config user.email "test@ia-bot-ahmed.test"`.cwd(tmp).quiet())
+      yield* Effect.promise(() => $`git config user.email "test@IaBotAhmed.test"`.cwd(tmp).quiet())
       yield* Effect.promise(() => $`git config commit.gpgsign false`.cwd(tmp).quiet())
       const projects = yield* Project.Service
       const { project: pre } = yield* projects.fromDirectory(tmp)
@@ -91,7 +91,7 @@ describe("migrateFromGlobal", () => {
 
   it.live("migrates global sessions even when project row already exists", () =>
     Effect.gen(function* () {
-      // 1. Create a repo with a commit — real project ID created immediately
+      // 1. Create a repo with a commit â€” real project ID created immediately
       const tmp = yield* tmpdirScoped({ git: true })
       const projects = yield* Project.Service
       const { project } = yield* projects.fromDirectory(tmp)
@@ -106,7 +106,7 @@ describe("migrateFromGlobal", () => {
       const id = legacySessionID()
       yield* seed({ id, dir: tmp, project: ProjectV2.ID.global })
 
-      // 4. Call fromDirectory again — project row already exists,
+      // 4. Call fromDirectory again â€” project row already exists,
       //    so the current code skips migration entirely. This is the bug.
       yield* projects.fromDirectory(tmp)
 
@@ -160,7 +160,7 @@ describe("migrateFromGlobal", () => {
         db.select().from(SessionTable).where(eq(SessionTable.id, id)).get().pipe(Effect.orDie),
       )
       expect(row).toBeDefined()
-      // Should remain under "global" — not stolen
+      // Should remain under "global" â€” not stolen
       expect(row!.project_id).toBe(ProjectV2.ID.global)
     }),
   )

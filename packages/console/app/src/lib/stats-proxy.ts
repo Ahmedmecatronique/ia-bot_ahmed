@@ -1,4 +1,4 @@
-import type { APIEvent } from "@solidjs/start/server"
+﻿import type { APIEvent } from "@solidjs/start/server"
 import { Resource } from "@ia-bot-ahmed/console-resource"
 
 const dataPath = "/data"
@@ -7,7 +7,7 @@ export async function statsProxy(evt: APIEvent) {
   const req = evt.request.clone()
   const targetUrl = new URL(req.url)
   targetUrl.protocol = "https:"
-  targetUrl.hostname = Resource.App.stage === "production" ? "stats.ia-bot-ahmed.app" : "stats.dev.ia-bot-ahmed.app"
+  targetUrl.hostname = Resource.App.stage === "production" ? "stats.IaBotAhmed.app" : "stats.dev.IaBotAhmed.app"
   targetUrl.port = ""
 
   if (

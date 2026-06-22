@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { Schema } from "effect"
 import { ProjectV2 } from "@ia-bot-ahmed/core/project"
 import { MessageID, SessionID } from "../../src/session/schema"
@@ -9,7 +9,7 @@ const info = {
   slug: "test-session",
   projectID: ProjectV2.ID.global,
   workspaceID: undefined,
-  directory: "/tmp/ia-bot-ahmed",
+  directory: "/tmp/IaBotAhmed",
   parentID: undefined,
   summary: undefined,
   cost: 0,
@@ -45,7 +45,7 @@ describe("Session schema", () => {
       project: {
         id: ProjectV2.ID.global,
         name: undefined,
-        worktree: "/tmp/ia-bot-ahmed",
+        worktree: "/tmp/IaBotAhmed",
       },
     }) as Record<string, unknown>
 

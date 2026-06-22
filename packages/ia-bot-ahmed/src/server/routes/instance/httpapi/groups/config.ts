@@ -1,4 +1,4 @@
-import { Config } from "@/config/config"
+﻿import { Config } from "@/config/config"
 import { ConfigV1 } from "@ia-bot-ahmed/core/v1/config/config"
 import { Provider } from "@/provider/provider"
 import { HttpApi, HttpApiEndpoint, HttpApiError, HttpApiGroup, OpenApi } from "effect/unstable/httpapi"
@@ -20,7 +20,7 @@ export const ConfigApi = HttpApi.make("config")
           OpenApi.annotations({
             identifier: "config.get",
             summary: "Get configuration",
-            description: "Retrieve the current ia-bot-ahmed configuration settings and preferences.",
+            description: "Retrieve the current IaBotAhmed configuration settings and preferences.",
           }),
         ),
         HttpApiEndpoint.patch("update", root, {
@@ -32,7 +32,7 @@ export const ConfigApi = HttpApi.make("config")
           OpenApi.annotations({
             identifier: "config.update",
             summary: "Update configuration",
-            description: "Update ia-bot-ahmed configuration settings and preferences.",
+            description: "Update IaBotAhmed configuration settings and preferences.",
           }),
         ),
         HttpApiEndpoint.get("providers", `${root}/providers`, {

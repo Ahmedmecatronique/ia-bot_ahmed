@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto"
+﻿import { randomUUID } from "node:crypto"
 import { mkdirSync, rmSync } from "node:fs"
 import * as http from "node:http"
 import { createServer } from "node:net"
@@ -40,14 +40,14 @@ import { spawnWslSidecar } from "./wsl/sidecar"
 import { migrate } from "./migrate"
 
 const APP_NAMES: Record<string, string> = {
-  dev: "ia-bot-ahmed Dev",
-  beta: "ia-bot-ahmed Beta",
-  prod: "ia-bot-ahmed",
+  dev: "IA bot Ahmed Dev",
+  beta: "IA bot Ahmed Beta",
+  prod: "IA bot Ahmed",
 }
 const APP_IDS: Record<string, string> = {
-  dev: "ai.ia-bot-ahmed.desktop.dev",
-  beta: "ai.ia-bot-ahmed.desktop.beta",
-  prod: "ai.ia-bot-ahmed.desktop",
+  dev: "ai.IaBotAhmed.desktop.dev",
+  beta: "ai.IaBotAhmed.desktop.beta",
+  prod: "ai.IaBotAhmed.desktop",
 }
 const TEST_ONBOARDING = process.env.IA_BOT_AHMED_TEST_ONBOARDING === "1"
 const jsCallStackFeature = "DocumentPolicyIncludeJSCallStacksInCrashReports"
@@ -110,7 +110,7 @@ const main = Effect.gen(function* () {
 
   process.env.IA_BOT_AHMED_DISABLE_EMBEDDED_WEB_UI = "true"
 
-  const appId = app.isPackaged ? APP_IDS[CHANNEL] : "ai.ia-bot-ahmed.desktop.dev"
+  const appId = app.isPackaged ? APP_IDS[CHANNEL] : "ai.IaBotAhmed.desktop.dev"
   const onboardingTestRoot = ((): string | undefined => {
     if (!TEST_ONBOARDING) return
 
@@ -126,7 +126,7 @@ const main = Effect.gen(function* () {
     process.env.XDG_STATE_HOME = join(root, "state")
     return root
   })()
-  app.setName(app.isPackaged ? APP_NAMES[CHANNEL] : "ia-bot-ahmed Dev")
+  app.setName(app.isPackaged ? APP_NAMES[CHANNEL] : "IA bot Ahmed Dev")
   app.setAppUserModelId(appId)
   app.setPath(
     "userData",

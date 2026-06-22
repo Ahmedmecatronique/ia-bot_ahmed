@@ -1,4 +1,4 @@
-export { AppBaseProviders, AppInterface } from "./app"
+﻿export { AppBaseProviders, AppInterface } from "./app"
 export { ACCEPTED_FILE_EXTENSIONS, ACCEPTED_FILE_TYPES, filePickerFilters } from "./constants/file-picker"
 export { useCommand } from "./context/command"
 export { loadLocaleDict, normalizeLocale, type Locale } from "./context/language"
@@ -10,7 +10,7 @@ export {
   type WslInstalledDistro,
   type WslJob,
   type WslOnlineDistro,
-  type Wslia-bot-ahmedCheck,
+  type WslIaBotAhmedCheck,
   type WslRuntimeCheck,
   type WslServerConfig,
   type WslServerItem,

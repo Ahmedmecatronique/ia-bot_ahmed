@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, mock, spyOn, test } from "bun:test"
-import { ia-bot-ahmedClient, type Provider } from "@ia-bot-ahmed/sdk/v2"
+﻿import { afterEach, describe, expect, mock, spyOn, test } from "bun:test"
+import { IaBotAhmedClient, type Provider } from "@ia-bot-ahmed/sdk/v2"
 import type { Resolved } from "@ia-bot-ahmed/tui/config"
 import { TuiConfig } from "@/config/tui"
 import { resolveDiffStyle, resolveModelInfo, resolveRunTuiConfig } from "@/cli/cmd/run/runtime.boot"
@@ -161,7 +161,7 @@ describe("run runtime boot", () => {
   })
 
   test("prefers configured providers for model selector data", async () => {
-    const sdk = new ia-bot-ahmedClient()
+    const sdk = new IaBotAhmedClient()
     const data: {
       all: Provider[]
       default: Record<string, string>
@@ -203,7 +203,7 @@ describe("run runtime boot", () => {
       Promise.resolve({
         data,
         error: undefined,
-        request: new Request("https://ia-bot-ahmed.test"),
+        request: new Request("https://IaBotAhmed.test"),
         response: new Response(),
       }),
     )
@@ -211,7 +211,7 @@ describe("run runtime boot", () => {
       Promise.resolve({
         data: configured,
         error: undefined,
-        request: new Request("https://ia-bot-ahmed.test"),
+        request: new Request("https://IaBotAhmed.test"),
         response: new Response(),
       }),
     )
@@ -227,7 +227,7 @@ describe("run runtime boot", () => {
   })
 
   test("falls back to provider list when configured providers are unavailable", async () => {
-    const sdk = new ia-bot-ahmedClient()
+    const sdk = new IaBotAhmedClient()
     const data: {
       all: Provider[]
       default: Record<string, string>
@@ -266,7 +266,7 @@ describe("run runtime boot", () => {
       Promise.resolve({
         data,
         error: undefined,
-        request: new Request("https://ia-bot-ahmed.test"),
+        request: new Request("https://IaBotAhmed.test"),
         response: new Response(),
       }),
     )

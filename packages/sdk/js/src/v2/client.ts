@@ -1,11 +1,11 @@
-export * from "./gen/types.gen.js"
+﻿export * from "./gen/types.gen.js"
 export type { FileSystemEntry as LocationFileSystemEntry } from "./gen/types.gen.js"
 
 import { createClient } from "./gen/client/client.gen.js"
 import { type Config } from "./gen/client/types.gen.js"
-import { ia-bot-ahmedClient } from "./gen/sdk.gen.js"
+import { IaBotAhmedClient } from "./gen/sdk.gen.js"
 import { wrapClientError } from "../error-interceptor.js"
-export { type Config as ia-bot-ahmedClientConfig, ia-bot-ahmedClient }
+export { type Config as IaBotAhmedClientConfig, IaBotAhmedClient }
 
 function pick(value: string | null, fallback?: string, encode?: (value: string) => string) {
   if (!value) return
@@ -22,8 +22,8 @@ function rewrite(request: Request, values: { directory?: string; workspace?: str
   let changed = false
 
   for (const [name, key] of [
-    ["x-ia-bot-ahmed-directory", "directory"],
-    ["x-ia-bot-ahmed-workspace", "workspace"],
+    ["x-IaBotAhmed-directory", "directory"],
+    ["x-IaBotAhmed-workspace", "workspace"],
   ] as const) {
     const value = pick(
       request.headers.get(name),
@@ -42,12 +42,12 @@ function rewrite(request: Request, values: { directory?: string; workspace?: str
   if (!changed) return request
 
   const next = new Request(url, request)
-  next.headers.delete("x-ia-bot-ahmed-directory")
-  next.headers.delete("x-ia-bot-ahmed-workspace")
+  next.headers.delete("x-IaBotAhmed-directory")
+  next.headers.delete("x-IaBotAhmed-workspace")
   return next
 }
 
-export function createia-bot-ahmedClient(config?: Config & { directory?: string; experimental_workspaceID?: string }) {
+export function createIaBotAhmedClient(config?: Config & { directory?: string; experimental_workspaceID?: string }) {
   if (!config?.fetch) {
     const customFetch: any = (req: any) => {
       // @ts-ignore
@@ -63,14 +63,14 @@ export function createia-bot-ahmedClient(config?: Config & { directory?: string;
   if (config?.directory) {
     config.headers = {
       ...config.headers,
-      "x-ia-bot-ahmed-directory": encodeURIComponent(config.directory),
+      "x-IaBotAhmed-directory": encodeURIComponent(config.directory),
     }
   }
 
   if (config?.experimental_workspaceID) {
     config.headers = {
       ...config.headers,
-      "x-ia-bot-ahmed-workspace": config.experimental_workspaceID,
+      "x-IaBotAhmed-workspace": config.experimental_workspaceID,
     }
   }
 
@@ -84,10 +84,10 @@ export function createia-bot-ahmedClient(config?: Config & { directory?: string;
   client.interceptors.response.use((response) => {
     const contentType = response.headers.get("content-type")
     if (contentType === "text/html")
-      throw new Error("Request is not supported by this version of ia-bot-ahmed Server (Server responded with text/html)")
+      throw new Error("Request is not supported by this version of IaBotAhmed Server (Server responded with text/html)")
 
     return response
   })
   client.interceptors.error.use(wrapClientError)
-  return new ia-bot-ahmedClient({ client })
+  return new IaBotAhmedClient({ client })
 }

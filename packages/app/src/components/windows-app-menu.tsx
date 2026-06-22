@@ -1,4 +1,4 @@
-import { Show, type JSX } from "solid-js"
+﻿import { Show, type JSX } from "solid-js"
 import { DropdownMenu } from "@ia-bot-ahmed/ui/dropdown-menu"
 import { Icon } from "@ia-bot-ahmed/ui/icon"
 import { IconButton } from "@ia-bot-ahmed/ui/icon-button"
@@ -77,7 +77,7 @@ export function WindowsAppMenu(props: {
       <DropdownMenu.Portal>
         <DropdownMenu.Content class="desktop-app-menu">
           <DropdownMenu.Group>
-            <DropdownMenu.GroupLabel class="desktop-app-menu-heading">ia-bot-ahmed</DropdownMenu.GroupLabel>
+            <DropdownMenu.GroupLabel class="desktop-app-menu-heading">IaBotAhmed</DropdownMenu.GroupLabel>
             {DESKTOP_MENU.filter((menu) => desktopMenuVisible(menu, "windows")).map((menu) => (
               <DesktopMenuSubmenu label={menu.label}>
                 {menu.items

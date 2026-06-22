@@ -1,4 +1,4 @@
-import type { APIEvent } from "@solidjs/start/server"
+﻿import type { APIEvent } from "@solidjs/start/server"
 import { Resource } from "@ia-bot-ahmed/console-resource"
 import { cookie, docs, localeFromRequest, tag } from "~/lib/language"
 
@@ -6,7 +6,7 @@ async function handler(evt: APIEvent) {
   const req = evt.request.clone()
   const url = new URL(req.url)
   const locale = localeFromRequest(req)
-  const host = Resource.App.stage === "production" ? "docs.ia-bot-ahmed.app" : "docs.dev.ia-bot-ahmed.app"
+  const host = Resource.App.stage === "production" ? "docs.IaBotAhmed.app" : "docs.dev.IaBotAhmed.app"
   const targetUrl = `https://${host}${docs(locale, `/docs${url.pathname}`)}${url.search}`
 
   const headers = new Headers(req.headers)

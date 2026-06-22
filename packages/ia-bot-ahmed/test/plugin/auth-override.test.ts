@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import path from "path"
 import { pathToFileURL } from "url"
 import { Effect, Layer } from "effect"
@@ -50,7 +50,7 @@ describe("plugin.auth-override", () => {
       Effect.gen(function* () {
         const tmp = yield* TestInstance
         const fs = yield* FSUtil.Service
-        const pluginDir = path.join(tmp.directory, ".ia-bot-ahmed", "plugin")
+        const pluginDir = path.join(tmp.directory, ".IaBotAhmed", "plugin")
 
         yield* fs.writeWithDirs(
           path.join(pluginDir, "custom-copilot-auth.ts"),

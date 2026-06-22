@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import {
   allExpandedFileTreeDirectories,
   buildFileTree,
@@ -101,7 +101,7 @@ describe("diff viewer file tree utilities", () => {
 
     expect(rows.map((row) => `${"  ".repeat(row.depth)}${row.kind}:${row.name}`)).toEqual([
       "directory:packages",
-      "  directory:ia-bot-ahmed/src",
+      "  directory:IaBotAhmed/src",
       "    directory:cli",
       "      file:app.ts",
       "    directory:server",

@@ -1,4 +1,4 @@
-export const dict = {
+﻿export const dict = {
   "nav.github": "GitHub",
   "nav.docs": "Docs",
   "nav.data": "Data",
@@ -36,7 +36,7 @@ export const dict = {
   "email.subscribe": "Subscribe",
   "email.success": "Almost done, check your inbox and confirm your email address",
 
-  "notFound.title": "Not Found | ia-bot-ahmed",
+  "notFound.title": "Not Found | IaBotAhmed",
   "notFound.heading": "404 - Page Not Found",
   "notFound.home": "Home",
   "notFound.docs": "Docs",
@@ -93,7 +93,7 @@ export const dict = {
   "temp.feature.native.body": "A responsive, native, themeable terminal UI",
   "temp.feature.zen.beforeLink": "A",
   "temp.feature.zen.link": "curated list of models",
-  "temp.feature.zen.afterLink": "provided by ia-bot-ahmed",
+  "temp.feature.zen.afterLink": "provided by IaBotAhmed",
   "temp.feature.models.beforeLink": "Supports 75+ LLM providers through",
   "temp.feature.models.afterLink": ", including local models",
   "temp.screenshot.caption": "ia-bot-ahmed TUI with the tokyonight theme",
@@ -113,7 +113,7 @@ export const dict = {
 
   "home.install.ariaLabel": "Install options",
 
-  "home.what.title": "What is ia-bot-ahmed?",
+  "home.what.title": "What is IaBotAhmed?",
   "home.what.body": "ia-bot-ahmed is an open source agent that helps you write code in your terminal, IDE, or desktop.",
   "home.what.lsp.title": "LSP enabled",
   "home.what.lsp.body": "Automatically loads the right LSPs for the LLM",
@@ -133,7 +133,7 @@ export const dict = {
 
   "home.growth.title": "The open source AI coding agent",
   "home.growth.body":
-    "With over <strong>{{stars}}</strong> GitHub stars, <strong>{{contributors}}</strong> contributors, and over <strong>{{commits}}</strong> commits, ia-bot-ahmed is used and trusted by over <strong>{{monthlyUsers}}</strong> developers every month.",
+    "With over <strong>{{stars}}</strong> GitHub stars, <strong>{{contributors}}</strong> contributors, and over <strong>{{commits}}</strong> commits, IaBotAhmed is used and trusted by over <strong>{{monthlyUsers}}</strong> developers every month.",
   "home.growth.githubStars": "GitHub Stars",
   "home.growth.contributors": "Contributors",
   "home.growth.monthlyDevs": "Monthly Devs",
@@ -144,30 +144,30 @@ export const dict = {
   "home.privacy.learnMore": "Learn more about",
   "home.privacy.link": "privacy",
 
-  "home.faq.q1": "What is ia-bot-ahmed?",
+  "home.faq.q1": "What is IaBotAhmed?",
   "home.faq.a1":
     "ia-bot-ahmed is an open source agent that helps you write and run code with any AI model. It's available as a terminal-based interface, desktop app, or IDE extension.",
-  "home.faq.q2": "How do I use ia-bot-ahmed?",
+  "home.faq.q2": "How do I use IaBotAhmed?",
   "home.faq.a2.before": "The easiest way to get started is to read the",
   "home.faq.a2.link": "intro",
-  "home.faq.q3": "Do I need extra AI subscriptions to use ia-bot-ahmed?",
+  "home.faq.q3": "Do I need extra AI subscriptions to use IaBotAhmed?",
   "home.faq.a3.p1":
-    "Not necessarily, ia-bot-ahmed comes with a set of free models that you can use without creating an account.",
+    "Not necessarily, IaBotAhmed comes with a set of free models that you can use without creating an account.",
   "home.faq.a3.p2.beforeZen": "Aside from these, you can use any of the popular coding models by creating a",
   "home.faq.a3.p2.afterZen": " account.",
   "home.faq.a3.p3":
-    "While we encourage users to use Zen, ia-bot-ahmed also works with all popular providers such as OpenAI, Anthropic, xAI etc.",
+    "While we encourage users to use Zen, IaBotAhmed also works with all popular providers such as OpenAI, Anthropic, xAI etc.",
   "home.faq.a3.p4.beforeLocal": "You can even connect your",
   "home.faq.a3.p4.localLink": "local models",
-  "home.faq.q4": "Can I use my existing AI subscriptions with ia-bot-ahmed?",
+  "home.faq.q4": "Can I use my existing AI subscriptions with IaBotAhmed?",
   "home.faq.a4.p1":
-    "Yes, ia-bot-ahmed supports subscription plans from all major providers. You can use your Claude Pro/Max, ChatGPT Plus/Pro, or GitHub Copilot subscriptions.",
-  "home.faq.q5": "Can I only use ia-bot-ahmed in the terminal?",
-  "home.faq.a5.beforeDesktop": "Not anymore! ia-bot-ahmed is now available as an app for your",
+    "Yes, IaBotAhmed supports subscription plans from all major providers. You can use your Claude Pro/Max, ChatGPT Plus/Pro, or GitHub Copilot subscriptions.",
+  "home.faq.q5": "Can I only use IaBotAhmed in the terminal?",
+  "home.faq.a5.beforeDesktop": "Not anymore! IaBotAhmed is now available as an app for your",
   "home.faq.a5.desktop": "desktop",
   "home.faq.a5.and": "and",
   "home.faq.a5.web": "web",
-  "home.faq.q6": "How much does ia-bot-ahmed cost?",
+  "home.faq.q6": "How much does IaBotAhmed cost?",
   "home.faq.a6":
     "ia-bot-ahmed is 100% free to use. It also comes with a set of free models. There might be additional costs if you connect any other provider.",
   "home.faq.q7": "What about data and privacy?",
@@ -176,8 +176,8 @@ export const dict = {
   "home.faq.a7.p2.modelsLink": "our models",
   "home.faq.a7.p2.and": "and",
   "home.faq.a7.p2.shareLink": "share pages",
-  "home.faq.q8": "Is ia-bot-ahmed open source?",
-  "home.faq.a8.p1": "Yes, ia-bot-ahmed is fully open source. The source code is public on",
+  "home.faq.q8": "Is IaBotAhmed open source?",
+  "home.faq.a8.p1": "Yes, IaBotAhmed is fully open source. The source code is public on",
   "home.faq.a8.p2": "under the",
   "home.faq.a8.mitLicense": "MIT License",
   "home.faq.a8.p3":
@@ -185,30 +185,30 @@ export const dict = {
 
   "home.zenCta.title": "Access reliable optimized models for coding agents",
   "home.zenCta.body":
-    "Zen gives you access to a handpicked set of AI models that ia-bot-ahmed has tested and benchmarked specifically for coding agents. No need to worry about inconsistent performance and quality across providers, use validated models that work.",
+    "Zen gives you access to a handpicked set of AI models that IaBotAhmed has tested and benchmarked specifically for coding agents. No need to worry about inconsistent performance and quality across providers, use validated models that work.",
   "home.zenCta.link": "Learn about Zen",
 
   "zen.title": "ia-bot-ahmed Zen | A curated set of reliable optimized models for coding agents",
   "zen.hero.title": "Reliable optimized models for coding agents",
   "zen.hero.body":
-    "Zen gives you access to a curated set of AI models that ia-bot-ahmed has tested and benchmarked specifically for coding agents. No need to worry about inconsistent performance and quality, use validated models that work.",
+    "Zen gives you access to a curated set of AI models that IaBotAhmed has tested and benchmarked specifically for coding agents. No need to worry about inconsistent performance and quality, use validated models that work.",
 
-  "zen.faq.q1": "What is ia-bot-ahmed Zen?",
+  "zen.faq.q1": "What is IaBotAhmed Zen?",
   "zen.faq.a1":
-    "Zen is a curated set of AI models tested and benchmarked for coding agents created by the team behind ia-bot-ahmed.",
+    "Zen is a curated set of AI models tested and benchmarked for coding agents created by the team behind IaBotAhmed.",
   "zen.faq.q2": "What makes Zen more accurate?",
   "zen.faq.a2":
     "Zen only provides models that have been specifically tested and benchmarked for coding agents. You wouldn't use a butter knife to cut steak, don't use poor models for coding.",
   "zen.faq.q3": "Is Zen cheaper?",
   "zen.faq.a3":
-    "Zen is not for profit. Zen passes through the costs from the model providers to you. The higher Zen's usage the more ia-bot-ahmed can negotiate better rates and pass those to you.",
+    "Zen is not for profit. Zen passes through the costs from the model providers to you. The higher Zen's usage the more IaBotAhmed can negotiate better rates and pass those to you.",
   "zen.faq.q4": "How much does Zen cost?",
   "zen.faq.a4.p1.beforePricing": "Zen",
   "zen.faq.a4.p1.pricingLink": "charges per request",
   "zen.faq.a4.p1.afterPricing": "with zero markups, so you pay exactly what the model provider charges.",
   "zen.faq.a4.p2.beforeAccount": "Your total cost depends on usage, and you can set monthly spend limits in your",
   "zen.faq.a4.p2.accountLink": "account",
-  "zen.faq.a4.p3": "To cover costs, ia-bot-ahmed adds only a small payment processing fee of $1.23 per $20 balance top-up.",
+  "zen.faq.a4.p3": "To cover costs, IaBotAhmed adds only a small payment processing fee of $1.23 per $20 balance top-up.",
   "zen.faq.q5": "What about data and privacy?",
   "zen.faq.a5.beforeExceptions":
     "All Zen models are hosted in the US. Providers follow a zero-retention policy and do not use your data for model training, with the",
@@ -219,7 +219,7 @@ export const dict = {
   "zen.faq.a7": "Yes, you can disable billing at any time and use your remaining balance.",
   "zen.faq.q8": "Can I use Zen with other coding agents?",
   "zen.faq.a8":
-    "While Zen works great with ia-bot-ahmed, you can use Zen with any agent. Follow the setup instructions in your preferred coding agent.",
+    "While Zen works great with IaBotAhmed, you can use Zen with any agent. Follow the setup instructions in your preferred coding agent.",
 
   "zen.cta.start": "Get started with Zen",
   "zen.pricing.title": "Add $20 Pay as you go balance",
@@ -228,12 +228,12 @@ export const dict = {
   "zen.problem.title": "What problem is Zen solving?",
   "zen.problem.body":
     "There are so many models available, but only a few work well with coding agents. Most providers configure them differently with varying results.",
-  "zen.problem.subtitle": "We're fixing this for everyone, not just ia-bot-ahmed users.",
+  "zen.problem.subtitle": "We're fixing this for everyone, not just IaBotAhmed users.",
   "zen.problem.item1": "Testing select models and consulting their teams",
   "zen.problem.item2": "Working with providers to ensure they're delivered properly",
   "zen.problem.item3": "Benchmarking all model-provider combinations we recommend",
   "zen.how.title": "How Zen works",
-  "zen.how.body": "While we suggest you use Zen with ia-bot-ahmed, you can use Zen with any agent.",
+  "zen.how.body": "While we suggest you use Zen with IaBotAhmed, you can use Zen with any agent.",
   "zen.how.step1.title": "Sign up and add $20 balance",
   "zen.how.step1.beforeLink": "follow the",
   "zen.how.step1.link": "setup instructions",
@@ -248,7 +248,7 @@ export const dict = {
   "zen.privacy.exceptionsLink": "following exceptions",
 
   "go.title": "ia-bot-ahmed Go | Low cost coding models for everyone",
-  "go.banner.text": "MiniMax M3 gets 3× usage limits for a limited time",
+  "go.banner.text": "MiniMax M3 gets 3Ã— usage limits for a limited time",
   "go.meta.description":
     "Go starts at $5 for your first month, then $10/month, with generous 5-hour request limits for GLM-5.2, GLM-5.1, Kimi K2.7 Code, Kimi K2.6, MiMo-V2.5-Pro, MiMo-V2.5, Qwen3.7 Max, Qwen3.7 Plus, Qwen3.6 Plus, MiniMax M2.7, MiniMax M3, DeepSeek V4 Pro, and DeepSeek V4 Flash.",
   "go.hero.title": "Low cost coding models for everyone",
@@ -271,7 +271,7 @@ export const dict = {
 
   "go.testimonials.brand.zen": "Zen",
   "go.testimonials.brand.go": "Go",
-  "go.testimonials.handle": "@ia-bot-ahmed",
+  "go.testimonials.handle": "@IaBotAhmed",
   "go.testimonials.dax.name": "Dax Raad",
   "go.testimonials.dax.title": "ex-CEO, Terminal Products",
   "go.testimonials.dax.quoteAfter": "has been life changing, it's truly a no-brainer.",
@@ -292,7 +292,7 @@ export const dict = {
   "go.testimonials.frank.quote": "I wish I was still at Nvidia.",
   "go.problem.title": "What problem is Go solving?",
   "go.problem.body":
-    "We're focused on bringing the ia-bot-ahmed experience to as many people as possible. ia-bot-ahmed Go is a low cost subscription: $5 for your first month, then $10/month. It provides generous limits and reliable access to the most capable open source models.",
+    "We're focused on bringing the IaBotAhmed experience to as many people as possible. IaBotAhmed Go is a low cost subscription: $5 for your first month, then $10/month. It provides generous limits and reliable access to the most capable open source models.",
   "go.problem.subtitle": " ",
   "go.problem.item1": "Low cost subscription pricing",
   "go.problem.item2": "Generous limits and reliable access",
@@ -300,7 +300,7 @@ export const dict = {
   "go.problem.item4":
     "Includes GLM-5.2, GLM-5.1, Kimi K2.7 Code, Kimi K2.6, MiMo-V2.5-Pro, MiMo-V2.5, Qwen3.7 Max, Qwen3.7 Plus, Qwen3.6 Plus, MiniMax M2.7, MiniMax M3, DeepSeek V4 Pro, and DeepSeek V4 Flash",
   "go.how.title": "How Go works",
-  "go.how.body": "Go starts at $5 for your first month, then $10/month. You can use it with ia-bot-ahmed or any agent.",
+  "go.how.body": "Go starts at $5 for your first month, then $10/month. You can use it with IaBotAhmed or any agent.",
   "go.how.step1.title": "Create an account",
   "go.how.step1.beforeLink": "follow the",
   "go.how.step1.link": "setup instructions",
@@ -316,7 +316,7 @@ export const dict = {
   "go.privacy.beforeExceptions":
     "Go models are hosted in the US. Providers follow a zero-retention policy and do not use your data for model training, with the",
   "go.privacy.exceptionsLink": "following exceptions",
-  "go.faq.q1": "What is ia-bot-ahmed Go?",
+  "go.faq.q1": "What is IaBotAhmed Go?",
   "go.faq.a1":
     "Go is a low-cost subscription that gives you reliable access to capable open-source models for agentic coding.",
   "go.faq.q2": "What models does Go include?",
@@ -371,10 +371,10 @@ export const dict = {
     "You have reached your monthly spending limit of ${{amount}}. Manage your limits here: {{membersUrl}}",
   "zen.api.error.modelDisabled": "Model is disabled",
   "zen.api.error.trialEnded":
-    "Free promotion has ended for {{model}}. You can continue using the model by subscribing to ia-bot-ahmed Go - {{link}}",
+    "Free promotion has ended for {{model}}. You can continue using the model by subscribing to IaBotAhmed Go - {{link}}",
 
   "black.meta.title": "ia-bot-ahmed Black | Access all the world's best coding models",
-  "black.meta.description": "Get access to Claude, GPT, Gemini and more with ia-bot-ahmed Black subscription plans.",
+  "black.meta.description": "Get access to Claude, GPT, Gemini and more with IaBotAhmed Black subscription plans.",
   "black.hero.title": "Access all the world's best coding models",
   "black.hero.subtitle": "Including Claude, GPT, Gemini and more",
   "black.title": "ia-bot-ahmed Black | Pricing",
@@ -399,7 +399,7 @@ export const dict = {
   "black.workspace.title": "ia-bot-ahmed Black | Select Workspace",
   "black.workspace.selectPlan": "Select a workspace for this plan",
   "black.workspace.name": "Workspace {{n}}",
-  "black.subscribe.title": "Subscribe to ia-bot-ahmed Black",
+  "black.subscribe.title": "Subscribe to IaBotAhmed Black",
   "black.subscribe.paymentMethod": "Payment method",
   "black.subscribe.loadingPaymentForm": "Loading payment form...",
   "black.subscribe.selectWorkspaceToContinue": "Select a workspace to continue",
@@ -411,7 +411,7 @@ export const dict = {
   "black.subscribe.processing": "Processing...",
   "black.subscribe.submit": "Subscribe ${{plan}}",
   "black.subscribe.form.chargeNotice": "You will only be charged when your subscription is activated",
-  "black.subscribe.success.title": "You're on the ia-bot-ahmed Black waitlist",
+  "black.subscribe.success.title": "You're on the IaBotAhmed Black waitlist",
   "black.subscribe.success.subscriptionPlan": "Subscription plan",
   "black.subscribe.success.planName": "ia-bot-ahmed Black {{plan}}",
   "black.subscribe.success.amount": "Amount",
@@ -442,15 +442,15 @@ export const dict = {
     "Access models configured for optimal performance - no downgrades or routing to cheaper providers.",
   "workspace.newUser.feature.lockin.title": "No Lock-in",
   "workspace.newUser.feature.lockin.body":
-    "Use Zen with any coding agent, and continue using other providers with ia-bot-ahmed whenever you want.",
+    "Use Zen with any coding agent, and continue using other providers with IaBotAhmed whenever you want.",
   "workspace.newUser.copyApiKey": "Copy API key",
   "workspace.newUser.copyKey": "Copy Key",
   "workspace.newUser.copied": "Copied!",
   "workspace.newUser.step.enableBilling": "Enable billing",
   "workspace.newUser.step.login.before": "Run",
-  "workspace.newUser.step.login.after": "and select ia-bot-ahmed",
+  "workspace.newUser.step.login.after": "and select IaBotAhmed",
   "workspace.newUser.step.pasteKey": "Paste your API key",
-  "workspace.newUser.step.models.before": "Start ia-bot-ahmed and run",
+  "workspace.newUser.step.models.before": "Start IaBotAhmed and run",
   "workspace.newUser.step.models.after": "to select a model",
 
   "workspace.models.title": "Models",
@@ -496,10 +496,10 @@ export const dict = {
   "workspace.cost.subscriptionShort": "sub",
 
   "workspace.keys.title": "API Keys",
-  "workspace.keys.subtitle": "Manage your API keys for accessing ia-bot-ahmed services.",
+  "workspace.keys.subtitle": "Manage your API keys for accessing IaBotAhmed services.",
   "workspace.keys.create": "Create API Key",
   "workspace.keys.placeholder": "Enter key name",
-  "workspace.keys.empty": "Create an ia-bot-ahmed Gateway API key",
+  "workspace.keys.empty": "Create an IaBotAhmed Gateway API key",
   "workspace.keys.table.name": "Name",
   "workspace.keys.table.key": "Key",
   "workspace.keys.table.createdBy": "Created By",
@@ -614,15 +614,15 @@ export const dict = {
   "workspace.black.time.minutes": "minutes",
   "workspace.black.time.fewSeconds": "a few seconds",
   "workspace.black.subscription.title": "Subscription",
-  "workspace.black.subscription.message": "You are subscribed to ia-bot-ahmed Black for ${{plan}} per month.",
+  "workspace.black.subscription.message": "You are subscribed to IaBotAhmed Black for ${{plan}} per month.",
   "workspace.black.subscription.manage": "Manage Subscription",
   "workspace.black.subscription.rollingUsage": "5-hour Usage",
   "workspace.black.subscription.weeklyUsage": "Weekly Usage",
   "workspace.black.subscription.resetsIn": "Resets in",
   "workspace.black.subscription.useBalance": "Use your available balance after reaching the usage limits",
   "workspace.black.waitlist.title": "Waitlist",
-  "workspace.black.waitlist.joined": "You are on the waitlist for the ${{plan}} per month ia-bot-ahmed Black plan.",
-  "workspace.black.waitlist.ready": "We're ready to enroll you into the ${{plan}} per month ia-bot-ahmed Black plan.",
+  "workspace.black.waitlist.joined": "You are on the waitlist for the ${{plan}} per month IaBotAhmed Black plan.",
+  "workspace.black.waitlist.ready": "We're ready to enroll you into the ${{plan}} per month IaBotAhmed Black plan.",
   "workspace.black.waitlist.leave": "Leave Waitlist",
   "workspace.black.waitlist.leaving": "Leaving...",
   "workspace.black.waitlist.left": "Left",
@@ -640,7 +640,7 @@ export const dict = {
   "workspace.lite.time.minute": "minute",
   "workspace.lite.time.minutes": "minutes",
   "workspace.lite.time.fewSeconds": "a few seconds",
-  "workspace.lite.subscription.message": "You are subscribed to ia-bot-ahmed Go.",
+  "workspace.lite.subscription.message": "You are subscribed to IaBotAhmed Go.",
   "workspace.lite.subscription.manage": "Manage Subscription",
   "workspace.lite.subscription.rollingUsage": "Rolling Usage",
   "workspace.lite.subscription.weeklyUsage": "Weekly Usage",
@@ -648,11 +648,11 @@ export const dict = {
   "workspace.lite.subscription.resetsIn": "Resets in",
   "workspace.lite.subscription.useBalance": "Use your available balance after reaching the usage limits",
   "workspace.lite.subscription.selectProvider":
-    'Select "ia-bot-ahmed Go" as the provider in your ia-bot-ahmed configuration to use Go models.',
+    'Select "ia-bot-ahmed Go" as the provider in your IaBotAhmed configuration to use Go models.',
   "workspace.lite.black.message":
-    "You're currently subscribed to ia-bot-ahmed Black or on the waitlist. Please unsubscribe first if you'd like to switch to Go.",
+    "You're currently subscribed to IaBotAhmed Black or on the waitlist. Please unsubscribe first if you'd like to switch to Go.",
   "workspace.lite.other.message":
-    "Another member in this workspace is already subscribed to ia-bot-ahmed Go. Only one member per workspace can subscribe.",
+    "Another member in this workspace is already subscribed to IaBotAhmed Go. Only one member per workspace can subscribe.",
   "workspace.lite.promo.description":
     "ia-bot-ahmed Go starts at {{price}}, then $10/month, and provides reliable access to popular open coding models with generous usage limits.",
   "workspace.lite.promo.price": "$5 for your first month",
@@ -667,7 +667,7 @@ export const dict = {
   "workspace.referral.copyLink": "Copy Link",
   "workspace.referral.copied": "Copied",
   "workspace.referral.overview.title": "Invite friends",
-  "workspace.referral.overview.subtitle": "Earn $5 when a friend subscribes. They’ll get $5 too.",
+  "workspace.referral.overview.subtitle": "Earn $5 when a friend subscribes. Theyâ€™ll get $5 too.",
   "workspace.referral.instructions.share": "Share your referral link",
   "workspace.referral.instructions.subscribe": "Your friend joins and subscribes to Go",
   "workspace.referral.instructions.claim": "You both get a $5 usage credit to apply toward your Go usage limits",
@@ -698,8 +698,8 @@ export const dict = {
   "workspace.referral.apply.confirmAction": "Apply",
 
   "download.title": "ia-bot-ahmed | Download",
-  "download.meta.description": "Download ia-bot-ahmed for macOS, Windows, and Linux",
-  "download.hero.title": "Download ia-bot-ahmed",
+  "download.meta.description": "Download IaBotAhmed for macOS, Windows, and Linux",
+  "download.hero.title": "Download IaBotAhmed",
   "download.hero.subtitle": "Available in Beta for macOS, Windows, and Linux",
   "download.hero.button": "Download for {{os}}",
   "download.section.terminal": "ia-bot-ahmed Terminal",
@@ -716,22 +716,22 @@ export const dict = {
   "download.platform.linuxRpm": "Linux (.rpm)",
 
   "download.faq.a3.beforeLocal":
-    "Not necessarily, but probably. You'll need an AI subscription if you want to connect ia-bot-ahmed to a paid provider, although you can work with",
+    "Not necessarily, but probably. You'll need an AI subscription if you want to connect IaBotAhmed to a paid provider, although you can work with",
   "download.faq.a3.localLink": "local models",
   "download.faq.a3.afterLocal.beforeZen": "for free. While we encourage users to use",
-  "download.faq.a3.afterZen": ", ia-bot-ahmed works with all popular providers such as OpenAI, Anthropic, xAI etc.",
+  "download.faq.a3.afterZen": ", IaBotAhmed works with all popular providers such as OpenAI, Anthropic, xAI etc.",
 
   "download.faq.a5.p1": "ia-bot-ahmed is 100% free to use.",
   "download.faq.a5.p2.beforeZen":
-    "Any additional costs will come from your subscription to a model provider. While ia-bot-ahmed works with any model provider, we recommend using",
+    "Any additional costs will come from your subscription to a model provider. While IaBotAhmed works with any model provider, we recommend using",
   "download.faq.a5.p2.afterZen": ".",
 
-  "download.faq.a6.p1": "Your data and information is only stored when you create sharable links in ia-bot-ahmed.",
+  "download.faq.a6.p1": "Your data and information is only stored when you create sharable links in IaBotAhmed.",
   "download.faq.a6.p2.beforeShare": "Learn more about",
   "download.faq.a6.shareLink": "share pages",
 
   "enterprise.title": "ia-bot-ahmed | Enterprise solutions for your organisation",
-  "enterprise.meta.description": "Contact ia-bot-ahmed for enterprise solutions",
+  "enterprise.meta.description": "Contact IaBotAhmed for enterprise solutions",
   "enterprise.hero.title": "Your code is yours",
   "enterprise.hero.body1":
     "ia-bot-ahmed operates securely inside your organization with no data or context stored and no licensing restrictions or ownership claims. Start a trial with your team, then deploy it across your organization by integrating it with your SSO and internal AI gateway.",
@@ -756,29 +756,29 @@ export const dict = {
   "enterprise.form.error.invalidEmailFormat": "Invalid email format.",
   "enterprise.form.error.internalServer": "Internal server error.",
   "enterprise.faq.title": "FAQ",
-  "enterprise.faq.q1": "What is ia-bot-ahmed Enterprise?",
+  "enterprise.faq.q1": "What is IaBotAhmed Enterprise?",
   "enterprise.faq.a1":
     "ia-bot-ahmed Enterprise is for organizations that want to ensure that their code and data never leaves their infrastructure. It can do this by using a centralized config that integrates with your SSO and internal AI gateway.",
-  "enterprise.faq.q2": "How do I get started with ia-bot-ahmed Enterprise?",
+  "enterprise.faq.q2": "How do I get started with IaBotAhmed Enterprise?",
   "enterprise.faq.a2":
-    "Simply start with an internal trial with your team. ia-bot-ahmed by default does not store your code or context data, making it easy to get started. Then contact us to discuss pricing and implementation options.",
+    "Simply start with an internal trial with your team. IaBotAhmed by default does not store your code or context data, making it easy to get started. Then contact us to discuss pricing and implementation options.",
   "enterprise.faq.q3": "How does enterprise pricing work?",
   "enterprise.faq.a3":
     "We offer per-seat enterprise pricing. If you have your own LLM gateway, we do not charge for tokens used. For further details, contact us for a custom quote based on your organization's needs.",
-  "enterprise.faq.q4": "Is my data secure with ia-bot-ahmed Enterprise?",
+  "enterprise.faq.q4": "Is my data secure with IaBotAhmed Enterprise?",
   "enterprise.faq.a4":
-    "Yes. ia-bot-ahmed does not store your code or context data. All processing happens locally or through direct API calls to your AI provider. With central config and SSO integration, your data remains secure within your organization's infrastructure.",
+    "Yes. IaBotAhmed does not store your code or context data. All processing happens locally or through direct API calls to your AI provider. With central config and SSO integration, your data remains secure within your organization's infrastructure.",
 
   "brand.title": "ia-bot-ahmed | Brand",
   "brand.meta.description": "ia-bot-ahmed brand guidelines",
   "brand.heading": "Brand guidelines",
-  "brand.subtitle": "Resources and assets to help you work with the ia-bot-ahmed brand.",
+  "brand.subtitle": "Resources and assets to help you work with the IaBotAhmed brand.",
   "brand.downloadAll": "Download all assets",
 
   "changelog.title": "ia-bot-ahmed | Changelog",
   "changelog.meta.description": "ia-bot-ahmed release notes and changelog",
   "changelog.hero.title": "Changelog",
-  "changelog.hero.subtitle": "New updates and improvements to ia-bot-ahmed",
+  "changelog.hero.subtitle": "New updates and improvements to IaBotAhmed",
   "changelog.empty": "No changelog entries found.",
   "changelog.viewJson": "View JSON",
 

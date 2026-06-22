@@ -1,4 +1,4 @@
-import { Project } from "@/project/project"
+﻿import { Project } from "@/project/project"
 import { ProjectV2 } from "@ia-bot-ahmed/core/project"
 import { Schema } from "effect"
 import { HttpApi, HttpApiEndpoint, HttpApiError, HttpApiGroup, OpenApi } from "effect/unstable/httpapi"
@@ -26,7 +26,7 @@ export const ProjectApi = HttpApi.make("project")
           OpenApi.annotations({
             identifier: "project.list",
             summary: "List all projects",
-            description: "Get a list of projects that have been opened with ia-bot-ahmed.",
+            description: "Get a list of projects that have been opened with IaBotAhmed.",
           }),
         ),
         HttpApiEndpoint.get("current", `${root}/current`, {
@@ -36,7 +36,7 @@ export const ProjectApi = HttpApi.make("project")
           OpenApi.annotations({
             identifier: "project.current",
             summary: "Get current project",
-            description: "Retrieve the currently active project that ia-bot-ahmed is working with.",
+            description: "Retrieve the currently active project that IaBotAhmed is working with.",
           }),
         ),
         HttpApiEndpoint.post("initGit", `${root}/git/init`, {

@@ -1,4 +1,4 @@
-import { CliRenderEvents, SyntaxStyle, type TerminalColors } from "@opentui/core"
+﻿import { CliRenderEvents, SyntaxStyle, type TerminalColors } from "@opentui/core"
 import { useRenderer } from "@opentui/solid"
 import {
   DEFAULT_THEMES,
@@ -38,7 +38,7 @@ const themeSource: ThemeSource = {
   async discover() {
     const directories = [Global.Path.config]
     for (let current = process.cwd(); ; current = path.dirname(current)) {
-      directories.push(path.join(current, ".ia-bot-ahmed"))
+      directories.push(path.join(current, ".IaBotAhmed"))
       if (path.dirname(current) === current) break
     }
     return discoverThemes(directories)
@@ -263,7 +263,7 @@ export const { use: useTheme, provider: ThemeProvider } = createSimpleContext({
         if (theme) return resolveTheme(theme, store.mode)
       }
 
-      return resolveTheme(store.themes.ia-bot-ahmed, store.mode)
+      return resolveTheme(store.themes.IaBotAhmed, store.mode)
     })
 
     createEffect(() => renderer.setBackgroundColor(values().background))

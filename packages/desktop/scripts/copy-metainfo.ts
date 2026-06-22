@@ -1,9 +1,9 @@
-import { resolveChannel } from "./utils"
+﻿import { resolveChannel } from "./utils"
 
 const arg = process.argv[2]
 const channel = arg === "dev" || arg === "beta" || arg === "prod" ? arg : resolveChannel()
 
-const appId = channel === "prod" ? "ai.ia-bot-ahmed.desktop" : `ai.ia-bot-ahmed.desktop.${channel}`
+const appId = channel === "prod" ? "ai.IaBotAhmed.desktop" : `ai.IaBotAhmed.desktop.${channel}`
 const productName = channel === "prod" ? "ia-bot-ahmed" : `ia-bot-ahmed ${channel.charAt(0).toUpperCase() + channel.slice(1)}`
 const summary = `Open source AI coding agent${channel !== "prod" ? ` (${channel})` : ""}`
 
@@ -23,7 +23,7 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
 
   <description>
     <p>
-      ia-bot-ahmed is an open source agent that helps you write and run code with any AI model.
+      IaBotAhmed is an open source agent that helps you write and run code with any AI model.
     </p>
   </description>
 
@@ -32,8 +32,8 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
   <content_rating type="oars-1.1" />
 
   <url type="bugtracker">https://github.com/anomalyco/ia-bot-ahmed/issues</url>
-  <url type="homepage">https://ia-bot-ahmed.app</url>
-  <url type="vcs-browser">https://github.com/anomalyco/ia-bot-ahmed</url>
+  <url type="homepage">https://IaBotAhmed.app</url>
+  <url type="vcs-browser">https://github.com/anomalyco/IaBotAhmed</url>
 
   <screenshots>
     <screenshot type="default">

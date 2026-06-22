@@ -1,4 +1,4 @@
-import { Component, Show } from "solid-js"
+﻿import { Component, Show } from "solid-js"
 import { useDialog } from "@ia-bot-ahmed/ui/context/dialog"
 import { popularProviders, useProviders } from "@/hooks/use-providers"
 import { Dialog } from "@ia-bot-ahmed/ui/dialog"
@@ -23,7 +23,7 @@ export const DialogSelectProvider: Component = () => {
     if (id === "anthropic") return language.t("dialog.provider.anthropic.note")
     if (id === "openai") return language.t("dialog.provider.openai.note")
     if (id.startsWith("github-copilot")) return language.t("dialog.provider.copilot.note")
-    if (id === "ia-bot-ahmed-go") return language.t("dialog.provider.ia-bot-ahmedGo.tagline")
+    if (id === "ia-bot-ahmed-go") return language.t("dialog.provider.IaBotAhmedGo.tagline")
   }
 
   return (
@@ -67,7 +67,7 @@ export const DialogSelectProvider: Component = () => {
             <ProviderIcon data-slot="list-item-extra-icon" id={i.id} />
             <span>{i.name}</span>
             <Show when={i.id === "ia-bot-ahmed"}>
-              <div class="text-14-regular text-text-weak">{language.t("dialog.provider.ia-bot-ahmed.tagline")}</div>
+              <div class="text-14-regular text-text-weak">{language.t("dialog.provider.IaBotAhmed.tagline")}</div>
             </Show>
             <Show when={i.id === CUSTOM_ID}>
               <Tag>{language.t("settings.providers.tag.custom")}</Tag>

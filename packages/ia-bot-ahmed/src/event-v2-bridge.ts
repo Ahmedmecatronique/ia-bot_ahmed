@@ -1,4 +1,4 @@
-// ia-bot-ahmed publish boundary for core events. Attach routed instance location
+﻿// IaBotAhmed publish boundary for core events. Attach routed instance location
 // so direct EventV2 consumers can isolate directory/workspace streams.
 import { LayerNode } from "@ia-bot-ahmed/core/effect/layer-node"
 import { InstanceRef, WorkspaceRef } from "@/effect/instance-ref"

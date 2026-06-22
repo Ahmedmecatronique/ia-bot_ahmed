@@ -1,4 +1,4 @@
-import { contextBridge, ipcRenderer, webUtils } from "electron"
+﻿import { contextBridge, ipcRenderer, webUtils } from "electron"
 import type { ElectronAPI, WslServersEvent } from "./types"
 import type { UpdaterState } from "@ia-bot-ahmed/app/updater"
 
@@ -30,8 +30,8 @@ const api: ElectronAPI = {
     installWsl: () => ipcRenderer.invoke("wsl-servers-install-wsl"),
     installDistro: (name) => ipcRenderer.invoke("wsl-servers-install-distro", name),
     probeDistro: (name) => ipcRenderer.invoke("wsl-servers-probe-distro", name),
-    probeia-bot-ahmed: (name) => ipcRenderer.invoke("wsl-servers-probe-ia-bot-ahmed", name),
-    installia-bot-ahmed: (name) => ipcRenderer.invoke("wsl-servers-install-ia-bot-ahmed", name),
+    probeIaBotAhmed: (name) => ipcRenderer.invoke("wsl-servers-probe-IaBotAhmed", name),
+    installIaBotAhmed: (name) => ipcRenderer.invoke("wsl-servers-install-IaBotAhmed", name),
     openTerminal: (name) => ipcRenderer.invoke("wsl-servers-open-terminal", name),
     addServer: (distro) => ipcRenderer.invoke("wsl-servers-add", distro),
     removeServer: (id) => ipcRenderer.invoke("wsl-servers-remove", id),

@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+﻿#!/usr/bin/env bun
 
 import { rm } from "fs/promises"
 import path from "path"
@@ -27,13 +27,13 @@ if (values.help) {
   console.log(`
 Usage: bun script/changelog.ts [options]
 
-Generates UPCOMING_CHANGELOG.md by running the ia-bot-ahmed changelog command.
+Generates UPCOMING_CHANGELOG.md by running the IaBotAhmed changelog command.
 
 Options:
   -f, --from <version>   Starting version (default: latest non-draft GitHub release)
   -t, --to <ref>         Ending ref (default: HEAD)
-      --variant <name>   Thinking variant for ia-bot-ahmed run (default: low)
-      --quiet            Suppress ia-bot-ahmed command output unless it fails
+      --variant <name>   Thinking variant for IaBotAhmed run (default: low)
+      --quiet            Suppress IaBotAhmed command output unless it fails
       --print            Print the generated UPCOMING_CHANGELOG.md after success
   -h, --help             Show this help message
 

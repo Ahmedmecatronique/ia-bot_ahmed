@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, spyOn, test } from "bun:test"
+﻿import { beforeAll, describe, expect, spyOn, test } from "bun:test"
 import fs from "fs/promises"
 import path from "path"
 import { pathToFileURL } from "url"
@@ -168,9 +168,9 @@ async function load(): Promise<Data> {
       const invalidThemePath = path.join(dir, invalidThemeFile)
       const globalThemePath = path.join(dir, globalThemeFile)
       const preloadedThemePath = path.join(dir, preloadedThemeFile)
-      const localDest = path.join(dir, ".ia-bot-ahmed", "themes", localThemeFile)
+      const localDest = path.join(dir, ".IaBotAhmed", "themes", localThemeFile)
       const globalDest = path.join(Global.Path.config, "themes", globalThemeFile)
-      const preloadedDest = path.join(dir, ".ia-bot-ahmed", "themes", preloadedThemeFile)
+      const preloadedDest = path.join(dir, ".IaBotAhmed", "themes", preloadedThemeFile)
       const fnMarker = path.join(dir, "function-called.txt")
       const localMarker = path.join(dir, "local-called.json")
       const invalidMarker = path.join(dir, "invalid-called.json")
@@ -549,7 +549,7 @@ export default {
       .then(() => true)
       .catch(() => false)
     const leaked_global_to_local = await fs
-      .stat(path.join(tmp.path, ".ia-bot-ahmed", "themes", tmp.extra.globalThemeFile))
+      .stat(path.join(tmp.path, ".IaBotAhmed", "themes", tmp.extra.globalThemeFile))
       .then(() => true)
       .catch(() => false)
 
@@ -1231,7 +1231,7 @@ test("updates installed theme when plugin metadata changes", async () => {
       const spec = pathToFileURL(pluginPath).href
       const themeFile = "theme-update.json"
       const themePath = path.join(dir, themeFile)
-      const dest = path.join(dir, ".ia-bot-ahmed", "themes", themeFile)
+      const dest = path.join(dir, ".IaBotAhmed", "themes", themeFile)
       const themeName = themeFile.replace(/\.json$/, "")
       const configPath = path.join(dir, "tui.json")
 

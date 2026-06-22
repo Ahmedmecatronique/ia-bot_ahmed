@@ -1,4 +1,4 @@
-import { createia-bot-ahmedClient } from "@ia-bot-ahmed/sdk/v2"
+﻿import { createIaBotAhmedClient } from "@ia-bot-ahmed/sdk/v2"
 import type { GlobalEvent } from "@ia-bot-ahmed/sdk/v2"
 import { Flag } from "@ia-bot-ahmed/core/flag/flag"
 import { createSimpleContext } from "./helper"
@@ -21,7 +21,7 @@ export const { use: useSDK, provider: SDKProvider } = createSimpleContext({
     let sse: AbortController | undefined
 
     function createSDK() {
-      return createia-bot-ahmedClient({
+      return createIaBotAhmedClient({
         baseUrl: props.url,
         signal: abort.signal,
         directory: props.directory,

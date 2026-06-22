@@ -1,4 +1,4 @@
-import { app, ipcMain } from "electron"
+﻿import { app, ipcMain } from "electron"
 import type { IpcMainInvokeEvent } from "electron"
 import type { WslServersController } from "./servers"
 import { requireWslIpcString } from "./policy"
@@ -49,11 +49,11 @@ export function registerWslIpcHandlers(controller: WslServersController) {
   ipcMain.handle("wsl-servers-probe-distro", (_event: IpcMainInvokeEvent, name: string) =>
     controller.probeDistro(requireWslIpcString("distro", name)),
   )
-  ipcMain.handle("wsl-servers-probe-ia-bot-ahmed", (_event: IpcMainInvokeEvent, name: string) =>
-    controller.probeia-bot-ahmed(requireWslIpcString("distro", name)),
+  ipcMain.handle("wsl-servers-probe-IaBotAhmed", (_event: IpcMainInvokeEvent, name: string) =>
+    controller.probeIaBotAhmed(requireWslIpcString("distro", name)),
   )
-  ipcMain.handle("wsl-servers-install-ia-bot-ahmed", (_event: IpcMainInvokeEvent, name: string) =>
-    controller.installia-bot-ahmed(requireWslIpcString("distro", name)),
+  ipcMain.handle("wsl-servers-install-IaBotAhmed", (_event: IpcMainInvokeEvent, name: string) =>
+    controller.installIaBotAhmed(requireWslIpcString("distro", name)),
   )
   ipcMain.handle("wsl-servers-open-terminal", (_event: IpcMainInvokeEvent, name: string) =>
     controller.openTerminal(requireWslIpcString("distro", name)),
@@ -82,7 +82,7 @@ function registerUnavailableWslIpcHandlers() {
     installed: [],
     online: [],
     distroProbes: {},
-    ia-bot-ahmedChecks: {},
+    IaBotAhmedChecks: {},
     pendingRestart: false,
     servers: [],
     job: null,
@@ -98,8 +98,8 @@ function registerUnavailableWslIpcHandlers() {
   ipcMain.handle("wsl-servers-install-wsl", unavailable)
   ipcMain.handle("wsl-servers-install-distro", unavailable)
   ipcMain.handle("wsl-servers-probe-distro", unavailable)
-  ipcMain.handle("wsl-servers-probe-ia-bot-ahmed", unavailable)
-  ipcMain.handle("wsl-servers-install-ia-bot-ahmed", unavailable)
+  ipcMain.handle("wsl-servers-probe-IaBotAhmed", unavailable)
+  ipcMain.handle("wsl-servers-install-IaBotAhmed", unavailable)
   ipcMain.handle("wsl-servers-open-terminal", unavailable)
   ipcMain.handle("wsl-servers-add", unavailable)
   ipcMain.handle("wsl-servers-remove", unavailable)

@@ -1,4 +1,4 @@
-import { runtimeModules as keymapRuntimeModules } from "@opentui/keymap/runtime-modules"
+﻿import { runtimeModules as keymapRuntimeModules } from "@opentui/keymap/runtime-modules"
 import { ensureRuntimePluginSupport } from "@opentui/solid/runtime-plugin-support/configure"
 import {
   type TuiDispose,
@@ -252,9 +252,9 @@ function createThemeInstaller(
     const name = path.basename(src, path.extname(src))
     const source_dir = path.dirname(meta.source)
     const local_dir =
-      path.basename(source_dir) === ".ia-bot-ahmed"
+      path.basename(source_dir) === ".IaBotAhmed"
         ? path.join(source_dir, "themes")
-        : path.join(source_dir, ".ia-bot-ahmed", "themes")
+        : path.join(source_dir, ".IaBotAhmed", "themes")
     const dest_dir = meta.scope === "local" ? local_dir : path.join(Global.Path.config, "themes")
     const dest = path.join(dest_dir, `${name}.json`)
     const stat = await Filesystem.statAsync(src)
@@ -813,7 +813,7 @@ function defaultPluginOrigin(state: RuntimeState, spec: string): ConfigPlugin.Or
   return {
     spec,
     scope: "local",
-    source: state.api.state.path.config || path.join(state.directory, ".ia-bot-ahmed", "tui.json"),
+    source: state.api.state.path.config || path.join(state.directory, ".IaBotAhmed", "tui.json"),
   }
 }
 

@@ -1,5 +1,5 @@
-import { App } from "@slack/bolt"
-import { createia-bot-ahmed, type ToolPart } from "@ia-bot-ahmed/sdk"
+﻿import { App } from "@slack/bolt"
+import { createIaBotAhmed, type ToolPart } from "@ia-bot-ahmed/sdk"
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -8,20 +8,20 @@ const app = new App({
   appToken: process.env.SLACK_APP_TOKEN,
 })
 
-console.log("🔧 Bot configuration:")
+console.log("ðŸ”§ Bot configuration:")
 console.log("- Bot token present:", !!process.env.SLACK_BOT_TOKEN)
 console.log("- Signing secret present:", !!process.env.SLACK_SIGNING_SECRET)
 console.log("- App token present:", !!process.env.SLACK_APP_TOKEN)
 
-console.log("🚀 Starting ia-bot-ahmed server...")
-const ia-bot-ahmed = await createia-bot-ahmed({
+console.log("ðŸš€ Starting IaBotAhmed server...")
+const IaBotAhmed = await createIaBotAhmed({
   port: 0,
 })
-console.log("✅ ia-bot-ahmed server ready")
+console.log("âœ… IaBotAhmed server ready")
 
 const sessions = new Map<string, { client: any; server: any; sessionId: string; channel: string; thread: string }>()
 void (async () => {
-  const events = await ia-bot-ahmed.client.event.subscribe()
+  const events = await IaBotAhmed.client.event.subscribe()
   for await (const event of events.stream) {
     if (event.type === "message.part.updated") {
       const part = event.properties.part
@@ -51,19 +51,19 @@ async function handleToolUpdate(part: ToolPart, channel: string, thread: string)
 }
 
 app.use(async ({ next, context }) => {
-  console.log("📡 Raw Slack event:", JSON.stringify(context, null, 2))
+  console.log("ðŸ“¡ Raw Slack event:", JSON.stringify(context, null, 2))
   await next()
 })
 
 app.message(async ({ message, say }) => {
-  console.log("📨 Received message event:", JSON.stringify(message, null, 2))
+  console.log("ðŸ“¨ Received message event:", JSON.stringify(message, null, 2))
 
   if (message.subtype || !("text" in message) || !message.text) {
-    console.log("⏭️ Skipping message - no text or has subtype")
+    console.log("â­ï¸ Skipping message - no text or has subtype")
     return
   }
 
-  console.log("✅ Processing message:", message.text)
+  console.log("âœ… Processing message:", message.text)
 
   const channel = message.channel
   const thread = (message as any).thread_ts || message.ts
@@ -72,15 +72,15 @@ app.message(async ({ message, say }) => {
   let session = sessions.get(sessionKey)
 
   if (!session) {
-    console.log("🆕 Creating new ia-bot-ahmed session...")
-    const { client, server } = ia-bot-ahmed
+    console.log("ðŸ†• Creating new IaBotAhmed session...")
+    const { client, server } = IaBotAhmed
 
     const createResult = await client.session.create({
       body: { title: `Slack thread ${thread}` },
     })
 
     if (createResult.error) {
-      console.error("❌ Failed to create session:", createResult.error)
+      console.error("âŒ Failed to create session:", createResult.error)
       await say({
         text: "Sorry, I had trouble creating a session. Please try again.",
         thread_ts: thread,
@@ -88,7 +88,7 @@ app.message(async ({ message, say }) => {
       return
     }
 
-    console.log("✅ Created ia-bot-ahmed session:", createResult.data.id)
+    console.log("âœ… Created IaBotAhmed session:", createResult.data.id)
 
     session = { client, server, sessionId: createResult.data.id, channel, thread }
     sessions.set(sessionKey, session)
@@ -96,21 +96,21 @@ app.message(async ({ message, say }) => {
     const shareResult = await client.session.share({ path: { id: createResult.data.id } })
     if (!shareResult.error && shareResult.data) {
       const sessionUrl = shareResult.data.share?.url
-      console.log("🔗 Session shared:", sessionUrl)
+      console.log("ðŸ”— Session shared:", sessionUrl)
       await app.client.chat.postMessage({ channel, thread_ts: thread, text: sessionUrl })
     }
   }
 
-  console.log("📝 Sending to ia-bot-ahmed:", message.text)
+  console.log("ðŸ“ Sending to IaBotAhmed:", message.text)
   const result = await session.client.session.prompt({
     path: { id: session.sessionId },
     body: { parts: [{ type: "text", text: message.text }] },
   })
 
-  console.log("📤 ia-bot-ahmed response:", JSON.stringify(result, null, 2))
+  console.log("ðŸ“¤ IaBotAhmed response:", JSON.stringify(result, null, 2))
 
   if (result.error) {
-    console.error("❌ Failed to send message:", result.error)
+    console.error("âŒ Failed to send message:", result.error)
     await say({
       text: "Sorry, I had trouble processing your message. Please try again.",
       thread_ts: thread,
@@ -129,7 +129,7 @@ app.message(async ({ message, say }) => {
       .join("\n") ||
     "I received your message but didn't have a response."
 
-  console.log("💬 Sending response:", responseText)
+  console.log("ðŸ’¬ Sending response:", responseText)
 
   // Send main response (tool updates will come via live events)
   await say({ text: responseText, thread_ts: thread })
@@ -137,9 +137,9 @@ app.message(async ({ message, say }) => {
 
 app.command("/test", async ({ command, ack, say }) => {
   await ack()
-  console.log("🧪 Test command received:", JSON.stringify(command, null, 2))
-  await say("🤖 Bot is working! I can hear you loud and clear.")
+  console.log("ðŸ§ª Test command received:", JSON.stringify(command, null, 2))
+  await say("ðŸ¤– Bot is working! I can hear you loud and clear.")
 })
 
 await app.start()
-console.log("⚡️ Slack bot is running!")
+console.log("âš¡ï¸ Slack bot is running!")

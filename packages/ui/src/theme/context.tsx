@@ -1,4 +1,4 @@
-// @refresh reload
+﻿// @refresh reload
 
 import { createEffect, onMount } from "solid-js"
 import { createStore } from "solid-js/store"
@@ -69,7 +69,7 @@ const names: Record<string, string> = {
   nord: "Nord",
   "one-dark": "One Dark",
   onedarkpro: "One Dark Pro",
-  ia-bot-ahmed: "ia-bot-ahmed",
+  IaBotAhmed: "ia-bot-ahmed",
   orng: "Orng",
   "osaka-jade": "Osaka Jade",
   palenight: "Palenight",

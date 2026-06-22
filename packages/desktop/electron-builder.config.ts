@@ -1,4 +1,4 @@
-import { execFile } from "node:child_process"
+﻿import { execFile } from "node:child_process"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { promisify } from "node:util"
@@ -11,9 +11,9 @@ const rootDir = path.resolve(packageDir, "../..")
 const signScript = path.join(rootDir, "script", "sign-windows.ps1")
 // The Electron 42 packaging update briefly installed Linux launchers/icons under
 // "ia-bot-ahmed-desktop". Keep that hidden desktop entry around so existing GNOME/KDE
-// pins still resolve after the canonical app id changes back to ai.ia-bot-ahmed.desktop.
+// pins still resolve after the canonical app id changes back to ai.IaBotAhmed.desktop.
 const legacyDesktopEntry = path.join(packageDir, "resources", "linux", "ia-bot-ahmed-desktop.desktop")
-const legacyDesktopEntryFpm = `${legacyDesktopEntry}=/usr/share/applications/ia-bot-ahmed-desktop.desktop`
+const legacyDesktopEntryFpm = `${legacyDesktopEntry}=/usr/share/applications/IaBotAhmed-desktop.desktop`
 
 async function signWindows(configuration: { path: string }) {
   if (process.platform !== "win32") return
@@ -33,9 +33,9 @@ const channel = (() => {
 })()
 
 const APP_IDS = {
-  dev: "ai.ia-bot-ahmed.desktop.dev",
-  beta: "ai.ia-bot-ahmed.desktop.beta",
-  prod: "ai.ia-bot-ahmed.desktop",
+  dev: "ai.IaBotAhmed.desktop.dev",
+  beta: "ai.IaBotAhmed.desktop.beta",
+  prod: "ai.IaBotAhmed.desktop",
 } as const
 
 const getBase = (appId: string): Configuration => ({
@@ -45,8 +45,8 @@ const getBase = (appId: string): Configuration => ({
     buildResources: "resources",
   },
   // Linux launchers are .desktop files, so this is the desktop file name,
-  // not just the app id. For prod, app id "ai.ia-bot-ahmed.desktop" becomes
-  // "ai.ia-bot-ahmed.desktop.desktop".
+  // not just the app id. For prod, app id "ai.IaBotAhmed.desktop" becomes
+  // "ai.IaBotAhmed.desktop.desktop".
   // https://developer.gnome.org/documentation/guidelines/maintainer/integrating.html
   // https://www.electron.build/docs/linux/
   extraMetadata: {

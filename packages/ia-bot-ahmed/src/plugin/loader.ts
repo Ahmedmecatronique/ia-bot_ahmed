@@ -1,4 +1,4 @@
-import {
+﻿import {
   checkPluginCompatibility,
   createPluginEntry,
   isDeprecatedPlugin,
@@ -120,7 +120,7 @@ export namespace PluginLoader {
         },
       }
 
-    // npm plugins can declare which ia-bot-ahmed versions they support; file plugins are treated
+    // npm plugins can declare which IaBotAhmed versions they support; file plugins are treated
     // as local development code and skip this compatibility gate.
     if (base.source === "npm") {
       try {

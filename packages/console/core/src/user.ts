@@ -1,4 +1,4 @@
-import { z } from "zod"
+﻿import { z } from "zod"
 import { and, eq, getTableColumns, isNull, sql } from "drizzle-orm"
 import { fn } from "./util/fn"
 import { Database } from "./drizzle"
@@ -141,12 +141,12 @@ export namespace User {
         const { InviteEmail } = await import("@ia-bot-ahmed/console-mail/InviteEmail.jsx")
         await AWS.sendEmail({
           to: email,
-          subject: `You've been invited to join the ${emailInfo.workspaceName} workspace on ia-bot-ahmed`,
+          subject: `You've been invited to join the ${emailInfo.workspaceName} workspace on IaBotAhmed`,
           body: render(
             // @ts-ignore
             InviteEmail({
               inviter: emailInfo.inviterEmail,
-              assetsUrl: `https://ia-bot-ahmed.app/email`,
+              assetsUrl: `https://IaBotAhmed.app/email`,
               workspaceID: workspaceID,
               workspaceName: emailInfo.workspaceName,
             }),

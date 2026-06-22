@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Context, Effect, Layer } from "effect"
 import { HttpApiApp } from "../../src/server/routes/instance/httpapi/server"
 import { McpPaths } from "../../src/server/routes/instance/httpapi/groups/mcp"
@@ -29,7 +29,7 @@ const request = Effect.fnUntraced(function* (
   init?: RequestInit,
 ) {
   const headers = new Headers(init?.headers)
-  headers.set("x-ia-bot-ahmed-directory", directory)
+  headers.set("x-IaBotAhmed-directory", directory)
   return yield* Effect.promise(() =>
     Promise.resolve(
       handler.handler(
@@ -161,7 +161,7 @@ describe("mcp HttpApi", () => {
       Effect.gen(function* () {
         const tmp = yield* TestInstance
         const dir = tmp.directory
-        const headers = { "x-ia-bot-ahmed-directory": dir }
+        const headers = { "x-IaBotAhmed-directory": dir }
 
         yield* Effect.forEach(["/mcp/demo/auth", "/mcp/demo/auth/authenticate"], (path) =>
           Effect.gen(function* () {

@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { Schema } from "effect"
 
 import { Session } from "@/session/session"
@@ -16,7 +16,7 @@ import { WorkspaceV2 } from "@ia-bot-ahmed/core/workspace"
 //   1. The Effect decoder (`Schema.decodeUnknownSync`) accepts valid input.
 //   2. Clearly-invalid input is rejected.
 
-// Representative valid IDs — the branded schemas require the right prefix
+// Representative valid IDs â€” the branded schemas require the right prefix
 // (see src/id/id.ts).
 const sessionID = Schema.decodeUnknownSync(SessionID)("ses_01J5Y5H0AH4Q4NXJ6P4C3P5V2K")
 const sessionIDChild = Schema.decodeUnknownSync(SessionID)("ses_01J5Y5H0AH4Q4NXJ6P4C3P5V2L")
@@ -53,7 +53,7 @@ describe("Session.Info", () => {
       projectID,
       workspaceID,
       directory: "/tmp/proj",
-      path: "packages/ia-bot-ahmed",
+      path: "packages/IaBotAhmed",
       parentID: sessionIDChild,
       summary: {
         additions: 10,
@@ -238,9 +238,9 @@ describe("SessionStatus.Info", () => {
         reason: "free_tier_limit",
         provider: "ia-bot-ahmed",
         title: "Free limit reached",
-        message: "Subscribe to ia-bot-ahmed Go.",
+        message: "Subscribe to IaBotAhmed Go.",
         label: "subscribe",
-        link: "https://ia-bot-ahmed.app/go",
+        link: "https://IaBotAhmed.app/go",
       },
       next: 500,
     }

@@ -1,4 +1,4 @@
-import { afterEach, expect } from "bun:test"
+﻿import { afterEach, expect } from "bun:test"
 import { Cause, Effect, Exit, Layer } from "effect"
 import path from "path"
 import { disposeAllInstances, TestInstance } from "../fixture/fixture"
@@ -603,7 +603,7 @@ it.instance(
   () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const skillDir = path.join(test.directory, ".ia-bot-ahmed", "skill", "perm-skill")
+      const skillDir = path.join(test.directory, ".IaBotAhmed", "skill", "perm-skill")
       yield* Effect.promise(() =>
         Bun.write(
           path.join(skillDir, "SKILL.md"),

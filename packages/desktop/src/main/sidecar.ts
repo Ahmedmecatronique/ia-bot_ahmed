@@ -1,4 +1,4 @@
-import * as http from "node:http"
+﻿import * as http from "node:http"
 import * as tls from "node:tls"
 
 type NodeHttpWithEnvProxy = typeof http & {
@@ -54,7 +54,7 @@ async function start(command: StartCommand) {
     ensureLoopbackNoProxy()
     useSystemCertificates()
     useEnvProxy()
-    const { Server } = await import("virtual:ia-bot-ahmed-server")
+    const { Server } = await import("virtual:IaBotAhmed-server")
 
     listener = await Server.listen({
       port: command.port,

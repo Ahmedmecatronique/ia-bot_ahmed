@@ -1,8 +1,8 @@
-import type { GlobalEvent } from "@ia-bot-ahmed/sdk/v2"
+﻿import type { GlobalEvent } from "@ia-bot-ahmed/sdk/v2"
 import type { EventSource } from "@ia-bot-ahmed/tui/context/sdk"
 
-export const worktree = "/tmp/ia-bot-ahmed"
-export const directory = `${worktree}/packages/ia-bot-ahmed`
+export const worktree = "/tmp/IaBotAhmed"
+export const directory = `${worktree}/packages/IaBotAhmed`
 
 export function json(data: unknown, init?: ResponseInit) {
   return new Response(JSON.stringify(data), {

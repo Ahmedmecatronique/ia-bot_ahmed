@@ -1,4 +1,4 @@
-import { sentryVitePlugin } from "@sentry/vite-plugin"
+﻿import { sentryVitePlugin } from "@sentry/vite-plugin"
 import { defineConfig } from "electron-vite"
 import appPlugin from "@ia-bot-ahmed/app/vite"
 import * as fs from "node:fs/promises"
@@ -54,7 +54,7 @@ export default defineConfig({
         name: "ia-bot-ahmed:virtual-server-module",
         enforce: "pre",
         resolveId(id) {
-          if (id === "virtual:ia-bot-ahmed-server") return this.resolve(`${IA_BOT_AHMED_SERVER_DIST}/node.js`)
+          if (id === "virtual:IaBotAhmed-server") return this.resolve(`${IA_BOT_AHMED_SERVER_DIST}/node.js`)
         },
       },
       {

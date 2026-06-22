@@ -1,4 +1,4 @@
-import { Component, Show, createMemo, createResource, onMount, type JSX } from "solid-js"
+﻿import { Component, Show, createMemo, createResource, onMount, type JSX } from "solid-js"
 import { Button } from "@ia-bot-ahmed/ui/button"
 import { Icon } from "@ia-bot-ahmed/ui/icon"
 import { Select } from "@ia-bot-ahmed/ui/select"
@@ -469,7 +469,7 @@ export const SettingsGeneral: Component = () => {
           description={
             <>
               {language.t("settings.general.row.theme.description")}{" "}
-              <Link href="https://ia-bot-ahmed.app/docs/themes/">{language.t("common.learnMore")}</Link>
+              <Link href="https://IaBotAhmed.app/docs/themes/">{language.t("common.learnMore")}</Link>
             </>
           }
         >

@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Effect } from "effect"
 import { Catalog } from "@ia-bot-ahmed/core/catalog"
 import { PluginV2 } from "@ia-bot-ahmed/core/plugin"
@@ -41,7 +41,7 @@ describe("ZenmuxPlugin", () => {
       })
       yield* addPlugin()
       const result = required(yield* catalog.provider.get(ProviderV2.ID.make("zenmux")))
-      expect(result.request.headers).toEqual({ "HTTP-Referer": "https://ia-bot-ahmed.app/", "X-Title": "ia-bot-ahmed" })
+      expect(result.request.headers).toEqual({ "HTTP-Referer": "https://IaBotAhmed.app/", "X-Title": "ia-bot-ahmed" })
       expect(Object.keys(result.request.headers).sort()).toEqual(["HTTP-Referer", "X-Title"])
     }),
   )
@@ -63,7 +63,7 @@ describe("ZenmuxPlugin", () => {
 
       expect(required(yield* catalog.provider.get(ProviderV2.ID.make("zenmux"))).request.headers).toEqual({
         Existing: "value",
-        "HTTP-Referer": "https://ia-bot-ahmed.app/",
+        "HTTP-Referer": "https://IaBotAhmed.app/",
         "X-Title": "ia-bot-ahmed",
       })
     }),

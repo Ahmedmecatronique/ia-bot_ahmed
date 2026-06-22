@@ -1,4 +1,4 @@
-import { test, expect, describe, afterEach, beforeEach, spyOn } from "bun:test"
+﻿import { test, expect, describe, afterEach, beforeEach, spyOn } from "bun:test"
 import { ConfigV1 } from "@ia-bot-ahmed/core/v1/config/config"
 import { Cause, Effect, Exit, Layer, Option } from "effect"
 import { NamedError } from "@ia-bot-ahmed/core/util/error"
@@ -76,7 +76,7 @@ function remoteConfigClient(input: {
   seen: { wellKnown?: string; remote?: string; authorization?: string }
 }) {
   return HttpClient.make((request) => {
-    if (request.url.includes(".well-known/ia-bot-ahmed")) {
+    if (request.url.includes(".well-known/IaBotAhmed")) {
       input.seen.wellKnown = request.url
       return Effect.succeed(json(request, input.wellKnown))
     }
@@ -120,7 +120,7 @@ const layer = configLayer()
 const it = testEffect(layer)
 const configIt = (options?: Parameters<typeof configLayer>[0]) => testEffect(configLayer(options))
 
-const schemaConfig = (config: object) => ({ $schema: "https://ia-bot-ahmed.app/config.json", ...config })
+const schemaConfig = (config: object) => ({ $schema: "https://IaBotAhmed.app/config.json", ...config })
 
 const provideCurrentInstance = <A, E, R>(effect: Effect.Effect<A, E, R>, ctx: InstanceContext) =>
   effect.pipe(Effect.provideService(InstanceRef, ctx))
@@ -212,7 +212,7 @@ const withConfigTree = <A, E, R>(
       [
         input.global ? writeConfigEffect(global, schemaConfig(input.global)) : undefined,
         input.project ? writeConfigEffect(directory, schemaConfig(input.project)) : undefined,
-        input.local ? writeConfigEffect(path.join(directory, ".ia-bot-ahmed"), schemaConfig(input.local)) : undefined,
+        input.local ? writeConfigEffect(path.join(directory, ".IaBotAhmed"), schemaConfig(input.local)) : undefined,
       ].filter((effect): effect is Effect.Effect<void, FSUtil.Error, FSUtil.Service> => effect !== undefined),
       { concurrency: "unbounded" },
     )
@@ -278,7 +278,7 @@ async function check(map: (dir: string) => string) {
   await clear()
   try {
     await writeConfig(globalTmp.path, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       snapshot: false,
     })
     await withTestInstance({
@@ -324,7 +324,7 @@ it.effect("creates global jsonc config with schema when no global configs exist"
       yield* Config.use.get().pipe(provideInstanceEffect(dir))
 
       const content = yield* FSUtil.use.readFileString(path.join(dir, "ia-bot-ahmed.jsonc"))
-      expect(content).toContain('"$schema": "https://ia-bot-ahmed.app/config.json"')
+      expect(content).toContain('"$schema": "https://IaBotAhmed.app/config.json"')
     }).pipe(Effect.provide(testInstanceStoreLayer), Effect.provide(CrossSpawnSpawner.defaultLayer)),
   ),
 )
@@ -370,7 +370,7 @@ it.instance("updates config and preserves empty shell sentinel", () =>
     const test = yield* TestInstance
     yield* writeConfigEffect(
       test.directory,
-      { $schema: "https://ia-bot-ahmed.app/config.json", shell: "bash" },
+      { $schema: "https://IaBotAhmed.app/config.json", shell: "bash" },
       "config.json",
     )
 
@@ -442,11 +442,11 @@ test("loads project config from Cygwin paths on Windows", async () => {
   })
 })
 
-it.instance("ignores legacy tui keys in ia-bot-ahmed config", () =>
+it.instance("ignores legacy tui keys in IaBotAhmed config", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       model: "test/model",
       theme: "legacy",
       tui: { scroll_speed: 4 },
@@ -466,7 +466,7 @@ it.instance("loads JSONC config file", () =>
       path.join(test.directory, "ia-bot-ahmed.jsonc"),
       `{
         // This is a comment
-        "$schema": "https://ia-bot-ahmed.app/config.json",
+        "$schema": "https://IaBotAhmed.app/config.json",
         "model": "test/model",
         "username": "testuser"
       }`,
@@ -483,14 +483,14 @@ it.instance("jsonc overrides json in the same directory", () =>
     yield* writeConfigEffect(
       test.directory,
       {
-        $schema: "https://ia-bot-ahmed.app/config.json",
+        $schema: "https://IaBotAhmed.app/config.json",
         model: "base",
         username: "base",
       },
       "ia-bot-ahmed.jsonc",
     )
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       model: "override",
     })
     const config = yield* Config.use.get()
@@ -506,7 +506,7 @@ it.instance("handles environment variable substitution", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
       yield* writeConfigEffect(test.directory, {
-        $schema: "https://ia-bot-ahmed.app/config.json",
+        $schema: "https://IaBotAhmed.app/config.json",
         username: "{env:TEST_VAR}",
       })
       const config = yield* Config.use.get()
@@ -543,7 +543,7 @@ it.instance("handles file inclusion substitution", () =>
     const test = yield* TestInstance
     yield* FSUtil.use.writeWithDirs(path.join(test.directory, "included.txt"), "test-user")
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       username: "{file:included.txt}",
     })
     const config = yield* Config.use.get()
@@ -556,7 +556,7 @@ it.instance("handles file inclusion with replacement tokens", () =>
     const test = yield* TestInstance
     yield* FSUtil.use.writeWithDirs(path.join(test.directory, "included.md"), "const out = await Bun.$`echo hi`")
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       username: "{file:included.md}",
     })
     const config = yield* Config.use.get()
@@ -593,7 +593,7 @@ const accountTokenIt = configIt({
     config: () =>
       Effect.succeed(
         Option.some({
-          provider: { ia-bot-ahmed: { options: { apiKey: "{env:IA_BOT_AHMED_CONSOLE_TOKEN}" } } },
+          provider: { IaBotAhmed: { options: { apiKey: "{env:IA_BOT_AHMED_CONSOLE_TOKEN}" } } },
         }),
       ),
     token: () => Effect.succeed(Option.some(AccessToken.make("st_test_token"))),
@@ -611,7 +611,7 @@ it.instance("validates config schema and throws on invalid fields", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       invalid_field: "should cause error",
     })
     const exit = yield* Config.use.get().pipe(Effect.exit)
@@ -632,7 +632,7 @@ it.instance("handles agent configuration", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       agent: {
         test_agent: {
           model: "test/model",
@@ -656,7 +656,7 @@ it.instance("treats agent variant as model-scoped setting (not provider option)"
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       agent: {
         test_agent: {
           model: "openai/gpt-5.2",
@@ -680,7 +680,7 @@ it.instance("handles command configuration", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       command: {
         test_command: {
           template: "test template",
@@ -702,7 +702,7 @@ it.instance("migrates autoshare to share field", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       autoshare: true,
     })
     const config = yield* Config.use.get()
@@ -715,7 +715,7 @@ it.instance("migrates mode field to agent field", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       mode: {
         test_mode: {
           model: "test/model",
@@ -738,7 +738,7 @@ it.instance("accepts the deprecated reference field", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       reference: {
         local: { path: "../library" },
         sdk: { repository: "github.com/example/sdk", branch: "main" },
@@ -754,11 +754,11 @@ it.instance("accepts the deprecated reference field", () =>
   }),
 )
 
-it.instance("loads config from .ia-bot-ahmed directory", () =>
+it.instance("loads config from .IaBotAhmed directory", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* FSUtil.use.writeWithDirs(
-      path.join(test.directory, ".ia-bot-ahmed", "agent", "test.md"),
+      path.join(test.directory, ".IaBotAhmed", "agent", "test.md"),
       `---
 model: test/model
 ---
@@ -780,7 +780,7 @@ it.instance("agent markdown permission config preserves user key order", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* FSUtil.use.writeWithDirs(
-      path.join(test.directory, ".ia-bot-ahmed", "agent", "ordered.md"),
+      path.join(test.directory, ".IaBotAhmed", "agent", "ordered.md"),
       `---
 permission:
   bash: allow
@@ -799,7 +799,7 @@ it.instance("loads agents from .ia-bot-ahmed/agents (plural)", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* FSUtil.use.writeWithDirs(
-      path.join(test.directory, ".ia-bot-ahmed", "agents", "helper.md"),
+      path.join(test.directory, ".IaBotAhmed", "agents", "helper.md"),
       `---
 model: test/model
 mode: subagent
@@ -808,7 +808,7 @@ Helper agent prompt`,
     )
 
     yield* FSUtil.use.writeWithDirs(
-      path.join(test.directory, ".ia-bot-ahmed", "agents", "nested", "child.md"),
+      path.join(test.directory, ".IaBotAhmed", "agents", "nested", "child.md"),
       `---
 model: test/model
 mode: subagent
@@ -838,7 +838,7 @@ it.instance("loads commands from .ia-bot-ahmed/command (singular)", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* FSUtil.use.writeWithDirs(
-      path.join(test.directory, ".ia-bot-ahmed", "command", "hello.md"),
+      path.join(test.directory, ".IaBotAhmed", "command", "hello.md"),
       `---
 description: Test command
 ---
@@ -846,7 +846,7 @@ Hello from singular command`,
     )
 
     yield* FSUtil.use.writeWithDirs(
-      path.join(test.directory, ".ia-bot-ahmed", "command", "nested", "child.md"),
+      path.join(test.directory, ".IaBotAhmed", "command", "nested", "child.md"),
       `---
 description: Nested command
 ---
@@ -871,7 +871,7 @@ it.instance("loads commands from .ia-bot-ahmed/commands (plural)", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* FSUtil.use.writeWithDirs(
-      path.join(test.directory, ".ia-bot-ahmed", "commands", "hello.md"),
+      path.join(test.directory, ".IaBotAhmed", "commands", "hello.md"),
       `---
 description: Test command
 ---
@@ -879,7 +879,7 @@ Hello from plural commands`,
     )
 
     yield* FSUtil.use.writeWithDirs(
-      path.join(test.directory, ".ia-bot-ahmed", "commands", "nested", "child.md"),
+      path.join(test.directory, ".IaBotAhmed", "commands", "nested", "child.md"),
       `---
 description: Nested command
 ---
@@ -1026,7 +1026,7 @@ it.instance("does not error when only custom agent is a subagent", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* FSUtil.use.writeWithDirs(
-      path.join(test.directory, ".ia-bot-ahmed", "agent", "helper.md"),
+      path.join(test.directory, ".IaBotAhmed", "agent", "helper.md"),
       `---
 model: test/model
 mode: subagent
@@ -1123,7 +1123,7 @@ it.instance("migrates legacy tools config to permissions - allow", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       agent: { test: { tools: { bash: true, read: true } } },
     })
 
@@ -1139,7 +1139,7 @@ it.instance("migrates legacy tools config to permissions - deny", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       agent: { test: { tools: { bash: false, webfetch: false } } },
     })
 
@@ -1155,7 +1155,7 @@ it.instance("migrates legacy write tool to edit permission", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       agent: { test: { tools: { write: true } } },
     })
 
@@ -1171,7 +1171,7 @@ it.instance(
   "managed settings override user settings",
   Effect.gen(function* () {
     yield* writeManagedSettingsEffect({
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       model: "managed/model",
       share: "disabled",
     })
@@ -1188,7 +1188,7 @@ it.instance(
   "managed settings override project settings",
   Effect.gen(function* () {
     yield* writeManagedSettingsEffect({
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       autoupdate: false,
       disabled_providers: ["openai"],
     })
@@ -1223,7 +1223,7 @@ it.instance("migrates legacy edit tool to edit permission", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       agent: { test: { tools: { edit: false } } },
     })
 
@@ -1236,7 +1236,7 @@ it.instance("migrates legacy patch tool to edit permission", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       agent: { test: { tools: { patch: true } } },
     })
 
@@ -1249,7 +1249,7 @@ it.instance("migrates mixed legacy tools config", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       agent: { test: { tools: { bash: true, write: true, read: false, webfetch: true } } },
     })
 
@@ -1267,7 +1267,7 @@ it.instance("merges legacy tools with existing permission config", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       agent: { test: { permission: { glob: "allow" }, tools: { bash: true } } },
     })
 
@@ -1285,7 +1285,7 @@ it.instance("permission config preserves user key order", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       permission: {
         "*": "deny",
         edit: "ask",
@@ -1346,7 +1346,7 @@ it.instance("project config can override MCP server enabled status", () =>
     const test = yield* TestInstance
     // Simulates a base config (like from remote .well-known) with disabled MCP.
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       mcp: {
         jira: {
           type: "remote",
@@ -1364,7 +1364,7 @@ it.instance("project config can override MCP server enabled status", () =>
     yield* writeConfigEffect(
       test.directory,
       {
-        $schema: "https://ia-bot-ahmed.app/config.json",
+        $schema: "https://IaBotAhmed.app/config.json",
         mcp: {
           jira: {
             type: "remote",
@@ -1394,7 +1394,7 @@ it.instance("MCP config deep merges preserving base config properties", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       mcp: {
         myserver: {
           type: "remote",
@@ -1409,7 +1409,7 @@ it.instance("MCP config deep merges preserving base config properties", () =>
     yield* writeConfigEffect(
       test.directory,
       {
-        $schema: "https://ia-bot-ahmed.app/config.json",
+        $schema: "https://IaBotAhmed.app/config.json",
         mcp: {
           myserver: {
             type: "remote",
@@ -1433,11 +1433,11 @@ it.instance("MCP config deep merges preserving base config properties", () =>
   }),
 )
 
-it.instance("local .ia-bot-ahmed config can override MCP from project config", () =>
+it.instance("local .IaBotAhmed config can override MCP from project config", () =>
   Effect.gen(function* () {
     const test = yield* TestInstance
     yield* writeConfigEffect(test.directory, {
-      $schema: "https://ia-bot-ahmed.app/config.json",
+      $schema: "https://IaBotAhmed.app/config.json",
       mcp: {
         docs: {
           type: "remote",
@@ -1446,11 +1446,11 @@ it.instance("local .ia-bot-ahmed config can override MCP from project config", (
         },
       },
     })
-    yield* FSUtil.use.ensureDir(path.join(test.directory, ".ia-bot-ahmed"))
+    yield* FSUtil.use.ensureDir(path.join(test.directory, ".IaBotAhmed"))
     yield* writeConfigEffect(
-      path.join(test.directory, ".ia-bot-ahmed"),
+      path.join(test.directory, ".IaBotAhmed"),
       {
-        $schema: "https://ia-bot-ahmed.app/config.json",
+        $schema: "https://IaBotAhmed.app/config.json",
         mcp: {
           docs: {
             type: "remote",
@@ -1478,7 +1478,7 @@ remoteProjectOverride.it.instance(
   () =>
     Effect.gen(function* () {
       const config = yield* Config.use.get()
-      expect(remoteProjectOverride.seen.wellKnown).toBe("https://example.com/.well-known/ia-bot-ahmed")
+      expect(remoteProjectOverride.seen.wellKnown).toBe("https://example.com/.well-known/IaBotAhmed")
       expect(config.mcp?.jira?.enabled).toBe(true)
     }),
   {
@@ -1497,7 +1497,7 @@ const trailingSlashWellKnown = wellKnown({
 trailingSlashWellKnown.it.instance("wellknown URL with trailing slash is normalized", () =>
   Effect.gen(function* () {
     yield* Config.use.get()
-    expect(trailingSlashWellKnown.seen.wellKnown).toBe("https://example.com/.well-known/ia-bot-ahmed")
+    expect(trailingSlashWellKnown.seen.wellKnown).toBe("https://example.com/.well-known/IaBotAhmed")
   }),
 )
 
@@ -1524,7 +1524,7 @@ test("remote well-known config can use FetchHttpClient layer", async () => {
         Config.Service.use((svc) =>
           Effect.gen(function* () {
             const config = yield* svc.get()
-            expect(fetchedUrl).toBe(`${server.url.origin}/.well-known/ia-bot-ahmed`)
+            expect(fetchedUrl).toBe(`${server.url.origin}/.well-known/IaBotAhmed`)
             expect(config.mcp?.jira?.enabled).toBe(true)
           }),
         ),
@@ -1555,7 +1555,7 @@ test("remote well-known config can use FetchHttpClient layer", async () => {
 
 const templatedHeaderWellKnown = wellKnown({
   remoteConfig: {
-    url: "https://config.example.com/ia-bot-ahmed.json",
+    url: "https://config.example.com/IaBotAhmed.json",
     headers: { Authorization: "Bearer {env:TEST_TOKEN}" },
   },
   remote: {
@@ -1566,8 +1566,8 @@ const templatedHeaderWellKnown = wellKnown({
 templatedHeaderWellKnown.it.instance("wellknown remote_config supports templated env vars in headers", () =>
   Effect.gen(function* () {
     const config = yield* Config.use.get()
-    expect(templatedHeaderWellKnown.seen.wellKnown).toBe("https://example.com/.well-known/ia-bot-ahmed")
-    expect(templatedHeaderWellKnown.seen.remote).toBe("https://config.example.com/ia-bot-ahmed.json")
+    expect(templatedHeaderWellKnown.seen.wellKnown).toBe("https://example.com/.well-known/IaBotAhmed")
+    expect(templatedHeaderWellKnown.seen.remote).toBe("https://config.example.com/IaBotAhmed.json")
     expect(templatedHeaderWellKnown.seen.authorization).toBe("Bearer test-token")
     expect(config.mcp?.confluence?.enabled).toBe(true)
   }),
@@ -1577,7 +1577,7 @@ const remotePrecedenceWellKnown = wellKnown({
   config: {
     mcp: { confluence: { type: "remote", url: "https://confluence.example.com/mcp", enabled: false } },
   },
-  remoteConfig: { url: "https://config.example.com/{env:TEST_TOKEN}/ia-bot-ahmed.json" },
+  remoteConfig: { url: "https://config.example.com/{env:TEST_TOKEN}/IaBotAhmed.json" },
   remote: {
     config: { mcp: { confluence: { type: "remote", url: "https://confluence.example.com/mcp", enabled: true } } },
   },
@@ -1588,14 +1588,14 @@ remotePrecedenceWellKnown.it.instance(
   () =>
     Effect.gen(function* () {
       const config = yield* Config.use.get()
-      expect(remotePrecedenceWellKnown.seen.remote).toBe("https://config.example.com/test-token/ia-bot-ahmed.json")
+      expect(remotePrecedenceWellKnown.seen.remote).toBe("https://config.example.com/test-token/IaBotAhmed.json")
       expect(config.mcp?.confluence?.enabled).toBe(true)
     }),
 )
 
 const envIsolationWellKnown = wellKnown({
   remoteConfig: {
-    url: "https://config.example.com/ia-bot-ahmed.json",
+    url: "https://config.example.com/IaBotAhmed.json",
     headers: { Authorization: "Bearer {env:TEST_TOKEN}" },
   },
   remote: {
@@ -1619,7 +1619,7 @@ envIsolationWellKnown.it.instance(
 const nullConfigWellKnown = wellKnown({
   wellKnown: {
     config: null,
-    remote_config: { url: "https://config.example.com/ia-bot-ahmed.json" },
+    remote_config: { url: "https://config.example.com/IaBotAhmed.json" },
   },
   remote: {
     mcp: { confluence: { type: "remote", url: "https://confluence.example.com/mcp", enabled: true } },
@@ -1629,26 +1629,26 @@ const nullConfigWellKnown = wellKnown({
 nullConfigWellKnown.it.instance("wellknown config null is treated as absent", () =>
   Effect.gen(function* () {
     const config = yield* Config.use.get()
-    expect(nullConfigWellKnown.seen.remote).toBe("https://config.example.com/ia-bot-ahmed.json")
+    expect(nullConfigWellKnown.seen.remote).toBe("https://config.example.com/IaBotAhmed.json")
     expect(config.mcp?.confluence?.enabled).toBe(true)
   }),
 )
 
 const invalidRemoteWellKnown = wellKnown({
-  remoteConfig: { url: "https://config.example.com/ia-bot-ahmed.json" },
+  remoteConfig: { url: "https://config.example.com/IaBotAhmed.json" },
   remote: "not an object",
 })
 
 invalidRemoteWellKnown.it.instance("wellknown remote_config rejects non-object config responses", () =>
   Effect.gen(function* () {
     const exit = yield* Config.use.get().pipe(Effect.exit)
-    expect(invalidRemoteWellKnown.seen.remote).toBe("https://config.example.com/ia-bot-ahmed.json")
+    expect(invalidRemoteWellKnown.seen.remote).toBe("https://config.example.com/IaBotAhmed.json")
     expect(Exit.isFailure(exit)).toBe(true)
   }),
 )
 
 const loginPageWellKnown = wellKnown({
-  remoteConfig: { url: "https://config.example.com/ia-bot-ahmed.json" },
+  remoteConfig: { url: "https://config.example.com/IaBotAhmed.json" },
   remoteHtml: "<!DOCTYPE html><html><head><title>Sign in</title></head><body>Login required</body></html>",
 })
 
@@ -1657,7 +1657,7 @@ loginPageWellKnown.it.instance(
   () =>
     Effect.gen(function* () {
       const exit = yield* Config.use.get().pipe(Effect.exit)
-      expect(loginPageWellKnown.seen.remote).toBe("https://config.example.com/ia-bot-ahmed.json")
+      expect(loginPageWellKnown.seen.remote).toBe("https://config.example.com/IaBotAhmed.json")
       expect(Exit.isFailure(exit)).toBe(true)
       const error = Exit.isFailure(exit) ? Cause.squash(exit.cause) : undefined
       expect(NamedError.hasName(error, "ConfigRemoteAuthError")).toBe(true)
@@ -1669,7 +1669,7 @@ describe("resolvePluginSpec", () => {
   test("keeps package specs unchanged", async () => {
     await using tmp = await tmpdir()
     const file = path.join(tmp.path, "ia-bot-ahmed.json")
-    expect(await ConfigPlugin.resolvePluginSpec("oh-my-ia-bot-ahmed@2.4.3", file)).toBe("oh-my-ia-bot-ahmed@2.4.3")
+    expect(await ConfigPlugin.resolvePluginSpec("oh-my-IaBotAhmed@2.4.3", file)).toBe("oh-my-IaBotAhmed@2.4.3")
     expect(await ConfigPlugin.resolvePluginSpec("@scope/pkg", file)).toBe("@scope/pkg")
   })
 
@@ -1758,7 +1758,7 @@ describe("deduplicatePluginOrigins", () => {
   })
 
   test("keeps path plugins separate from package plugins", () => {
-    const plugins = ["oh-my-ia-bot-ahmed@2.4.3", "file:///project/.ia-bot-ahmed/plugin/oh-my-ia-bot-ahmed.js"]
+    const plugins = ["oh-my-IaBotAhmed@2.4.3", "file:///project/.ia-bot-ahmed/plugin/oh-my-IaBotAhmed.js"]
 
     const result = dedupe(plugins)
 
@@ -1787,7 +1787,7 @@ describe("deduplicatePluginOrigins", () => {
       Effect.gen(function* () {
         const test = yield* TestInstance
         yield* FSUtil.use.writeWithDirs(
-          path.join(test.directory, ".ia-bot-ahmed", "plugin", "my-plugin.js"),
+          path.join(test.directory, ".IaBotAhmed", "plugin", "my-plugin.js"),
           "export default {}",
         )
 
@@ -1822,7 +1822,7 @@ describe("IA_BOT_AHMED_DISABLE_PROJECT_CONFIG", () => {
       Effect.gen(function* () {
         const test = yield* TestInstance
         yield* FSUtil.use.writeWithDirs(
-          path.join(test.directory, ".ia-bot-ahmed", "command", "test-cmd.md"),
+          path.join(test.directory, ".IaBotAhmed", "command", "test-cmd.md"),
           "# Test Command\nThis is a test command.",
         )
         const directories = yield* Config.use.directories()
@@ -1901,7 +1901,7 @@ describe("IA_BOT_AHMED_CONFIG_CONTENT token substitution", () => {
       withProcessEnv(
         "IA_BOT_AHMED_CONFIG_CONTENT",
         JSON.stringify({
-          $schema: "https://ia-bot-ahmed.app/config.json",
+          $schema: "https://IaBotAhmed.app/config.json",
           username: "{env:TEST_CONFIG_VAR}",
         }),
         Effect.gen(function* () {
@@ -1919,7 +1919,7 @@ describe("IA_BOT_AHMED_CONFIG_CONTENT token substitution", () => {
       yield* withProcessEnv(
         "IA_BOT_AHMED_CONFIG_CONTENT",
         JSON.stringify({
-          $schema: "https://ia-bot-ahmed.app/config.json",
+          $schema: "https://IaBotAhmed.app/config.json",
           username: "{file:./api_key.txt}",
         }),
         Effect.gen(function* () {
@@ -1931,7 +1931,7 @@ describe("IA_BOT_AHMED_CONFIG_CONTENT token substitution", () => {
   )
 })
 
-// parseManagedPlist unit tests — pure function, no OS interaction
+// parseManagedPlist unit tests â€” pure function, no OS interaction
 
 test("parseManagedPlist strips MDM metadata keys", async () => {
   const config = ConfigParse.schema(
@@ -1940,8 +1940,8 @@ test("parseManagedPlist strips MDM metadata keys", async () => {
       await ConfigManaged.parseManagedPlist(
         JSON.stringify({
           PayloadDisplayName: "ia-bot-ahmed Managed",
-          PayloadIdentifier: "ai.ia-bot-ahmed.managed.test",
-          PayloadType: "ai.ia-bot-ahmed.managed",
+          PayloadIdentifier: "ai.IaBotAhmed.managed.test",
+          PayloadType: "ai.IaBotAhmed.managed",
           PayloadUUID: "AAAA-BBBB-CCCC",
           PayloadVersion: 1,
           _manualProfile: true,
@@ -1967,7 +1967,7 @@ test("parseManagedPlist parses server settings", async () => {
     ConfigParse.jsonc(
       await ConfigManaged.parseManagedPlist(
         JSON.stringify({
-          $schema: "https://ia-bot-ahmed.app/config.json",
+          $schema: "https://IaBotAhmed.app/config.json",
           server: { hostname: "127.0.0.1", mdns: false },
           autoupdate: true,
         }),
@@ -1987,7 +1987,7 @@ test("parseManagedPlist parses permission rules", async () => {
     ConfigParse.jsonc(
       await ConfigManaged.parseManagedPlist(
         JSON.stringify({
-          $schema: "https://ia-bot-ahmed.app/config.json",
+          $schema: "https://IaBotAhmed.app/config.json",
           permission: {
             "*": "ask",
             bash: { "*": "ask", "rm -rf *": "deny", "curl *": "deny" },
@@ -2017,7 +2017,7 @@ test("parseManagedPlist parses enabled_providers", async () => {
     ConfigParse.jsonc(
       await ConfigManaged.parseManagedPlist(
         JSON.stringify({
-          $schema: "https://ia-bot-ahmed.app/config.json",
+          $schema: "https://IaBotAhmed.app/config.json",
           enabled_providers: ["anthropic", "google"],
         }),
       ),
@@ -2032,10 +2032,10 @@ test("parseManagedPlist handles empty config", async () => {
   const config = ConfigParse.schema(
     ConfigV1.Info,
     ConfigParse.jsonc(
-      await ConfigManaged.parseManagedPlist(JSON.stringify({ $schema: "https://ia-bot-ahmed.app/config.json" })),
+      await ConfigManaged.parseManagedPlist(JSON.stringify({ $schema: "https://IaBotAhmed.app/config.json" })),
       "test:mobileconfig",
     ),
     "test:mobileconfig",
   )
-  expect(config.$schema).toBe("https://ia-bot-ahmed.app/config.json")
+  expect(config.$schema).toBe("https://IaBotAhmed.app/config.json")
 })

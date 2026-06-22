@@ -1,4 +1,4 @@
-import { $ } from "bun"
+﻿import { $ } from "bun"
 
 export type Channel = "dev" | "beta" | "prod"
 
@@ -61,7 +61,7 @@ export function getCurrentSidecar(target = RUST_TARGET ?? nativeTarget()) {
 export async function copyBinaryToSidecarFolder(source: string) {
   const dir = `resources`
   await $`mkdir -p ${dir}`
-  const dest = windowsify(`${dir}/ia-bot-ahmed-cli`)
+  const dest = windowsify(`${dir}/IaBotAhmed-cli`)
   await $`cp ${source} ${dest}`
   if (process.platform === "win32" && process.env.GITHUB_ACTIONS === "true") {
     await $`pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ../../script/sign-windows.ps1 ${dest}`

@@ -1,4 +1,4 @@
-import { MetaProvider, Title } from "@solidjs/meta"
+﻿import { MetaProvider, Title } from "@solidjs/meta"
 import { Router } from "@solidjs/router"
 import { FileRoutes } from "@solidjs/start/router"
 import { Suspense } from "solid-js"
@@ -10,7 +10,7 @@ export default function App() {
       explicitLinks={true}
       root={(props) => (
         <MetaProvider>
-          <Title>ia-bot-ahmed support</Title>
+          <Title>IaBotAhmed support</Title>
           <Suspense>{props.children}</Suspense>
         </MetaProvider>
       )}

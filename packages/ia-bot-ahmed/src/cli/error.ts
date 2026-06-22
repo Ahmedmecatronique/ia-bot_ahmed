@@ -1,4 +1,4 @@
-import { NamedError } from "@ia-bot-ahmed/core/util/error"
+﻿import { NamedError } from "@ia-bot-ahmed/core/util/error"
 import { errorFormat } from "@/util/error"
 import { isRecord } from "@/util/record"
 
@@ -47,7 +47,7 @@ export function FormatError(input: unknown): string | undefined {
   // MCPFailed: { name: string }
   if (NamedError.hasName(input, "MCPFailed")) {
     const data = isRecord(input) && isRecord(input.data) ? stringField(input.data, "name") : undefined
-    return `MCP server "${data}" failed. Note, ia-bot-ahmed does not support MCP authentication yet.`
+    return `MCP server "${data}" failed. Note, IaBotAhmed does not support MCP authentication yet.`
   }
 
   // AccountServiceError, AccountTransportError: TaggedErrorClass
@@ -65,7 +65,7 @@ export function FormatError(input: unknown): string | undefined {
       `Model not found: ${stringField(providerModelNotFound, "providerID")}/${stringField(providerModelNotFound, "modelID")}`,
       ...(suggestions.length ? ["Did you mean: " + suggestions.join(", ")] : []),
       `Try: \`ia-bot-ahmed models\` to list available models`,
-      `Or check your config (ia-bot-ahmed.json) provider/model names`,
+      `Or check your config (IaBotAhmed.json) provider/model names`,
     ].join("\n")
   }
 
@@ -114,7 +114,7 @@ export function FormatError(input: unknown): string | undefined {
     const issues = configIssues(configInvalid)
     return [
       `Configuration is invalid${path && path !== "config" ? ` at ${path}` : ""}` + (message ? `: ${message}` : ""),
-      ...issues.map((issue) => "↳ " + issue.message + " " + issue.path.join(".")),
+      ...issues.map((issue) => "â†³ " + issue.message + " " + issue.path.join(".")),
     ].join("\n")
   }
 

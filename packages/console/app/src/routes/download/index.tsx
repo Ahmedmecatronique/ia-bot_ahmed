@@ -1,4 +1,4 @@
-import "./index.css"
+﻿import "./index.css"
 import { Meta, Title } from "@solidjs/meta"
 import { A } from "@solidjs/router"
 import { createSignal, type JSX, onMount, Show } from "solid-js"
@@ -11,7 +11,7 @@ import { LocaleLinks } from "~/component/locale-links"
 import { config } from "~/config"
 import { useI18n } from "~/context/i18n"
 import { useLanguage } from "~/context/language"
-import desktopAppIcon from "../../asset/lander/ia-bot-ahmed-desktop-icon.png"
+import desktopAppIcon from "../../asset/lander/IaBotAhmed-desktop-icon.png"
 import type { DownloadPlatform } from "./types"
 
 type OS = "macOS" | "Windows" | "Linux" | null
@@ -118,34 +118,34 @@ export default function Download() {
             <div data-component="section-content">
               <button
                 data-component="cli-row"
-                onClick={handleCopyClick("curl -fsSL https://ia-bot-ahmed.app/install | bash")}
+                onClick={handleCopyClick("curl -fsSL https://IaBotAhmed.app/install | bash")}
               >
                 <code>
-                  curl -fsSL https://<strong>ia-bot-ahmed.app/install</strong> | bash
+                  curl -fsSL https://<strong>IaBotAhmed.app/install</strong> | bash
                 </code>
                 <CopyStatus />
               </button>
-              <button data-component="cli-row" onClick={handleCopyClick("npm i -g ia-bot-ahmed-ai")}>
+              <button data-component="cli-row" onClick={handleCopyClick("npm i -g IaBotAhmed-ai")}>
                 <code>
-                  npm i -g <strong>ia-bot-ahmed-ai</strong>
+                  npm i -g <strong>IaBotAhmed-ai</strong>
                 </code>
                 <CopyStatus />
               </button>
-              <button data-component="cli-row" onClick={handleCopyClick("bun add -g ia-bot-ahmed-ai")}>
+              <button data-component="cli-row" onClick={handleCopyClick("bun add -g IaBotAhmed-ai")}>
                 <code>
-                  bun add -g <strong>ia-bot-ahmed-ai</strong>
+                  bun add -g <strong>IaBotAhmed-ai</strong>
                 </code>
                 <CopyStatus />
               </button>
-              <button data-component="cli-row" onClick={handleCopyClick("brew install anomalyco/tap/ia-bot-ahmed")}>
+              <button data-component="cli-row" onClick={handleCopyClick("brew install anomalyco/tap/IaBotAhmed")}>
                 <code>
-                  brew install <strong>anomalyco/tap/ia-bot-ahmed</strong>
+                  brew install <strong>anomalyco/tap/IaBotAhmed</strong>
                 </code>
                 <CopyStatus />
               </button>
-              <button data-component="cli-row" onClick={handleCopyClick("paru -S ia-bot-ahmed")}>
+              <button data-component="cli-row" onClick={handleCopyClick("paru -S IaBotAhmed")}>
                 <code>
-                  paru -S <strong>ia-bot-ahmed</strong>
+                  paru -S <strong>IaBotAhmed</strong>
                 </code>
                 <CopyStatus />
               </button>
@@ -157,9 +157,9 @@ export default function Download() {
               <span>[2]</span> {i18n.t("download.section.desktop")}
             </div>
             <div data-component="section-content">
-              <button data-component="cli-row" onClick={handleCopyClick("brew install --cask ia-bot-ahmed-desktop")}>
+              <button data-component="cli-row" onClick={handleCopyClick("brew install --cask IaBotAhmed-desktop")}>
                 <code>
-                  brew install --cask <strong>ia-bot-ahmed-desktop</strong>
+                  brew install --cask <strong>IaBotAhmed-desktop</strong>
                 </code>
                 <CopyStatus />
               </button>

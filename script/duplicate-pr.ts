@@ -1,8 +1,8 @@
-#!/usr/bin/env bun
+﻿#!/usr/bin/env bun
 
 import path from "path"
 import { pathToFileURL } from "bun"
-import { createia-bot-ahmed } from "@ia-bot-ahmed/sdk"
+import { createIaBotAhmed } from "@ia-bot-ahmed/sdk"
 import { parseArgs } from "util"
 
 async function main() {
@@ -35,7 +35,7 @@ Examples:
     process.exit(1)
   }
 
-  const ia-bot-ahmed = await createia-bot-ahmed({ port: 0 })
+  const IaBotAhmed = await createIaBotAhmed({ port: 0 })
 
   try {
     const parts: Array<{ type: "text"; text: string } | { type: "file"; url: string; filename: string; mime: string }> =
@@ -58,8 +58,8 @@ Examples:
 
     parts.push({ type: "text", text: message })
 
-    const session = await ia-bot-ahmed.client.session.create()
-    const result = await ia-bot-ahmed.client.session
+    const session = await IaBotAhmed.client.session.create()
+    const result = await IaBotAhmed.client.session
       .prompt({
         path: { id: session.data!.id },
         body: {
@@ -72,7 +72,7 @@ Examples:
 
     console.log(result.trim())
   } finally {
-    ia-bot-ahmed.server.close()
+    IaBotAhmed.server.close()
   }
 }
 

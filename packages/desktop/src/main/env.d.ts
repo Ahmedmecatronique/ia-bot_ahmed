@@ -1,4 +1,4 @@
-interface ImportMetaEnv {
+﻿interface ImportMetaEnv {
   readonly IA_BOT_AHMED_CHANNEL: string
 }
 
@@ -6,7 +6,7 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
 }
 
-declare module "virtual:ia-bot-ahmed-server" {
+declare module "virtual:IaBotAhmed-server" {
   export namespace Server {
     export const listen: typeof import("../../../ia-bot-ahmed/dist/types/src/node").Server.listen
     export type Listener = import("../../../ia-bot-ahmed/dist/types/src/node").Server.Listener

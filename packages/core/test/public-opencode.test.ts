@@ -1,21 +1,21 @@
-import fs from "fs/promises"
+﻿import fs from "fs/promises"
 import path from "path"
 import { describe, expect } from "bun:test"
 import { Effect, Schema } from "effect"
-import { AbsolutePath, Location, Model, ia-bot-ahmed, Session, Tool } from "@ia-bot-ahmed/core/public"
+import { AbsolutePath, Location, Model, IaBotAhmed, Session, Tool } from "@ia-bot-ahmed/core/public"
 import { tmpdir } from "./fixture/tmpdir"
 import { testEffect } from "./lib/effect"
 
-const it = testEffect(ia-bot-ahmed.layer)
+const it = testEffect(IaBotAhmed.layer)
 
-describe("public native ia-bot-ahmed API", () => {
+describe("public native IaBotAhmed API", () => {
   it.effect("exposes only the intentional Session capabilities", () =>
     Effect.gen(function* () {
-      const ia-bot-ahmed = yield* ia-bot-ahmed.Service
+      const IaBotAhmed = yield* IaBotAhmed.Service
 
-      expect(Object.keys(ia-bot-ahmed).sort()).toEqual(["sessions", "tools"])
+      expect(Object.keys(IaBotAhmed).sort()).toEqual(["sessions", "tools"])
 
-      expect(Object.keys(ia-bot-ahmed.sessions).sort()).toEqual([
+      expect(Object.keys(IaBotAhmed.sessions).sort()).toEqual([
         "context",
         "create",
         "events",
@@ -29,8 +29,8 @@ describe("public native ia-bot-ahmed API", () => {
       ])
       expect(Session.ID.create()).toStartWith("ses_")
       expect(Session.MessageID.create()).toStartWith("msg_")
-      expect(yield* ia-bot-ahmed.sessions.list()).toBeArray()
-      yield* ia-bot-ahmed.tools.register({
+      expect(yield* IaBotAhmed.sessions.list()).toBeArray()
+      yield* IaBotAhmed.tools.register({
         public_tool: Tool.make({
           description: "Public tool",
           input: Schema.Struct({}),
@@ -49,17 +49,17 @@ describe("public native ia-bot-ahmed API", () => {
       Effect.flatMap((tmp) =>
         Effect.gen(function* () {
           yield* writeProvider(tmp.path)
-          const ia-bot-ahmed = yield* ia-bot-ahmed.Service
+          const IaBotAhmed = yield* IaBotAhmed.Service
           const sessionID = Session.ID.make("ses_public_switch_available")
           const model = ref({ variant: "fast" })
-          yield* ia-bot-ahmed.sessions.create({
+          yield* IaBotAhmed.sessions.create({
             id: sessionID,
             location: Location.Ref.make({ directory: AbsolutePath.make(tmp.path) }),
           })
 
-          yield* ia-bot-ahmed.sessions.switchModel({ sessionID, model })
+          yield* IaBotAhmed.sessions.switchModel({ sessionID, model })
 
-          expect((yield* ia-bot-ahmed.sessions.get(sessionID)).model).toEqual(model)
+          expect((yield* IaBotAhmed.sessions.get(sessionID)).model).toEqual(model)
         }),
       ),
     ),
@@ -74,30 +74,30 @@ describe("public native ia-bot-ahmed API", () => {
         Effect.gen(function* () {
           yield* writeProvider(available.path)
           yield* writeProvider(disabled.path, true)
-          const ia-bot-ahmed = yield* ia-bot-ahmed.Service
+          const IaBotAhmed = yield* IaBotAhmed.Service
           const availableID = Session.ID.make("ses_public_switch_exact_available")
           const disabledID = Session.ID.make("ses_public_switch_exact_disabled")
-          yield* ia-bot-ahmed.sessions.create({
+          yield* IaBotAhmed.sessions.create({
             id: availableID,
             location: Location.Ref.make({ directory: AbsolutePath.make(available.path) }),
           })
-          yield* ia-bot-ahmed.sessions.create({
+          yield* IaBotAhmed.sessions.create({
             id: disabledID,
             location: Location.Ref.make({ directory: AbsolutePath.make(disabled.path) }),
           })
 
-          yield* ia-bot-ahmed.sessions.switchModel({ sessionID: availableID, model: ref({ variant: "default" }) })
-          const disabledError = yield* ia-bot-ahmed.sessions
+          yield* IaBotAhmed.sessions.switchModel({ sessionID: availableID, model: ref({ variant: "default" }) })
+          const disabledError = yield* IaBotAhmed.sessions
             .switchModel({ sessionID: disabledID, model: ref() })
             .pipe(Effect.flip)
-          const missingError = yield* ia-bot-ahmed.sessions
+          const missingError = yield* IaBotAhmed.sessions
             .switchModel({ sessionID: disabledID, model: ref({ id: "missing" }) })
             .pipe(Effect.flip)
 
           expect(disabledError).toBeInstanceOf(Session.ModelUnavailableError)
           expect(missingError).toBeInstanceOf(Session.ModelUnavailableError)
-          expect((yield* ia-bot-ahmed.sessions.get(availableID)).model).toEqual(ref({ variant: "default" }))
-          expect((yield* ia-bot-ahmed.sessions.get(disabledID)).model).toBeUndefined()
+          expect((yield* IaBotAhmed.sessions.get(availableID)).model).toEqual(ref({ variant: "default" }))
+          expect((yield* IaBotAhmed.sessions.get(disabledID)).model).toBeUndefined()
         }),
       ),
     ),
@@ -111,21 +111,21 @@ describe("public native ia-bot-ahmed API", () => {
       Effect.flatMap((tmp) =>
         Effect.gen(function* () {
           yield* writeProvider(tmp.path)
-          const ia-bot-ahmed = yield* ia-bot-ahmed.Service
+          const IaBotAhmed = yield* IaBotAhmed.Service
           const sessionID = Session.ID.make("ses_public_switch_variant")
           const selected = ref({ variant: "fast" })
-          yield* ia-bot-ahmed.sessions.create({
+          yield* IaBotAhmed.sessions.create({
             id: sessionID,
             location: Location.Ref.make({ directory: AbsolutePath.make(tmp.path) }),
           })
-          yield* ia-bot-ahmed.sessions.switchModel({ sessionID, model: selected })
+          yield* IaBotAhmed.sessions.switchModel({ sessionID, model: selected })
 
-          const error = yield* ia-bot-ahmed.sessions
+          const error = yield* IaBotAhmed.sessions
             .switchModel({ sessionID, model: ref({ variant: "unknown" }) })
             .pipe(Effect.flip)
 
           expect(error).toBeInstanceOf(Session.VariantUnavailableError)
-          expect((yield* ia-bot-ahmed.sessions.get(sessionID)).model).toEqual(selected)
+          expect((yield* IaBotAhmed.sessions.get(sessionID)).model).toEqual(selected)
         }),
       ),
     ),
@@ -133,9 +133,9 @@ describe("public native ia-bot-ahmed API", () => {
 
   it.effect("preserves the typed not-found error for a missing Session", () =>
     Effect.gen(function* () {
-      const ia-bot-ahmed = yield* ia-bot-ahmed.Service
+      const IaBotAhmed = yield* IaBotAhmed.Service
       const sessionID = Session.ID.make("ses_public_switch_missing")
-      const error = yield* ia-bot-ahmed.sessions
+      const error = yield* IaBotAhmed.sessions
         .switchModel({
           sessionID,
           model: Schema.decodeUnknownSync(Model.Ref)({ id: "claude-sonnet-4-5", providerID: "anthropic" }),

@@ -1,10 +1,10 @@
-// Lifecycle management for the split-footer renderer.
+﻿// Lifecycle management for the split-footer renderer.
 //
 // Creates the OpenTUI CliRenderer in split-footer mode, resolves the theme
 // from the terminal palette, writes the entry splash to scrollback, and
 // constructs the RunFooter. Returns a Lifecycle handle whose close() writes
 // the exit splash and tears everything down in the right order:
-// footer.close → footer.destroy → renderer shutdown.
+// footer.close â†’ footer.destroy â†’ renderer shutdown.
 //
 // Also wires SIGINT so Ctrl-c clears a live prompt draft first, then falls
 // back to the usual two-press exit sequence through RunFooter.requestExit().
@@ -13,7 +13,7 @@ import { CliRenderEvents, createCliRenderer, type CliRenderer, type ScrollbackWr
 import { createDefaultOpenTuiKeymap } from "@opentui/keymap/opentui"
 import { Global } from "@ia-bot-ahmed/core/global"
 import { openEditor } from "@ia-bot-ahmed/tui/editor"
-import { registeria-bot-ahmedKeymap } from "@ia-bot-ahmed/tui/keymap"
+import { registerIaBotAhmedKeymap } from "@ia-bot-ahmed/tui/keymap"
 import { Session as SessionApi } from "@/session/session"
 import * as Locale from "@/util/locale"
 import { resolveInteractiveStdin } from "./runtime.stdin"
@@ -196,7 +196,7 @@ export async function createRuntimeLifecycle(input: LifecycleInput): Promise<Lif
     const theme = await resolveRunTheme(renderer)
     renderer.setBackgroundColor(theme.background)
     const keymap = createDefaultOpenTuiKeymap(renderer)
-    unregisterKeymap = registeria-bot-ahmedKeymap(keymap, renderer, input.tuiConfig)
+    unregisterKeymap = registerIaBotAhmedKeymap(keymap, renderer, input.tuiConfig)
     const state: SplashState = {
       entry: false,
       exit: false,

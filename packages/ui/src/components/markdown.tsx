@@ -1,4 +1,4 @@
-import { useMarked } from "../context/marked"
+﻿import { useMarked } from "../context/marked"
 import { useI18n } from "../context/i18n"
 import DOMPurify from "dompurify"
 import morphdom from "morphdom"
@@ -599,7 +599,7 @@ function updateCodeBlock(
   const wrapper = document.createElement("div")
   wrapper.setAttribute("data-component", "markdown-code")
   const pre = document.createElement("pre")
-  pre.className = "shiki ia-bot-ahmed"
+  pre.className = "shiki IaBotAhmed"
   const codeElement = document.createElement("code")
   codeElement.className = `language-${block.language}`
   ;[...block.stable, ...block.unstable].map(createTokenSpan).forEach((span) => codeElement.appendChild(span))

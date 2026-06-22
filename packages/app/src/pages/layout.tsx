@@ -1,4 +1,4 @@
-import {
+﻿import {
   batch,
   createEffect,
   createMemo,
@@ -2347,7 +2347,7 @@ export default function Layout(props: ParentProps) {
       settingsKeybind={() => command.keybind("settings.open")}
       onOpenSettings={openSettings}
       helpLabel={() => language.t("sidebar.help")}
-      onOpenHelp={() => platform.openLink("https://ia-bot-ahmed.app/desktop-feedback")}
+      onOpenHelp={() => platform.openLink("https://IaBotAhmed.app/desktop-feedback")}
       renderPanel={() =>
         mobile ? <SidebarPanel project={currentProject} mobile /> : <SidebarPanel project={currentProject} merged />
       }

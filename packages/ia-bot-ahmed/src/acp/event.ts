@@ -1,9 +1,9 @@
-import type { AgentSideConnection } from "@agentclientprotocol/sdk"
+﻿import type { AgentSideConnection } from "@agentclientprotocol/sdk"
 import type {
   Event,
   EventMessagePartDelta,
   EventMessagePartUpdated,
-  ia-bot-ahmedClient,
+  IaBotAhmedClient,
   Part,
   SessionMessageResponse,
   ToolPart,
@@ -30,7 +30,7 @@ type GlobalEventStream = {
   stream: AsyncIterable<GlobalEventEnvelope>
 }
 
-export function start(input: { sdk: ia-bot-ahmedClient; connection: Connection; session: ACPSession.Interface }) {
+export function start(input: { sdk: IaBotAhmedClient; connection: Connection; session: ACPSession.Interface }) {
   const subscription = new Subscription(input)
   subscription.start()
   return subscription
@@ -45,7 +45,7 @@ export class Subscription {
 
   constructor(
     private readonly input: {
-      sdk: ia-bot-ahmedClient
+      sdk: IaBotAhmedClient
       connection: Connection
       session: ACPSession.Interface
     },

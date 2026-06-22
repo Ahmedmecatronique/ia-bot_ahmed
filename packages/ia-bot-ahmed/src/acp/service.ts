@@ -1,4 +1,4 @@
-import {
+﻿import {
   type AgentSideConnection,
   type AuthenticateRequest,
   type AuthenticateResponse,
@@ -30,7 +30,7 @@ import {
   type SetSessionModeResponse,
 } from "@agentclientprotocol/sdk"
 import { InstallationVersion } from "@ia-bot-ahmed/core/installation/version"
-import type { Message, ia-bot-ahmedClient, SessionMessageResponse } from "@ia-bot-ahmed/sdk/v2"
+import type { Message, IaBotAhmedClient, SessionMessageResponse } from "@ia-bot-ahmed/sdk/v2"
 import { Context, Effect, Layer, ManagedRuntime } from "effect"
 import * as ACPError from "./error"
 import { buildConfigOptions, parseModelSelection } from "./config-option"
@@ -72,7 +72,7 @@ export type Interface = {
 export class Service extends Context.Service<Service, Interface>()("@ia-bot-ahmed/ACP/Service") {}
 
 export function make(input: {
-  sdk: ia-bot-ahmedClient
+  sdk: IaBotAhmedClient
   connection?: ServiceConnection
   directory?: Directory.Interface
   session?: ACPSession.Interface
@@ -92,7 +92,7 @@ export function make(input: {
     const started = performance.now()
     const authMethod: AuthMethod = {
       description: "Run `ia-bot-ahmed auth login` in the terminal",
-      name: "Login with ia-bot-ahmed",
+      name: "Login with IaBotAhmed",
       id: AuthMethodID,
     }
 
@@ -575,7 +575,7 @@ function makeSessionService() {
   )
 }
 
-function makeDirectoryService(sdk: ia-bot-ahmedClient) {
+function makeDirectoryService(sdk: IaBotAhmedClient) {
   return ManagedRuntime.make(
     Directory.layer.pipe(
       Layer.provide(
@@ -590,7 +590,7 @@ function makeDirectoryService(sdk: ia-bot-ahmedClient) {
   ).runSync(Directory.Service.use((service) => Effect.succeed(service)))
 }
 
-function makeUsageService(sdk: ia-bot-ahmedClient) {
+function makeUsageService(sdk: IaBotAhmedClient) {
   const limits = new Map<string, Promise<number | undefined>>()
   const contextLimit: UsageService.Interface["contextLimit"] = Effect.fn("ACP.promptUsage.contextLimit")(
     function* (params) {
@@ -715,7 +715,7 @@ function profiledRequest<T>(name: string, fn: () => Promise<T | SdkResponse<T>>,
   return request(() => ACPProfile.measure(name, fn), service)
 }
 
-async function loadDirectorySnapshot(sdk: ia-bot-ahmedClient, directory: string) {
+async function loadDirectorySnapshot(sdk: IaBotAhmedClient, directory: string) {
   return ACPProfile.measure("acp.directory.load", async () => {
     const [providersResponse, agentsResponse, commandsResponse, skillsResponse, configResponse] = await Promise.all([
       ACPProfile.measure("acp.directory.provider.list", () =>
@@ -780,11 +780,11 @@ function defaultModelFromConfig(
   if (configured && providers[configured.providerID]?.models[configured.modelID]) return configured
 
   // First-session ACP startup must not scan historical sessions just to infer
-  // a default. Configured model, ia-bot-ahmed provider, then sorted best model keep
+  // a default. Configured model, IaBotAhmed provider, then sorted best model keep
   // the protocol response deterministic without extra session/message reads.
-  const ia-bot-ahmedProvider = providers[ProviderV2.ID.make("ia-bot-ahmed")]
-  const ia-bot-ahmedModel = ia-bot-ahmedProvider ? Provider.sort(Object.values(ia-bot-ahmedProvider.models))[0] : undefined
-  if (ia-bot-ahmedProvider && ia-bot-ahmedModel) return { providerID: ia-bot-ahmedProvider.id, modelID: ia-bot-ahmedModel.id }
+  const IaBotAhmedProvider = providers[ProviderV2.ID.make("ia-bot-ahmed")]
+  const IaBotAhmedModel = IaBotAhmedProvider ? Provider.sort(Object.values(IaBotAhmedProvider.models))[0] : undefined
+  if (IaBotAhmedProvider && IaBotAhmedModel) return { providerID: IaBotAhmedProvider.id, modelID: IaBotAhmedModel.id }
 
   const best = Provider.sort(Object.values(providers).flatMap((provider) => Object.values(provider.models)))[0]
   if (best) return { providerID: best.providerID, modelID: best.id }
@@ -822,7 +822,7 @@ function promptResponse(info: AssistantInfo, messageId: string | null | undefine
 
 function sendUsageUpdate(
   usage: UsageService.Interface | undefined,
-  sdk: ia-bot-ahmedClient,
+  sdk: IaBotAhmedClient,
   connection: ServiceConnection | undefined,
   sessionID: string,
   directory: string,
@@ -899,7 +899,7 @@ function sendAvailableCommands(
 }
 
 function registerMcpServers(
-  sdk: ia-bot-ahmedClient,
+  sdk: IaBotAhmedClient,
   registered: Map<string, Set<string>>,
   directory: string,
   sessionId: string,

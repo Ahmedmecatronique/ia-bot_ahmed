@@ -1,4 +1,4 @@
-import { Effect, Schema } from "effect"
+﻿import { Effect, Schema } from "effect"
 import { Route } from "../route/client"
 import { Auth } from "../route/auth"
 import { Endpoint } from "../route/endpoint"
@@ -147,12 +147,12 @@ interface ParserState {
 // =============================================================================
 // Tool-schema conversion has two distinct concerns:
 //
-// 1. Sanitize — fix common authoring mistakes Gemini rejects: integer/number
+// 1. Sanitize â€” fix common authoring mistakes Gemini rejects: integer/number
 //    enums (must be strings), `required` entries that don't match a property,
 //    untyped arrays (`items` must be present), and `properties`/`required`
-//    keys on non-object scalars. Mirrors ia-bot-ahmed's historical Gemini rules.
+//    keys on non-object scalars. Mirrors IaBotAhmed's historical Gemini rules.
 //
-// 2. Project — lossy mapping from JSON Schema to Gemini's schema dialect:
+// 2. Project â€” lossy mapping from JSON Schema to Gemini's schema dialect:
 //    drop empty objects, derive `nullable: true` from `type: [..., "null"]`,
 //    coerce `const` to `[const]` enum, recurse properties/items, propagate
 //    only an allowlisted set of keys (description, required, format, type,
@@ -326,7 +326,7 @@ const fromRequest = Effect.fn("Gemini.fromRequest")(function* (request: LLMReque
 // =============================================================================
 // Gemini reports `promptTokenCount` (inclusive total) with a
 // `cachedContentTokenCount` subset. `candidatesTokenCount` is *exclusive*
-// of `thoughtsTokenCount` — visible-only, not a total — so we sum the two
+// of `thoughtsTokenCount` â€” visible-only, not a total â€” so we sum the two
 // to produce the inclusive `outputTokens` the rest of the contract expects.
 const mapUsage = (usage: GeminiUsage | undefined) => {
   if (!usage) return undefined
@@ -334,7 +334,7 @@ const mapUsage = (usage: GeminiUsage | undefined) => {
   const nonCached = ProviderShared.subtractTokens(usage.promptTokenCount, cached)
   // `candidatesTokenCount` is visible-only; sum with thoughts to produce the
   // inclusive `outputTokens` the contract expects. Only compute the total
-  // when the visible component is reported — otherwise we'd fabricate an
+  // when the visible component is reported â€” otherwise we'd fabricate an
   // inclusive number from a partial breakdown.
   const outputTokens =
     usage.candidatesTokenCount !== undefined ? usage.candidatesTokenCount + (usage.thoughtsTokenCount ?? 0) : undefined
@@ -454,7 +454,7 @@ const step = (state: ParserState, event: GeminiEvent) => {
 // Protocol And Gemini Route
 // =============================================================================
 /**
- * The Gemini protocol — request body construction, body schema, and the
+ * The Gemini protocol â€” request body construction, body schema, and the
  * streaming-event state machine. Used by Google AI Studio Gemini and (once
  * registered) Vertex Gemini.
  */

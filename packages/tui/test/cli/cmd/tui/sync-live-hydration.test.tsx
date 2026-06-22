@@ -1,4 +1,4 @@
-/** @jsxImportSource @opentui/solid */
+﻿/** @jsxImportSource @opentui/solid */
 import { expect, test } from "bun:test"
 import type { GlobalEvent } from "@ia-bot-ahmed/sdk/v2"
 import { tmpdir } from "../../../fixture/fixture"
@@ -12,7 +12,7 @@ const session = {
   title: "race",
   time: { created: 0, updated: 0 },
   version: "1.15.13",
-  directory: "/tmp/ia-bot-ahmed/packages/ia-bot-ahmed",
+  directory: "/tmp/ia-bot-ahmed/packages/IaBotAhmed",
 }
 const assistant = {
   id: messageID,

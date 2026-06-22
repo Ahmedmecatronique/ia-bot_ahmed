@@ -1,4 +1,4 @@
-import path from "path"
+﻿import path from "path"
 import { Context, Duration, Effect, Layer, Option, Schedule, Schema } from "effect"
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/unstable/http"
 import { Global } from "./global"
@@ -202,7 +202,7 @@ export const layer = Layer.effect(
       const snapshot = yield* loadSnapshot
       if (snapshot) return snapshot
       if (Flag.IA_BOT_AHMED_DISABLE_MODELS_FETCH) return {}
-      // Flock is cross-process: concurrent ia-bot-ahmed CLIs can race on this cache file.
+      // Flock is cross-process: concurrent IaBotAhmed CLIs can race on this cache file.
       const text = yield* Effect.scoped(
         Effect.gen(function* () {
           yield* Flock.effect(lockKey)

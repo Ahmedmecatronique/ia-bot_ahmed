@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { createPathHelpers, stripQueryAndHash, unquoteGitPath, encodeFilePath } from "./path"
 
 describe("file path helpers", () => {
@@ -106,7 +106,7 @@ describe("encodeFilePath", () => {
 
   describe("Windows paths", () => {
     test("should handle Windows absolute path with backslashes", () => {
-      const windowsPath = "D:\\dev\\projects\\ia-bot-ahmed\\README.bs.md"
+      const windowsPath = "D:\\dev\\projects\\IaBotAhmed\\README.bs.md"
       const result = encodeFilePath(windowsPath)
       const fileUrl = `file://${result}`
 
@@ -121,7 +121,7 @@ describe("encodeFilePath", () => {
 
     test("should handle mixed separator path (Windows + Unix)", () => {
       // This is what happens in build-request-parts.ts when concatenating paths
-      const mixedPath = "D:\\dev\\projects\\ia-bot-ahmed/README.bs.md"
+      const mixedPath = "D:\\dev\\projects\\IaBotAhmed/README.bs.md"
       const result = encodeFilePath(mixedPath)
       const fileUrl = `file://${result}`
 
@@ -167,13 +167,13 @@ describe("encodeFilePath", () => {
 
     test("should NOT create invalid URL like the bug report", () => {
       // This is the exact scenario from bug report by @alexyaroshuk
-      const windowsPath = "D:\\dev\\projects\\ia-bot-ahmed\\README.bs.md"
+      const windowsPath = "D:\\dev\\projects\\IaBotAhmed\\README.bs.md"
       const result = encodeFilePath(windowsPath)
       const fileUrl = `file://${result}`
 
-      // The bug was creating: file://D%3A%5Cdev%5Cprojects%5Cia-bot-ahmed/README.bs.md
+      // The bug was creating: file://D%3A%5Cdev%5Cprojects%5CIaBotAhmed/README.bs.md
       expect(result).not.toContain("%5C") // Should not have encoded backslashes
-      expect(result).not.toBe("D%3A%5Cdev%5Cprojects%5Cia-bot-ahmed/README.bs.md")
+      expect(result).not.toBe("D%3A%5Cdev%5Cprojects%5CIaBotAhmed/README.bs.md")
 
       // Should be valid
       expect(() => new URL(fileUrl)).not.toThrow()
@@ -230,7 +230,7 @@ describe("encodeFilePath", () => {
     })
 
     test("should encode Unicode characters", () => {
-      const unicodePath = "/home/user/文档/README.md"
+      const unicodePath = "/home/user/æ–‡æ¡£/README.md"
       const result = encodeFilePath(unicodePath)
       const fileUrl = `file://${result}`
 

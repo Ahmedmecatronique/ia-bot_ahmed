@@ -1,6 +1,6 @@
-import type {
+﻿import type {
   AgentPart,
-  ia-bot-ahmedClient,
+  IaBotAhmedClient,
   Event,
   FilePart,
   LspStatus,
@@ -611,7 +611,7 @@ export type TuiPluginApi = {
   kv: TuiKV
   state: TuiState
   theme: TuiTheme
-  client: ia-bot-ahmedClient
+  client: IaBotAhmedClient
   event: TuiEventBus
   renderer: CliRenderer
   slots: TuiSlots

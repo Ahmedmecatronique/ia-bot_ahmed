@@ -1,4 +1,4 @@
-import { Effect } from "effect"
+﻿import { Effect } from "effect"
 import { define } from "@ia-bot-ahmed/plugin/v2/effect"
 
 export const KiloPlugin = define({
@@ -11,7 +11,7 @@ export const KiloPlugin = define({
           if (item.provider.api.package !== "@ai-sdk/openai-compatible") continue
           if (item.provider.api.url !== "https://api.kilo.ai/api/gateway") continue
           evt.provider.update(item.provider.id, (provider) => {
-            provider.request.headers["HTTP-Referer"] = "https://ia-bot-ahmed.app/"
+            provider.request.headers["HTTP-Referer"] = "https://IaBotAhmed.app/"
             provider.request.headers["X-Title"] = "ia-bot-ahmed"
           })
         }

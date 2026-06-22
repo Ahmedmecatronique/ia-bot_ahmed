@@ -1,4 +1,4 @@
-import { afterEach, describe, expect } from "bun:test"
+﻿import { afterEach, describe, expect } from "bun:test"
 import { ConfigV1 } from "@ia-bot-ahmed/core/v1/config/config"
 import { SessionV1 } from "@ia-bot-ahmed/core/v1/session"
 import { Deferred, Effect, Layer } from "effect"
@@ -8,7 +8,7 @@ import { ChildProcessSpawner } from "effect/unstable/process"
 import { FSUtil } from "@ia-bot-ahmed/core/fs-util"
 import { CrossSpawnSpawner } from "@ia-bot-ahmed/core/cross-spawn-spawner"
 import { Flag } from "@ia-bot-ahmed/core/flag/flag"
-import { createia-bot-ahmedClient } from "@ia-bot-ahmed/sdk/v2"
+import { createIaBotAhmedClient } from "@ia-bot-ahmed/sdk/v2"
 import { validateSession } from "../../src/cli/tui/validate-session"
 import { InstanceBootstrap } from "../../src/project/bootstrap-service"
 import { InstanceStore } from "../../src/project/instance-store"
@@ -46,7 +46,7 @@ const original = {
 }
 
 type ServerPath = "default" | "raw"
-type Sdk = ReturnType<typeof createia-bot-ahmedClient>
+type Sdk = ReturnType<typeof createIaBotAhmedClient>
 type SdkResult = { response: Response; data?: unknown; error?: unknown }
 type Captured = { status: number; data?: unknown; error?: unknown }
 type ProjectFixture = { sdk: Sdk; directory: string }
@@ -71,7 +71,7 @@ function client(
 ) {
   return serverFetch(serverPath, input).pipe(
     Effect.map((fetch) =>
-      createia-bot-ahmedClient({
+      createIaBotAhmedClient({
         baseUrl: "http://localhost",
         directory,
         experimental_workspaceID: input?.workspaceID,
@@ -286,7 +286,7 @@ function writeStandardFiles(dir: string) {
 function writeProjectSkill(dir: string) {
   return FSUtil.Service.use((fs) =>
     fs.writeWithDirs(
-      path.join(dir, ".ia-bot-ahmed", "skills", "project-rest-skill", "SKILL.md"),
+      path.join(dir, ".IaBotAhmed", "skills", "project-rest-skill", "SKILL.md"),
       `---
 name: project-rest-skill
 description: A project skill visible to REST API prompts.
@@ -398,8 +398,8 @@ describe("HttpApi SDK", () => {
         expect(url.searchParams.get("workspace")).toBe(workspaceID)
         expect(url.searchParams.get("location[directory]")).toBe(directory)
         expect(url.searchParams.get("location[workspace]")).toBe(workspaceID)
-        expect(request!.headers.has("x-ia-bot-ahmed-directory")).toBe(false)
-        expect(request!.headers.has("x-ia-bot-ahmed-workspace")).toBe(false)
+        expect(request!.headers.has("x-IaBotAhmed-directory")).toBe(false)
+        expect(request!.headers.has("x-IaBotAhmed-workspace")).toBe(false)
       }),
     ),
   )
@@ -668,8 +668,8 @@ describe("HttpApi SDK", () => {
 
   // Regression: EventV2 must publish on the same ProjectBus the /event handler
   // subscribes to, AND the /event stream must forward handler ALS/context into the
-  // body-pump fiber. Drives the full SDK → /event → Session.updatePart → sync.run →
-  // bus.publish → SDK subscriber path. Goes red if either the publisher uses a
+  // body-pump fiber. Drives the full SDK â†’ /event â†’ Session.updatePart â†’ sync.run â†’
+  // bus.publish â†’ SDK subscriber path. Goes red if either the publisher uses a
   // different bus instance (Bug 2 / pre-#27825) or the stream loses context (Bug 1 /
   // pre-#27425).
   serverPathParity("streams sync-backed part updates to /event subscribers", (serverPath) =>

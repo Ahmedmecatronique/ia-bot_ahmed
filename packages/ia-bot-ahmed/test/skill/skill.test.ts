@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
 import { Skill } from "../../src/skill"
 import { Discovery } from "../../src/skill/discovery"
@@ -83,7 +83,7 @@ describe("skill", () => {
         Effect.gen(function* () {
           yield* Effect.promise(() =>
             Bun.write(
-              path.join(dir, ".ia-bot-ahmed", "skill", "test-skill", "SKILL.md"),
+              path.join(dir, ".IaBotAhmed", "skill", "test-skill", "SKILL.md"),
               `---
 name: test-skill
 description: A test skill for verification.
@@ -116,7 +116,7 @@ Instructions here.
           Effect.gen(function* () {
             yield* Effect.promise(() =>
               Bun.write(
-                path.join(dir, ".ia-bot-ahmed", "skill", "dir-skill", "SKILL.md"),
+                path.join(dir, ".IaBotAhmed", "skill", "dir-skill", "SKILL.md"),
                 `---
 name: dir-skill
 description: Skill for dirs test.
@@ -129,7 +129,7 @@ description: Skill for dirs test.
 
             const skill = yield* Skill.Service
             const dirs = yield* skill.dirs()
-            expect(dirs).toContain(path.join(dir, ".ia-bot-ahmed", "skill", "dir-skill"))
+            expect(dirs).toContain(path.join(dir, ".IaBotAhmed", "skill", "dir-skill"))
             expect(dirs.length).toBe(1)
           }),
         ),
@@ -144,7 +144,7 @@ description: Skill for dirs test.
           yield* Effect.promise(() =>
             Promise.all([
               Bun.write(
-                path.join(dir, ".ia-bot-ahmed", "skill", "skill-one", "SKILL.md"),
+                path.join(dir, ".IaBotAhmed", "skill", "skill-one", "SKILL.md"),
                 `---
 name: skill-one
 description: First test skill.
@@ -154,7 +154,7 @@ description: First test skill.
 `,
               ),
               Bun.write(
-                path.join(dir, ".ia-bot-ahmed", "skill", "skill-two", "SKILL.md"),
+                path.join(dir, ".IaBotAhmed", "skill", "skill-two", "SKILL.md"),
                 `---
 name: skill-two
 description: Second test skill.
@@ -182,7 +182,7 @@ description: Second test skill.
         Effect.gen(function* () {
           yield* Effect.promise(() =>
             Bun.write(
-              path.join(dir, ".ia-bot-ahmed", "skill", "no-frontmatter", "SKILL.md"),
+              path.join(dir, ".IaBotAhmed", "skill", "no-frontmatter", "SKILL.md"),
               `# No Frontmatter
 
 Just some content without YAML frontmatter.
@@ -203,7 +203,7 @@ Just some content without YAML frontmatter.
         Effect.gen(function* () {
           yield* Effect.promise(() =>
             Bun.write(
-              path.join(dir, ".ia-bot-ahmed", "skill", "manual-skill", "SKILL.md"),
+              path.join(dir, ".IaBotAhmed", "skill", "manual-skill", "SKILL.md"),
               `---
 name: manual-skill
 ---
@@ -493,13 +493,13 @@ description: A skill in the .agents/skills directory.
 `,
               ),
               Bun.write(
-                path.join(dir, ".ia-bot-ahmed", "skill", "ia-bot-ahmed-skill", "SKILL.md"),
+                path.join(dir, ".IaBotAhmed", "skill", "ia-bot-ahmed-skill", "SKILL.md"),
                 `---
-name: ia-bot-ahmed-skill
+name: IaBotAhmed-skill
 description: A skill in the .ia-bot-ahmed/skill directory.
 ---
 
-# ia-bot-ahmed Skill
+# IaBotAhmed Skill
 `,
               ),
             ]),
@@ -540,23 +540,23 @@ description: A skill in the .agents/skills directory.
 `,
               ),
               Bun.write(
-                path.join(dir, ".ia-bot-ahmed", "skill", "agent-skill", "SKILL.md"),
+                path.join(dir, ".IaBotAhmed", "skill", "agent-skill", "SKILL.md"),
                 `---
-name: ia-bot-ahmed-skill
+name: IaBotAhmed-skill
 description: A skill in the .ia-bot-ahmed/skill directory.
 ---
 
-# ia-bot-ahmed Skill
+# IaBotAhmed Skill
 `,
               ),
               Bun.write(
-                path.join(dir, ".ia-bot-ahmed", "skills", "agent-skill", "SKILL.md"),
+                path.join(dir, ".IaBotAhmed", "skills", "agent-skill", "SKILL.md"),
                 `---
-name: ia-bot-ahmed-skill
+name: IaBotAhmed-skill
 description: A skill in the .ia-bot-ahmed/skills directory.
 ---
 
-# ia-bot-ahmed Skill
+# IaBotAhmed Skill
 `,
               ),
             ]),

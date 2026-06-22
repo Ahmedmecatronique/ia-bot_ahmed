@@ -1,4 +1,4 @@
-import { createStore } from "solid-js/store"
+﻿import { createStore } from "solid-js/store"
 import { createMemo, createSignal, For, onCleanup, onMount, Show } from "solid-js"
 import { useRenderer } from "@opentui/solid"
 import type { TextareaRenderable } from "@opentui/core"
@@ -7,7 +7,7 @@ import type { QuestionAnswer, QuestionRequest } from "@ia-bot-ahmed/sdk/v2"
 import { useSDK } from "../../context/sdk"
 import { SplitBorder } from "../../ui/border"
 import { useTuiConfig } from "../../config"
-import { useBindings, useia-bot-ahmedModeStack } from "../../keymap"
+import { useBindings, useIaBotAhmedModeStack } from "../../keymap"
 
 const QUESTION_MODE = "question"
 
@@ -16,7 +16,7 @@ export function QuestionPrompt(props: { request: QuestionRequest; directory?: st
   const { theme } = useTheme()
   const renderer = useRenderer()
   const tuiConfig = useTuiConfig()
-  const modeStack = useia-bot-ahmedModeStack()
+  const modeStack = useIaBotAhmedModeStack()
 
   const questions = createMemo(() => props.request.questions)
   const single = createMemo(() => questions().length === 1 && questions()[0]?.multiple !== true)
@@ -382,11 +382,11 @@ export function QuestionPrompt(props: { request: QuestionRequest; directory?: st
                         </box>
                         <box backgroundColor={active() ? theme.backgroundElement : undefined}>
                           <text fg={active() ? theme.secondary : picked() ? theme.success : theme.text}>
-                            {multi() ? `[${picked() ? "✓" : " "}] ${opt.label}` : opt.label}
+                            {multi() ? `[${picked() ? "âœ“" : " "}] ${opt.label}` : opt.label}
                           </text>
                         </box>
                         <Show when={!multi()}>
-                          <text fg={theme.success}>{picked() ? " ✓" : ""}</text>
+                          <text fg={theme.success}>{picked() ? " âœ“" : ""}</text>
                         </Show>
                       </box>
 
@@ -414,12 +414,12 @@ export function QuestionPrompt(props: { request: QuestionRequest; directory?: st
                     </box>
                     <box backgroundColor={other() ? theme.backgroundElement : undefined}>
                       <text fg={other() ? theme.secondary : customPicked() ? theme.success : theme.text}>
-                        {multi() ? `[${customPicked() ? "✓" : " "}] Type your own answer` : "Type your own answer"}
+                        {multi() ? `[${customPicked() ? "âœ“" : " "}] Type your own answer` : "Type your own answer"}
                       </text>
                     </box>
 
                     <Show when={!multi()}>
-                      <text fg={theme.success}>{customPicked() ? " ✓" : ""}</text>
+                      <text fg={theme.success}>{customPicked() ? " âœ“" : ""}</text>
                     </Show>
                   </box>
                   <Show when={store.editing}>
@@ -489,12 +489,12 @@ export function QuestionPrompt(props: { request: QuestionRequest; directory?: st
         <box flexDirection="row" gap={2}>
           <Show when={!single()}>
             <text fg={theme.text}>
-              {"⇆"} <span style={{ fg: theme.textMuted }}>tab</span>
+              {"â‡†"} <span style={{ fg: theme.textMuted }}>tab</span>
             </text>
           </Show>
           <Show when={!confirm()}>
             <text fg={theme.text}>
-              {"↑↓"} <span style={{ fg: theme.textMuted }}>select</span>
+              {"â†‘â†“"} <span style={{ fg: theme.textMuted }}>select</span>
             </text>
           </Show>
           <text fg={theme.text}>

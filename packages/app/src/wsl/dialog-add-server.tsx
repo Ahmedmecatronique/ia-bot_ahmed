@@ -1,4 +1,4 @@
-import { Button } from "@ia-bot-ahmed/ui/button"
+﻿import { Button } from "@ia-bot-ahmed/ui/button"
 import { useDialog } from "@ia-bot-ahmed/ui/context/dialog"
 import { Spinner } from "@ia-bot-ahmed/ui/spinner"
 import { showToast } from "@ia-bot-ahmed/ui/toast"
@@ -7,7 +7,7 @@ import { createStore } from "solid-js/store"
 import { useLanguage } from "@/context/language"
 import { usePlatform } from "@/context/platform"
 import { useWslServers } from "./context"
-import { enterWslia-bot-ahmedStep } from "./settings-model"
+import { enterWslIaBotAhmedStep } from "./settings-model"
 
 type WslServerStep = "wsl" | "distro" | "ia-bot-ahmed"
 
@@ -66,10 +66,10 @@ export function DialogAddWslServer(props: DialogWslServerProps = {}) {
     if (!distro) return null
     return (current()?.installed ?? []).find((item) => item.name === distro) ?? null
   })
-  const ia-bot-ahmedCheck = createMemo(() => {
+  const IaBotAhmedCheck = createMemo(() => {
     const distro = selectedDistro()
     if (!distro) return null
-    return current()?.ia-bot-ahmedChecks[distro] ?? null
+    return current()?.IaBotAhmedChecks[distro] ?? null
   })
   const wslReady = createMemo(() => !!current()?.runtime?.available && !current()?.pendingRestart)
   const distroReady = createMemo(() => {
@@ -78,8 +78,8 @@ export function DialogAddWslServer(props: DialogWslServerProps = {}) {
     if (selectedInstalled()?.version === 1) return false
     return probe.canExecute && probe.hasBash && probe.hasCurl
   })
-  const ia-bot-ahmedReady = createMemo(() => {
-    const check = ia-bot-ahmedCheck()
+  const IaBotAhmedReady = createMemo(() => {
+    const check = IaBotAhmedCheck()
     return !!check?.resolvedPath && !check.error
   })
   const distroWarningProbe = createMemo(() => {
@@ -113,15 +113,15 @@ export function DialogAddWslServer(props: DialogWslServerProps = {}) {
     () => installableDistros().find((item) => item.name === store.installTarget) ?? installableDistros()[0] ?? null,
   )
   const installingDistro = createMemo(() => current()?.job?.kind === "install-distro")
-  const installingia-bot-ahmed = createMemo(() => {
+  const installingIaBotAhmed = createMemo(() => {
     const job = current()?.job
-    return job?.kind === "install-ia-bot-ahmed" && job.distro === selectedDistro()
+    return job?.kind === "install-IaBotAhmed" && job.distro === selectedDistro()
   })
-  const allReady = createMemo(() => wslReady() && distroReady() && ia-bot-ahmedReady())
+  const allReady = createMemo(() => wslReady() && distroReady() && IaBotAhmedReady())
   const addDisabled = createMemo(() => {
     const job = current()?.job
     if (!job) return store.adding
-    return store.adding || job.kind !== "probe-ia-bot-ahmed"
+    return store.adding || job.kind !== "probe-IaBotAhmed"
   })
   const recommendedStep = createMemo<WslServerStep>(() => {
     if (!wslReady()) return "wsl"
@@ -147,8 +147,8 @@ export function DialogAddWslServer(props: DialogWslServerProps = {}) {
       return { key: `probe-distro:${distro}`, run: () => api.probeDistro(distro) }
     }
     if (!distro || !distroReady()) return null
-    if (!state.ia-bot-ahmedChecks[distro]) {
-      return { key: `probe-ia-bot-ahmed:${distro}`, run: () => api.probeia-bot-ahmed(distro) }
+    if (!state.IaBotAhmedChecks[distro]) {
+      return { key: `probe-IaBotAhmed:${distro}`, run: () => api.probeIaBotAhmed(distro) }
     }
     return null
   })
@@ -197,33 +197,33 @@ export function DialogAddWslServer(props: DialogWslServerProps = {}) {
     return language.t("wsl.onboarding.pickDistro")
   })
 
-  const ia-bot-ahmedMessage = createMemo(() => {
+  const IaBotAhmedMessage = createMemo(() => {
     const state = current()
-    if (!state) return language.t("wsl.onboarding.checkingia-bot-ahmed")
+    if (!state) return language.t("wsl.onboarding.checkingIaBotAhmed")
     const distro = selectedDistro()
-    if (state.job?.kind === "install-ia-bot-ahmed") {
+    if (state.job?.kind === "install-IaBotAhmed") {
       return distro
-        ? language.t("wsl.onboarding.updatingia-bot-ahmedIn", { distro })
-        : language.t("wsl.onboarding.updatingia-bot-ahmed")
+        ? language.t("wsl.onboarding.updatingIaBotAhmedIn", { distro })
+        : language.t("wsl.onboarding.updatingIaBotAhmed")
     }
-    if (state.job?.kind === "probe-ia-bot-ahmed") {
+    if (state.job?.kind === "probe-IaBotAhmed") {
       return distro
-        ? language.t("wsl.onboarding.checkingia-bot-ahmedIn", { distro })
-        : language.t("wsl.onboarding.checkingia-bot-ahmed")
+        ? language.t("wsl.onboarding.checkingIaBotAhmedIn", { distro })
+        : language.t("wsl.onboarding.checkingIaBotAhmed")
     }
-    if (ia-bot-ahmedCheck()?.error) return ia-bot-ahmedCheck()!.error
-    if (ia-bot-ahmedCheck()?.matchesDesktop === false) {
+    if (IaBotAhmedCheck()?.error) return IaBotAhmedCheck()!.error
+    if (IaBotAhmedCheck()?.matchesDesktop === false) {
       return distro
-        ? language.t("wsl.onboarding.updateia-bot-ahmedIn", { distro })
-        : language.t("wsl.onboarding.updateia-bot-ahmed")
+        ? language.t("wsl.onboarding.updateIaBotAhmedIn", { distro })
+        : language.t("wsl.onboarding.updateIaBotAhmed")
     }
-    if (ia-bot-ahmedReady()) {
+    if (IaBotAhmedReady()) {
       return distro
-        ? language.t("wsl.onboarding.ia-bot-ahmedReadyIn", { distro })
-        : language.t("wsl.onboarding.ia-bot-ahmedReady")
+        ? language.t("wsl.onboarding.IaBotAhmedReadyIn", { distro })
+        : language.t("wsl.onboarding.IaBotAhmedReady")
     }
     return distro
-      ? language.t("wsl.onboarding.installia-bot-ahmedIn", { distro })
+      ? language.t("wsl.onboarding.installIaBotAhmedIn", { distro })
       : language.t("wsl.onboarding.chooseDistroFirst")
   })
 
@@ -246,10 +246,10 @@ export function DialogAddWslServer(props: DialogWslServerProps = {}) {
     setStore("step", undefined)
   }
 
-  const openia-bot-ahmedStep = () => {
+  const openIaBotAhmedStep = () => {
     const distro = selectedDistro()
     if (!distro) return
-    void run(() => enterWslia-bot-ahmedStep(distro, api.probeia-bot-ahmed, (step) => setStore("step", step)))
+    void run(() => enterWslIaBotAhmedStep(distro, api.probeIaBotAhmed, (step) => setStore("step", step)))
   }
 
   const finish = async () => {
@@ -283,7 +283,7 @@ export function DialogAddWslServer(props: DialogWslServerProps = {}) {
             ? language.t("wsl.server.label")
             : step === "distro"
               ? language.t("wsl.onboarding.step.distro")
-              : language.t("wsl.onboarding.step.ia-bot-ahmed"),
+              : language.t("wsl.onboarding.step.IaBotAhmed"),
         state:
           active === step
             ? "current"
@@ -297,9 +297,9 @@ export function DialogAddWslServer(props: DialogWslServerProps = {}) {
                   : index > activeIndex
                     ? "locked"
                     : "warning"
-                : ia-bot-ahmedCheck()?.matchesDesktop === false
+                : IaBotAhmedCheck()?.matchesDesktop === false
                   ? "warning"
-                  : ia-bot-ahmedReady()
+                  : IaBotAhmedReady()
                     ? "done"
                     : index > activeIndex
                       ? "locked"
@@ -528,7 +528,7 @@ export function DialogAddWslServer(props: DialogWslServerProps = {}) {
                     variant="secondary"
                     size="large"
                     disabled={busy() || !selectedDistro() || !distroReady()}
-                    onClick={openia-bot-ahmedStep}
+                    onClick={openIaBotAhmedStep}
                   >
                     {language.t("wsl.onboarding.next")}
                   </Button>
@@ -539,37 +539,37 @@ export function DialogAddWslServer(props: DialogWslServerProps = {}) {
             <Match when={activeStep() === "ia-bot-ahmed"}>
               <div class="rounded-md bg-surface-base p-4 flex flex-col gap-3">
                 <div class="flex items-center justify-between gap-3">
-                  <div class="text-14-medium text-text-strong">{language.t("wsl.onboarding.step.ia-bot-ahmed")}</div>
+                  <div class="text-14-medium text-text-strong">{language.t("wsl.onboarding.step.IaBotAhmed")}</div>
                   <div class="flex items-center gap-2">
                     <Show when={selectedDistro()}>
                       <Button
                         variant="ghost"
                         size="large"
                         disabled={busy()}
-                        onClick={() => runSelectedDistro((distro) => api.probeia-bot-ahmed(distro))}
+                        onClick={() => runSelectedDistro((distro) => api.probeIaBotAhmed(distro))}
                       >
                         {language.t("wsl.onboarding.refresh")}
                       </Button>
                     </Show>
-                    <Show when={!ia-bot-ahmedReady() || ia-bot-ahmedCheck()?.matchesDesktop === false}>
+                    <Show when={!IaBotAhmedReady() || IaBotAhmedCheck()?.matchesDesktop === false}>
                       <Button
                         variant="secondary"
                         size="large"
                         disabled={busy()}
-                        onClick={() => runSelectedDistro((distro) => api.installia-bot-ahmed(distro))}
+                        onClick={() => runSelectedDistro((distro) => api.installIaBotAhmed(distro))}
                       >
-                        <Show when={installingia-bot-ahmed()}>
+                        <Show when={installingIaBotAhmed()}>
                           <Spinner class="size-4 shrink-0" />
                         </Show>
-                        {ia-bot-ahmedCheck()?.resolvedPath
-                          ? language.t("wsl.onboarding.updateia-bot-ahmed")
-                          : language.t("wsl.onboarding.installia-bot-ahmed")}
+                        {IaBotAhmedCheck()?.resolvedPath
+                          ? language.t("wsl.onboarding.updateIaBotAhmed")
+                          : language.t("wsl.onboarding.installIaBotAhmed")}
                       </Button>
                     </Show>
                   </div>
                 </div>
-                <div class="text-12-regular text-text-weak whitespace-pre-wrap break-words">{ia-bot-ahmedMessage()}</div>
-                <Show when={ia-bot-ahmedCheck()?.matchesDesktop === false ? ia-bot-ahmedCheck() : null}>
+                <div class="text-12-regular text-text-weak whitespace-pre-wrap break-words">{IaBotAhmedMessage()}</div>
+                <Show when={IaBotAhmedCheck()?.matchesDesktop === false ? IaBotAhmedCheck() : null}>
                   {(check) => (
                     <div class="rounded-md border border-border-weak-base px-3 py-3 flex flex-col gap-1">
                       <div class="text-12-regular text-text-weak">
@@ -583,7 +583,7 @@ export function DialogAddWslServer(props: DialogWslServerProps = {}) {
                         })}
                         <Show when={check().expectedVersion}>
                           {(expected) => (
-                            <span>{` · ${language.t("wsl.onboarding.desktopVersion", { version: expected() })}`}</span>
+                            <span>{` Â· ${language.t("wsl.onboarding.desktopVersion", { version: expected() })}`}</span>
                           )}
                         </Show>
                       </div>

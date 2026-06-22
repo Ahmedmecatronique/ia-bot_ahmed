@@ -1,4 +1,4 @@
-import { afterEach, describe, expect } from "bun:test"
+﻿import { afterEach, describe, expect } from "bun:test"
 import path from "path"
 import fs from "fs/promises"
 import { fileURLToPath, pathToFileURL } from "url"
@@ -21,7 +21,7 @@ import { ProviderV2 } from "@ia-bot-ahmed/core/provider"
 import { ModelV2 } from "@ia-bot-ahmed/core/model"
 
 const configLayer = TestConfig.layer({
-  directories: () => InstanceState.directory.pipe(Effect.map((dir) => [path.join(dir, ".ia-bot-ahmed")])),
+  directories: () => InstanceState.directory.pipe(Effect.map((dir) => [path.join(dir, ".IaBotAhmed")])),
 })
 
 // Fake Plugin.Service that returns a single plugin whose `tool` map contains
@@ -82,7 +82,7 @@ describe("tool.registry", () => {
       const build = yield* agent.get("build")
       if (!build) throw new Error("build agent not found")
       const task = (yield* registry.tools({
-        providerID: ProviderV2.ID.ia-bot-ahmed,
+        providerID: ProviderV2.ID.IaBotAhmed,
         modelID: ModelV2.ID.make("test"),
         agent: build,
       })).find((tool) => tool.id === "task")
@@ -95,8 +95,8 @@ describe("tool.registry", () => {
   it.instance("loads tools from .ia-bot-ahmed/tool (singular)", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const ia-bot-ahmed = path.join(test.directory, ".ia-bot-ahmed")
-      const tool = path.join(ia-bot-ahmed, "tool")
+      const IaBotAhmed = path.join(test.directory, ".IaBotAhmed")
+      const tool = path.join(IaBotAhmed, "tool")
       yield* Effect.promise(() => fs.mkdir(tool, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(
@@ -122,7 +122,7 @@ describe("tool.registry", () => {
   it.instance("ignores non-tool exports in .ia-bot-ahmed/tool files", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const tool = path.join(test.directory, ".ia-bot-ahmed", "tool")
+      const tool = path.join(test.directory, ".IaBotAhmed", "tool")
       yield* Effect.promise(() => fs.mkdir(tool, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(
@@ -150,12 +150,12 @@ describe("tool.registry", () => {
   // crash registry initialization with
   // `Object.entries requires that input parameter not be null or undefined`.
   // Pre-1.14.49 the code path was `z.object(def.args)`, and `z.object(undefined)`
-  // silently produced an empty schema — so the tool registered as no-args.
+  // silently produced an empty schema â€” so the tool registered as no-args.
   // Preserve that tolerance.
   it.instance("tolerates a custom tool exporting null/undefined args (no-args fallback)", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const tool = path.join(test.directory, ".ia-bot-ahmed", "tool")
+      const tool = path.join(test.directory, ".IaBotAhmed", "tool")
       yield* Effect.promise(() => fs.mkdir(tool, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(
@@ -173,7 +173,7 @@ describe("tool.registry", () => {
 
       const registry = yield* ToolRegistry.Service
       const ids = yield* registry.ids()
-      // Built-in tools must still load — a single malformed custom tool must
+      // Built-in tools must still load â€” a single malformed custom tool must
       // not poison the whole registry.
       expect(ids).toContain("read")
       const loaded = (yield* registry.all()).find((t) => t.id === "noargs")
@@ -183,7 +183,7 @@ describe("tool.registry", () => {
   )
 
   // Same regression, plugin entry point. The original reports (#27451, #27630)
-  // came in through `plugin.list()` — `oh-my-ia-bot-ahmed` was registering a tool
+  // came in through `plugin.list()` â€” `oh-my-IaBotAhmed` was registering a tool
   // with `args: undefined` and crashing every message submit. The file-scan
   // and plugin-list loops both funnel through `fromPlugin`, but covering both
   // entry points means a future refactor that splits them won't silently lose
@@ -200,8 +200,8 @@ describe("tool.registry", () => {
   it.instance("loads tools from .ia-bot-ahmed/tools (plural)", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const ia-bot-ahmed = path.join(test.directory, ".ia-bot-ahmed")
-      const tools = path.join(ia-bot-ahmed, "tools")
+      const IaBotAhmed = path.join(test.directory, ".IaBotAhmed")
+      const tools = path.join(IaBotAhmed, "tools")
       yield* Effect.promise(() => fs.mkdir(tools, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(
@@ -227,7 +227,7 @@ describe("tool.registry", () => {
   it.instance("loads Zod-schema custom tools with JSON Schema and validation", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const customTools = path.join(test.directory, ".ia-bot-ahmed", "tools")
+      const customTools = path.join(test.directory, ".IaBotAhmed", "tools")
       const pluginTool = pathToFileURL(path.resolve(import.meta.dir, "../../../plugin/src/tool.ts")).href
       yield* Effect.promise(() => fs.mkdir(customTools, { recursive: true }))
       yield* Effect.promise(() =>
@@ -260,7 +260,7 @@ describe("tool.registry", () => {
 
       const agents = yield* Agent.Service
       const promptTools = yield* registry.tools({
-        providerID: ProviderV2.ID.ia-bot-ahmed,
+        providerID: ProviderV2.ID.IaBotAhmed,
         modelID: ModelV2.ID.make("test"),
         agent: yield* agents.defaultInfo(),
       })
@@ -280,13 +280,13 @@ describe("tool.registry", () => {
     () =>
       Effect.gen(function* () {
         const test = yield* TestInstance
-        const ia-bot-ahmed = path.join(test.directory, ".ia-bot-ahmed")
-        const customTools = path.join(ia-bot-ahmed, "tools")
-        const plugin = path.join(ia-bot-ahmed, "node_modules", "@ia-bot-ahmed-ai", "plugin")
+        const IaBotAhmed = path.join(test.directory, ".IaBotAhmed")
+        const customTools = path.join(IaBotAhmed, "tools")
+        const plugin = path.join(IaBotAhmed, "node_modules", "@IaBotAhmed-ai", "plugin")
         yield* Effect.promise(() => fs.mkdir(path.join(plugin, "dist"), { recursive: true }))
         yield* Effect.promise(() => fs.mkdir(customTools, { recursive: true }))
         yield* Effect.promise(() =>
-          fs.cp(path.dirname(fileURLToPath(import.meta.resolve("zod"))), path.join(ia-bot-ahmed, "node_modules", "zod"), {
+          fs.cp(path.dirname(fileURLToPath(import.meta.resolve("zod"))), path.join(IaBotAhmed, "node_modules", "zod"), {
             dereference: true,
             recursive: true,
           }),
@@ -345,7 +345,7 @@ describe("tool.registry", () => {
   it.instance("preserves attachments from structured custom tool results", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const customTools = path.join(test.directory, ".ia-bot-ahmed", "tools")
+      const customTools = path.join(test.directory, ".IaBotAhmed", "tools")
       const pluginTool = pathToFileURL(path.resolve(import.meta.dir, "../../../plugin/src/tool.ts")).href
       yield* Effect.promise(() => fs.mkdir(customTools, { recursive: true }))
       yield* Effect.promise(() =>
@@ -390,7 +390,7 @@ describe("tool.registry", () => {
   it.instance("loads legacy JSON-schema-shaped custom tools with wire schema", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const tools = path.join(test.directory, ".ia-bot-ahmed", "tools")
+      const tools = path.join(test.directory, ".IaBotAhmed", "tools")
       yield* Effect.promise(() => fs.mkdir(tools, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(
@@ -422,12 +422,12 @@ describe("tool.registry", () => {
   it.instance("loads tools with external dependencies without crashing", () =>
     Effect.gen(function* () {
       const test = yield* TestInstance
-      const ia-bot-ahmed = path.join(test.directory, ".ia-bot-ahmed")
-      const tools = path.join(ia-bot-ahmed, "tools")
+      const IaBotAhmed = path.join(test.directory, ".IaBotAhmed")
+      const tools = path.join(IaBotAhmed, "tools")
       yield* Effect.promise(() => fs.mkdir(tools, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(
-          path.join(ia-bot-ahmed, "package.json"),
+          path.join(IaBotAhmed, "package.json"),
           JSON.stringify({
             name: "custom-tools",
             dependencies: {
@@ -439,7 +439,7 @@ describe("tool.registry", () => {
       )
       yield* Effect.promise(() =>
         Bun.write(
-          path.join(ia-bot-ahmed, "package-lock.json"),
+          path.join(IaBotAhmed, "package-lock.json"),
           JSON.stringify({
             name: "custom-tools",
             lockfileVersion: 3,
@@ -455,7 +455,7 @@ describe("tool.registry", () => {
         ),
       )
 
-      const cowsay = path.join(ia-bot-ahmed, "node_modules", "cowsay")
+      const cowsay = path.join(IaBotAhmed, "node_modules", "cowsay")
       yield* Effect.promise(() => fs.mkdir(cowsay, { recursive: true }))
       yield* Effect.promise(() =>
         Bun.write(

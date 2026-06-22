@@ -1,4 +1,4 @@
-import type { Page, Route } from "@playwright/test"
+﻿import type { Page, Route } from "@playwright/test"
 
 const emptyList = new Set([
   "/skill",
@@ -24,7 +24,7 @@ export interface MockServerConfig {
   eventRetry?: number
 }
 
-export async function mockia-bot-ahmedServer(page: Page, config: MockServerConfig) {
+export async function mockIaBotAhmedServer(page: Page, config: MockServerConfig) {
   const staticRoutes: Record<string, unknown> = {
     "/provider": config.provider,
     "/path": {
@@ -32,7 +32,7 @@ export async function mockia-bot-ahmedServer(page: Page, config: MockServerConfi
       config: config.directory,
       worktree: config.directory,
       directory: config.directory,
-      home: "C:/ia-bot-ahmed",
+      home: "C:/IaBotAhmed",
     },
     "/project": [config.project],
     "/project/current": config.project,

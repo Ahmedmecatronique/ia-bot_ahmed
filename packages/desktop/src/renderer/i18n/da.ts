@@ -1,22 +1,22 @@
-export const dict = {
+﻿export const dict = {
   "desktop.menu.checkForUpdates": "Tjek for opdateringer...",
   "desktop.menu.installCli": "Installer CLI...",
-  "desktop.menu.reloadWebview": "Genindlæs Webview",
+  "desktop.menu.reloadWebview": "GenindlÃ¦s Webview",
   "desktop.menu.restart": "Genstart",
 
-  "desktop.dialog.chooseFolder": "Vælg en mappe",
-  "desktop.dialog.chooseFile": "Vælg en fil",
+  "desktop.dialog.chooseFolder": "VÃ¦lg en mappe",
+  "desktop.dialog.chooseFile": "VÃ¦lg en fil",
   "desktop.dialog.saveFile": "Gem fil",
 
   "desktop.updater.checkFailed.title": "Opdateringstjek mislykkedes",
   "desktop.updater.checkFailed.message": "Kunne ikke tjekke for opdateringer",
-  "desktop.updater.none.title": "Ingen opdatering tilgængelig",
-  "desktop.updater.none.message": "Du bruger allerede den nyeste version af ia-bot-ahmed",
+  "desktop.updater.none.title": "Ingen opdatering tilgÃ¦ngelig",
+  "desktop.updater.none.message": "Du bruger allerede den nyeste version af IaBotAhmed",
   "desktop.updater.downloadFailed.title": "Opdatering mislykkedes",
   "desktop.updater.downloadFailed.message": "Kunne ikke downloade opdateringen",
   "desktop.updater.downloaded.title": "Opdatering downloadet",
   "desktop.updater.downloaded.prompt":
-    "Version {{version}} af ia-bot-ahmed er blevet downloadet. Vil du installere den og genstarte?",
+    "Version {{version}} af IaBotAhmed er blevet downloadet. Vil du installere den og genstarte?",
   "desktop.updater.installFailed.title": "Opdatering mislykkedes",
   "desktop.updater.installFailed.message": "Kunne ikke installere opdateringen",
 

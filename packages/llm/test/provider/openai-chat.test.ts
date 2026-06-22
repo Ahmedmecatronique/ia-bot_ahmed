@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Effect, Schema, Stream } from "effect"
 import { HttpClientRequest } from "effect/unstable/http"
 import { LLM, LLMError, Message, Model, ToolCallPart, Usage } from "../../src"
@@ -32,7 +32,7 @@ describe("OpenAI Chat route", () => {
   it.effect("prepares OpenAI Chat payload", () =>
     Effect.gen(function* () {
       // Pass the OpenAIChat payload type so `prepared.body` is statically
-      // typed to the route's native shape — the assertions below read field
+      // typed to the route's native shape â€” the assertions below read field
       // names without `unknown` casts.
       const prepared = yield* LLMClient.prepare<OpenAIChat.OpenAIChatBody>(request)
       const _typed: { readonly model: string; readonly stream: true } = prepared.body
@@ -131,7 +131,7 @@ describe("OpenAI Chat route", () => {
     LLMClient.generate(
       LLM.updateRequest(request, {
         model: Azure.configure({
-          baseURL: "https://ia-bot-ahmed-test.openai.azure.com/openai/v1/",
+          baseURL: "https://IaBotAhmed-test.openai.azure.com/openai/v1/",
           apiKey: "azure-key",
           headers: { authorization: "Bearer stale" },
         }).chat("gpt-4o-mini"),
@@ -141,7 +141,7 @@ describe("OpenAI Chat route", () => {
         dynamicResponse((input) =>
           Effect.gen(function* () {
             const web = yield* HttpClientRequest.toWeb(input.request).pipe(Effect.orDie)
-            expect(web.url).toBe("https://ia-bot-ahmed-test.openai.azure.com/openai/v1/chat/completions?api-version=v1")
+            expect(web.url).toBe("https://IaBotAhmed-test.openai.azure.com/openai/v1/chat/completions?api-version=v1")
             expect(web.headers.get("api-key")).toBe("azure-key")
             expect(web.headers.get("authorization")).toBeNull()
             return input.respond(sseEvents(deltaChunk({}, "stop")), {

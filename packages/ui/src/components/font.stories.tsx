@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import * as mod from "./font"
 
 const docs = `### Overview
@@ -41,8 +41,8 @@ export const Basic = {
   render: () => (
     <div style={{ display: "grid", gap: "8px" }}>
       <mod.Font />
-      <div style={{ "font-family": "var(--font-family-sans)" }}>ia-bot-ahmed Sans Sample</div>
-      <div style={{ "font-family": "var(--font-family-mono)" }}>ia-bot-ahmed Mono Sample</div>
+      <div style={{ "font-family": "var(--font-family-sans)" }}>IaBotAhmed Sans Sample</div>
+      <div style={{ "font-family": "var(--font-family-mono)" }}>IaBotAhmed Mono Sample</div>
     </div>
   ),
 }

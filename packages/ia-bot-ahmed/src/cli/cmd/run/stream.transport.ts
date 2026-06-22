@@ -1,4 +1,4 @@
-// Global event subscription and prompt turn coordination.
+﻿// Global event subscription and prompt turn coordination.
 //
 // Creates a long-lived global event stream subscription and feeds relevant
 // events for the current session tree through the reducers. The reducers
@@ -15,7 +15,7 @@
 // The tick counter prevents stale idle events from resolving the wrong turn.
 // We also re-check live session status before resolving an idle event so a
 // delayed idle from an older turn cannot complete a newer busy turn.
-import type { Event, GlobalEvent, ia-bot-ahmedClient } from "@ia-bot-ahmed/sdk/v2"
+import type { Event, GlobalEvent, IaBotAhmedClient } from "@ia-bot-ahmed/sdk/v2"
 import { Context, Deferred, Effect, Exit, Layer, Scope, Stream } from "effect"
 import { makeRuntime } from "@/effect/run-service"
 import {
@@ -67,7 +67,7 @@ type Trace = {
 const StreamClosed = undefined as never
 
 type StreamInput = {
-  sdk: ia-bot-ahmedClient
+  sdk: IaBotAhmedClient
   directory?: string
   sessionID: string
   thinking: boolean

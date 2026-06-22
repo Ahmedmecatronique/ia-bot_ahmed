@@ -1,4 +1,4 @@
-import { afterEach, expect } from "bun:test"
+﻿import { afterEach, expect } from "bun:test"
 import { existsSync } from "node:fs"
 import path from "node:path"
 import { pathToFileURL } from "node:url"
@@ -13,7 +13,7 @@ import { waitGlobalBusEvent } from "../server/global-bus"
 
 const it = testEffect(Layer.mergeAll(InstanceLayer.layer, CrossSpawnSpawner.defaultLayer))
 
-// InstanceBootstrap must run before any code touches the instance —
+// InstanceBootstrap must run before any code touches the instance â€”
 // originally tracked by PRs #25389 and #25449, now a permanent
 // invariant. The plugin config hook writes a marker file; the test
 // bodies deliberately avoid Plugin/config directly. The marker only
@@ -47,7 +47,7 @@ const bootstrapFixture = Effect.gen(function* () {
     Bun.write(
       path.join(dir, "ia-bot-ahmed.json"),
       JSON.stringify({
-        $schema: "https://ia-bot-ahmed.app/config.json",
+        $schema: "https://IaBotAhmed.app/config.json",
         plugin: [pathToFileURL(pluginFile).href],
       }),
     ),

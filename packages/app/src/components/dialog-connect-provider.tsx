@@ -1,4 +1,4 @@
-import type { ProviderAuthAuthorization, ProviderAuthMethod } from "@ia-bot-ahmed/sdk/v2/client"
+﻿import type { ProviderAuthAuthorization, ProviderAuthMethod } from "@ia-bot-ahmed/sdk/v2/client"
 import { Button } from "@ia-bot-ahmed/ui/button"
 import { useDialog } from "@ia-bot-ahmed/ui/context/dialog"
 import { Dialog } from "@ia-bot-ahmed/ui/dialog"
@@ -424,14 +424,14 @@ export function DialogConnectProvider(props: { provider: string }) {
         <Switch>
           <Match when={provider().id === "ia-bot-ahmed"}>
             <div class="flex flex-col gap-4">
-              <div class="text-14-regular text-text-base">{language.t("provider.connect.ia-bot-ahmedZen.line1")}</div>
-              <div class="text-14-regular text-text-base">{language.t("provider.connect.ia-bot-ahmedZen.line2")}</div>
+              <div class="text-14-regular text-text-base">{language.t("provider.connect.IaBotAhmedZen.line1")}</div>
+              <div class="text-14-regular text-text-base">{language.t("provider.connect.IaBotAhmedZen.line2")}</div>
               <div class="text-14-regular text-text-base">
-                {language.t("provider.connect.ia-bot-ahmedZen.visit.prefix")}
-                <Link href="https://ia-bot-ahmed.app/zen" tabIndex={-1}>
-                  {language.t("provider.connect.ia-bot-ahmedZen.visit.link")}
+                {language.t("provider.connect.IaBotAhmedZen.visit.prefix")}
+                <Link href="https://IaBotAhmed.app/zen" tabIndex={-1}>
+                  {language.t("provider.connect.IaBotAhmedZen.visit.link")}
                 </Link>
-                {language.t("provider.connect.ia-bot-ahmedZen.visit.suffix")}
+                {language.t("provider.connect.IaBotAhmedZen.visit.suffix")}
               </div>
             </div>
           </Match>

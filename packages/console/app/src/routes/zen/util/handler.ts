@@ -1,4 +1,4 @@
-import type { APIEvent } from "@solidjs/start/server"
+﻿import type { APIEvent } from "@solidjs/start/server"
 import { and, Database, eq, isNull, lt, or, sql } from "@ia-bot-ahmed/console-core/drizzle/index.js"
 import { KeyTable } from "@ia-bot-ahmed/console-core/schema/key.sql.js"
 import { BillingTable, LiteTable, SubscriptionTable, UsageTable } from "@ia-bot-ahmed/console-core/schema/billing.sql.js"
@@ -102,9 +102,9 @@ export async function handler(
     const ip = rawIp.includes(":") ? rawIp.split(":").slice(0, 4).join(":") : rawIp
     const rawZenApiKey = opts.parseApiKey(input.request.headers)
     const zenApiKey = rawZenApiKey === "public" ? undefined : rawZenApiKey
-    const sessionId = input.request.headers.get("x-ia-bot-ahmed-session") ?? ""
-    const requestId = input.request.headers.get("x-ia-bot-ahmed-request") ?? ""
-    const ocClient = input.request.headers.get("x-ia-bot-ahmed-client") ?? ""
+    const sessionId = input.request.headers.get("x-IaBotAhmed-session") ?? ""
+    const requestId = input.request.headers.get("x-IaBotAhmed-request") ?? ""
+    const ocClient = input.request.headers.get("x-IaBotAhmed-client") ?? ""
     const userAgent = input.request.headers.get("user-agent") ?? ""
     logger.metric({
       is_stream: isStream,
@@ -198,10 +198,10 @@ export async function handler(
           })
           headers.delete("host")
           headers.delete("content-length")
-          headers.delete("x-ia-bot-ahmed-request")
-          headers.delete("x-ia-bot-ahmed-session")
-          headers.delete("x-ia-bot-ahmed-project")
-          headers.delete("x-ia-bot-ahmed-client")
+          headers.delete("x-IaBotAhmed-request")
+          headers.delete("x-IaBotAhmed-session")
+          headers.delete("x-IaBotAhmed-project")
+          headers.delete("x-IaBotAhmed-client")
           return headers
         })(),
         body: reqBody,
@@ -471,7 +471,7 @@ export async function handler(
       throw new ModelError(
         `${t("zen.api.error.trialEnded", {
           model: modelData.name,
-          link: "https://ia-bot-ahmed.app/go",
+          link: "https://IaBotAhmed.app/go",
         })}`,
       )
 
@@ -782,7 +782,7 @@ export async function handler(
     // Validate lite subscription billing
     if (opts.modelList === "lite" && authInfo.billing.lite && authInfo.lite) {
       try {
-        const consoleGoUrl = `https://ia-bot-ahmed.app/workspace/${authInfo.workspaceID}/go`
+        const consoleGoUrl = `https://IaBotAhmed.app/workspace/${authInfo.workspaceID}/go`
         const sub = authInfo.lite
         const liteData = LiteData.getLimits()
 
@@ -853,8 +853,8 @@ export async function handler(
 
     // Validate pay as you go billing
     const billing = authInfo.billing
-    const billingUrl = `https://ia-bot-ahmed.app/workspace/${authInfo.workspaceID}/billing`
-    const membersUrl = `https://ia-bot-ahmed.app/workspace/${authInfo.workspaceID}/members`
+    const billingUrl = `https://IaBotAhmed.app/workspace/${authInfo.workspaceID}/billing`
+    const membersUrl = `https://IaBotAhmed.app/workspace/${authInfo.workspaceID}/members`
     if (!billing.paymentMethodID && billing.balance <= 0)
       throw new CreditsError(t("zen.api.error.noPaymentMethod", { billingUrl }))
     if (billing.balance <= 0) throw new CreditsError(t("zen.api.error.insufficientBalance", { billingUrl }))

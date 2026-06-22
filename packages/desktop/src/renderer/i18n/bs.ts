@@ -1,24 +1,24 @@
-export const dict = {
-  "desktop.menu.checkForUpdates": "Provjeri ažuriranja...",
+﻿export const dict = {
+  "desktop.menu.checkForUpdates": "Provjeri aÅ¾uriranja...",
   "desktop.menu.installCli": "Instaliraj CLI...",
-  "desktop.menu.reloadWebview": "Ponovo učitavanje webview-a",
+  "desktop.menu.reloadWebview": "Ponovo uÄitavanje webview-a",
   "desktop.menu.restart": "Restartuj",
 
   "desktop.dialog.chooseFolder": "Odaberi folder",
   "desktop.dialog.chooseFile": "Odaberi datoteku",
-  "desktop.dialog.saveFile": "Sačuvaj datoteku",
+  "desktop.dialog.saveFile": "SaÄuvaj datoteku",
 
-  "desktop.updater.checkFailed.title": "Provjera ažuriranja nije uspjela",
-  "desktop.updater.checkFailed.message": "Nije moguće provjeriti ažuriranja",
-  "desktop.updater.none.title": "Nema dostupnog ažuriranja",
-  "desktop.updater.none.message": "Već koristiš najnoviju verziju ia-bot-ahmed-a",
-  "desktop.updater.downloadFailed.title": "Ažuriranje nije uspjelo",
-  "desktop.updater.downloadFailed.message": "Neuspjelo preuzimanje ažuriranja",
-  "desktop.updater.downloaded.title": "Ažuriranje preuzeto",
+  "desktop.updater.checkFailed.title": "Provjera aÅ¾uriranja nije uspjela",
+  "desktop.updater.checkFailed.message": "Nije moguÄ‡e provjeriti aÅ¾uriranja",
+  "desktop.updater.none.title": "Nema dostupnog aÅ¾uriranja",
+  "desktop.updater.none.message": "VeÄ‡ koristiÅ¡ najnoviju verziju IaBotAhmed-a",
+  "desktop.updater.downloadFailed.title": "AÅ¾uriranje nije uspjelo",
+  "desktop.updater.downloadFailed.message": "Neuspjelo preuzimanje aÅ¾uriranja",
+  "desktop.updater.downloaded.title": "AÅ¾uriranje preuzeto",
   "desktop.updater.downloaded.prompt":
-    "Verzija {{version}} ia-bot-ahmed-a je preuzeta. Želiš li da je instaliraš i ponovo pokreneš aplikaciju?",
-  "desktop.updater.installFailed.title": "Ažuriranje nije uspjelo",
-  "desktop.updater.installFailed.message": "Neuspjela instalacija ažuriranja",
+    "Verzija {{version}} IaBotAhmed-a je preuzeta. Å½eliÅ¡ li da je instaliraÅ¡ i ponovo pokreneÅ¡ aplikaciju?",
+  "desktop.updater.installFailed.title": "AÅ¾uriranje nije uspjelo",
+  "desktop.updater.installFailed.message": "Neuspjela instalacija aÅ¾uriranja",
 
   "desktop.cli.installed.title": "CLI instaliran",
   "desktop.cli.installed.message":

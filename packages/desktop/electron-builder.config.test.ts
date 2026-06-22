@@ -1,12 +1,12 @@
-import { expect, test } from "bun:test"
+﻿import { expect, test } from "bun:test"
 import type { Configuration } from "electron-builder"
 
-const legacyDesktopEntry = "resources/linux/ia-bot-ahmed-desktop.desktop"
+const legacyDesktopEntry = "resources/linux/IaBotAhmed-desktop.desktop"
 
 const channels = [
-  { channel: "dev", appId: "ai.ia-bot-ahmed.desktop.dev" },
-  { channel: "beta", appId: "ai.ia-bot-ahmed.desktop.beta" },
-  { channel: "prod", appId: "ai.ia-bot-ahmed.desktop" },
+  { channel: "dev", appId: "ai.IaBotAhmed.desktop.dev" },
+  { channel: "beta", appId: "ai.IaBotAhmed.desktop.beta" },
+  { channel: "prod", appId: "ai.IaBotAhmed.desktop" },
 ] as const
 
 for (const channel of channels) {
@@ -37,12 +37,12 @@ test("keeps a hidden prod launcher for old Linux pins", async () => {
   if (previous === undefined) delete process.env.IA_BOT_AHMED_CHANNEL
   else process.env.IA_BOT_AHMED_CHANNEL = previous
 
-  expect(config.deb?.fpm?.[0]).toEndWith(`${legacyDesktopEntry}=/usr/share/applications/ia-bot-ahmed-desktop.desktop`)
-  expect(config.rpm?.fpm?.[0]).toEndWith(`${legacyDesktopEntry}=/usr/share/applications/ia-bot-ahmed-desktop.desktop`)
+  expect(config.deb?.fpm?.[0]).toEndWith(`${legacyDesktopEntry}=/usr/share/applications/IaBotAhmed-desktop.desktop`)
+  expect(config.rpm?.fpm?.[0]).toEndWith(`${legacyDesktopEntry}=/usr/share/applications/IaBotAhmed-desktop.desktop`)
 
   const desktop = await Bun.file(legacyDesktopEntry).text()
-  expect(desktop).toContain("Exec=/opt/ia-bot-ahmed/ai.ia-bot-ahmed.desktop %U")
-  expect(desktop).toContain("Icon=ai.ia-bot-ahmed.desktop")
-  expect(desktop).toContain("StartupWMClass=ai.ia-bot-ahmed.desktop")
+  expect(desktop).toContain("Exec=/opt/ia-bot-ahmed/ai.IaBotAhmed.desktop %U")
+  expect(desktop).toContain("Icon=ai.IaBotAhmed.desktop")
+  expect(desktop).toContain("StartupWMClass=ai.IaBotAhmed.desktop")
   expect(desktop).toContain("NoDisplay=true")
 })

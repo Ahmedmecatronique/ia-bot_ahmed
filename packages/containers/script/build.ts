@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+﻿#!/usr/bin/env bun
 
 import { $ } from "bun"
 import path from "path"
@@ -23,10 +23,10 @@ const setup = async () => {
   if (!push) return
   const list = await $`docker buildx ls`.text()
   if (list.includes("ia-bot-ahmed")) {
-    await $`docker buildx use ia-bot-ahmed`
+    await $`docker buildx use IaBotAhmed`
     return
   }
-  await $`docker buildx create --name ia-bot-ahmed --use`
+  await $`docker buildx create --name IaBotAhmed --use`
 }
 
 await setup()

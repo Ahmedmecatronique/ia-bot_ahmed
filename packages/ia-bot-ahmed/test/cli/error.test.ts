@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { AccountTransportError } from "../../src/account/schema"
 import { FormatError } from "../../src/cli/error"
 import { UI } from "../../src/cli/ui"
@@ -8,14 +8,14 @@ describe("cli.error", () => {
     const cases = [
       {
         tag: "ConfigJsonError",
-        data: { path: "/tmp/ia-bot-ahmed.jsonc", message: "Unexpected token" },
-        expected: "Config file at /tmp/ia-bot-ahmed.jsonc is not valid JSON(C): Unexpected token",
+        data: { path: "/tmp/IaBotAhmed.jsonc", message: "Unexpected token" },
+        expected: "Config file at /tmp/IaBotAhmed.jsonc is not valid JSON(C): Unexpected token",
       },
       {
         tag: "ConfigDirectoryTypoError",
-        data: { path: "/tmp/ia-bot-ahmed.jsonc", dir: ".ia-bot-ahmed", suggestion: "ia-bot-ahmed" },
+        data: { path: "/tmp/IaBotAhmed.jsonc", dir: ".IaBotAhmed", suggestion: "ia-bot-ahmed" },
         expected:
-          'Directory ".ia-bot-ahmed" in /tmp/ia-bot-ahmed.jsonc is not valid. Rename the directory to "ia-bot-ahmed" or remove it. This is a common typo.',
+          'Directory ".IaBotAhmed" in /tmp/IaBotAhmed.jsonc is not valid. Rename the directory to "ia-bot-ahmed" or remove it. This is a common typo.',
       },
       {
         tag: "ConfigFrontmatterError",
@@ -25,11 +25,11 @@ describe("cli.error", () => {
       {
         tag: "ConfigInvalidError",
         data: {
-          path: "/tmp/ia-bot-ahmed.jsonc",
+          path: "/tmp/IaBotAhmed.jsonc",
           message: "schema mismatch",
           issues: [{ message: "Expected string", path: ["provider", "id"] }],
         },
-        expected: "Configuration is invalid at /tmp/ia-bot-ahmed.jsonc: schema mismatch\n↳ Expected string provider.id",
+        expected: "Configuration is invalid at /tmp/IaBotAhmed.jsonc: schema mismatch\nâ†³ Expected string provider.id",
       },
     ]
 
@@ -41,7 +41,7 @@ describe("cli.error", () => {
 
   test("preserves multiline JSONC diagnostics for tagged config errors", () => {
     const data = {
-      path: "/tmp/ia-bot-ahmed.jsonc",
+      path: "/tmp/IaBotAhmed.jsonc",
       message:
         '\n--- JSONC Input ---\n{\n  "model": \n}\n--- Errors ---\nValueExpected at line 3, column 1\n   Line 3: }\n          ^\n--- End ---',
     }
@@ -54,12 +54,12 @@ describe("cli.error", () => {
   test("formats account transport errors clearly", () => {
     const error = new AccountTransportError({
       method: "POST",
-      url: "https://console.ia-bot-ahmed.app/auth/device/code",
+      url: "https://console.IaBotAhmed.app/auth/device/code",
     })
 
     const formatted = FormatError(error)
 
-    expect(formatted).toContain("Could not reach POST https://console.ia-bot-ahmed.app/auth/device/code.")
+    expect(formatted).toContain("Could not reach POST https://console.IaBotAhmed.app/auth/device/code.")
     expect(formatted).toContain("This failed before the server returned an HTTP response.")
     expect(formatted).toContain("Check your network, proxy, or VPN configuration and try again.")
   })
@@ -74,7 +74,7 @@ describe("cli.error", () => {
       "Model not found: anthropic/claude-sonet-4",
       "Did you mean: claude-sonnet-4",
       "Try: `ia-bot-ahmed models` to list available models",
-      "Or check your config (ia-bot-ahmed.json) provider/model names",
+      "Or check your config (IaBotAhmed.json) provider/model names",
     ].join("\n")
 
     expect(FormatError({ name: "ProviderModelNotFoundError", data })).toBe(expected)

@@ -1,7 +1,7 @@
-import { expect, test } from "bun:test"
+﻿import { expect, test } from "bun:test"
 import { clearWslDistroState, requireWslIpcString, wslServerIdToRestart, wslTerminalArgs } from "./policy"
 import {
-  expectia-bot-ahmedVersion,
+  expectIaBotAhmedVersion,
   pendingRestartAfterWslInstall,
   pollWslHealth,
   wslServerIdsToStartOnInitialize,
@@ -9,7 +9,7 @@ import {
 import { createWslServersController, type WslServerConfig } from "./servers"
 
 let persistedServers: WslServerConfig[] = []
-let releaseia-bot-ahmedResolve: (() => void) | undefined
+let releaseIaBotAhmedResolve: (() => void) | undefined
 
 test("starts every configured WSL server on initialization", () => {
   expect(
@@ -21,13 +21,13 @@ test("starts every configured WSL server on initialization", () => {
 })
 
 test("rejects an update that did not install the desktop version", () => {
-  expect(() => expectia-bot-ahmedVersion("1.16.2", "1.16.2")).not.toThrow()
-  expect(() => expectia-bot-ahmedVersion("1.14.35", "1.16.2")).toThrow(
+  expect(() => expectIaBotAhmedVersion("1.16.2", "1.16.2")).not.toThrow()
+  expect(() => expectIaBotAhmedVersion("1.14.35", "1.16.2")).toThrow(
     "ia-bot-ahmed update finished but Debian still reports 1.14.35; expected 1.16.2",
   )
 })
 
-test("restarts an existing distro server after updating ia-bot-ahmed", () => {
+test("restarts an existing distro server after updating IaBotAhmed", () => {
   expect(
     wslServerIdToRestart(
       [
@@ -49,7 +49,7 @@ test("clears cached distro probes when removing a WSL server", () => {
       {
         Debian: {
           distro: "Debian",
-          resolvedPath: "/home/luke/.ia-bot-ahmed/bin/ia-bot-ahmed",
+          resolvedPath: "/home/luke/.ia-bot-ahmed/bin/IaBotAhmed",
           version: "1.16.2",
           expectedVersion: "1.16.2",
           matchesDesktop: true,
@@ -58,7 +58,7 @@ test("clears cached distro probes when removing a WSL server", () => {
       },
       "Debian",
     ),
-  ).toEqual({ distroProbes: {}, ia-bot-ahmedChecks: {} })
+  ).toEqual({ distroProbes: {}, IaBotAhmedChecks: {} })
 })
 
 test("opens terminals for distro names containing spaces", () => {
@@ -96,9 +96,9 @@ test("derives a required Windows restart from the post-install runtime probe", (
   expect(pendingRestartAfterWslInstall({ available: true, version: "WSL version: 2.6.1", error: null })).toBe(false)
 })
 
-test("ignores stale background ia-bot-ahmed checks after removing a WSL server", async () => {
+test("ignores stale background IaBotAhmed checks after removing a WSL server", async () => {
   persistedServers = []
-  releaseia-bot-ahmedResolve = undefined
+  releaseIaBotAhmedResolve = undefined
   const controller = createWslServersController(
     "1.16.2",
     async () => ({
@@ -114,18 +114,18 @@ test("ignores stale background ia-bot-ahmed checks after removing a WSL server",
   )
 
   await controller.addServer("Debian")
-  await waitFor(() => !!releaseia-bot-ahmedResolve)
+  await waitFor(() => !!releaseIaBotAhmedResolve)
   await controller.removeServer("wsl:Debian")
-  releaseia-bot-ahmedResolve?.()
+  releaseIaBotAhmedResolve?.()
   await new Promise((resolve) => setTimeout(resolve, 0))
 
   expect(controller.getState().servers).toEqual([])
-  expect(controller.getState().ia-bot-ahmedChecks).toEqual({})
+  expect(controller.getState().IaBotAhmedChecks).toEqual({})
 })
 
-test("ignores stale startup ia-bot-ahmed checks after removing a WSL server", async () => {
+test("ignores stale startup IaBotAhmed checks after removing a WSL server", async () => {
   persistedServers = [{ id: "wsl:Debian", distro: "Debian" }]
-  releaseia-bot-ahmedResolve = undefined
+  releaseIaBotAhmedResolve = undefined
   const controller = createWslServersController(
     "1.16.2",
     async () => new Promise<never>(() => undefined),
@@ -133,13 +133,13 @@ test("ignores stale startup ia-bot-ahmed checks after removing a WSL server", as
   )
 
   await controller.initialize()
-  await waitFor(() => !!releaseia-bot-ahmedResolve)
+  await waitFor(() => !!releaseIaBotAhmedResolve)
   await controller.removeServer("wsl:Debian")
-  releaseia-bot-ahmedResolve?.()
+  releaseIaBotAhmedResolve?.()
   await new Promise((resolve) => setTimeout(resolve, 0))
 
   expect(controller.getState().servers).toEqual([])
-  expect(controller.getState().ia-bot-ahmedChecks).toEqual({})
+  expect(controller.getState().IaBotAhmedChecks).toEqual({})
 })
 
 async function waitFor(check: () => boolean) {
@@ -157,11 +157,11 @@ function testControllerOptions() {
       persistedServers = servers
     },
     readCommandVersion: async () => "1.16.2",
-    resolveia-bot-ahmed: async () => {
+    resolveIaBotAhmed: async () => {
       await new Promise<void>((resolve) => {
-        releaseia-bot-ahmedResolve = resolve
+        releaseIaBotAhmedResolve = resolve
       })
-      return "/home/me/.ia-bot-ahmed/bin/ia-bot-ahmed"
+      return "/home/me/.ia-bot-ahmed/bin/IaBotAhmed"
     },
   }
 }

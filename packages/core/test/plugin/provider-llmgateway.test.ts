@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Effect } from "effect"
 import { Catalog } from "@ia-bot-ahmed/core/catalog"
 import { Integration } from "@ia-bot-ahmed/core/integration"
@@ -45,7 +45,7 @@ describe("LLMGatewayPlugin", () => {
       yield* addPlugin()
       expect((yield* catalog.provider.get(ProviderV2.ID.make("llmgateway")))?.request.headers).toEqual({
         Existing: "value",
-        "HTTP-Referer": "https://ia-bot-ahmed.app/",
+        "HTTP-Referer": "https://IaBotAhmed.app/",
         "X-Title": "ia-bot-ahmed",
         "X-Source": "ia-bot-ahmed",
       })

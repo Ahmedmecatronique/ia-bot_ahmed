@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { SessionV1 } from "@ia-bot-ahmed/core/v1/session"
 import { APICallError } from "ai"
 import { MessageV2 } from "../../src/session/message-v2"
@@ -1527,7 +1527,7 @@ describe("session.message-v2.fromError", () => {
 
   test("classifies ZlibError from fetch as retryable APIError", () => {
     const zlibError = new Error(
-      'ZlibError fetching "https://ia-bot-ahmed.cloudflare.dev/anthropic/messages". For more information, pass `verbose: true` in the second argument to fetch()',
+      'ZlibError fetching "https://IaBotAhmed.cloudflare.dev/anthropic/messages". For more information, pass `verbose: true` in the second argument to fetch()',
     )
     ;(zlibError as any).code = "ZlibError"
     ;(zlibError as any).errno = 0
@@ -1542,7 +1542,7 @@ describe("session.message-v2.fromError", () => {
 
   test("classifies ZlibError as AbortedError when abort context is provided", () => {
     const zlibError = new Error(
-      'ZlibError fetching "https://ia-bot-ahmed.cloudflare.dev/anthropic/messages". For more information, pass `verbose: true` in the second argument to fetch()',
+      'ZlibError fetching "https://IaBotAhmed.cloudflare.dev/anthropic/messages". For more information, pass `verbose: true` in the second argument to fetch()',
     )
     ;(zlibError as any).code = "ZlibError"
     ;(zlibError as any).errno = 0

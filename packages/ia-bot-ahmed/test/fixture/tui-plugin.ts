@@ -1,4 +1,4 @@
-import { createia-bot-ahmedClient } from "@ia-bot-ahmed/sdk/v2"
+﻿import { createIaBotAhmedClient } from "@ia-bot-ahmed/sdk/v2"
 import { RGBA, type CliRenderer } from "@opentui/core"
 import type { HostPluginApi } from "@ia-bot-ahmed/tui/plugin/slots"
 import { createTuiResolvedConfig } from "./tui-runtime"
@@ -127,7 +127,7 @@ export function createTuiPluginApi(opts: Opts = {}): HostPluginApi {
   const kv: Record<string, unknown> = {}
   const count = opts.count
   const ctrl = new AbortController()
-  const own = createia-bot-ahmedClient({
+  const own = createIaBotAhmedClient({
     baseUrl: "http://localhost:4096",
   })
   const fallback = () => own

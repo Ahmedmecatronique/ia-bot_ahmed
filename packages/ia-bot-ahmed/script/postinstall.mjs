@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 
 import childProcess from "child_process"
 import fs from "fs"
@@ -175,7 +175,7 @@ function main() {
   }
 
   throw new Error(
-    `It seems your package manager failed to install the right ia-bot-ahmed CLI package. Try manually installing ${packageNames()
+    `It seems your package manager failed to install the right IaBotAhmed CLI package. Try manually installing ${packageNames()
       .map((name) => JSON.stringify(name))
       .join(" or ")}.`,
   )

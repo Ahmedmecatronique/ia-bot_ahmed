@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import { Effect, Schema } from "effect"
 import { Catalog } from "@ia-bot-ahmed/core/catalog"
 import { Config } from "@ia-bot-ahmed/core/config"
@@ -61,7 +61,7 @@ describe("ConfigProviderPlugin.Plugin", () => {
   it.effect("partitions existing model variant bodies without changing config shape", () =>
     Effect.gen(function* () {
       const catalog = yield* Catalog.Service
-      const providerID = ProviderV2.ID.ia-bot-ahmed
+      const providerID = ProviderV2.ID.IaBotAhmed
       const modelID = ModelV2.ID.make("alpha-gpt-next")
       const config = Config.Service.of({
         entries: () =>
@@ -70,8 +70,8 @@ describe("ConfigProviderPlugin.Plugin", () => {
               type: "document",
               info: decode({
                 providers: {
-                  ia-bot-ahmed: {
-                    api: { type: "aisdk", package: "@ai-sdk/openai", url: "https://ia-bot-ahmed.test/v1" },
+                  IaBotAhmed: {
+                    api: { type: "aisdk", package: "@ai-sdk/openai", url: "https://IaBotAhmed.test/v1" },
                     models: {
                       "alpha-gpt-next": {
                         variants: [
@@ -113,7 +113,7 @@ describe("ConfigProviderPlugin.Plugin", () => {
   it.effect("uses the effective provider package across layered config", () =>
     Effect.gen(function* () {
       const catalog = yield* Catalog.Service
-      const providerID = ProviderV2.ID.ia-bot-ahmed
+      const providerID = ProviderV2.ID.IaBotAhmed
       const modelID = ModelV2.ID.make("alpha-gpt-next")
       const config = Config.Service.of({
         entries: () =>
@@ -122,8 +122,8 @@ describe("ConfigProviderPlugin.Plugin", () => {
               type: "document",
               info: decode({
                 providers: {
-                  ia-bot-ahmed: {
-                    api: { type: "aisdk", package: "@ai-sdk/openai", url: "https://ia-bot-ahmed.test/v1" },
+                  IaBotAhmed: {
+                    api: { type: "aisdk", package: "@ai-sdk/openai", url: "https://IaBotAhmed.test/v1" },
                   },
                 },
               }),
@@ -132,7 +132,7 @@ describe("ConfigProviderPlugin.Plugin", () => {
               type: "document",
               info: decode({
                 providers: {
-                  ia-bot-ahmed: {
+                  IaBotAhmed: {
                     models: {
                       "alpha-gpt-next": {
                         variants: [{ id: "high", body: { reasoningEffort: "high" } }],

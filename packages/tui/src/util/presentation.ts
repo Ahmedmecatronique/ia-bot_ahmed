@@ -1,6 +1,6 @@
-const logo = {
-  left: ["                   ", "█▀▀█ █▀▀█ █▀▀█ █▀▀▄", "█__█ █__█ █^^^ █__█", "▀▀▀▀ █▀▀▀ ▀▀▀▀ ▀~~▀"],
-  right: ["             ▄     ", "█▀▀▀ █▀▀█ █▀▀█ █▀▀█", "█___ █__█ █__█ █^^^", "▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀"],
+﻿const logo = {
+  left: ["                   ", "â–ˆâ–€â–€â–ˆ â–ˆâ–€â–€â–ˆ â–ˆâ–€â–€â–ˆ â–ˆâ–€â–€â–„", "â–ˆ__â–ˆ â–ˆ__â–ˆ â–ˆ^^^ â–ˆ__â–ˆ", "â–€â–€â–€â–€ â–ˆâ–€â–€â–€ â–€â–€â–€â–€ â–€~~â–€"],
+  right: ["             â–„     ", "â–ˆâ–€â–€â–€ â–ˆâ–€â–€â–ˆ â–ˆâ–€â–€â–ˆ â–ˆâ–€â–€â–ˆ", "â–ˆ___ â–ˆ__â–ˆ â–ˆ__â–ˆ â–ˆ^^^", "â–€â–€â–€â–€ â–€â–€â–€â–€ â–€â–€â–€â–€ â–€â–€â–€â–€"],
 }
 
 const reset = "\x1b[0m"
@@ -12,8 +12,8 @@ function wordmark(pad = "") {
     [...line]
       .map((char) => {
         if (char === "_") return `${bg} ${reset}`
-        if (char === "^") return `${fg}${bg}▀${reset}`
-        if (char === "~") return `${shadow}▀${reset}`
+        if (char === "^") return `${fg}${bg}â–€${reset}`
+        if (char === "~") return `${shadow}â–€${reset}`
         if (char === " ") return " "
         return `${fg}${char}${reset}`
       })
@@ -32,7 +32,7 @@ export function sessionEpilogue(input: { title: string; sessionID?: string }) {
     ...wordmark("  "),
     "",
     `  ${weak("Session")}${bold}${input.title}${reset}`,
-    `  ${weak("Continue")}${bold}ia-bot-ahmed -s ${input.sessionID}${reset}`,
+    `  ${weak("Continue")}${bold}IaBotAhmed -s ${input.sessionID}${reset}`,
     "",
   ].join("\n")
 }

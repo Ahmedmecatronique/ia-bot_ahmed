@@ -1,4 +1,4 @@
-import path from "path"
+﻿import path from "path"
 import { type ParseError as JsoncParseError, applyEdits, modify, parse as parseJsonc } from "jsonc-parser"
 import { unique } from "remeda"
 import { Option, Schema } from "effect"
@@ -8,7 +8,7 @@ import { Global } from "@ia-bot-ahmed/core/global"
 import { Filesystem } from "@/util/filesystem"
 import * as ConfigPaths from "@/config/paths"
 
-const TUI_SCHEMA_URL = "https://ia-bot-ahmed.app/tui.json"
+const TUI_SCHEMA_URL = "https://IaBotAhmed.app/tui.json"
 
 const decodeTheme = Schema.decodeUnknownOption(Schema.String)
 const decodeRecord = Schema.decodeUnknownOption(Schema.Record(Schema.String, Schema.Unknown))
@@ -22,13 +22,13 @@ interface MigrateInput {
 }
 
 /**
- * Migrates tui-specific keys (theme, keybinds, tui) from ia-bot-ahmed.json files
+ * Migrates tui-specific keys (theme, keybinds, tui) from IaBotAhmed.json files
  * into dedicated tui.json files. Migration is performed per-directory and
  * skips only locations where a tui.json already exists.
  */
 export async function migrateTuiConfig(input: MigrateInput) {
-  const ia-bot-ahmed = await ia-bot-ahmedFiles(input)
-  for (const file of ia-bot-ahmed) {
+  const IaBotAhmed = await IaBotAhmedFiles(input)
+  for (const file of IaBotAhmed) {
     const source = await Filesystem.readText(file).catch(() => undefined)
     if (!source) continue
     const errors: JsoncParseError[] = []
@@ -112,7 +112,7 @@ async function backupAndStripLegacy(file: string, source: string) {
     .catch(() => false)
 }
 
-async function ia-bot-ahmedFiles(input: { directories: string[]; cwd: string }) {
+async function IaBotAhmedFiles(input: { directories: string[]; cwd: string }) {
   const files = [
     ...ConfigPaths.fileInDirectory(Global.Path.config, "ia-bot-ahmed"),
     ...(await Filesystem.findUp(["ia-bot-ahmed.json", "ia-bot-ahmed.jsonc"], input.cwd, undefined, { rootFirst: true })),

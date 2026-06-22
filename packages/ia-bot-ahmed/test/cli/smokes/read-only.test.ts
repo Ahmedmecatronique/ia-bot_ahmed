@@ -1,7 +1,7 @@
-// Tier-A smoke tests for read-only commands. Each test asserts only that the
+﻿// Tier-A smoke tests for read-only commands. Each test asserts only that the
 // command exits 0 and produces *some* output in the isolated harness env.
 //
-// These are not behavioral tests — they're the cheapest possible signal that
+// These are not behavioral tests â€” they're the cheapest possible signal that
 // the dependency-layer wiring (config load, DB init, server boot, provider
 // resolution) doesn't crash for the broad class of "no inputs, no side
 // effects" commands. A regression in any shared layer (an Effect.fail that
@@ -24,26 +24,26 @@ describe("ia-bot-ahmed read-only commands (smoke)", () => {
   // and the command should report that cleanly.
   cliIt.live(
     "mcp list: exits 0",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const r = yield* ia-bot-ahmed.spawn(["mcp", "list"])
-        ia-bot-ahmed.expectExit(r, 0, "mcp list")
+        const r = yield* IaBotAhmed.spawn(["mcp", "list"])
+        IaBotAhmed.expectExit(r, 0, "mcp list")
       }),
     60_000,
   )
 
   // `providers list` enumerates credentials + env-resolved providers.
-  // (Not config-injected ones — those don't appear here by design.) The
+  // (Not config-injected ones â€” those don't appear here by design.) The
   // Credentials header always renders; the Environment header only renders
   // when at least one provider env var is set, which the isolation harness
   // deliberately doesn't guarantee. Assert the always-present marker so the
   // test passes on a clean CI runner without env-var leakage.
   cliIt.live(
     "providers list: exits 0 and prints the credentials section",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const r = yield* ia-bot-ahmed.spawn(["providers", "list"])
-        ia-bot-ahmed.expectExit(r, 0, "providers list")
+        const r = yield* IaBotAhmed.spawn(["providers", "list"])
+        IaBotAhmed.expectExit(r, 0, "providers list")
         expect(r.stdout).toContain("Credentials")
       }),
     60_000,
@@ -53,10 +53,10 @@ describe("ia-bot-ahmed read-only commands (smoke)", () => {
   // should appear because it's wired into the test provider config.
   cliIt.live(
     "models: exits 0 and lists the test model",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const r = yield* ia-bot-ahmed.spawn(["models"])
-        ia-bot-ahmed.expectExit(r, 0, "models")
+        const r = yield* IaBotAhmed.spawn(["models"])
+        IaBotAhmed.expectExit(r, 0, "models")
         expect(r.stdout).toContain("test/test-model")
       }),
     60_000,
@@ -64,13 +64,13 @@ describe("ia-bot-ahmed read-only commands (smoke)", () => {
 
   // `agent list` walks the agent config. Empty config means no agents
   // configured; the command should still exit 0 with a "no agents" line or
-  // similar. We don't pin the message — just exit cleanly.
+  // similar. We don't pin the message â€” just exit cleanly.
   cliIt.live(
     "agent list: exits 0",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const r = yield* ia-bot-ahmed.spawn(["agent", "list"])
-        ia-bot-ahmed.expectExit(r, 0, "agent list")
+        const r = yield* IaBotAhmed.spawn(["agent", "list"])
+        IaBotAhmed.expectExit(r, 0, "agent list")
       }),
     60_000,
   )
@@ -79,21 +79,21 @@ describe("ia-bot-ahmed read-only commands (smoke)", () => {
   // empty DB. Exit 0 with no sessions.
   cliIt.live(
     "session list: exits 0",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const r = yield* ia-bot-ahmed.spawn(["session", "list"])
-        ia-bot-ahmed.expectExit(r, 0, "session list")
+        const r = yield* IaBotAhmed.spawn(["session", "list"])
+        IaBotAhmed.expectExit(r, 0, "session list")
       }),
     60_000,
   )
 
-  // `stats` aggregates token usage from the session DB. Empty DB → all zeros.
+  // `stats` aggregates token usage from the session DB. Empty DB â†’ all zeros.
   cliIt.live(
     "stats: exits 0",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const r = yield* ia-bot-ahmed.spawn(["stats"])
-        ia-bot-ahmed.expectExit(r, 0, "stats")
+        const r = yield* IaBotAhmed.spawn(["stats"])
+        IaBotAhmed.expectExit(r, 0, "stats")
       }),
     60_000,
   )
@@ -101,13 +101,13 @@ describe("ia-bot-ahmed read-only commands (smoke)", () => {
   // `db path` prints the DB file location. Under harness isolation the DB
   // resolves to SQLite's `:memory:` (no on-disk pollution between tests);
   // in production it'd be a path under IA_BOT_AHMED_TEST_HOME / XDG_DATA_HOME.
-  // Accept either form — both prove the resolver ran without crashing.
+  // Accept either form â€” both prove the resolver ran without crashing.
   cliIt.live(
     "db path: exits 0 and prints a path or :memory:",
-    ({ ia-bot-ahmed }) =>
+    ({ IaBotAhmed }) =>
       Effect.gen(function* () {
-        const r = yield* ia-bot-ahmed.spawn(["db", "path"])
-        ia-bot-ahmed.expectExit(r, 0, "db path")
+        const r = yield* IaBotAhmed.spawn(["db", "path"])
+        IaBotAhmed.expectExit(r, 0, "db path")
         expect(r.stdout.trim()).toMatch(/^(:memory:|[/\\].+\.(db|sqlite|sqlite3))$/i)
       }),
     60_000,

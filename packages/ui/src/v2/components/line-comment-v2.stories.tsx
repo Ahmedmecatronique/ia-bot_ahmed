@@ -1,16 +1,16 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import { createSignal } from "solid-js"
 import { LineCommentEditorV2, LineCommentV2, LineCommentV2OverflowIcon } from "./line-comment-v2"
 
 const docs = `### Overview
-Line comment **display** and **editor** cards aligned with ia-bot-ahmed line-comment specs (raised \`#FAFAFA\` surface, footer line context, \`ButtonV2\` neutral + contrast actions).
+Line comment **display** and **editor** cards aligned with IaBotAhmed line-comment specs (raised \`#FAFAFA\` surface, footer line context, \`ButtonV2\` neutral + contrast actions).
 
 ### Display
 - \`LineCommentV2\`: column stack (body + meta) beside optional \`actions\` (overflow).
 - Use \`LineCommentV2OverflowIcon\` inside a \`data-slot="line-comment-v2-overflow"\` button for the Figma dots control.
 
 ### Editor
-- \`LineCommentEditorV2\`: optional \`heading\` above the textarea (default “Comment”), footer (selection meta + Cancel / Comment).
+- \`LineCommentEditorV2\`: optional \`heading\` above the textarea (default â€œCommentâ€), footer (selection meta + Cancel / Comment).
 - \`Enter\` submits (Shift+Enter newline); \`Escape\` cancels. Controlled via \`value\` / \`onInput\`.
 `
 

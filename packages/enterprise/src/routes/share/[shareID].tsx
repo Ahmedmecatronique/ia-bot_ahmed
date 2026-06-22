@@ -1,4 +1,4 @@
-import { Message, Model, Part, Session, SessionStatus, SnapshotFileDiff, UserMessage } from "@ia-bot-ahmed/sdk/v2"
+﻿import { Message, Model, Part, Session, SessionStatus, SnapshotFileDiff, UserMessage } from "@ia-bot-ahmed/sdk/v2"
 import { SessionTurn } from "@ia-bot-ahmed/ui/session-turn"
 import { SessionReview } from "@ia-bot-ahmed/ui/session-review"
 import { DataProvider } from "@ia-bot-ahmed/ui/context"
@@ -179,13 +179,13 @@ export default function () {
               modelParam = "unknown"
             }
             const version = `v${info().version}`
-            return `https://social-cards.sst.dev/ia-bot-ahmed-share/${encodedTitle}.png?model=${modelParam}&version=${version}&id=${data().shareID}`
+            return `https://social-cards.sst.dev/IaBotAhmed-share/${encodedTitle}.png?model=${modelParam}&version=${version}&id=${data().shareID}`
           })
 
           return (
             <>
               <Show when={info().title}>
-                <Title>{info().title} | ia-bot-ahmed</Title>
+                <Title>{info().title} | IaBotAhmed</Title>
               </Show>
               <Meta name="description" content="ia-bot-ahmed - The AI coding agent built for the terminal." />
               <Meta property="og:image" content={ogImage()} />
@@ -274,21 +274,21 @@ export default function () {
                         <div class="relative bg-background-stronger w-screen h-screen overflow-hidden flex flex-col">
                           <header class="h-12 px-6 py-2 flex items-center justify-between self-stretch bg-background-base border-b border-border-weak-base">
                             <div class="">
-                              <a href="https://ia-bot-ahmed.app">
+                              <a href="https://IaBotAhmed.app">
                                 <Mark />
                               </a>
                             </div>
                             <div class="flex gap-3 items-center">
                               <IconButton
                                 as={"a"}
-                                href="https://github.com/anomalyco/ia-bot-ahmed"
+                                href="https://github.com/anomalyco/IaBotAhmed"
                                 target="_blank"
                                 icon="github"
                                 variant="ghost"
                               />
                               <IconButton
                                 as={"a"}
-                                href="https://ia-bot-ahmed.app/discord"
+                                href="https://IaBotAhmed.app/discord"
                                 target="_blank"
                                 icon="discord"
                                 variant="ghost"

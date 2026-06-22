@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 
 const childProcess = require("child_process")
 const fs = require("fs")
@@ -29,12 +29,12 @@ function run(target) {
   })
 }
 
-const envPath = process.env.ia-bot-ahmed_BIN_PATH
+const envPath = process.env.IA_BOT_AHMED_BIN_PATH
 const scriptDir = path.dirname(fs.realpathSync(__filename))
 const cached = path.join(scriptDir, ".lildax")
 const platform = { darwin: "darwin", linux: "linux", win32: "windows" }[os.platform()] || os.platform()
 const arch = { x64: "x64", arm64: "arm64", arm: "arm" }[os.arch()] || os.arch()
-const base = "@ia-bot-ahmed-ai/cli-" + platform + "-" + arch
+const base = "@IaBotAhmed-ai/cli-" + platform + "-" + arch
 const binary = platform === "windows" ? "lildax.exe" : "lildax"
 
 function supportsAvx2() {

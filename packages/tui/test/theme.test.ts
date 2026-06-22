@@ -1,4 +1,4 @@
-import { expect, test } from "bun:test"
+﻿import { expect, test } from "bun:test"
 import { mkdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 import type { TerminalColors } from "@opentui/core"
@@ -8,14 +8,14 @@ import { tmpdir } from "./fixture/fixture"
 
 test("addTheme writes into module theme store", () => {
   const name = `plugin-theme-${Date.now()}`
-  expect(addTheme(name, DEFAULT_THEMES.ia-bot-ahmed)).toBe(true)
+  expect(addTheme(name, DEFAULT_THEMES.IaBotAhmed)).toBe(true)
   expect(allThemes()[name]).toBeDefined()
 })
 
 test("addTheme keeps first theme for duplicate names", () => {
   const name = `plugin-theme-keep-${Date.now()}`
-  const one = structuredClone(DEFAULT_THEMES.ia-bot-ahmed)
-  const two = structuredClone(DEFAULT_THEMES.ia-bot-ahmed)
+  const one = structuredClone(DEFAULT_THEMES.IaBotAhmed)
+  const two = structuredClone(DEFAULT_THEMES.IaBotAhmed)
   one.theme.primary = "#101010"
   two.theme.primary = "#fefefe"
 
@@ -33,12 +33,12 @@ test("addTheme ignores entries without a theme object", () => {
 test("hasTheme checks theme presence", () => {
   const name = `plugin-theme-has-${Date.now()}`
   expect(hasTheme(name)).toBe(false)
-  expect(addTheme(name, DEFAULT_THEMES.ia-bot-ahmed)).toBe(true)
+  expect(addTheme(name, DEFAULT_THEMES.IaBotAhmed)).toBe(true)
   expect(hasTheme(name)).toBe(true)
 })
 
 test("resolveTheme rejects circular color refs", () => {
-  const item = structuredClone(DEFAULT_THEMES.ia-bot-ahmed)
+  const item = structuredClone(DEFAULT_THEMES.IaBotAhmed)
   item.defs = { ...item.defs, one: "two", two: "one" }
   item.theme.primary = "one"
   expect(() => resolveTheme(item, "dark")).toThrow("Circular color reference")

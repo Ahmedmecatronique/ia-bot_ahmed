@@ -1,4 +1,4 @@
-import { Schema } from "effect"
+﻿import { Schema } from "effect"
 import { HttpApi } from "effect/unstable/httpapi"
 import { EventV2 } from "@ia-bot-ahmed/core/event"
 import { InstanceDisposed } from "@/server/event"
@@ -66,7 +66,7 @@ export const InstanceHttpApi = HttpApi.make("ia-bot-ahmed-instance")
   .addHttpApi(WorkspaceApi)
   .middleware(SchemaErrorMiddleware)
 
-export const ia-bot-ahmedHttpApi = HttpApi.make("ia-bot-ahmed")
+export const IaBotAhmedHttpApi = HttpApi.make("ia-bot-ahmed")
   .addHttpApi(RootHttpApi)
   .addHttpApi(EventApi)
   .addHttpApi(InstanceHttpApi)

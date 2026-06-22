@@ -1,9 +1,9 @@
-import { spawn } from "node:child_process"
+﻿import { spawn } from "node:child_process"
 import { randomUUID } from "node:crypto"
 import { createServer } from "node:net"
 import { app } from "electron"
 import { checkHealth } from "../server"
-import { type WslCommandLine, resolveWslia-bot-ahmed, shellEscape, wslArgs } from "./runtime"
+import { type WslCommandLine, resolveWslIaBotAhmed, shellEscape, wslArgs } from "./runtime"
 import { pollWslHealth } from "./startup"
 
 export type WslSidecar = {
@@ -17,8 +17,8 @@ export async function spawnWslSidecar(
   distro: string,
   opts: { onLine?: (line: WslCommandLine) => void; healthTimeoutMs?: number } = {},
 ): Promise<WslSidecar> {
-  const ia-bot-ahmed = await resolveWslia-bot-ahmed(distro)
-  if (!ia-bot-ahmed) throw new Error(`ia-bot-ahmed is not installed in ${distro}`)
+  const IaBotAhmed = await resolveWslIaBotAhmed(distro)
+  if (!IaBotAhmed) throw new Error(`ia-bot-ahmed is not installed in ${distro}`)
 
   const port = await allocatePort()
   const password = randomUUID()
@@ -34,7 +34,7 @@ export async function spawnWslSidecar(
     `export IA_BOT_AHMED_SERVER_USERNAME=${shellEscape(username)}`,
     `export IA_BOT_AHMED_SERVER_PASSWORD=${shellEscape(password)}`,
     'export XDG_STATE_HOME="$HOME/.local/state"',
-    `exec ${shellEscape(ia-bot-ahmed)} --print-logs --log-level ${app.isPackaged ? "WARN" : "INFO"} serve --hostname 0.0.0.0 --port ${port}`,
+    `exec ${shellEscape(IaBotAhmed)} --print-logs --log-level ${app.isPackaged ? "WARN" : "INFO"} serve --hostname 0.0.0.0 --port ${port}`,
   ].join("\n")
   const child = spawn("wsl", wslArgs(["bash", "-se"], distro), {
     stdio: ["pipe", "pipe", "pipe"],

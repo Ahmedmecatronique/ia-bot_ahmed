@@ -1,4 +1,4 @@
-import { Effect } from "effect"
+﻿import { Effect } from "effect"
 import { define } from "@ia-bot-ahmed/plugin/v2/effect"
 
 export const LLMGatewayPlugin = define({
@@ -13,7 +13,7 @@ export const LLMGatewayPlugin = define({
           if (item.provider.api.url !== "https://api.llmgateway.io/v1") continue
           if (!(yield* ctx.integration.get(item.provider.id))) continue
           evt.provider.update(item.provider.id, (provider) => {
-            provider.request.headers["HTTP-Referer"] = "https://ia-bot-ahmed.app/"
+            provider.request.headers["HTTP-Referer"] = "https://IaBotAhmed.app/"
             provider.request.headers["X-Title"] = "ia-bot-ahmed"
             provider.request.headers["X-Source"] = "ia-bot-ahmed"
           })

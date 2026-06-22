@@ -1,4 +1,4 @@
-import { Hono } from "hono"
+﻿import { Hono } from "hono"
 import { DurableObject } from "cloudflare:workers"
 import { randomUUID } from "node:crypto"
 import { jwtVerify, createRemoteJWKSet } from "jose"
@@ -357,7 +357,7 @@ export default new Hono<{ Bindings: Env }>()
     }
   })
   /**
-   * Used by the ia-bot-ahmed CLI to check if the GitHub app is installed
+   * Used by the IaBotAhmed CLI to check if the GitHub app is installed
    */
   .get("/get_github_app_installation", async (c) => {
     const owner = c.req.query("owner")

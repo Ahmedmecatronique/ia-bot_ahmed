@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import type { Prompt } from "@/context/prompt"
 import { buildRequestParts } from "./build-request-parts"
 
@@ -40,8 +40,8 @@ describe("buildRequestParts", () => {
         (part) =>
           part.type === "text" &&
           part.synthetic &&
-          part.metadata?.ia-bot-ahmedComment &&
-          (part.metadata.ia-bot-ahmedComment as { comment?: string }).comment === "check this",
+          part.metadata?.IaBotAhmedComment &&
+          (part.metadata.IaBotAhmedComment as { comment?: string }).comment === "check this",
       ),
     ).toBe(true)
 
@@ -84,7 +84,7 @@ describe("buildRequestParts", () => {
           type: "image",
           id: "img_external",
           filename: "ia-bot-ahmed.global.dat",
-          sourcePath: "C:\\Users\\Luke\\AppData\\Roaming\\ai.ia-bot-ahmed.desktop.beta\\ia-bot-ahmed.global.dat",
+          sourcePath: "C:\\Users\\Luke\\AppData\\Roaming\\ai.IaBotAhmed.desktop.beta\\IaBotAhmed.global.dat",
           mime: "text/plain",
           dataUrl: "data:text/plain;base64,AAA",
         },
@@ -92,11 +92,11 @@ describe("buildRequestParts", () => {
       text: "inspect this",
       messageID: "msg_external",
       sessionID: "ses_external",
-      sessionDirectory: "C:\\Repos\\sst\\ia-bot-ahmed",
+      sessionDirectory: "C:\\Repos\\sst\\IaBotAhmed",
     })
 
     expect(result.requestParts.find((part) => part.type === "file")?.filename).toBe(
-      "C:\\Users\\Luke\\AppData\\Roaming\\ai.ia-bot-ahmed.desktop.beta\\ia-bot-ahmed.global.dat",
+      "C:\\Users\\Luke\\AppData\\Roaming\\ai.IaBotAhmed.desktop.beta\\IaBotAhmed.global.dat",
     )
   })
 
@@ -233,7 +233,7 @@ describe("buildRequestParts", () => {
       text: "@README.md",
       messageID: "msg_mac_1",
       sessionID: "ses_mac_1",
-      sessionDirectory: "/Users/kelvin/Projects/ia-bot-ahmed",
+      sessionDirectory: "/Users/kelvin/Projects/IaBotAhmed",
     })
 
     const filePart = result.requestParts.find((part) => part.type === "file")

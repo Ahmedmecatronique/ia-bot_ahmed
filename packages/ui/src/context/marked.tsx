@@ -1,4 +1,4 @@
-import { marked } from "marked"
+﻿import { marked } from "marked"
 import markedKatex from "marked-katex-extension"
 import markedShiki from "marked-shiki"
 import katex from "katex"
@@ -6,7 +6,7 @@ import { bundledLanguages, type BundledLanguage } from "shiki"
 import { createSimpleContext } from "./helper"
 import { getSharedHighlighter, registerCustomTheme, ThemeRegistrationResolved } from "@pierre/diffs"
 
-export const ia-bot-ahmedTheme = {
+export const IaBotAhmedTheme = {
   name: "ia-bot-ahmed",
   bg: "var(--color-background-stronger)",
   fg: "var(--text-base)",
@@ -377,7 +377,7 @@ export const ia-bot-ahmedTheme = {
   },
 } as unknown as ThemeRegistrationResolved
 
-registerCustomTheme("ia-bot-ahmed", () => Promise.resolve(ia-bot-ahmedTheme))
+registerCustomTheme("ia-bot-ahmed", () => Promise.resolve(IaBotAhmedTheme))
 
 function renderMathInText(text: string): string {
   let result = text

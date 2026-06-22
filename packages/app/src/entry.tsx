@@ -1,4 +1,4 @@
-// @refresh reload
+﻿// @refresh reload
 
 import * as Sentry from "@sentry/solid"
 import { render } from "solid-js/web"
@@ -69,7 +69,7 @@ const notify: Platform["notify"] = async (title, description, href) => {
 
   const notification = new Notification(title, {
     body: description ?? "",
-    icon: "https://ia-bot-ahmed.app/favicon-96x96-v3.png",
+    icon: "https://IaBotAhmed.app/favicon-96x96-v3.png",
   })
 
   notification.onclick = () => {

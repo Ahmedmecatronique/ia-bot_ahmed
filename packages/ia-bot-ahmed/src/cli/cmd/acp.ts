@@ -1,8 +1,8 @@
-import { Effect } from "effect"
+﻿import { Effect } from "effect"
 import { effectCmd } from "../effect-cmd"
 import { AgentSideConnection, ndJsonStream } from "@agentclientprotocol/sdk"
 import { ServerAuth } from "@/server/auth"
-import { createia-bot-ahmedClient } from "@ia-bot-ahmed/sdk/v2"
+import { createIaBotAhmedClient } from "@ia-bot-ahmed/sdk/v2"
 import { withNetworkOptions, resolveNetworkOptions } from "../network"
 import { ACPProfile } from "@/acp/profile"
 
@@ -24,7 +24,7 @@ export const AcpCommand = effectCmd({
     const opts = yield* resolveNetworkOptions(args)
     const server = yield* Effect.promise(() => ACPProfile.measure("cli.acp.server.listen", () => Server.listen(opts)))
 
-    const sdk = createia-bot-ahmedClient({
+    const sdk = createIaBotAhmedClient({
       baseUrl: `http://${server.hostname}:${server.port}`,
       headers: ServerAuth.headers(),
     })

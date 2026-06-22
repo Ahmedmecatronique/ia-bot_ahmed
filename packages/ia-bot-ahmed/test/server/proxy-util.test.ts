@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { ProxyUtil } from "../../src/server/proxy-util"
 
 describe("ProxyUtil", () => {
@@ -65,18 +65,18 @@ describe("ProxyUtil", () => {
       expect(result.get("content-type")).toBe("application/json")
     })
 
-    test("strips ia-bot-ahmed-specific headers", () => {
+    test("strips IaBotAhmed-specific headers", () => {
       const req = new Request("http://localhost", {
         headers: {
-          "x-ia-bot-ahmed-directory": "/home/user/project",
-          "x-ia-bot-ahmed-workspace": "ws_123",
+          "x-IaBotAhmed-directory": "/home/user/project",
+          "x-IaBotAhmed-workspace": "ws_123",
           "accept-encoding": "gzip",
           "x-custom": "keep",
         },
       })
       const result = ProxyUtil.headers(req)
-      expect(result.get("x-ia-bot-ahmed-directory")).toBeNull()
-      expect(result.get("x-ia-bot-ahmed-workspace")).toBeNull()
+      expect(result.get("x-IaBotAhmed-directory")).toBeNull()
+      expect(result.get("x-IaBotAhmed-workspace")).toBeNull()
       expect(result.get("accept-encoding")).toBeNull()
       expect(result.get("x-custom")).toBe("keep")
     })

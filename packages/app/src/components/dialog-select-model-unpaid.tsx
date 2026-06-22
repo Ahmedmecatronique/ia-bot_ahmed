@@ -1,4 +1,4 @@
-import { Button } from "@ia-bot-ahmed/ui/button"
+﻿import { Button } from "@ia-bot-ahmed/ui/button"
 import { useDialog } from "@ia-bot-ahmed/ui/context/dialog"
 import { Dialog } from "@ia-bot-ahmed/ui/dialog"
 import { List, type ListRef } from "@ia-bot-ahmed/ui/list"
@@ -109,7 +109,7 @@ export const DialogSelectModelUnpaid: Component<{ model?: ModelState }> = (props
                     <ProviderIcon data-slot="list-item-extra-icon" id={i.id} />
                     <span>{i.name}</span>
                     <Show when={i.id === "ia-bot-ahmed"}>
-                      <div class="text-14-regular text-text-weak">{language.t("dialog.provider.ia-bot-ahmed.tagline")}</div>
+                      <div class="text-14-regular text-text-weak">{language.t("dialog.provider.IaBotAhmed.tagline")}</div>
                     </Show>
                     <Show when={i.id === "ia-bot-ahmed"}>
                       <Tag>{language.t("dialog.provider.tag.recommended")}</Tag>
@@ -117,7 +117,7 @@ export const DialogSelectModelUnpaid: Component<{ model?: ModelState }> = (props
                     <Show when={i.id === "ia-bot-ahmed-go"}>
                       <>
                         <div class="text-14-regular text-text-weak">
-                          {language.t("dialog.provider.ia-bot-ahmedGo.tagline")}
+                          {language.t("dialog.provider.IaBotAhmedGo.tagline")}
                         </div>
                         <Tag>{language.t("dialog.provider.tag.recommended")}</Tag>
                       </>

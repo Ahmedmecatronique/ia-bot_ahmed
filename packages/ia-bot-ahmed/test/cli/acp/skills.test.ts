@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import type { SessionNotification } from "@agentclientprotocol/sdk"
 import { Effect } from "effect"
 import { mkdir } from "node:fs/promises"
@@ -9,13 +9,13 @@ import { createAcpClient, initialize, newSession, verifierConfig, verifierSkill 
 describe("ia-bot-ahmed acp skills subprocess", () => {
   cliIt.live(
     "skill slash command appears through available_commands_update",
-    ({ home, llm, ia-bot-ahmed }) =>
+    ({ home, llm, IaBotAhmed }) =>
       Effect.gen(function* () {
         const skills = path.join(home, "skills")
         yield* Effect.promise(() => mkdir(path.join(skills, "verifier-skill"), { recursive: true }))
         yield* Effect.promise(() => Bun.write(path.join(skills, "verifier-skill", "SKILL.md"), verifierSkill))
         const acp = yield* createAcpClient(
-          { ia-bot-ahmed },
+          { IaBotAhmed },
           { IA_BOT_AHMED_CONFIG_CONTENT: JSON.stringify(verifierConfig(llm.url, skills)) },
         )
         yield* initialize(acp)

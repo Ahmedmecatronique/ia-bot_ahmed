@@ -1,4 +1,4 @@
-import {
+﻿import {
   RequestError,
   type Agent as ACPAgent,
   type AgentSideConnection,
@@ -17,11 +17,11 @@ import {
   type SetSessionModeRequest,
 } from "@agentclientprotocol/sdk"
 import { Effect } from "effect"
-import type { ia-bot-ahmedClient } from "@ia-bot-ahmed/sdk/v2"
+import type { IaBotAhmedClient } from "@ia-bot-ahmed/sdk/v2"
 import * as ACPError from "./error"
 import * as ACPService from "./service"
 
-export function init({ sdk: _sdk }: { sdk: ia-bot-ahmedClient }) {
+export function init({ sdk: _sdk }: { sdk: IaBotAhmedClient }) {
   return {
     create: (connection: AgentSideConnection) => {
       return new Agent(ACPService.make({ sdk: _sdk, connection }))

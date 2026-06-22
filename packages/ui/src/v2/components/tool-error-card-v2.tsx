@@ -1,4 +1,4 @@
-import { Collapsible } from "@kobalte/core/collapsible"
+﻿import { Collapsible } from "@kobalte/core/collapsible"
 import { type ComponentProps, type JSX, Show, createMemo, splitProps } from "solid-js"
 import "./tool-error-card-v2.css"
 
@@ -21,7 +21,7 @@ function BanIcon() {
   )
 }
 
-/** duo-progress-25: faint track ring + ~25% solid arc (Figma ia-bot-ahmed DS) */
+/** duo-progress-25: faint track ring + ~25% solid arc (Figma IaBotAhmed DS) */
 function LoaderIcon() {
   const r = 5.9
   return (
@@ -133,7 +133,7 @@ export function ToolErrorCardV2(props: ToolErrorCardV2Props) {
           <div data-slot="tool-error-card-labels">
             <span data-slot="tool-error-card-title">{local.title}</span>
             <span data-slot="tool-error-card-sep" aria-hidden="true">
-              ·
+              Â·
             </span>
             <Show
               when={local.subtitleHref}

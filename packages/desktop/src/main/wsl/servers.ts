@@ -1,9 +1,9 @@
-import type {
+﻿import type {
   WslDistroProbe,
   WslInstalledDistro,
   WslJob,
   WslOnlineDistro,
-  Wslia-bot-ahmedCheck,
+  WslIaBotAhmedCheck,
   WslRuntimeCheck,
   WslServerConfig,
   WslServerItem,
@@ -13,11 +13,11 @@ import type {
 } from "../../preload/types"
 import { WSL_SERVERS_KEY } from "../store-keys"
 import { getStore } from "../store"
-import { expectia-bot-ahmedVersion, pendingRestartAfterWslInstall, wslServerIdsToStartOnInitialize } from "./startup"
+import { expectIaBotAhmedVersion, pendingRestartAfterWslInstall, wslServerIdsToStartOnInitialize } from "./startup"
 import { clearWslDistroState, wslServerIdToRestart } from "./policy"
 import {
   installWslDistro,
-  installWslia-bot-ahmed,
+  installWslIaBotAhmed,
   installWslRuntimeElevated,
   listInstalledWslDistros,
   listOnlineWslDistros,
@@ -25,7 +25,7 @@ import {
   probeWslDistro,
   probeWslRuntime,
   readWslCommandVersion,
-  resolveWslia-bot-ahmed,
+  resolveWslIaBotAhmed,
   summarize,
 } from "./runtime"
 
@@ -47,7 +47,7 @@ type WslServersControllerOptions = {
   logger?: ControllerLogger
   readServers?: () => WslServerConfig[]
   writeServers?: (servers: WslServerConfig[]) => void
-  resolveia-bot-ahmed?: typeof resolveWslia-bot-ahmed
+  resolveIaBotAhmed?: typeof resolveWslIaBotAhmed
   readCommandVersion?: typeof readWslCommandVersion
 }
 
@@ -119,54 +119,54 @@ export function createWslServersController(
     updateServer(id, (item) => ({ ...item, runtime }))
   }
 
-  const setia-bot-ahmedCheck = (distro: string, check: Wslia-bot-ahmedCheck) => {
+  const setIaBotAhmedCheck = (distro: string, check: WslIaBotAhmedCheck) => {
     setState({
-      ia-bot-ahmedChecks: {
-        ...state.ia-bot-ahmedChecks,
+      IaBotAhmedChecks: {
+        ...state.IaBotAhmedChecks,
         [distro]: check,
       },
     })
   }
 
-  const checkia-bot-ahmed = async (distro: string, opts?: { signal?: AbortSignal }) => {
-    const resolved = await (options?.resolveia-bot-ahmed ?? resolveWslia-bot-ahmed)(distro, opts)
+  const checkIaBotAhmed = async (distro: string, opts?: { signal?: AbortSignal }) => {
+    const resolved = await (options?.resolveIaBotAhmed ?? resolveWslIaBotAhmed)(distro, opts)
     const version = resolved
       ? await (options?.readCommandVersion ?? readWslCommandVersion)(resolved, distro, opts)
       : null
-    return ia-bot-ahmedCheck(distro, resolved, version, appVersion)
+    return IaBotAhmedCheck(distro, resolved, version, appVersion)
   }
 
-  const refreshia-bot-ahmedCheck = async (distro: string, opts?: { signal?: AbortSignal }) => {
-    setia-bot-ahmedCheck(distro, await checkia-bot-ahmed(distro, opts))
+  const refreshIaBotAhmedCheck = async (distro: string, opts?: { signal?: AbortSignal }) => {
+    setIaBotAhmedCheck(distro, await checkIaBotAhmed(distro, opts))
   }
 
   const hasServer = (id: string, distro: string) => {
     return state.servers.some((item) => item.config.id === id && item.config.distro === distro)
   }
 
-  const refreshia-bot-ahmedCheckBackground = (id: string, distro: string) => {
-    void checkia-bot-ahmed(distro)
+  const refreshIaBotAhmedCheckBackground = (id: string, distro: string) => {
+    void checkIaBotAhmed(distro)
       .then((check) => {
         if (!hasServer(id, distro)) return
-        setia-bot-ahmedCheck(distro, check)
+        setIaBotAhmedCheck(distro, check)
       })
       .catch((error) => {
         const message = error instanceof Error ? error.message : String(error)
-        logger?.error("wsl ia-bot-ahmed check failed", { id, distro, message })
+        logger?.error("wsl IaBotAhmed check failed", { id, distro, message })
       })
   }
 
-  const refreshia-bot-ahmedChecks = async () => {
+  const refreshIaBotAhmedChecks = async () => {
     await Promise.all(
       state.servers.map((item) =>
-        checkia-bot-ahmed(item.config.distro)
+        checkIaBotAhmed(item.config.distro)
           .then((check) => {
             if (!hasServer(item.config.id, item.config.distro)) return
-            setia-bot-ahmedCheck(item.config.distro, check)
+            setIaBotAhmedCheck(item.config.distro, check)
           })
           .catch((error) => {
             const message = error instanceof Error ? error.message : String(error)
-            logger?.error("wsl ia-bot-ahmed check failed", {
+            logger?.error("wsl IaBotAhmed check failed", {
               id: item.config.id,
               distro: item.config.distro,
               message,
@@ -227,14 +227,14 @@ export function createWslServersController(
         setRuntime(id, { kind: "failed", message })
         logger?.error("wsl sidecar exited", { id, distro: item.config.distro, code, signal })
       })
-      refreshia-bot-ahmedCheckBackground(id, item.config.distro)
+      refreshIaBotAhmedCheckBackground(id, item.config.distro)
       logger?.log("wsl sidecar ready", { id, distro: item.config.distro, url: sidecar.url })
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error)
       if (!isCurrentStartAttempt(id, attempt)) return
       setRuntime(id, { kind: "failed", message })
       // Without this, an Ubuntu-style silent failure leaves no trace in
-      // main.log — the controller captures the message in its state but
+      // main.log â€” the controller captures the message in its state but
       // nothing surfaces unless the user opens the WSL servers dialog.
       logger?.error("wsl sidecar failed to start", { id, distro: item.config.distro, message })
     }
@@ -279,7 +279,7 @@ export function createWslServersController(
 
     async initialize() {
       refreshFromStore()
-      void refreshia-bot-ahmedChecks()
+      void refreshIaBotAhmedChecks()
       for (const id of wslServerIdsToStartOnInitialize(state.servers.map((item) => item.config))) void startServer(id)
     },
 
@@ -334,20 +334,20 @@ export function createWslServersController(
       })
     },
 
-    async probeia-bot-ahmed(name: string) {
-      await runJob({ kind: "probe-ia-bot-ahmed", distro: name, startedAt: Date.now() }, async (abort) => {
-        await refreshia-bot-ahmedCheck(name, { signal: abort.signal })
+    async probeIaBotAhmed(name: string) {
+      await runJob({ kind: "probe-IaBotAhmed", distro: name, startedAt: Date.now() }, async (abort) => {
+        await refreshIaBotAhmedCheck(name, { signal: abort.signal })
       })
     },
 
-    async installia-bot-ahmed(name: string) {
-      await runJob({ kind: "install-ia-bot-ahmed", distro: name, startedAt: Date.now() }, async (abort) => {
-        const result = await installWslia-bot-ahmed(appVersion, name, { signal: abort.signal })
+    async installIaBotAhmed(name: string) {
+      await runJob({ kind: "install-IaBotAhmed", distro: name, startedAt: Date.now() }, async (abort) => {
+        const result = await installWslIaBotAhmed(appVersion, name, { signal: abort.signal })
         if (result.code !== 0) {
           throw new Error(summarize(result.stderr || result.stdout) || "ia-bot-ahmed installation failed")
         }
-        await refreshia-bot-ahmedCheck(name, { signal: abort.signal })
-        expectia-bot-ahmedVersion(state.ia-bot-ahmedChecks[name]?.version ?? null, appVersion, name)
+        await refreshIaBotAhmedCheck(name, { signal: abort.signal })
+        expectIaBotAhmedVersion(state.IaBotAhmedChecks[name]?.version ?? null, appVersion, name)
         const id = wslServerIdToRestart(state.servers, name)
         if (id) await startServer(id)
       })
@@ -382,7 +382,7 @@ export function createWslServersController(
       persistServers(remaining)
       setState({
         servers: state.servers.filter((item) => item.config.id !== id),
-        ...(distro ? clearWslDistroState(state.distroProbes, state.ia-bot-ahmedChecks, distro) : {}),
+        ...(distro ? clearWslDistroState(state.distroProbes, state.IaBotAhmedChecks, distro) : {}),
       })
     },
 
@@ -408,7 +408,7 @@ function initialState(): WslServersState {
     installed: [],
     online: [],
     distroProbes: {},
-    ia-bot-ahmedChecks: {},
+    IaBotAhmedChecks: {},
     pendingRestart: false,
     servers: [],
     job: null,
@@ -444,12 +444,12 @@ function normalizePersistedServer(value: unknown): WslServerConfig[] {
   ]
 }
 
-function ia-bot-ahmedCheck(
+function IaBotAhmedCheck(
   distro: string,
   resolvedPath: string | null,
   version: string | null,
   expectedVersion: string,
-): Wslia-bot-ahmedCheck {
+): WslIaBotAhmedCheck {
   if (!resolvedPath) {
     return {
       distro,
@@ -490,7 +490,7 @@ export type {
   WslOnlineDistro,
   WslRuntimeCheck,
   WslDistroProbe,
-  Wslia-bot-ahmedCheck,
+  WslIaBotAhmedCheck,
   WslServerConfig,
   WslServerItem,
   WslServerRuntime,

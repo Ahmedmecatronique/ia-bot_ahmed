@@ -1,4 +1,4 @@
-import "../index.css"
+﻿import "../index.css"
 import { Link, Meta, Title } from "@solidjs/meta"
 import {
   getStatsLabData,
@@ -28,7 +28,7 @@ import {
   type ThemePreference,
 } from "../stats-shell"
 
-const statsCanonicalBaseUrl = "https://ia-bot-ahmed.app/data/"
+const statsCanonicalBaseUrl = "https://IaBotAhmed.app/data/"
 const statsUnfurlPath = "banner.png"
 const statsUnfurlAlt = "ia-bot-ahmed Data wordmark on a dark patterned background"
 const statsUnfurlUrl = new URL(statsUnfurlPath, statsCanonicalBaseUrl).toString()
@@ -69,10 +69,10 @@ export default function StatsLab() {
   const githubStars = createAsync(() => getGitHubStars())
   const [themePreference, setThemePreference] = createSignal<ThemePreference>("system")
   const labName = createMemo(() => lab()?.name ?? formatCatalogLabName(labParam()))
-  const labTitle = createMemo(() => `${labName()} AI Model Usage & Rankings | ia-bot-ahmed Data`)
+  const labTitle = createMemo(() => `${labName()} AI Model Usage & Rankings | IaBotAhmed Data`)
   const labDescription = createMemo(
     () =>
-      `Compare ${labName()} models used in ia-bot-ahmed Go, including token usage, model rankings, context windows, release dates, costs, and model-specific data.`,
+      `Compare ${labName()} models used in IaBotAhmed Go, including token usage, model rankings, context windows, release dates, costs, and model-specific data.`,
   )
   const labUrl = createMemo(() => new URL(lab()?.id ?? labParam(), statsCanonicalBaseUrl).toString())
   const updateThemePreference = (preference: ThemePreference) => {
@@ -144,7 +144,7 @@ function LabLoading() {
             Data
           </a>
           <h1>Model Lab</h1>
-          <p>Reading model availability and recent ia-bot-ahmed usage.</p>
+          <p>Reading model availability and recent IaBotAhmed usage.</p>
         </div>
       </div>
     </section>
@@ -187,7 +187,7 @@ function LabHero(props: { lab: ModelCatalogLab; stats: StatsLabData | null }) {
           <h1>{props.lab.name}</h1>
           <div data-slot="model-hero-pattern" aria-hidden="true" />
           <p>
-            Explore {props.lab.models.length} {props.lab.name} models used in ia-bot-ahmed
+            Explore {props.lab.models.length} {props.lab.name} models used in IaBotAhmed
             <Show when={featuredModels().length > 0}> including {formatList(featuredModels())}</Show>. Compare recent
             token usage, context windows, release dates, and model-specific data.
           </p>
@@ -197,7 +197,7 @@ function LabHero(props: { lab: ModelCatalogLab; stats: StatsLabData | null }) {
           <strong>{props.stats ? formatTokens(props.stats.totals.tokens) : "Pending"}</strong>
           <p>
             {props.stats
-              ? `${formatPercent(props.stats.tokenShare)} of recent ia-bot-ahmed usage`
+              ? `${formatPercent(props.stats.tokenShare)} of recent IaBotAhmed usage`
               : latest()
                 ? `Latest release ${formatCatalogDate(latest())}`
                 : "Usage appears after model activity lands"}
@@ -222,7 +222,7 @@ function LabUsageSection(props: { lab: ModelCatalogLab; data: StatsLabData | nul
     <section id="usage" data-section="model-panel">
       <p data-slot="section-title">
         <strong>{props.lab.name} token usage.</strong>{" "}
-        <span>Daily ia-bot-ahmed token volume over the last two months.</span>
+        <span>Daily IaBotAhmed token volume over the last two months.</span>
       </p>
       <Show
         when={usage().some((item) => item.tokens > 0)}
@@ -342,11 +342,11 @@ function LabModelCard(props: { model: ModelCatalogEntry; usage: LabUsageModelEnt
       <div data-slot="lab-model-card-meta">
         <p>
           <b>Usage</b>
-          <em>{props.usage ? formatTokens(props.usage.tokens) : "—"}</em>
+          <em>{props.usage ? formatTokens(props.usage.tokens) : "â€”"}</em>
         </p>
         <p>
           <b>Share</b>
-          <em>{props.usage ? formatPercent(props.usage.share) : "—"}</em>
+          <em>{props.usage ? formatPercent(props.usage.share) : "â€”"}</em>
         </p>
         <p>
           <b>Context</b>

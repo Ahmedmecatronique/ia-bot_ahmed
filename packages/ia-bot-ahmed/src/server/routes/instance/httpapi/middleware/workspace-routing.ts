@@ -1,4 +1,4 @@
-import { WorkspaceV2 } from "@ia-bot-ahmed/core/workspace"
+﻿import { WorkspaceV2 } from "@ia-bot-ahmed/core/workspace"
 import type { Target } from "@/control-plane/types"
 import { Workspace } from "@/control-plane/workspace"
 import { WorkspaceAdapterRuntime } from "@/control-plane/workspace-adapter-runtime"
@@ -17,7 +17,7 @@ import { InvalidRequestError } from "../errors"
 // Query fields this middleware reads from the URL. Spread into every
 // endpoint query schema in groups that apply WorkspaceRoutingMiddleware,
 // otherwise HttpApi rejects requests carrying these params with 400.
-// HttpApiMiddleware in effect-smol cannot declare query params today —
+// HttpApiMiddleware in effect-smol cannot declare query params today â€”
 // remove this once upstream supports middleware-declared query schemas.
 export const WorkspaceRoutingQueryFields = {
   directory: Schema.optional(Schema.String),
@@ -84,7 +84,7 @@ function selectedV2WorkspaceID(
 }
 
 function defaultDirectory(request: HttpServerRequest.HttpServerRequest, url: URL): string {
-  return url.searchParams.get("directory") || request.headers["x-ia-bot-ahmed-directory"] || process.cwd()
+  return url.searchParams.get("directory") || request.headers["x-IaBotAhmed-directory"] || process.cwd()
 }
 
 function shouldStayOnControlPlane(request: HttpServerRequest.HttpServerRequest, url: URL): boolean {

@@ -1,5 +1,5 @@
-import type { AgentSideConnection, PermissionOption, RequestPermissionResponse } from "@agentclientprotocol/sdk"
-import type { Event, ia-bot-ahmedClient } from "@ia-bot-ahmed/sdk/v2"
+﻿import type { AgentSideConnection, PermissionOption, RequestPermissionResponse } from "@agentclientprotocol/sdk"
+import type { Event, IaBotAhmedClient } from "@ia-bot-ahmed/sdk/v2"
 import { applyPatch } from "diff"
 import { exists, readText } from "@/util/filesystem"
 import type { ACPSession } from "./session"
@@ -21,7 +21,7 @@ export class Handler {
 
   constructor(
     private readonly input: {
-      sdk: ia-bot-ahmedClient
+      sdk: IaBotAhmedClient
       connection: Connection
       session: ACPSession.Interface
     },

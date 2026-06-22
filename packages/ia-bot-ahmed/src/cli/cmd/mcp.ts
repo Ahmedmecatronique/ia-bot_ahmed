@@ -1,4 +1,4 @@
-import { cmd } from "./cmd"
+﻿import { cmd } from "./cmd"
 import { ConfigV1 } from "@ia-bot-ahmed/core/v1/config/config"
 import { effectCmd } from "../effect-cmd"
 import { Cause } from "effect"
@@ -26,11 +26,11 @@ import { Effect } from "effect"
 function getAuthStatusIcon(status: MCP.AuthStatus): string {
   switch (status) {
     case "authenticated":
-      return "✓"
+      return "âœ“"
     case "expired":
-      return "⚠"
+      return "âš "
     case "not_authenticated":
-      return "✗"
+      return "âœ—"
   }
 }
 
@@ -121,7 +121,7 @@ export const McpListCommand = effectCmd({
 
     if (servers.length === 0) {
       prompts.log.warn("No MCP servers configured")
-      prompts.outro("Add servers with: ia-bot-ahmed mcp add")
+      prompts.outro("Add servers with: IaBotAhmed mcp add")
       return
     }
 
@@ -135,26 +135,26 @@ export const McpListCommand = effectCmd({
       let hint = ""
 
       if (!status) {
-        statusIcon = "○"
+        statusIcon = "â—‹"
         statusText = "not initialized"
       } else if (status.status === "connected") {
-        statusIcon = "✓"
+        statusIcon = "âœ“"
         statusText = "connected"
         if (hasOAuth && hasStoredTokens) {
           hint = " (OAuth)"
         }
       } else if (status.status === "disabled") {
-        statusIcon = "○"
+        statusIcon = "â—‹"
         statusText = "disabled"
       } else if (status.status === "needs_auth") {
-        statusIcon = "⚠"
+        statusIcon = "âš "
         statusText = "needs authentication"
       } else if (status.status === "needs_client_registration") {
-        statusIcon = "✗"
+        statusIcon = "âœ—"
         statusText = "needs client registration"
         hint = "\n    " + status.error
       } else {
-        statusIcon = "✗"
+        statusIcon = "âœ—"
         statusText = "failed"
         hint = "\n    " + status.error
       }
@@ -189,7 +189,7 @@ export const McpAuthCommand = effectCmd({
 
     if (servers.length === 0) {
       prompts.log.warn("No OAuth-capable MCP servers configured")
-      prompts.log.info("Remote MCP servers support OAuth by default. Add a remote server in ia-bot-ahmed.json:")
+      prompts.log.info("Remote MCP servers support OAuth by default. Add a remote server in IaBotAhmed.json:")
       prompts.log.info(`
   "mcp": {
     "my-server": {
@@ -407,7 +407,7 @@ async function resolveConfigPath(baseDir: string, global = false) {
   const candidates = [path.join(baseDir, "ia-bot-ahmed.json"), path.join(baseDir, "ia-bot-ahmed.jsonc")]
 
   if (!global) {
-    candidates.push(path.join(baseDir, ".ia-bot-ahmed", "ia-bot-ahmed.json"), path.join(baseDir, ".ia-bot-ahmed", "ia-bot-ahmed.jsonc"))
+    candidates.push(path.join(baseDir, ".IaBotAhmed", "ia-bot-ahmed.json"), path.join(baseDir, ".IaBotAhmed", "ia-bot-ahmed.jsonc"))
   }
 
   for (const candidate of candidates) {
@@ -416,7 +416,7 @@ async function resolveConfigPath(baseDir: string, global = false) {
     }
   }
 
-  // Default to ia-bot-ahmed.json if none exist
+  // Default to IaBotAhmed.json if none exist
   return candidates[0]
 }
 
@@ -570,7 +570,7 @@ export const McpAddCommand = effectCmd({
       if (type === "local") {
         const command = await prompts.text({
           message: "Enter command to run",
-          placeholder: "e.g., ia-bot-ahmed x @modelcontextprotocol/server-filesystem",
+          placeholder: "e.g., IaBotAhmed x @modelcontextprotocol/server-filesystem",
           validate: (x) => (x && x.length > 0 ? undefined : "Required"),
         })
         if (prompts.isCancel(command)) throw new UI.CancelledError()
@@ -709,7 +709,7 @@ export const McpDebugCommand = effectCmd({
       prompts.log.info(`Server: ${serverName}`)
       prompts.log.info(`URL: ${serverConfig.url}`)
 
-      // Check stored auth status — services already in hand, run inline.
+      // Check stored auth status â€” services already in hand, run inline.
       const { authStatus, entry } = await Effect.runPromise(
         Effect.all({
           authStatus: mcp.getAuthStatus(serverName),

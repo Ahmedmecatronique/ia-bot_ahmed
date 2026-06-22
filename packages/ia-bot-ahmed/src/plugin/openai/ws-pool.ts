@@ -1,9 +1,9 @@
-import WebSocket from "ws"
+﻿import WebSocket from "ws"
 import { ProviderError } from "@/provider/error"
 import { isRecord } from "@/util/record"
 import { OpenAIWebSocket } from "./ws"
 
-export const TITLE_HEADER = "x-ia-bot-ahmed-title"
+export const TITLE_HEADER = "x-IaBotAhmed-title"
 
 export interface CreateWebSocketFetchOptions {
   httpFetch?: typeof globalThis.fetch

@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+﻿#!/usr/bin/env bun
 
 import { $ } from "bun"
 import fs from "fs/promises"
@@ -19,7 +19,7 @@ interface FailedPR {
 }
 
 async function commentOnPR(prNumber: number, reason: string) {
-  const body = `⚠️ **Blocking Beta Release**
+  const body = `âš ï¸ **Blocking Beta Release**
 
 This PR cannot be merged into the beta branch due to: **${reason}**
 
@@ -86,7 +86,7 @@ async function build() {
   console.log("  Running final build smoke check...")
 
   try {
-    await $`./script/build.ts --single`.cwd("packages/ia-bot-ahmed")
+    await $`./script/build.ts --single`.cwd("packages/IaBotAhmed")
     return true
   } catch (err) {
     console.log(`Build failed: ${err}`)
@@ -142,7 +142,7 @@ async function install() {
 }
 
 async function fix(pr: PR, files: string[], prs: PR[], applied: number[], idx: number) {
-  console.log(`  Trying to auto-resolve ${files.length} conflict(s) with ia-bot-ahmed...`)
+  console.log(`  Trying to auto-resolve ${files.length} conflict(s) with IaBotAhmed...`)
 
   const done = lines(prs.filter((x) => applied.includes(x.number)))
   const next = lines(prs.slice(idx + 1))
@@ -170,7 +170,7 @@ async function fix(pr: PR, files: string[], prs: PR[], applied: number[], idx: n
   try {
     await $`ia-bot-ahmed run -m ${model} ${prompt}`
   } catch (err) {
-    console.log(`  ia-bot-ahmed failed: ${err}`)
+    console.log(`  IaBotAhmed failed: ${err}`)
     return false
   }
 
@@ -184,7 +184,7 @@ async function fix(pr: PR, files: string[], prs: PR[], applied: number[], idx: n
 
   if (!(await typecheck())) return false
 
-  console.log("  Conflicts resolved with ia-bot-ahmed")
+  console.log("  Conflicts resolved with IaBotAhmed")
   return true
 }
 
@@ -193,14 +193,14 @@ async function smoke(prs: PR[], applied: number[]) {
 
   if (await validate()) return commitSmokeChanges()
 
-  console.log("\nTrying to fix final smoke check with ia-bot-ahmed...")
+  console.log("\nTrying to fix final smoke check with IaBotAhmed...")
 
   const done = lines(prs.filter((x) => applied.includes(x.number)))
   const prompt = [
     "The beta merge batch is complete, but the deterministic final smoke check failed.",
     `Merged PRs on HEAD:\n${done}`,
     "Run `bun typecheck` at the repo root.",
-    "Run `./script/build.ts --single` in `packages/ia-bot-ahmed`.",
+    "Run `./script/build.ts --single` in `packages/IaBotAhmed`.",
     "Fix any merge-caused issues until both commands pass.",
     "Do not create a commit.",
   ].join("\n")

@@ -1,4 +1,4 @@
-import { expect } from "bun:test"
+﻿import { expect } from "bun:test"
 import { Effect, Layer, Context } from "effect"
 import { InstanceRef } from "../../src/effect/instance-ref"
 import { makeRuntime } from "../../src/effect/run-service"
@@ -6,7 +6,7 @@ import { ProjectV2 } from "@ia-bot-ahmed/core/project"
 import { it } from "../lib/effect"
 
 class Shared extends Context.Service<Shared, { readonly id: number }>()("@test/Shared") {}
-const testDirectory = "/tmp/ia-bot-ahmed-test"
+const testDirectory = "/tmp/IaBotAhmed-test"
 
 it.live("makeRuntime shares dependent layers through the shared memo map", () =>
   Effect.gen(function* () {

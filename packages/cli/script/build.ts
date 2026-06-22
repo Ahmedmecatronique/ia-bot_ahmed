@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+﻿#!/usr/bin/env bun
 
 import { $ } from "bun"
 import fs from "fs"
@@ -114,7 +114,7 @@ for (const item of targets) {
         name: `@ia-bot-ahmed/${name}`,
         version: Script.version,
         license: "MIT",
-        repository: { type: "git", url: "git+https://github.com/anomalyco/ia-bot-ahmed.git" },
+        repository: { type: "git", url: "git+https://github.com/anomalyco/IaBotAhmed.git" },
         os: [item.os],
         cpu: [item.arch],
       },

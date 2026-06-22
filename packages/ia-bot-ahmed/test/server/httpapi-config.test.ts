@@ -1,4 +1,4 @@
-import { afterEach, describe, expect } from "bun:test"
+﻿import { afterEach, describe, expect } from "bun:test"
 import path from "path"
 import { Server } from "../../src/server/server"
 import { Effect, Fiber } from "effect"
@@ -42,7 +42,7 @@ describe("config HttpApi", () => {
             method: "PATCH",
             headers: {
               "content-type": "application/json",
-              "x-ia-bot-ahmed-directory": tmp.path,
+              "x-IaBotAhmed-directory": tmp.path,
             },
             body: JSON.stringify({ username: "patched-user", formatter: false, lsp: false }),
           }),
@@ -87,7 +87,7 @@ describe("config HttpApi", () => {
         Promise.resolve(
           app().request("/config", {
             headers: {
-              "x-ia-bot-ahmed-directory": tmp.path,
+              "x-IaBotAhmed-directory": tmp.path,
             },
           }),
         ),

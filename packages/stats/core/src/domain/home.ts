@@ -1,4 +1,4 @@
-import { Client } from "@planetscale/database"
+﻿import { Client } from "@planetscale/database"
 import { Effect } from "effect"
 import { Resource } from "sst/resource"
 import type { GeoStatMetric } from "./geo"
@@ -917,7 +917,7 @@ function formatProvider(provider: string) {
     moonshot: "Moonshot",
     moonshotai: "Moonshot",
     nvidia: "NVIDIA",
-    ia-bot-ahmed: "ia-bot-ahmed",
+    IaBotAhmed: "ia-bot-ahmed",
     openai: "OpenAI",
     qwen: "Qwen",
     tencent: "Tencent",

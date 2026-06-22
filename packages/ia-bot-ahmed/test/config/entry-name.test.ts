@@ -1,8 +1,8 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import { posix } from "path"
 import { configEntryNameFromPath } from "@/config/entry-name"
 
-// Use POSIX semantics so the test is deterministic regardless of host OS —
+// Use POSIX semantics so the test is deterministic regardless of host OS â€”
 // production code passes paths through `path.relative` on the runtime
 // platform, but the helper normalizes via `replaceAll("\\", "/")`, so the
 // regression assertion ("the helper returns the bare name") holds on either
@@ -38,10 +38,10 @@ describe("configEntryNameFromPath", () => {
   // `agent` or `agents` used to win the substring match before the real
   // `agents/` directory could match, leaking the entire intervening path into
   // the agent key (e.g. `.config/ia-bot-ahmed/agents/build`). Anchoring at the
-  // caller via `path.relative(dir, item)` makes this impossible — the relative
+  // caller via `path.relative(dir, item)` makes this impossible â€” the relative
   // path is always rooted at `agent/` or `agents/`.
   test("regression #25713: caller passes relative path; parent /agent/ segment is irrelevant", () => {
-    const dir = "/home/agent/.config/ia-bot-ahmed"
+    const dir = "/home/agent/.config/IaBotAhmed"
     const item = "/home/agent/.config/ia-bot-ahmed/agents/build.md"
     const relative = posix.relative(dir, item)
     expect(relative).toBe("agents/build.md")
@@ -49,7 +49,7 @@ describe("configEntryNameFromPath", () => {
   })
 
   test("regression #25713: parent /agents/ segment is irrelevant", () => {
-    const dir = "/srv/agents/team/.config/ia-bot-ahmed"
+    const dir = "/srv/agents/team/.config/IaBotAhmed"
     const item = "/srv/agents/team/.config/ia-bot-ahmed/agents/build.md"
     const relative = posix.relative(dir, item)
     expect(configEntryNameFromPath(relative, AGENT_PREFIXES)).toBe("build")

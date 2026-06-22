@@ -1,4 +1,4 @@
-import { render, TimeToFirstDraw, useRenderer, useTerminalDimensions } from "@opentui/solid"
+﻿import { render, TimeToFirstDraw, useRenderer, useTerminalDimensions } from "@opentui/solid"
 import { createDefaultOpenTuiKeymap } from "@opentui/keymap/opentui"
 import { Deferred, Effect } from "effect"
 import { Global } from "@ia-bot-ahmed/core/global"
@@ -69,10 +69,10 @@ import { CommandPaletteDialog } from "./component/command-palette"
 import {
   COMMAND_PALETTE_COMMAND,
   IA_BOT_AHMED_BASE_MODE,
-  ia-bot-ahmedKeymapProvider,
-  registeria-bot-ahmedKeymap,
+  IaBotAhmedKeymapProvider,
+  registerIaBotAhmedKeymap,
   useBindings,
-  useia-bot-ahmedKeymap,
+  useIaBotAhmedKeymap,
 } from "./keymap"
 
 import type { EventSource } from "./context/sdk"
@@ -204,7 +204,7 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
       win32DisableProcessedInput()
       const keymap = createDefaultOpenTuiKeymap(renderer)
       yield* Effect.acquireRelease(
-        Effect.sync(() => registeria-bot-ahmedKeymap(keymap, renderer, input.config)),
+        Effect.sync(() => registerIaBotAhmedKeymap(keymap, renderer, input.config)),
         (unregister) => Effect.sync(unregister),
       )
       yield* Effect.addFinalizer(() =>
@@ -269,7 +269,7 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
                         }}
                       >
                         <ClipboardProvider>
-                          <ia-bot-ahmedKeymapProvider keymap={keymap}>
+                          <IaBotAhmedKeymapProvider keymap={keymap}>
                             <ArgsProvider {...input.args}>
                               <KVProvider>
                                 <ToastProvider>
@@ -325,7 +325,7 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
                                 </ToastProvider>
                               </KVProvider>
                             </ArgsProvider>
-                          </ia-bot-ahmedKeymapProvider>
+                          </IaBotAhmedKeymapProvider>
                         </ClipboardProvider>
                       </TuiStartupProvider>
                     </TuiTerminalEnvironmentProvider>
@@ -357,7 +357,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
   const dialog = useDialog()
   const local = useLocal()
   const kv = useKV()
-  const keymap = useia-bot-ahmedKeymap()
+  const keymap = useIaBotAhmedKeymap()
   const event = useEvent()
   const sdk = useSDK()
   const toast = useToast()
@@ -796,7 +796,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         name: "docs.open",
         title: "Open docs",
         run: () => {
-          open("https://ia-bot-ahmed.app/docs").catch(() => {})
+          open("https://IaBotAhmed.app/docs").catch(() => {})
           dialog.clear()
         },
         category: "System",
@@ -1037,7 +1037,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
     await DialogAlert.show(
       dialog,
       "Update Complete",
-      `Successfully updated to ia-bot-ahmed v${result.data.version}. Please restart the application.`,
+      `Successfully updated to IaBotAhmed v${result.data.version}. Please restart the application.`,
     )
 
     void exit()

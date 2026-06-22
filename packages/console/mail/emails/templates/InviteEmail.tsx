@@ -1,4 +1,4 @@
-// @ts-nocheck
+﻿// @ts-nocheck
 import React from "react"
 import { Img, Row, Html, Link, Body, Head, Button, Column, Preview, Section, Container } from "@jsx-email/all"
 import { Text, Fonts, Title, A, Span } from "../components"
@@ -15,7 +15,7 @@ import {
   buttonText,
 } from "../styles"
 
-const CONSOLE_URL = "https://ia-bot-ahmed.app/"
+const CONSOLE_URL = "https://IaBotAhmed.app/"
 
 interface InviteEmailProps {
   inviter: string
@@ -34,7 +34,7 @@ export const InviteEmail = ({
   return (
     <Html lang="en">
       <Head>
-        <Title>{`ia-bot-ahmed — ${messagePlain}`}</Title>
+        <Title>{`ia-bot-ahmed â€” ${messagePlain}`}</Title>
       </Head>
       <Fonts assetsUrl={assetsUrl} />
       <Preview>{messagePlain}</Preview>
@@ -50,10 +50,10 @@ export const InviteEmail = ({
             </Row>
 
             <Section style={{ padding: `${unit * 2}px 0 0 0` }}>
-              <Text style={headingText}>Join your team's ia-bot-ahmed workspace</Text>
+              <Text style={headingText}>Join your team's IaBotAhmed workspace</Text>
               <Text style={contentText}>
                 You have been invited by <Span style={contentHighlightText}>{inviter}</Span> to join the{" "}
-                <Span style={contentHighlightText}>{workspaceName}</Span> workspace on ia-bot-ahmed.
+                <Span style={contentHighlightText}>{workspaceName}</Span> workspace on IaBotAhmed.
               </Text>
             </Section>
 

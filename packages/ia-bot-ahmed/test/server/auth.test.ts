@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test } from "bun:test"
+﻿import { afterEach, describe, expect, test } from "bun:test"
 import { Option, Redacted } from "effect"
 import { Flag } from "@ia-bot-ahmed/core/flag/flag"
 import { ServerAuth } from "../../src/server/auth"
@@ -22,7 +22,7 @@ describe("ServerAuth", () => {
     expect(ServerAuth.headers()).toBeUndefined()
   })
 
-  test("defaults to the ia-bot-ahmed username", () => {
+  test("defaults to the IaBotAhmed username", () => {
     Flag.IA_BOT_AHMED_SERVER_PASSWORD = "secret"
     Flag.IA_BOT_AHMED_SERVER_USERNAME = undefined
 

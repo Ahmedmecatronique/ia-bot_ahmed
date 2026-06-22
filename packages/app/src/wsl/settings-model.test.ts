@@ -1,5 +1,5 @@
-import { describe, expect, test } from "bun:test"
-import { enterWslia-bot-ahmedStep, wslia-bot-ahmedAction, wslRuntimeRetryable } from "./settings-model"
+﻿import { describe, expect, test } from "bun:test"
+import { enterWslIaBotAhmedStep, wslIaBotAhmedAction, wslRuntimeRetryable } from "./settings-model"
 
 describe("WSL server settings presentation", () => {
   test("retries only settled unsuccessful runtimes", () => {
@@ -11,10 +11,10 @@ describe("WSL server settings presentation", () => {
     expect(wslRuntimeRetryable({ kind: "stopped" })).toBe(true)
   })
 
-  test("offers install and update only when ia-bot-ahmed needs attention", () => {
-    expect(wslia-bot-ahmedAction(undefined)).toBeUndefined()
+  test("offers install and update only when IaBotAhmed needs attention", () => {
+    expect(wslIaBotAhmedAction(undefined)).toBeUndefined()
     expect(
-      wslia-bot-ahmedAction({
+      wslIaBotAhmedAction({
         distro: "Debian",
         resolvedPath: null,
         version: null,
@@ -22,21 +22,21 @@ describe("WSL server settings presentation", () => {
         matchesDesktop: null,
         error: null,
       }),
-    ).toBe("Install ia-bot-ahmed")
+    ).toBe("Install IaBotAhmed")
     expect(
-      wslia-bot-ahmedAction({
+      wslIaBotAhmedAction({
         distro: "Debian",
-        resolvedPath: "/usr/local/bin/ia-bot-ahmed",
+        resolvedPath: "/usr/local/bin/IaBotAhmed",
         version: "1.2.2",
         expectedVersion: "1.2.3",
         matchesDesktop: false,
         error: null,
       }),
-    ).toBe("Update ia-bot-ahmed")
+    ).toBe("Update IaBotAhmed")
     expect(
-      wslia-bot-ahmedAction({
+      wslIaBotAhmedAction({
         distro: "Debian",
-        resolvedPath: "/usr/local/bin/ia-bot-ahmed",
+        resolvedPath: "/usr/local/bin/IaBotAhmed",
         version: "1.2.3",
         expectedVersion: "1.2.3",
         matchesDesktop: true,
@@ -45,9 +45,9 @@ describe("WSL server settings presentation", () => {
     ).toBeUndefined()
   })
 
-  test("probes the selected distro before entering the ia-bot-ahmed step", async () => {
+  test("probes the selected distro before entering the IaBotAhmed step", async () => {
     const calls: string[] = []
-    await enterWslia-bot-ahmedStep(
+    await enterWslIaBotAhmedStep(
       "Debian",
       async (distro) => calls.push(distro),
       (step) => calls.push(step),

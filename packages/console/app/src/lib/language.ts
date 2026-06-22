@@ -1,4 +1,4 @@
-export const LOCALES = [
+﻿export const LOCALES = [
   "en",
   "zh",
   "zht",
@@ -22,7 +22,7 @@ export const LOCALES = [
 export type Locale = (typeof LOCALES)[number]
 
 export const LOCALE_COOKIE = "oc_locale" as const
-export const LOCALE_HEADER = "x-ia-bot-ahmed-locale" as const
+export const LOCALE_HEADER = "x-IaBotAhmed-locale" as const
 
 function fix(pathname: string) {
   if (pathname.startsWith("/")) return pathname
@@ -31,23 +31,23 @@ function fix(pathname: string) {
 
 const LABEL = {
   en: "English",
-  zh: "简体中文",
-  zht: "繁體中文",
-  ko: "한국어",
+  zh: "ç®€ä½“ä¸­æ–‡",
+  zht: "ç¹é«”ä¸­æ–‡",
+  ko: "í•œêµ­ì–´",
   de: "Deutsch",
-  es: "Español",
-  fr: "Français",
+  es: "EspaÃ±ol",
+  fr: "FranÃ§ais",
   it: "Italiano",
   da: "Dansk",
-  ja: "日本語",
+  ja: "æ—¥æœ¬èªž",
   pl: "Polski",
-  ru: "Русский",
-  uk: "Українська",
-  ar: "العربية",
+  ru: "Ð ÑƒÑÑÐºÐ¸Ð¹",
+  uk: "Ð£ÐºÑ€Ð°Ñ—Ð½ÑÑŒÐºÐ°",
+  ar: "Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©",
   no: "Norsk",
-  br: "Português (Brasil)",
-  th: "ไทย",
-  tr: "Türkçe",
+  br: "PortuguÃªs (Brasil)",
+  th: "à¹„à¸—à¸¢",
+  tr: "TÃ¼rkÃ§e",
 } satisfies Record<Locale, string>
 
 const TAG = {

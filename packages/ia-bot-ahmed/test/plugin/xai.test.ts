@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test"
+﻿import { describe, expect, test } from "bun:test"
 import {
   accessTokenIsExpiring,
   buildAuthorizeUrl,
@@ -137,7 +137,7 @@ describe("plugin.xai", () => {
 
       expect(captured[0].get("authorization")).toBe("Bearer live-token")
       expect(captured[0].get("x-keep")).toBe("yes")
-      expect(captured[0].get("user-agent")).toMatch(/^ia-bot-ahmed\//)
+      expect(captured[0].get("user-agent")).toMatch(/^IaBotAhmed\//)
     })
 
     test("does not mutate caller headers and supports HeadersInit shapes", async () => {
@@ -177,7 +177,7 @@ describe("plugin.xai", () => {
       ])
       for (const headers of captured) {
         expect(headers.get("authorization")).toBe("Bearer tok")
-        expect(headers.get("user-agent")).toMatch(/^ia-bot-ahmed\//)
+        expect(headers.get("user-agent")).toMatch(/^IaBotAhmed\//)
       }
     })
 
@@ -463,7 +463,7 @@ describe("plugin.xai", () => {
         expect(request.method).toBe("POST")
         expect(request.headers.get("content-type")).toBe("application/x-www-form-urlencoded")
         expect(request.headers.get("accept")).toBe("application/json")
-        expect(request.headers.get("user-agent")).toMatch(/^ia-bot-ahmed\//)
+        expect(request.headers.get("user-agent")).toMatch(/^IaBotAhmed\//)
         capturedBody = await request.text()
         return Response.json({ device_code: "DC", user_code: "UC", verification_uri: "https://x.ai/device" })
       })

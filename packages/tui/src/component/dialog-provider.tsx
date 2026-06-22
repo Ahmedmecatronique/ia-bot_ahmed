@@ -1,4 +1,4 @@
-import { createMemo, createSignal, onMount, Show } from "solid-js"
+﻿import { createMemo, createSignal, onMount, Show } from "solid-js"
 import { useSync } from "../context/sync"
 import { map, pipe, sortBy } from "remeda"
 import { DialogSelect } from "../ui/dialog-select"
@@ -17,7 +17,7 @@ import { useBindings } from "../keymap"
 import { useClipboard } from "../context/clipboard"
 
 const PROVIDER_PRIORITY: Record<string, number> = {
-  ia-bot-ahmed: 0,
+  IaBotAhmed: 0,
   "ia-bot-ahmed-go": 1,
   openai: 2,
   "github-copilot": 3,
@@ -59,7 +59,7 @@ export function providerOptions(list: { id: string; name: string }[]): ProviderO
         value: provider.id,
         providerID: provider.id,
         description: {
-          ia-bot-ahmed: "(Recommended)",
+          IaBotAhmed: "(Recommended)",
           anthropic: "(API key)",
           openai: "(ChatGPT Plus/Pro or API key)",
           "ia-bot-ahmed-go": "Low cost subscription for everyone",
@@ -96,7 +96,7 @@ export function createDialogProviderOptions() {
       placeholder: "Provider id",
       description: () => (
         <text fg={theme.textMuted}>
-          This only stores a credential. Configure the provider in ia-bot-ahmed.json to use it.
+          This only stores a credential. Configure the provider in IaBotAhmed.json to use it.
         </text>
       ),
     })
@@ -141,7 +141,7 @@ export function createDialogProviderOptions() {
           description: provider.description,
           footer: consoleManaged ? sync.data.console_state.activeOrgName : undefined,
           category: provider.category,
-          gutter: connected && onboarded() ? () => <text fg={theme.success}>✓</text> : undefined,
+          gutter: connected && onboarded() ? () => <text fg={theme.success}>âœ“</text> : undefined,
           async onSelect() {
             if (consoleManaged) return
 
@@ -368,25 +368,25 @@ function ApiMethod(props: ApiMethodProps) {
       placeholder="API key"
       description={
         {
-          ia-bot-ahmed: (
+          IaBotAhmed: (
             <box gap={1}>
               <text fg={theme.textMuted}>
-                ia-bot-ahmed Zen gives you access to all the best coding models at the cheapest prices with a single API
+                IaBotAhmed Zen gives you access to all the best coding models at the cheapest prices with a single API
                 key.
               </text>
               <text fg={theme.text}>
-                Go to <span style={{ fg: theme.primary }}>https://ia-bot-ahmed.app/zen</span> to get a key
+                Go to <span style={{ fg: theme.primary }}>https://IaBotAhmed.app/zen</span> to get a key
               </text>
             </box>
           ),
           "ia-bot-ahmed-go": (
             <box gap={1}>
               <text fg={theme.textMuted}>
-                ia-bot-ahmed Go is a $10 per month subscription that provides reliable access to popular open coding models
+                IaBotAhmed Go is a $10 per month subscription that provides reliable access to popular open coding models
                 with generous usage limits.
               </text>
               <text fg={theme.text}>
-                Go to <span style={{ fg: theme.primary }}>https://ia-bot-ahmed.app/go</span> and enable ia-bot-ahmed Go
+                Go to <span style={{ fg: theme.primary }}>https://IaBotAhmed.app/go</span> and enable IaBotAhmed Go
               </text>
             </box>
           ),
@@ -407,7 +407,7 @@ function ApiMethod(props: ApiMethodProps) {
         if (props.custom && !sync.data.provider_next.all.some((provider) => provider.id === props.providerID)) {
           toast.show({
             variant: "info",
-            message: `Saved credential for ${props.providerID}. Configure it in ia-bot-ahmed.json to use it.`,
+            message: `Saved credential for ${props.providerID}. Configure it in IaBotAhmed.json to use it.`,
           })
           dialog.clear()
           return

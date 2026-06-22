@@ -1,4 +1,4 @@
-import { withAlpha } from "@ia-bot-ahmed/ui/theme/color"
+﻿import { withAlpha } from "@ia-bot-ahmed/ui/theme/color"
 import { useTheme } from "@ia-bot-ahmed/ui/theme/context"
 import { resolveThemeVariant } from "@ia-bot-ahmed/ui/theme/resolve"
 import type { HexColor } from "@ia-bot-ahmed/ui/theme/types"
@@ -485,7 +485,7 @@ export const Terminal = (props: TerminalProps) => {
             { ptyID: id, directory },
             {
               throwOnError: false,
-              headers: { "x-ia-bot-ahmed-ticket": "1" },
+              headers: { "x-IaBotAhmed-ticket": "1" },
             },
           )
           .catch((err: unknown) => {

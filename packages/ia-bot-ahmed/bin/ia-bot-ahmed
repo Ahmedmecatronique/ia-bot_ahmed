@@ -43,7 +43,7 @@ function run(target) {
   })
 }
 
-const envPath = process.env.ia-bot-ahmed_BIN_PATH
+const envPath = process.env.IA_BOT_AHMED_BIN_PATH
 
 const scriptPath = fs.realpathSync(__filename)
 const scriptDir = path.dirname(scriptPath)

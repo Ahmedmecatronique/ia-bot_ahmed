@@ -1,4 +1,4 @@
-export * as ConfigServerV1 from "./server"
+﻿export * as ConfigServerV1 from "./server"
 
 import { Schema } from "effect"
 import { PositiveInt } from "../../schema"
@@ -10,7 +10,7 @@ export const Server = Schema.Struct({
   hostname: Schema.optional(Schema.String).annotate({ description: "Hostname to listen on" }),
   mdns: Schema.optional(Schema.Boolean).annotate({ description: "Enable mDNS service discovery" }),
   mdnsDomain: Schema.optional(Schema.String).annotate({
-    description: "Custom domain name for mDNS service (default: ia-bot-ahmed.local)",
+    description: "Custom domain name for mDNS service (default: IaBotAhmed.local)",
   }),
   cors: Schema.optional(Schema.mutable(Schema.Array(Schema.String))).annotate({
     description: "Additional domains to allow for CORS",

@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test } from "bun:test"
+﻿import { afterEach, describe, expect, test } from "bun:test"
 import net from "node:net"
 import path from "node:path"
 import { pathToFileURL } from "node:url"
@@ -68,8 +68,8 @@ async function requestTicket(
     method: "POST",
     headers: {
       authorization: authorization(),
-      "x-ia-bot-ahmed-directory": dir,
-      ...(options?.ticketHeader === false ? {} : { "x-ia-bot-ahmed-ticket": "1" }),
+      "x-IaBotAhmed-directory": dir,
+      ...(options?.ticketHeader === false ? {} : { "x-IaBotAhmed-ticket": "1" }),
       ...(options?.origin ? { origin: options.origin } : {}),
     },
   })
@@ -88,7 +88,7 @@ async function createCat(listener: Awaited<ReturnType<typeof startListener>>, di
     method: "POST",
     headers: {
       authorization: authorization(),
-      "x-ia-bot-ahmed-directory": dir,
+      "x-IaBotAhmed-directory": dir,
       "content-type": "application/json",
     },
     body: JSON.stringify({ command: "/bin/cat", title: "listen-smoke" }),
@@ -173,7 +173,7 @@ describe("HttpApi Server.listen", () => {
     let stopped = false
     try {
       const response = await fetch(new URL(PtyPaths.shells, listener.url), {
-        headers: { authorization: authorization(), "x-ia-bot-ahmed-directory": tmp.path },
+        headers: { authorization: authorization(), "x-IaBotAhmed-directory": tmp.path },
       })
       expect(response.status).toBe(200)
       expect(await response.json()).toEqual(
@@ -335,7 +335,7 @@ describe("HttpApi Server.listen", () => {
     try {
       listener = await startListener()
       const response = await fetch(new URL("/config", listener.url), {
-        headers: { authorization: authorization(), "x-ia-bot-ahmed-directory": tmp.path },
+        headers: { authorization: authorization(), "x-IaBotAhmed-directory": tmp.path },
       })
       expect(response.status).toBe(200)
       await withTimeout(
@@ -392,7 +392,7 @@ describe("HttpApi Server.listen", () => {
       // and cannot find a PTY registered in a project directory.
       const ambiguous = await fetch(new URL(PtyPaths.connectToken.replace(":ptyID", info.id), listener.url), {
         method: "POST",
-        headers: { authorization: authorization(), "x-ia-bot-ahmed-ticket": "1" },
+        headers: { authorization: authorization(), "x-IaBotAhmed-ticket": "1" },
       })
       expect(ambiguous.status).toBe(404)
 
@@ -403,7 +403,7 @@ describe("HttpApi Server.listen", () => {
         ),
         {
           method: "POST",
-          headers: { authorization: authorization(), "x-ia-bot-ahmed-ticket": "1" },
+          headers: { authorization: authorization(), "x-IaBotAhmed-ticket": "1" },
         },
       )
       expect(directoryScoped.status).toBe(200)

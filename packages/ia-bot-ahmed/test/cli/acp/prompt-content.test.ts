@@ -1,4 +1,4 @@
-import { describe, expect } from "bun:test"
+﻿import { describe, expect } from "bun:test"
 import type { PromptResponse } from "@agentclientprotocol/sdk"
 import { Effect } from "effect"
 import { writeFile } from "node:fs/promises"
@@ -13,11 +13,11 @@ const tinyPng = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8
 describe("ia-bot-ahmed acp prompt content subprocess", () => {
   cliIt.live(
     "accepts embedded text resource image and file resource link prompt content",
-    ({ home, llm, ia-bot-ahmed }) =>
+    ({ home, llm, IaBotAhmed }) =>
       Effect.gen(function* () {
         yield* Effect.promise(() => writeFile(path.join(home, "README.md"), "# ACP content smoke\n"))
         const acp = yield* createAcpClient(
-          { ia-bot-ahmed },
+          { IaBotAhmed },
           { IA_BOT_AHMED_CONFIG_CONTENT: JSON.stringify(promptContentConfig(llm.url)) },
         )
         yield* initialize(acp)

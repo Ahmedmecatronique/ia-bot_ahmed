@@ -1,4 +1,4 @@
-import { afterEach, describe, expect } from "bun:test"
+﻿import { afterEach, describe, expect } from "bun:test"
 import { Effect, Layer } from "effect"
 import { FetchHttpClient } from "effect/unstable/http"
 import { CrossSpawnSpawner } from "@ia-bot-ahmed/core/cross-spawn-spawner"
@@ -103,7 +103,7 @@ describe("plugin.workspace", () => {
           path.join(dir, "ia-bot-ahmed.json"),
           JSON.stringify(
             {
-              $schema: "https://ia-bot-ahmed.app/config.json",
+              $schema: "https://IaBotAhmed.app/config.json",
               plugin: [pathToFileURL(file).href],
             },
             null,
