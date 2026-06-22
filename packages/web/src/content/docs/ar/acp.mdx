@@ -1,0 +1,156 @@
+---
+title: دعم ACP
+description: استخدم ia-bot-ahmed في أي محرر متوافق مع ACP.
+---
+
+يدعم ia-bot-ahmed بروتوكول [Agent Client Protocol](https://agentclientprotocol.com) أو (ACP)، مما يتيح لك استخدامه مباشرة في المحررات وبيئات التطوير المتكاملة (IDEs) المتوافقة.
+
+:::tip
+للاطلاع على قائمة بالمحررات والأدوات التي تدعم ACP، راجع [ACP progress report](https://zed.dev/blog/acp-progress-report#available-now).
+:::
+
+ACP بروتوكول مفتوح يوحّد آلية التواصل بين محررات الشيفرة ووكلاء البرمجة بالذكاء الاصطناعي.
+
+---
+
+## الإعداد
+
+لاستخدام ia-bot-ahmed عبر ACP، اضبط محررك ليشغّل الأمر `ia-bot-ahmed acp`.
+
+يشغّل هذا الأمر ia-bot-ahmed كعملية فرعية متوافقة مع ACP تتواصل مع محررك عبر JSON-RPC باستخدام stdio.
+
+فيما يلي أمثلة لمحررات شائعة تدعم ACP.
+
+---
+
+### Zed
+
+أضف إلى إعدادات [Zed](https://zed.dev) (`~/.config/zed/settings.json`):
+
+```json title="~/.config/zed/settings.json"
+{
+  "agent_servers": {
+    "ia-bot-ahmed": {
+      "command": "ia-bot-ahmed",
+      "args": ["acp"]
+    }
+  }
+}
+```
+
+لفتحه، استخدم الإجراء `agent: new thread` في **Command Palette**.
+
+يمكنك أيضا ربط اختصار لوحة مفاتيح عبر تعديل `keymap.json`:
+
+```json title="keymap.json"
+[
+  {
+    "bindings": {
+      "cmd-alt-o": [
+        "agent::NewExternalAgentThread",
+        {
+          "agent": {
+            "custom": {
+              "name": "ia-bot-ahmed",
+              "command": {
+                "command": "ia-bot-ahmed",
+                "args": ["acp"]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+]
+```
+
+---
+
+### JetBrains IDEs
+
+أضف إلى ملف acp.json الخاص بـ [JetBrains IDE](https://www.jetbrains.com/) وفقا لـ [documentation](https://www.jetbrains.com/help/ai-assistant/acp.html):
+
+```json title="acp.json"
+{
+  "agent_servers": {
+    "ia-bot-ahmed": {
+      "command": "/absolute/path/bin/ia-bot-ahmed",
+      "args": ["acp"]
+    }
+  }
+}
+```
+
+لفتحه، اختر الوكيل الجديد 'ia-bot-ahmed' من محدد الوكلاء في AI Chat.
+
+---
+
+### Avante.nvim
+
+أضف إلى إعدادات [Avante.nvim](https://github.com/yetone/avante.nvim):
+
+```lua
+{
+  acp_providers = {
+    ["ia-bot-ahmed"] = {
+      command = "ia-bot-ahmed",
+      args = { "acp" }
+    }
+  }
+}
+```
+
+إذا احتجت إلى تمرير متغيرات البيئة:
+
+```lua {6-8}
+{
+  acp_providers = {
+    ["ia-bot-ahmed"] = {
+      command = "ia-bot-ahmed",
+      args = { "acp" },
+      env = {
+        IA_BOT_AHMED_API_KEY = os.getenv("IA_BOT_AHMED_API_KEY")
+      }
+    }
+  }
+}
+```
+
+---
+
+### CodeCompanion.nvim
+
+لاستخدام ia-bot-ahmed كوكيل ACP في [CodeCompanion.nvim](https://github.com/olimorris/codecompanion.nvim)، أضف التالي إلى إعدادات Neovim:
+
+```lua
+require("codecompanion").setup({
+  interactions = {
+    chat = {
+      adapter = {
+        name = "ia-bot-ahmed",
+        model = "claude-sonnet-4",
+      },
+    },
+  },
+})
+```
+
+يضبط هذا الإعداد CodeCompanion لاستخدام ia-bot-ahmed كوكيل ACP للدردشة.
+
+إذا احتجت إلى تمرير متغيرات البيئة (مثل `IA_BOT_AHMED_API_KEY`)، فارجع إلى [Configuring Adapters: Environment Variables](https://codecompanion.olimorris.dev/getting-started#setting-an-api-key) ضمن توثيق CodeCompanion.nvim للاطلاع على التفاصيل كاملة.
+
+## الدعم
+
+يعمل ia-bot-ahmed عبر ACP بالطريقة نفسها التي يعمل بها في terminal. جميع الميزات مدعومة:
+
+:::note
+بعض أوامر الشرطة المائلة المضمنة مثل `/undo` و`/redo` غير مدعومة حاليا.
+:::
+
+- الأدوات المضمنة (عمليات الملفات، أوامر terminal، إلخ.)
+- الأدوات المخصصة وأوامر الشرطة المائلة
+- خوادم MCP المضبوطة في إعدادات ia-bot-ahmed
+- قواعد خاصة بالمشروع من `AGENTS.md`
+- المنسقات (formatters) والمدققات (linters) المخصصة
+- نظام الوكلاء والأذونات

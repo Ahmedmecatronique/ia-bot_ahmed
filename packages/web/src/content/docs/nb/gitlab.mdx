@@ -1,0 +1,195 @@
+---
+title: GitLab
+description: Bruk ia-bot-ahmed i GitLab-problemer og Merge Requests.
+---
+
+ia-bot-ahmed integreres med GitLab arbeidsflyten gjennom GitLab CI/CD pipeline eller med GitLab Duo.
+
+I begge tilfeller vil ia-bot-ahmed kjøre på GitLab Runners.
+
+---
+
+## GitLab CI
+
+ia-bot-ahmed fungerer i en vanlig GitLab-pipeline. Du kan bygge den inn i en pipeline som en [CI-komponent](https://docs.gitlab.com/ee/ci/components/)
+
+Her bruker vi en fellesskapsskapt CI/CD-komponent for ia-bot-ahmed — [nagyv/gitlab-ia-bot-ahmed](https://gitlab.com/nagyv/gitlab-ia-bot-ahmed).
+
+---
+
+### Funksjoner
+
+- **Bruk tilpasset konfigurasjon per jobb**: Konfigurer ia-bot-ahmed med en tilpasset konfigurasjonskatalog, for eksempel `./config/#custom-directory` for å aktivere eller deaktivere funksjonalitet per ia-bot-ahmed-anrop.
+- **Minimalt oppsett**: CI-komponenten setter opp ia-bot-ahmed i bakgrunnen, du trenger bare å lage ia-bot-ahmed-konfigurasjonen og den første ledeteksten.
+- **Fleksibel**: CI-komponenten støtter flere innganger for å tilpasse virkemåten
+
+---
+
+### Oppsett
+
+1. Lagre ia-bot-ahmed sin autentiserings-JSON som en CI-miljøvariabel av typen Fil under **Innstillinger** > **CI/CD** > **Variabler**. Sørg for å merke dem som "Masked and hidden".
+2. Legg til følgende i `.gitlab-ci.yml`-filen.
+
+   ```yaml title=".gitlab-ci.yml"
+   include:
+     - component: $CI_SERVER_FQDN/nagyv/gitlab-ia-bot-ahmed/ia-bot-ahmed@2
+       inputs:
+         config_dir: ${CI_PROJECT_DIR}/ia-bot-ahmed-config
+         auth_json: $IA_BOT_AHMED_AUTH_JSON # The variable name for your ia-bot-ahmed authentication JSON
+         command: optional-custom-command
+         message: "Your prompt here"
+   ```
+
+For flere inndata og brukstilfeller [sjekk ut dokumentene](https://gitlab.com/explore/catalog/nagyv/gitlab-ia-bot-ahmed) for denne komponenten.
+
+---
+
+## GitLab Duo
+
+ia-bot-ahmed integreres med din GitLab arbeidsflyt.
+Nevn `@ia-bot-ahmed` i en kommentar, og ia-bot-ahmed vil utføre oppgaver innenfor din GitLab CI-pipeline.
+
+---
+
+### Funksjoner
+
+- **Triage av saker**: Be ia-bot-ahmed se på en sak og forklare den for deg.
+- **Fiks og implementer**: Be ia-bot-ahmed om å fikse en sak eller implementere en funksjon.
+  Det vil opprette en ny gren og sende en Merge Request med endringene.
+- **Sikkert**: ia-bot-ahmed kjører på GitLab Runners.
+
+---
+
+### Oppsett
+
+ia-bot-ahmed kjører i GitLab CI/CD pipeline, her er det du trenger for å sette den opp:
+
+:::tip
+Sjekk ut [**GitLab-dokumentene**](https://docs.gitlab.com/user/duo_agent_platform/agent_assistant/) for oppdaterte instruksjoner.
+:::
+
+1.  Konfigurer GitLab-miljøet ditt
+2.  Sett opp CI/CD
+3.  Få en AI modellleverandør API nøkkel
+4.  Opprett en tjenestekonto
+5.  Konfigurer CI/CD variabler
+6.  Lag en flytkonfigurasjonsfil, her er et eksempel:
+
+        <details>
+
+    <summary>Flow configuration</summary>
+
+    ```yaml
+    image: node:22-slim
+    commands:
+      - echo "Installing ia-bot-ahmed"
+      - npm install --global ia-bot-ahmed-ai
+      - echo "Installing glab"
+      - export GITLAB_TOKEN=$GITLAB_TOKEN_ia-bot-ahmed
+      - apt-get update --quiet && apt-get install --yes curl wget gpg git && rm --recursive --force /var/lib/apt/lists/*
+      - curl --silent --show-error --location "https://raw.githubusercontent.com/upciti/wakemeops/main/assets/install_repository" | bash
+      - apt-get install --yes glab
+      - echo "Configuring glab"
+      - echo $GITLAB_HOST
+      - echo "Creating ia-bot-ahmed auth configuration"
+      - mkdir --parents ~/.local/share/ia-bot-ahmed
+      - |
+        cat > ~/.local/share/ia-bot-ahmed/auth.json << EOF
+        {
+          "anthropic": {
+            "type": "api",
+            "key": "$ANTHROPIC_API_KEY"
+          }
+        }
+        EOF
+      - echo "Configuring git"
+      - git config --global user.email "ia-bot-ahmed@gitlab.com"
+      - git config --global user.name "ia-bot-ahmed"
+      - echo "Testing glab"
+      - glab issue list
+      - echo "Running ia-bot-ahmed"
+      - |
+        ia-bot-ahmed run "
+        You are an AI assistant helping with GitLab operations.
+
+        Context: $AI_FLOW_CONTEXT
+        Task: $AI_FLOW_INPUT
+        Event: $AI_FLOW_EVENT
+
+        Please execute the requested task using the available GitLab tools.
+        Be thorough in your analysis and provide clear explanations.
+
+        <important>
+        Please use the glab CLI to access data from GitLab. The glab CLI has already been authenticated. You can run the corresponding commands.
+
+        If you are asked to summarize an MR or issue or asked to provide more information then please post back a note to the MR/Issue so that the user can see it.
+        You don't need to commit or push up changes, those will be done automatically based on the file changes you make.
+        </important>
+        "
+      - git checkout --branch $CI_WORKLOAD_REF origin/$CI_WORKLOAD_REF
+      - echo "Checking for git changes and pushing if any exist"
+      - |
+        if ! git diff --quiet || ! git diff --cached --quiet || [ --not --zero "$(git ls-files --others --exclude-standard)" ]; then
+          echo "Git changes detected, adding and pushing..."
+          git add .
+          if git diff --cached --quiet; then
+            echo "No staged changes to commit"
+          else
+            echo "Committing changes to branch: $CI_WORKLOAD_REF"
+            git commit --message "Codex changes"
+            echo "Pushing changes up to $CI_WORKLOAD_REF"
+            git push https://gitlab-ci-token:$GITLAB_TOKEN@$GITLAB_HOST/gl-demo-ultimate-dev-ai-epic-17570/test-java-project.git $CI_WORKLOAD_REF
+            echo "Changes successfully pushed"
+          fi
+        else
+          echo "No git changes detected, skipping push"
+        fi
+    variables:
+      - ANTHROPIC_API_KEY
+      - GITLAB_TOKEN_ia-bot-ahmed
+      - GITLAB_HOST
+    ```
+
+        </details>
+
+Du kan se [GitLab CLI agents docs](https://docs.gitlab.com/user/duo_agent_platform/agent_assistant/) for detaljerte instruksjoner.
+
+---
+
+### Eksempler
+
+Her er noen eksempler på hvordan du kan bruke ia-bot-ahmed i GitLab.
+
+:::tip
+Du kan konfigurere til å bruke en annen triggerfrase enn `@ia-bot-ahmed`.
+:::
+
+- **Forklar en sak**
+
+  Legg til denne kommentaren i en GitLab-sak.
+
+  ```
+  @ia-bot-ahmed explain this issue
+  ```
+
+  ia-bot-ahmed vil lese saken og svare med en klar forklaring.
+
+- **Fiks en sak**
+
+  I en GitLab-sak, si:
+
+  ```
+  @ia-bot-ahmed fix this
+  ```
+
+  ia-bot-ahmed vil opprette en ny gren, implementere endringene og åpne en Merge Request med endringene.
+
+- **Review av Merge Requests**
+
+  Legg igjen følgende kommentar på en GitLab Merge Request.
+
+  ```
+  @ia-bot-ahmed review this merge request
+  ```
+
+  ia-bot-ahmed vil gjennomgå Merge Request-en og gi tilbakemelding.

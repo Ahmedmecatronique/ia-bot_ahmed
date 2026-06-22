@@ -1,0 +1,618 @@
+---
+title: CLI
+description: สัญญาณและคำสั่งของ ia-bot-ahmed CLI
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components"
+
+ia-bot-ahmed CLI จะเริ่มต้น [TUI](/docs/tui) เป็นค่าเริ่มต้นเมื่อเรียกใช้โดยไม่มีอาร์กิวเมนต์
+
+```bash
+ia-bot-ahmed
+```
+
+นอกจากนี้ยังรับคำสั่งและแฟล็ก ซึ่งช่วยให้คุณใช้ ia-bot-ahmed ผ่านโปรแกรมได้
+
+```bash
+ia-bot-ahmed run "Explain how closures work in JavaScript"
+```
+
+---
+
+### tui
+
+เริ่ม TUI เพื่อใช้ ia-bot-ahmed แบบโต้ตอบ
+
+```bash
+ia-bot-ahmed [project]
+```
+
+#### แฟล็ก
+
+| แฟล็ก                                    | สั้น | คำอธิบาย                                                   |
+| ---------------------------------------- | ---- | ---------------------------------------------------------- |
+| <nobr><code>{"--continue"}</code></nobr> | `-c` | ดำเนินการต่อจากเซสชันล่าสุด                                |
+| <nobr><code>{"--session"}</code></nobr>  | `-s` | ID เซสชันเพื่อดำเนินการต่อ                                 |
+| <nobr><code>{"--fork"}</code></nobr>     |      | แยกเซสชันเมื่อทำต่อ (ใช้กับ `--continue` หรือ `--session`) |
+| <nobr><code>{"--prompt"}</code></nobr>   |      | พรอมต์เริ่มต้นที่จะใช้                                     |
+| <nobr><code>{"--model"}</code></nobr>    | `-m` | โมเดลที่จะใช้ในรูปแบบ provider/model                       |
+| <nobr><code>{"--agent"}</code></nobr>    |      | เอเจนต์ที่จะใช้                                            |
+| <nobr><code>{"--port"}</code></nobr>     |      | พอร์ตที่จะฟัง                                              |
+| <nobr><code>{"--hostname"}</code></nobr> |      | ชื่อโฮสต์ที่จะฟัง                                          |
+
+---
+
+## คำสั่ง
+
+ia-bot-ahmed CLI ยังมีคำสั่งย่อยอีกมากมาย
+
+---
+
+### agent
+
+จัดการเอเจนต์สำหรับ ia-bot-ahmed
+
+```bash
+ia-bot-ahmed agent [command]
+```
+
+---
+
+### attach
+
+เชื่อมต่อกับเซิร์ฟเวอร์แบ็กเอนด์ ia-bot-ahmed ที่กำลังทำงานอยู่ ซึ่งเริ่มต้นผ่านคำสั่ง `serve` หรือ `web`
+
+```bash
+ia-bot-ahmed attach [url]
+```
+
+วิธีนี้ช่วยให้คุณใช้ TUI กับแบ็กเอนด์ ia-bot-ahmed ระยะไกลได้ ตัวอย่าง:
+
+```bash
+# Start the backend server for web/mobile access
+ia-bot-ahmed web --port 4096 --hostname 0.0.0.0
+
+# In another terminal, attach the TUI to the running backend
+ia-bot-ahmed attach http://10.20.30.40:4096
+```
+
+#### แฟล็ก
+
+| แฟล็ก                                    | สั้น | คำอธิบาย                                                                                    |
+| ---------------------------------------- | ---- | ------------------------------------------------------------------------------------------- |
+| <nobr><code>{"--dir"}</code></nobr>      |      | ไดเร็กทอรีการทำงานเพื่อเริ่มต้น TUI ใน                                                      |
+| <nobr><code>{"--continue"}</code></nobr> | `-c` | ดำเนินการต่อจากเซสชันล่าสุด                                                                 |
+| <nobr><code>{"--session"}</code></nobr>  | `-s` | ID เซสชันเพื่อดำเนินการต่อ                                                                  |
+| <nobr><code>{"--fork"}</code></nobr>     |      | แยกเซสชันเมื่อดำเนินการต่อ (ใช้กับ `--continue` หรือ `--session`)                           |
+| <nobr><code>{"--password"}</code></nobr> | `-p` | รหัสผ่านการยืนยันตัวตนพื้นฐาน (ค่าเริ่มต้นคือ `IA_BOT_AHMED_SERVER_PASSWORD`)                   |
+| <nobr><code>{"--username"}</code></nobr> | `-u` | ชื่อผู้ใช้การยืนยันตัวตนพื้นฐาน (ค่าเริ่มต้นคือ `IA_BOT_AHMED_SERVER_USERNAME` หรือ `ia-bot-ahmed`) |
+
+---
+
+#### create
+
+สร้างเอเจนต์ใหม่
+
+```bash
+ia-bot-ahmed agent create
+```
+
+คำสั่งนี้จะแนะนำคุณตลอดกระบวนการสร้างเอเจนต์ใหม่ พร้อมพรอมต์ระบบและความสามารถของเครื่องมือ
+
+---
+
+#### list
+
+แสดงรายชื่อเอเจนต์ที่พร้อมใช้งานทั้งหมด
+
+```bash
+ia-bot-ahmed agent list
+```
+
+---
+
+### auth
+
+จัดการการตรวจสอบสิทธิ์และข้อมูลรับรอง
+
+```bash
+ia-bot-ahmed auth [command]
+```
+
+---
+
+#### login
+
+ia-bot-ahmed ได้รับการกำหนดค่าไว้ล่วงหน้าด้วยรายชื่อผู้ให้บริการทั่วไปที่ [Models.dev](https://models.dev) ดังนั้นคุณเพียงแค่ต้องใส่คีย์ API สำหรับผู้ให้บริการที่คุณต้องการใช้ ข้อมูลนี้จะถูกเก็บไว้ที่ `~/.local/share/ia-bot-ahmed/auth.json`
+
+```bash
+ia-bot-ahmed auth login
+```
+
+เมื่อ ia-bot-ahmed เริ่มต้น ระบบจะโหลดข้อมูลรับรองจากไฟล์นี้ ดังนั้นคุณจึงไม่ต้องกังวลกับการตั้งค่าตัวแปรสภาพแวดล้อมหรือไฟล์ `.env` ในโปรเจ็กต์ของคุณ
+
+---
+
+#### list
+
+แสดงรายการข้อมูลรับรองการตรวจสอบสิทธิ์ทั้งหมดที่กำหนดค่าไว้
+
+```bash
+ia-bot-ahmed auth list
+```
+
+หรือใช้นามแฝงสั้น
+
+```bash
+ia-bot-ahmed auth ls
+```
+
+---
+
+#### logout
+
+ออกจากระบบของผู้ให้บริการและลบข้อมูลรับรองออกจากไฟล์ auth
+
+```bash
+ia-bot-ahmed auth logout
+```
+
+---
+
+### github
+
+จัดการเอเจนต์ GitHub สำหรับเวิร์กโฟลว์อัตโนมัติ
+
+```bash
+ia-bot-ahmed github [command]
+```
+
+---
+
+#### install
+
+ติดตั้งเอเจนต์ GitHub ใน repository ของคุณ
+
+```bash
+ia-bot-ahmed github install
+```
+
+คำสั่งนี้จะสร้างเวิร์กโฟลว์ GitHub Actions และแนะนำคุณตลอดกระบวนการตั้งค่า [เรียนรู้เพิ่มเติม](/docs/github)
+
+---
+
+#### run
+
+รันเอเจนต์ GitHub ด้วยตนเองหรือใน GitHub Actions
+
+```bash
+ia-bot-ahmed github run
+```
+
+##### แฟล็ก
+
+| แฟล็ก                                 | คำอธิบาย                               |
+| ------------------------------------- | -------------------------------------- |
+| <nobr><code>{"--event"}</code></nobr> | เหตุการณ์ GitHub เพื่อทริกเกอร์เอเจนต์ |
+| <nobr><code>{"--token"}</code></nobr> | GitHub token                           |
+
+---
+
+### mcp
+
+จัดการเซิร์ฟเวอร์ Model Context Protocol (MCP)
+
+```bash
+ia-bot-ahmed mcp [command]
+```
+
+---
+
+#### add
+
+เพิ่มเซิร์ฟเวอร์ MCP ลงในการกำหนดค่าของคุณ
+
+```bash
+ia-bot-ahmed mcp add
+```
+
+คำสั่งนี้จะแนะนำคุณผ่านวิซาร์ดเพื่อกำหนดค่าเซิร์ฟเวอร์ MCP ใหม่
+
+---
+
+#### list
+
+แสดงรายชื่อเซิร์ฟเวอร์ MCP ทั้งหมดที่กำหนดค่าไว้และสถานะ
+
+```bash
+ia-bot-ahmed mcp list
+```
+
+หรือใช้นามแฝงสั้น
+
+```bash
+ia-bot-ahmed mcp ls
+```
+
+---
+
+#### auth
+
+ยืนยันตัวตนกับเซิร์ฟเวอร์ MCP ที่ต้องการ OAuth
+
+```bash
+ia-bot-ahmed mcp auth [name]
+```
+
+หากไม่ระบุชื่อเซิร์ฟเวอร์ คุณจะได้รับแจ้งให้เลือกจากเซิร์ฟเวอร์ที่รองรับ OAuth ที่พร้อมใช้งาน
+
+คุณยังสามารถแสดงรายการสถานะการตรวจสอบสิทธิ์ OAuth ได้:
+
+```bash
+ia-bot-ahmed mcp auth list
+```
+
+หรือใช้นามแฝงสั้น
+
+```bash
+ia-bot-ahmed mcp auth ls
+```
+
+---
+
+#### logout
+
+ลบข้อมูลรับรอง OAuth สำหรับเซิร์ฟเวอร์ MCP
+
+```bash
+ia-bot-ahmed mcp logout [name]
+```
+
+---
+
+#### debug
+
+ดีบักการเชื่อมต่อเซิร์ฟเวอร์ MCP
+
+```bash
+ia-bot-ahmed mcp debug <name>
+```
+
+---
+
+### models
+
+แสดงรายการโมเดลที่พร้อมใช้งานทั้งหมดจากผู้ให้บริการที่กำหนดค่าไว้
+
+```bash
+ia-bot-ahmed models [provider]
+```
+
+คำสั่งนี้จะแสดง ID โมเดลทั้งหมดในรูปแบบ `provider/model`
+
+คุณสามารถใช้ชื่อโมเดลเหล่านี้ในการกำหนดค่า [config](/docs/config/) ของคุณ
+
+คุณยังสามารถส่งผ่านรหัสผู้ให้บริการเพื่อกรองโมเดลตามผู้ให้บริการรายนั้นได้
+
+```bash
+ia-bot-ahmed models anthropic
+```
+
+#### แฟล็ก
+
+| แฟล็ก                                   | คำอธิบาย                                               |
+| --------------------------------------- | ------------------------------------------------------ |
+| <nobr><code>{"--refresh"}</code></nobr> | รีเฟรชแคชโมเดลจาก models.dev                           |
+| <nobr><code>{"--verbose"}</code></nobr> | แสดงรายละเอียดโมเดลเพิ่มเติม (รวมข้อมูลเมตาเช่นต้นทุน) |
+| <nobr><code>{"--json"}</code></nobr>    | แสดงผลลัพธ์เป็น JSON                                   |
+
+ใช้แฟล็ก `--refresh` เพื่ออัปเดตรายการโมเดลที่แคชไว้ มีประโยชน์เมื่อมีการเพิ่มโมเดลใหม่ให้กับผู้ให้บริการและคุณต้องการเห็นใน ia-bot-ahmed
+
+```bash
+ia-bot-ahmed models --refresh
+```
+
+---
+
+### run
+
+รัน ia-bot-ahmed โดยไม่ต้องใช้ TUI โดยส่งพรอมต์โดยตรง
+
+```bash
+ia-bot-ahmed run [message..]
+```
+
+มีประโยชน์สำหรับการทำงานอัตโนมัติหรือเมื่อต้องการคำตอบอย่างรวดเร็วโดยไม่ต้องเปิด TUI ตัวอย่าง:
+
+```bash "ia-bot-ahmed run"
+ia-bot-ahmed run Explain the use of context in Go
+```
+
+คุณยังสามารถแนบไปกับเซิร์ฟเวอร์ `ia-bot-ahmed serve` ที่ทำงานอยู่ หรือใช้เซิร์ฟเวอร์ MCP แบบ headless:
+
+```bash
+# Start a headless server in one terminal
+ia-bot-ahmed serve
+
+# In another terminal, run commands that attach to it
+ia-bot-ahmed run --attach http://localhost:4096 "Explain async/await in JavaScript"
+```
+
+#### แฟล็ก
+
+| แฟล็ก                                    | สั้น | คำอธิบาย                                                                                    |
+| ---------------------------------------- | ---- | ------------------------------------------------------------------------------------------- |
+| <nobr><code>{"--command"}</code></nobr>  |      | คำสั่งที่จะรัน (ใช้ส่วนที่เหลือของ args เป็นอาร์กิวเมนต์)                                   |
+| <nobr><code>{"--continue"}</code></nobr> | `-c` | ดำเนินการต่อจากเซสชันล่าสุด                                                                 |
+| <nobr><code>{"--session"}</code></nobr>  | `-s` | ID เซสชันเพื่อดำเนินการต่อ                                                                  |
+| <nobr><code>{"--fork"}</code></nobr>     |      | แยกเซสชันเมื่อทำต่อ (ใช้กับ `--continue` หรือ `--session`)                                  |
+| <nobr><code>{"--share"}</code></nobr>    |      | สร้างลิงก์แชร์สำหรับเซสชัน                                                                  |
+| <nobr><code>{"--model"}</code></nobr>    | `-m` | โมเดลที่จะใช้ในรูปแบบ provider/model                                                        |
+| <nobr><code>{"--agent"}</code></nobr>    |      | เอเจนต์ที่จะใช้                                                                             |
+| <nobr><code>{"--file"}</code></nobr>     | `-f` | แนบไฟล์ไปกับข้อความ                                                                         |
+| <nobr><code>{"--format"}</code></nobr>   |      | รูปแบบเอาต์พุต: text (จัดรูปแบบ) หรือ json (JSON ดิบ)                                       |
+| <nobr><code>{"--title"}</code></nobr>    |      | ชื่อสำหรับเซสชัน (หากไม่ได้ระบุ จะสร้างจากพรอมต์)                                           |
+| <nobr><code>{"--attach"}</code></nobr>   |      | แนบไปกับเซิร์ฟเวอร์ ia-bot-ahmed ที่ทำงานอยู่ (เช่น http://localhost:4096)                      |
+| <nobr><code>{"--password"}</code></nobr> | `-p` | รหัสผ่านการยืนยันตัวตนพื้นฐาน (ค่าเริ่มต้นคือ `IA_BOT_AHMED_SERVER_PASSWORD`)                   |
+| <nobr><code>{"--username"}</code></nobr> | `-u` | ชื่อผู้ใช้การยืนยันตัวตนพื้นฐาน (ค่าเริ่มต้นคือ `IA_BOT_AHMED_SERVER_USERNAME` หรือ `ia-bot-ahmed`) |
+| <nobr><code>{"--dir"}</code></nobr>      |      | ไดเร็กทอรีสำหรับรัน หรือเส้นทางบนเซิร์ฟเวอร์ระยะไกลเมื่อแนบ                                 |
+| <nobr><code>{"--variant"}</code></nobr>  |      | ตัวแปรโมเดล (ระดับการใช้เหตุผลเฉพาะผู้ให้บริการ)                                            |
+| <nobr><code>{"--thinking"}</code></nobr> |      | แสดงบล็อกความคิด                                                                            |
+| <nobr><code>{"--port"}</code></nobr>     |      | พอร์ตสำหรับเซิร์ฟเวอร์ภายในเครื่อง (หากไม่ได้ระบุ จะใช้พอร์ตสุ่ม)                           |
+
+---
+
+### serve
+
+เริ่มต้นเซิร์ฟเวอร์ ia-bot-ahmed headless ที่ให้บริการ API HTTP ดู [เอกสารเซิร์ฟเวอร์](/docs/server) สำหรับรายละเอียด API เต็มรูปแบบ
+
+```bash
+ia-bot-ahmed serve
+```
+
+คำสั่งนี้จะเริ่มต้นเซิร์ฟเวอร์ HTTP ให้ API เข้าถึงฟังก์ชันการทำงานของ ia-bot-ahmed ได้โดยไม่ต้องมี TUI นอกจากนี้ยังรองรับการตรวจสอบสิทธิ์พื้นฐาน HTTP (ชื่อผู้ใช้เริ่มต้นคือ `ia-bot-ahmed` และรหัสผ่านระบุโดย `IA_BOT_AHMED_SERVER_PASSWORD`)
+
+#### แฟล็ก
+
+| แฟล็ก                                    | คำอธิบาย                               |
+| ---------------------------------------- | -------------------------------------- |
+| <nobr><code>{"--port"}</code></nobr>     | พอร์ตที่จะฟัง                          |
+| <nobr><code>{"--hostname"}</code></nobr> | ชื่อโฮสต์ที่จะฟัง                      |
+| <nobr><code>{"--mdns"}</code></nobr>     | เปิดใช้งานการค้นหา mDNS                |
+| <nobr><code>{"--cors"}</code></nobr>     | ต้นกำเนิดเพิ่มเติมที่อนุญาตสำหรับ CORS |
+
+---
+
+### session
+
+จัดการเซสชัน ia-bot-ahmed
+
+```bash
+ia-bot-ahmed session [command]
+```
+
+---
+
+#### list
+
+แสดงรายการเซสชัน ia-bot-ahmed ทั้งหมด
+
+```bash
+ia-bot-ahmed session list
+```
+
+##### แฟล็ก
+
+| แฟล็ก                                     | สั้น | คำอธิบาย                      |
+| ----------------------------------------- | ---- | ----------------------------- |
+| <nobr><code>{"--max-count"}</code></nobr> | `-n` | จำกัดการแสดงผล N รายการล่าสุด |
+| <nobr><code>{"--format"}</code></nobr>    |      | รูปแบบ table หรือ json        |
+
+---
+
+### stats
+
+แสดงสถิติการใช้งานและค่าใช้จ่ายสำหรับ ia-bot-ahmed ของคุณ
+
+```bash
+ia-bot-ahmed stats
+```
+
+#### แฟล็ก
+
+| แฟล็ก                                   | คำอธิบาย                                             |
+| --------------------------------------- | ---------------------------------------------------- |
+| <nobr><code>{"--days"}</code></nobr>    | แสดงสถิติของ N วันที่ผ่านมา (ค่าเริ่มต้น: ตลอดเวลา)  |
+| <nobr><code>{"--tools"}</code></nobr>   | แสดงสถิติการใช้เครื่องมือ                            |
+| <nobr><code>{"--models"}</code></nobr>  | แสดงรายละเอียดการใช้งานโมเดล (ซ่อนไว้ตามค่าเริ่มต้น) |
+| <nobr><code>{"--project"}</code></nobr> | กรองตามโครงการ (ค่าเริ่มต้น: โครงการปัจจุบัน)        |
+
+---
+
+### export
+
+ส่งออกประวัติเซสชันเป็น JSON
+
+```bash
+ia-bot-ahmed export [sessionID]
+```
+
+หากไม่ระบุรหัสเซสชัน คุณจะได้รับแจ้งให้เลือกจากรายการล่าสุด
+
+---
+
+### import
+
+นำเข้าเซสชันจากไฟล์ JSON หรือ URL ที่แชร์ของ ia-bot-ahmed
+
+```bash
+ia-bot-ahmed import <file>
+```
+
+คุณสามารถนำเข้าไฟล์ในเครื่องหรือ URL ที่แชร์
+
+```bash
+ia-bot-ahmed import session.json
+ia-bot-ahmed import https://opncd.ai/s/abc123
+```
+
+---
+
+### web
+
+เริ่ม ia-bot-ahmed ในโหมดเซิร์ฟเวอร์พร้อมเว็บอินเตอร์เฟส
+
+```bash
+ia-bot-ahmed web
+```
+
+คำสั่งนี้จะเริ่มต้นเซิร์ฟเวอร์ HTTP และเปิดเว็บเบราว์เซอร์เพื่อเข้าถึง ia-bot-ahmed ผ่านทางเว็บอินเตอร์เฟส รองรับการตรวจสอบสิทธิ์พื้นฐาน HTTP (ชื่อผู้ใช้เริ่มต้นคือ `ia-bot-ahmed` และรหัสผ่านระบุโดย `IA_BOT_AHMED_SERVER_PASSWORD`)
+
+#### แฟล็ก
+
+| แฟล็ก                                    | คำอธิบาย                               |
+| ---------------------------------------- | -------------------------------------- |
+| <nobr><code>{"--port"}</code></nobr>     | พอร์ตที่จะฟัง                          |
+| <nobr><code>{"--hostname"}</code></nobr> | ชื่อโฮสต์ที่จะฟัง                      |
+| <nobr><code>{"--mdns"}</code></nobr>     | เปิดใช้งานการค้นหา mDNS                |
+| <nobr><code>{"--cors"}</code></nobr>     | ต้นกำเนิดเพิ่มเติมที่อนุญาตสำหรับ CORS |
+
+---
+
+### acp
+
+เริ่มต้นเซิร์ฟเวอร์ ACP (Agent Client Protocol)
+
+```bash
+ia-bot-ahmed acp
+```
+
+คำสั่งนี้เริ่มต้นเซิร์ฟเวอร์ ACP ที่สื่อสารผ่าน stdin/stdout ด้วย nd-JSON
+
+#### แฟล็ก
+
+| แฟล็ก                                    | คำอธิบาย           |
+| ---------------------------------------- | ------------------ |
+| <nobr><code>{"--cwd"}</code></nobr>      | ไดเร็กทอรีการทำงาน |
+| <nobr><code>{"--port"}</code></nobr>     | พอร์ตที่จะฟัง      |
+| <nobr><code>{"--hostname"}</code></nobr> | ชื่อโฮสต์ที่จะฟัง  |
+
+---
+
+### uninstall
+
+ถอนการติดตั้ง ia-bot-ahmed และลบข้อมูลการกำหนดค่าทั้งหมด
+
+```bash
+ia-bot-ahmed uninstall
+```
+
+#### แฟล็ก
+
+| แฟล็ก                                       | สั้น | คำอธิบาย                            |
+| ------------------------------------------- | ---- | ----------------------------------- |
+| <nobr><code>{"--keep-config"}</code></nobr> | `-c` | เก็บไฟล์การกำหนดค่าไว้              |
+| <nobr><code>{"--keep-data"}</code></nobr>   | `-d` | เก็บไฟล์ข้อมูล (เซสชันและสแน็ปช็อต) |
+| <nobr><code>{"--dry-run"}</code></nobr>     |      | แสดงสิ่งที่จะลบออกโดยไม่ต้องทำจริง  |
+| <nobr><code>{"--force"}</code></nobr>       | `-f` | บังคับลบโดยไม่มีการแจ้งเตือน        |
+
+---
+
+### upgrade
+
+อัปเกรด ia-bot-ahmed เป็นเวอร์ชันล่าสุดหรือเวอร์ชันที่ระบุ
+
+```bash
+ia-bot-ahmed upgrade [target]
+```
+
+อัปเกรดเป็นเวอร์ชันล่าสุด
+
+```bash
+ia-bot-ahmed upgrade
+```
+
+อัปเกรดเป็นเวอร์ชันที่ระบุ
+
+```bash
+ia-bot-ahmed upgrade v0.1.48
+```
+
+#### แฟล็ก
+
+| แฟล็ก                                  | สั้น | คำอธิบาย                                        |
+| -------------------------------------- | ---- | ----------------------------------------------- |
+| <nobr><code>{"--method"}</code></nobr> | `-m` | วิธีการติดตั้งที่ใช้ curl, npm, pnpm, bun, brew |
+
+---
+
+## แฟล็กระดับโลก
+
+ia-bot-ahmed CLI ยอมรับแฟล็กสากลต่อไปนี้สำหรับทุกคำสั่ง
+
+| แฟล็ก                                      | สั้น | คำอธิบาย                                  |
+| ------------------------------------------ | ---- | ----------------------------------------- |
+| <nobr><code>{"--help"}</code></nobr>       | `-h` | แสดงความช่วยเหลือ                         |
+| <nobr><code>{"--version"}</code></nobr>    | `-v` | พิมพ์เวอร์ชัน                             |
+| <nobr><code>{"--print-logs"}</code></nobr> |      | พิมพ์บันทึกไปยัง stderr                   |
+| <nobr><code>{"--log-level"}</code></nobr>  |      | ระดับการบันทึก (DEBUG, INFO, WARN, ERROR) |
+
+---
+
+## ตัวแปรสภาพแวดล้อม
+
+ia-bot-ahmed สามารถกำหนดค่าโดยใช้ตัวแปรสภาพแวดล้อม
+
+| ตัวแปร                                | ชนิด    | คำอธิบาย                                                         |
+| ------------------------------------- | ------- | ---------------------------------------------------------------- |
+| `IA_BOT_AHMED_AUTO_SHARE`                 | Boolean | แชร์เซสชันอัตโนมัติเมื่อสร้าง                                    |
+| `IA_BOT_AHMED_GIT_BASH_PATH`              | String  | เส้นทางไปยัง Git Bash บน Windows                                 |
+| `IA_BOT_AHMED_CONFIG`                     | String  | เส้นทางไปยังไฟล์การกำหนดค่า                                      |
+| `IA_BOT_AHMED_TUI_CONFIG`                 | String  | เส้นทางไปยังไฟล์การกำหนดค่า TUI                                  |
+| `IA_BOT_AHMED_CONFIG_DIR`                 | String  | เส้นทางไปยังไดเร็กทอรีการกำหนดค่า                                |
+| `IA_BOT_AHMED_CONFIG_CONTENT`             | String  | เนื้อหาการกำหนดค่าแบบ inline JSON                                |
+| `IA_BOT_AHMED_DISABLE_AUTOUPDATE`         | Boolean | ปิดใช้งานการอัปเดตอัตโนมัติ                                      |
+| `IA_BOT_AHMED_DISABLE_PRUNE`              | Boolean | ปิดใช้งานการลบข้อมูลเซสชันเก่า                                   |
+| `IA_BOT_AHMED_DISABLE_TERMINAL_TITLE`     | Boolean | ปิดใช้งานการตั้งชื่อหน้าต่าง terminal                            |
+| `IA_BOT_AHMED_PERMISSION`                 | String  | การกำหนดค่าสิทธิ์แบบ inline JSON                                 |
+| `IA_BOT_AHMED_DISABLE_DEFAULT_PLUGINS`    | Boolean | ปิดใช้งานปลั๊กอินเริ่มต้น                                        |
+| `IA_BOT_AHMED_DISABLE_LSP_DOWNLOAD`       | Boolean | ปิดใช้งานการดาวน์โหลด LSP อัตโนมัติ                              |
+| `IA_BOT_AHMED_ENABLE_EXPERIMENTAL_MODELS` | Boolean | เปิดใช้งานโมเดลทดลอง                                             |
+| `IA_BOT_AHMED_DISABLE_AUTOCOMPACT`        | Boolean | ปิดใช้งานการบีบอัดบริบทอัตโนมัติ                                 |
+| `IA_BOT_AHMED_DISABLE_CLAUDE_CODE`        | Boolean | ปิดใช้งานการนำเข้าจาก `.claude` (prompt + skills)                |
+| `IA_BOT_AHMED_DISABLE_CLAUDE_CODE_PROMPT` | Boolean | ปิดใช้งานการนำเข้า `~/.claude/CLAUDE.md`                         |
+| `IA_BOT_AHMED_DISABLE_CLAUDE_CODE_SKILLS` | Boolean | ปิดใช้งานการนำเข้า `.claude/skills`                              |
+| `IA_BOT_AHMED_DISABLE_MODELS_FETCH`       | Boolean | ปิดใช้งานการดึงรายการโมเดลจากระยะไกล                             |
+| `IA_BOT_AHMED_FAKE_VCS`                   | String  | เปิดใช้งาน VCS จำลองสำหรับการทดสอบ                               |
+| `IA_BOT_AHMED_CLIENT`                     | String  | ตัวระบุไคลเอนต์ (ค่าเริ่มต้นคือ `cli`)                           |
+| `IA_BOT_AHMED_ENABLE_EXA`                 | Boolean | เปิดใช้งานการใช้ Exa แทน ls หากมี                                |
+| `IA_BOT_AHMED_SERVER_PASSWORD`            | String  | รหัสผ่านสำหรับการตรวจสอบสิทธิ์พื้นฐาน `serve`/`web`              |
+| `IA_BOT_AHMED_SERVER_USERNAME`            | String  | ชื่อผู้ใช้สำหรับการตรวจสอบสิทธิ์พื้นฐาน (ค่าเริ่มต้น `ia-bot-ahmed`) |
+| `IA_BOT_AHMED_MODELS_URL`                 | String  | URL ที่กำหนดเองสำหรับการดึงรายการโมเดล                           |
+
+---
+
+### ขั้นทดลอง
+
+ตัวแปรสภาพแวดล้อมเหล่านี้เปิดใช้งานฟีเจอร์ทดลองที่อาจมีการเปลี่ยนแปลงหรือถูกลบออก
+
+| ตัวแปร                                          | ชนิด    | คำอธิบาย                                       |
+| ----------------------------------------------- | ------- | ---------------------------------------------- |
+| `IA_BOT_AHMED_EXPERIMENTAL`                         | Boolean | เปิดใช้งานฟีเจอร์ทดลองภายใต้แฟล็กรวม           |
+| `IA_BOT_AHMED_EXPERIMENTAL_ICON_DISCOVERY`          | Boolean | การค้นหาไอคอนทดลอง                             |
+| `IA_BOT_AHMED_EXPERIMENTAL_DISABLE_COPY_ON_SELECT`  | Boolean | ปิดใช้งานการคัดลอกเมื่อเลือกใน TUI             |
+| `IA_BOT_AHMED_EXPERIMENTAL_BASH_DEFAULT_TIMEOUT_MS` | Number  | การหมดเวลาเริ่มต้นสำหรับคำสั่ง bash ในหน่วย ms |
+| `IA_BOT_AHMED_EXPERIMENTAL_OUTPUT_TOKEN_MAX`        | Number  | ขีดจำกัดสูงสุดสำหรับโทเค็นเอาต์พุต LLM         |
+| `IA_BOT_AHMED_EXPERIMENTAL_FILEWATCHER`             | Boolean | เปิดใช้งานตัวเฝ้าดูไฟล์สำหรับไดเร็กทอรีทั้งหมด |
+| `IA_BOT_AHMED_EXPERIMENTAL_OXFMT`                   | Boolean | ใช้ oxfmt เป็นตัวจัดรูปแบบ                     |
+| `IA_BOT_AHMED_EXPERIMENTAL_LSP_TOOL`                | Boolean | เปิดใช้งานเครื่องมือ LSP ทดลอง                 |
+| `IA_BOT_AHMED_EXPERIMENTAL_DISABLE_FILEWATCHER`     | Boolean | ปิดใช้งานตัวเฝ้าดูไฟล์                         |
+| `IA_BOT_AHMED_EXPERIMENTAL_EXA`                     | Boolean | ฟีเจอร์ Exa ทดลอง                              |
+| `IA_BOT_AHMED_EXPERIMENTAL_LSP_TY`                  | Boolean | เปิดใช้งาน TY LSP สำหรับไฟล์ python            |
+| `IA_BOT_AHMED_EXPERIMENTAL_PLAN_MODE`               | Boolean | เปิดใช้งาน Plan mode                           |
+| `IA_BOT_AHMED_EXPERIMENTAL_BACKGROUND_SUBAGENTS`    | Boolean | เปิดใช้งานงาน subagent เบื้องหลัง              |
+| `IA_BOT_AHMED_EXPERIMENTAL_EVENT_SYSTEM`            | Boolean | เปิดใช้งานระบบเหตุการณ์ทดลอง                   |
+| `IA_BOT_AHMED_EXPERIMENTAL_NATIVE_LLM`              | Boolean | เปิดใช้งานเส้นทางคำขอ LLM แบบ native           |
+| `IA_BOT_AHMED_EXPERIMENTAL_PARALLEL`                | Boolean | เปิดใช้งานการค้นหาเว็บแบบขนาน                  |
+| `IA_BOT_AHMED_EXPERIMENTAL_SCOUT`                   | Boolean | เปิดใช้งาน Scout subagent                      |
+| `IA_BOT_AHMED_EXPERIMENTAL_WORKSPACES`              | Boolean | เปิดใช้งานการรองรับ workspace                  |

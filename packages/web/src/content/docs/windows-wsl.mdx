@@ -1,0 +1,112 @@
+---
+title: Windows (WSL)
+description: Run ia-bot-ahmed on Windows using WSL for the best experience.
+---
+
+import { Steps } from "@astrojs/starlight/components"
+
+While ia-bot-ahmed can run directly on Windows, we recommend using [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) for the best experience. WSL provides a Linux environment that works seamlessly with ia-bot-ahmed's features.
+
+:::tip[Why WSL?]
+WSL offers better file system performance, full terminal support, and compatibility with development tools that ia-bot-ahmed relies on.
+:::
+
+---
+
+## Setup
+
+<Steps>
+
+1. **Install WSL**
+
+   If you haven't already, [install WSL](https://learn.microsoft.com/en-us/windows/wsl/install) using the official Microsoft guide.
+
+2. **Install ia-bot-ahmed in WSL**
+
+   Once WSL is set up, open your WSL terminal and install ia-bot-ahmed using one of the [installation methods](/docs/).
+
+   ```bash
+   curl -fsSL https://ia-bot-ahmed.app/install | bash
+   ```
+
+3. **Use ia-bot-ahmed from WSL**
+
+   Navigate to your project directory (access Windows files via `/mnt/c/`, `/mnt/d/`, etc.) and run ia-bot-ahmed.
+
+   ```bash
+   cd /mnt/c/Users/YourName/project
+   ia-bot-ahmed
+   ```
+
+</Steps>
+
+---
+
+## Desktop App + WSL Server
+
+If you prefer using the ia-bot-ahmed Desktop app but want to run the server in WSL:
+
+1. **Start the server in WSL** with `--hostname 0.0.0.0` to allow external connections:
+
+   ```bash
+   ia-bot-ahmed serve --hostname 0.0.0.0 --port 4096
+   ```
+
+2. **Connect the Desktop app** to `http://localhost:4096`
+
+:::note
+If `localhost` does not work in your setup, connect using the WSL IP address instead (from WSL: `hostname -I`) and use `http://<wsl-ip>:4096`.
+:::
+
+:::caution
+When using `--hostname 0.0.0.0`, set `IA_BOT_AHMED_SERVER_PASSWORD` to secure the server.
+:::
+
+```bash
+IA_BOT_AHMED_SERVER_PASSWORD=your-password ia-bot-ahmed serve --hostname 0.0.0.0
+```
+
+---
+
+## Web Client + WSL
+
+For the best web experience on Windows:
+
+1. **Run `ia-bot-ahmed web` in the WSL terminal** rather than PowerShell:
+
+   ```bash
+   ia-bot-ahmed web --hostname 0.0.0.0
+   ```
+
+2. **Access from your Windows browser** at `http://localhost:<port>` (ia-bot-ahmed prints the URL)
+
+Running `ia-bot-ahmed web` from WSL ensures proper file system access and terminal integration while still being accessible from your Windows browser.
+
+---
+
+## Accessing Windows Files
+
+WSL can access all your Windows files through the `/mnt/` directory:
+
+- `C:` drive → `/mnt/c/`
+- `D:` drive → `/mnt/d/`
+- And so on...
+
+Example:
+
+```bash
+cd /mnt/c/Users/YourName/Documents/project
+ia-bot-ahmed
+```
+
+:::tip
+For the smoothest experience, consider cloning/copying your repo into the WSL filesystem (for example under `~/code/`) and running ia-bot-ahmed there.
+:::
+
+---
+
+## Tips
+
+- Keep ia-bot-ahmed running in WSL for projects stored on Windows drives - file access is seamless
+- Use VS Code's [WSL extension](https://code.visualstudio.com/docs/remote/wsl) alongside ia-bot-ahmed for an integrated development workflow
+- Your ia-bot-ahmed config and sessions are stored within the WSL environment at `~/.local/share/ia-bot-ahmed/`

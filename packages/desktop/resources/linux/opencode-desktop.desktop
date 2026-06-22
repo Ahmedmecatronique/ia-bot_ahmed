@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=ia-bot-ahmed
+Exec=/opt/ia-bot-ahmed/ai.ia-bot-ahmed.desktop %U
+Terminal=false
+Type=Application
+Icon=ai.ia-bot-ahmed.desktop
+StartupWMClass=ai.ia-bot-ahmed.desktop
+NoDisplay=true
+Comment=Open source AI coding agent
+Categories=Development;
