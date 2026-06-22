@@ -1,17 +1,13 @@
 <p align="center">
-  <a href="https://ia-bot-ahmed.app">
-    <picture>
-      <source srcset="packages/console/app/src/asset/logo-ornate-dark.svg" media="(prefers-color-scheme: dark)">
-      <source srcset="packages/console/app/src/asset/logo-ornate-light.svg" media="(prefers-color-scheme: light)">
-      <img src="packages/console/app/src/asset/logo-ornate-light.svg" alt="ia-bot-ahmed logo">
-    </picture>
+  <a href="https://github.com/Ahmedmecatronique/ia-bot_ahmed">
+    <img src="https://img.shields.io/badge/ia--bot--ahmed-v1.17.9-8A2BE2?style=for-the-badge" alt="ia-bot-ahmed">
   </a>
 </p>
 <p align="center">The open source AI coding agent.</p>
 <p align="center">
-  <a href="https://ia-bot-ahmed.app/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
-  <a href="https://www.npmjs.com/package/ia-bot-ahmed-ai"><img alt="npm" src="https://img.shields.io/npm/v/ia-bot-ahmed-ai?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/ia-bot-ahmed/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/ia-bot-ahmed/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/Ahmedmecatronique/ia-bot_ahmed"><img alt="GitHub" src="https://img.shields.io/github/stars/Ahmedmecatronique/ia-bot_ahmed?style=flat-square&logo=github" /></a>
+  <a href="https://github.com/Ahmedmecatronique/ia-bot_ahmed/releases"><img alt="GitHub release" src="https://img.shields.io/github/v/release/Ahmedmecatronique/ia-bot_ahmed?style=flat-square" /></a>
+  <a href="https://github.com/Ahmedmecatronique/ia-bot_ahmed/actions"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/Ahmedmecatronique/ia-bot_ahmed/publish.yml?style=flat-square&branch=main" /></a>
 </p>
 
 <p align="center">
@@ -39,62 +35,22 @@
   <a href="README.vi.md">Tiếng Việt</a>
 </p>
 
-[![ia-bot-ahmed Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://ia-bot-ahmed.app)
-
 ---
 
 ### Installation
 
 ```bash
-# YOLO
-curl -fsSL https://ia-bot-ahmed.app/install | bash
-
-# Package managers
-npm i -g ia-bot-ahmed-ai@latest        # or bun/pnpm/yarn
-scoop install ia-bot-ahmed             # Windows
-choco install ia-bot-ahmed             # Windows
-brew install anomalyco/tap/ia-bot-ahmed # macOS and Linux (recommended, always up to date)
-brew install ia-bot-ahmed              # macOS and Linux (official brew formula, updated less)
-sudo pacman -S ia-bot-ahmed            # Arch Linux (Stable)
-paru -S ia-bot-ahmed-bin               # Arch Linux (Latest from AUR)
-mise use -g ia-bot-ahmed               # Any OS
-nix run nixpkgs#ia-bot-ahmed           # or github:anomalyco/ia-bot-ahmed for latest dev branch
+git clone https://github.com/Ahmedmecatronique/ia-bot_ahmed.git
+cd ia-bot_ahmed
+bun install
+bun dev
 ```
 
 > [!TIP]
-> Remove versions older than 0.1.x before installing.
-
-### Desktop App (BETA)
-
-ia-bot-ahmed is also available as a desktop application. Download directly from the [releases page](https://github.com/anomalyco/ia-bot-ahmed/releases) or [ia-bot-ahmed.app/download](https://ia-bot-ahmed.app/download).
-
-| Platform              | Download                           |
-| --------------------- | ---------------------------------- |
-| macOS (Apple Silicon) | `ia-bot-ahmed-desktop-mac-arm64.dmg`   |
-| macOS (Intel)         | `ia-bot-ahmed-desktop-mac-x64.dmg`     |
-| Windows               | `ia-bot-ahmed-desktop-windows-x64.exe` |
-| Linux                 | `.deb`, `.rpm`, or `.AppImage`     |
+> Make sure [Bun](https://bun.sh) is installed first.
 
 ```bash
-# macOS (Homebrew)
-brew install --cask ia-bot-ahmed-desktop
-# Windows (Scoop)
-scoop bucket add extras; scoop install extras/ia-bot-ahmed-desktop
-```
-
-#### Installation Directory
-
-The install script respects the following priority order for the installation path:
-
-1. `$IA_BOT_AHMED_INSTALL_DIR` - Custom installation directory
-2. `$XDG_BIN_DIR` - XDG Base Directory Specification compliant path
-3. `$HOME/bin` - Standard user binary directory (if it exists or can be created)
-4. `$HOME/.ia-bot-ahmed/bin` - Default fallback
-
-```bash
-# Examples
-IA_BOT_AHMED_INSTALL_DIR=/usr/local/bin curl -fsSL https://ia-bot-ahmed.app/install | bash
-XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://ia-bot-ahmed.app/install | bash
+powershell -c "irm bun.sh/install.ps1 | iex"
 ```
 
 ### Agents
@@ -110,20 +66,10 @@ ia-bot-ahmed includes two built-in agents you can switch between with the `Tab` 
 Also included is a **general** subagent for complex searches and multistep tasks.
 This is used internally and can be invoked using `@general` in messages.
 
-Learn more about [agents](https://ia-bot-ahmed.app/docs/agents).
-
-### Documentation
-
-For more info on how to configure ia-bot-ahmed, [**head over to our docs**](https://ia-bot-ahmed.app/docs).
-
 ### Contributing
 
-If you're interested in contributing to ia-bot-ahmed, please read our [contributing docs](./CONTRIBUTING.md) before submitting a pull request.
-
-### Building on ia-bot-ahmed
-
-If you are working on a project that's related to ia-bot-ahmed and is using "ia-bot-ahmed" as part of its name, for example "ia-bot-ahmed-dashboard" or "ia-bot-ahmed-mobile", please add a note to your README to clarify that it is not built by the ia-bot-ahmed team and is not affiliated with us in any way.
+If you're interested in contributing to ia-bot-ahmed, please open an issue or pull request on [GitHub](https://github.com/Ahmedmecatronique/ia-bot_ahmed).
 
 ---
 
-**Join our community** [Discord](https://discord.gg/ia-bot-ahmed) | [X.com](https://x.com/ia-bot-ahmed)
+**GitHub** [@Ahmedmecatronique](https://github.com/Ahmedmecatronique)
