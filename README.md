@@ -37,6 +37,10 @@
 
 ---
 
+ia-bot-ahmed is an AI-powered coding agent that runs in your terminal. It can understand your codebase, execute tasks, make edits, run commands, and answer questions about your project — all through natural language conversation.
+
+Built with a focus on developer experience, ia-bot-ahmed supports multiple AI models, works with your existing tools (Git, GitHub, your editor), and integrates deeply into your workflow.
+
 ### Installation
 
 ```bash
@@ -78,6 +82,15 @@ ia-bot-ahmed includes two built-in agents you can switch between with the `Tab` 
 Also included is a **general** subagent for complex searches and multistep tasks.
 This is used internally and can be invoked using `@general` in messages.
 
+### Features
+
+- **Multi-model**: Works with Anthropic, OpenAI, Google, Mistral, Groq, and more
+- **Terminal UI**: Beautiful interactive interface with syntax highlighting
+- **Tool use**: Read/write files, run commands, search code, manage git
+- **Session management**: Persistent conversations with project context
+- **Git integration**: Create commits, manage branches, review PRs
+- **Plugin system**: Extend with custom tools and providers
+
 ### Documentation
 
 For more info on how to configure ia-bot-ahmed, check the [docs](https://github.com/Ahmedmecatronique/ia-bot_ahmed).
@@ -88,4 +101,4 @@ If you're interested in contributing to ia-bot-ahmed, please open an issue or pu
 
 ---
 
-**GitHub** [@Ahmedmecatronique](https://github.com/Ahmedmecatronique)
+Built by [@Ahmedmecatronique](https://github.com/Ahmedmecatronique)
