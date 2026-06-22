@@ -40,6 +40,7 @@
 ### Installation
 
 ```bash
+# Clone and install
 git clone https://github.com/Ahmedmecatronique/ia-bot_ahmed.git
 cd ia-bot_ahmed
 bun install
@@ -48,10 +49,21 @@ bun dev
 
 > [!TIP]
 > Make sure [Bun](https://bun.sh) is installed first.
+>
+> ```powershell
+> powershell -c "irm bun.sh/install.ps1 | iex"
+> ```
 
-```bash
-powershell -c "irm bun.sh/install.ps1 | iex"
-```
+### Desktop App (BETA)
+
+ia-bot-ahmed is also available as a desktop application. Download directly from the [releases page](https://github.com/Ahmedmecatronique/ia-bot_ahmed/releases).
+
+| Platform              | Download                           |
+| --------------------- | ---------------------------------- |
+| macOS (Apple Silicon) | `ia-bot-ahmed-desktop-mac-arm64.dmg`   |
+| macOS (Intel)         | `ia-bot-ahmed-desktop-mac-x64.dmg`     |
+| Windows               | `ia-bot-ahmed-desktop-windows-x64.exe` |
+| Linux                 | `.deb`, `.rpm`, or `.AppImage`     |
 
 ### Agents
 
@@ -65,6 +77,10 @@ ia-bot-ahmed includes two built-in agents you can switch between with the `Tab` 
 
 Also included is a **general** subagent for complex searches and multistep tasks.
 This is used internally and can be invoked using `@general` in messages.
+
+### Documentation
+
+For more info on how to configure ia-bot-ahmed, check the [docs](https://github.com/Ahmedmecatronique/ia-bot_ahmed).
 
 ### Contributing
 
