@@ -14,6 +14,8 @@ import { ApplicationTools } from "../tool/application-tools"
 import { Session } from "./session"
 import { Tool } from "./tool"
 
+export { Service as IaBotAhmed }
+
 export interface Interface {
   readonly sessions: Session.Interface
   readonly tools: Tool.Interface

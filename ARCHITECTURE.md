@@ -12,7 +12,7 @@ ia-bot_ahmed/
 ├── infra/             ← Infrastructure SST (AWS)
 ├── script/            ← Scripts racine (release, changelog, publish, CI)
 ├── .github/           ← GitHub Actions (26 workflows) + issue templates
-├── nix/               ← Nix packages (desktop, opencode)
+├── nix/               ← Nix packages (desktop, ia-bot-ahmed)
 ├── sdks/vscode/       ← Extension VS Code
 ├── specs/             ← Spécifications internes
 ├── patches/           ← Patchs npm (15 packages patchés)
@@ -225,7 +225,7 @@ typecheck.yml       → Vérification TypeScript
 build.yml           → Build de validation
 deploy.yml          → Déploiement SST/AWS
 containers.yml      → Build containers Docker
-opencode.yml        → Pipeline principal
+ia-bot-ahmed.yml     → Pipeline principal
 review.yml          → Revue automatique
 generate.yml        → Génération SDK/client
 docs-update.yml     → Sync documentation

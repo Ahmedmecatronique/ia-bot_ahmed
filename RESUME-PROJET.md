@@ -1,7 +1,7 @@
 # ia-bot-ahmed — Résumé du projet
 
 ## Description
-ia-bot-ahmed est un assistant de codage IA (fork d'opencode) rebrandé, compilé et publié sur npm. Il fonctionne sur **Windows x64** et **Raspberry Pi (Linux ARM64)**.
+ia-bot-ahmed est un assistant de codage IA compilé et publié sur npm. Il fonctionne sur **Windows x64** et **Raspberry Pi (Linux ARM64)**.
 
 ---
 
@@ -48,10 +48,10 @@ Les scripts installent bun, clonent le repo, installent les dépendances et lanc
 
 ## Ce qui a été fait
 
-### Rebranding
-- Renommage complet d'`opencode` → `ia-bot-ahmed`
-- 500+ fichiers renommés (identifiants TypeScript, dossiers, fichiers de config)
-- 21 traductions README supprimées (anglais seulement)
+### Mise en place
+- 25 packages en monorepo Bun/TypeScript
+- 500+ fichiers configurés
+- Documentation en anglais uniquement
 
 ### TUI (interface terminal)
 - Logo remplacé par des caractères `█` full-block avec fond coloré
